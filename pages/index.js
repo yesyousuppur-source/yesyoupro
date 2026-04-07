@@ -14,60 +14,111 @@ const FB = {
 };
 
 const CATS = [
-  {id:"Electronics",icon:"💻",g:"Physical"},{id:"Beauty & Skincare",icon:"💄",g:"Physical"},
-  {id:"Home & Kitchen",icon:"🏠",g:"Physical"},{id:"Fitness",icon:"💪",g:"Physical"},
-  {id:"Fashion",icon:"👗",g:"Physical"},{id:"Pet Supplies",icon:"🐾",g:"Physical"},
-  {id:"Toys & Games",icon:"🎮",g:"Physical"},{id:"Health & Wellness",icon:"❤️",g:"Physical"},
-  {id:"Outdoor & Sports",icon:"⛺",g:"Physical"},{id:"Food & Beverages",icon:"🍔",g:"Physical"},
-  {id:"Automotive",icon:"🚗",g:"Physical"},{id:"Books & Education",icon:"📚",g:"Physical"},
-  {id:"Jewelry",icon:"💍",g:"Physical"},{id:"Baby & Kids",icon:"👶",g:"Physical"},
-  {id:"Tools & Hardware",icon:"🔧",g:"Physical"},{id:"Garden & Plants",icon:"🌱",g:"Physical"},
-  {id:"Travel & Luggage",icon:"✈️",g:"Physical"},{id:"Art & Crafts",icon:"🎨",g:"Physical"},
-  {id:"Office Supplies",icon:"🗂️",g:"Physical"},{id:"Music & Audio",icon:"🎵",g:"Physical"},
-  {id:"Mobile Apps",icon:"📱",g:"Digital"},{id:"PC / Console Games",icon:"🕹️",g:"Digital"},
-  {id:"Online Courses",icon:"🎓",g:"Digital"},{id:"Software & SaaS",icon:"💿",g:"Digital"},
-  {id:"Website / Blog",icon:"🌐",g:"Digital"},{id:"YouTube Channel",icon:"📺",g:"Digital"},
-  {id:"Instagram Page",icon:"📸",g:"Digital"},{id:"Podcast",icon:"🎙️",g:"Digital"},
-  {id:"NFT & Crypto",icon:"🖼️",g:"Digital"},{id:"Ebooks & Templates",icon:"📄",g:"Digital"},
-  {id:"Freelance Services",icon:"🛠️",g:"Digital"},{id:"Social Media Account",icon:"👥",g:"Digital"},
-  {id:"Dropshipping",icon:"🚚",g:"Digital"},{id:"Affiliate Marketing",icon:"🔗",g:"Digital"},
-  {id:"Print on Demand",icon:"🖨️",g:"Digital"},{id:"Digital Products",icon:"📦",g:"Digital"},
-  {id:"Any Other",icon:"✨",g:"Digital"},
+  // Physical
+  {id:"Electronics",logo:"https://cdn.simpleicons.org/arduino/00979D",emoji:"💻",g:"Physical"},
+  {id:"Beauty & Skincare",logo:"https://cdn.simpleicons.org/nykaa/FC2779",emoji:"💄",g:"Physical"},
+  {id:"Home & Kitchen",logo:null,emoji:"🏠",g:"Physical"},
+  {id:"Fitness",logo:"https://cdn.simpleicons.org/nike/000000",emoji:"💪",g:"Physical"},
+  {id:"Fashion",logo:null,emoji:"👗",g:"Physical"},
+  {id:"Pet Supplies",logo:null,emoji:"🐾",g:"Physical"},
+  {id:"Toys & Games",logo:null,emoji:"🎮",g:"Physical"},
+  {id:"Health & Wellness",logo:null,emoji:"❤️",g:"Physical"},
+  {id:"Outdoor & Sports",logo:null,emoji:"⛺",g:"Physical"},
+  {id:"Food & Beverages",logo:null,emoji:"🍔",g:"Physical"},
+  {id:"Automotive",logo:null,emoji:"🚗",g:"Physical"},
+  {id:"Books & Education",logo:null,emoji:"📚",g:"Physical"},
+  {id:"Jewelry",logo:null,emoji:"💍",g:"Physical"},
+  {id:"Baby & Kids",logo:null,emoji:"👶",g:"Physical"},
+  {id:"Tools & Hardware",logo:null,emoji:"🔧",g:"Physical"},
+  {id:"Garden & Plants",logo:null,emoji:"🌱",g:"Physical"},
+  {id:"Travel & Luggage",logo:null,emoji:"✈️",g:"Physical"},
+  {id:"Art & Crafts",logo:null,emoji:"🎨",g:"Physical"},
+  {id:"Office Supplies",logo:null,emoji:"🗂️",g:"Physical"},
+  {id:"Music & Audio",logo:null,emoji:"🎵",g:"Physical"},
+  // Digital
+  {id:"Mobile Apps",logo:"https://cdn.simpleicons.org/android/3DDC84",emoji:"📱",g:"Digital"},
+  {id:"PC / Console Games",logo:"https://cdn.simpleicons.org/steam/000000",emoji:"🕹️",g:"Digital"},
+  {id:"Online Courses",logo:"https://cdn.simpleicons.org/udemy/A435F0",emoji:"🎓",g:"Digital"},
+  {id:"Software & SaaS",logo:"https://cdn.simpleicons.org/microsoftazure/0078D4",emoji:"💿",g:"Digital"},
+  {id:"Website / Blog",logo:"https://cdn.simpleicons.org/wordpress/21759B",emoji:"🌐",g:"Digital"},
+  {id:"YouTube Channel",logo:"https://cdn.simpleicons.org/youtube/FF0000",emoji:"📺",g:"Digital"},
+  {id:"Instagram Page",logo:"https://cdn.simpleicons.org/instagram/E1306C",emoji:"📸",g:"Digital"},
+  {id:"Podcast",logo:"https://cdn.simpleicons.org/applepodcasts/9933CC",emoji:"🎙️",g:"Digital"},
+  {id:"NFT & Crypto",logo:"https://cdn.simpleicons.org/ethereum/627EEA",emoji:"🖼️",g:"Digital"},
+  {id:"Ebooks & Templates",logo:"https://cdn.simpleicons.org/amazon/FF9900",emoji:"📄",g:"Digital"},
+  {id:"Freelance Services",logo:"https://cdn.simpleicons.org/fiverr/1DBF73",emoji:"🛠️",g:"Digital"},
+  {id:"Social Media Account",logo:"https://cdn.simpleicons.org/instagram/E1306C",emoji:"👥",g:"Digital"},
+  {id:"Dropshipping",logo:"https://cdn.simpleicons.org/shopify/96BF48",emoji:"🚚",g:"Digital"},
+  {id:"Affiliate Marketing",logo:"https://cdn.simpleicons.org/amazon/FF9900",emoji:"🔗",g:"Digital"},
+  {id:"Print on Demand",logo:"https://cdn.simpleicons.org/printful/000000",emoji:"🖨️",g:"Digital"},
+  {id:"Digital Products",logo:"https://cdn.simpleicons.org/gumroad/FF90E8",emoji:"📦",g:"Digital"},
+  {id:"Any Other",logo:null,emoji:"✨",g:"Digital"},
 ];
 
 const PLATS = [
-  {id:"Amazon",icon:"📦",c:"#f59e0b",g:"Ecommerce"},{id:"Flipkart",icon:"⚡",c:"#2874f0",g:"Ecommerce"},
-  {id:"Meesho",icon:"🌸",c:"#e91e8c",g:"Ecommerce"},{id:"Shopify",icon:"🛒",c:"#96bf48",g:"Ecommerce"},
-  {id:"WooCommerce",icon:"🌐",c:"#7f54b3",g:"Ecommerce"},{id:"Etsy",icon:"🎨",c:"#f56400",g:"Ecommerce"},
-  {id:"Nykaa",icon:"💄",c:"#fc2779",g:"Ecommerce"},{id:"Myntra",icon:"👗",c:"#ff3f6c",g:"Ecommerce"},
-  {id:"Ajio",icon:"👠",c:"#ed1c24",g:"Ecommerce"},{id:"Snapdeal",icon:"🏷️",c:"#e40000",g:"Ecommerce"},
-  {id:"JioMart",icon:"🛍️",c:"#003087",g:"Ecommerce"},{id:"IndiaMART",icon:"🏭",c:"#0077b5",g:"Ecommerce"},
-  {id:"Paytm Mall",icon:"💙",c:"#002970",g:"Ecommerce"},{id:"TradeIndia",icon:"🏪",c:"#ff6600",g:"Ecommerce"},
-  {id:"Instagram",icon:"📸",c:"#e1306c",g:"Social Media"},{id:"Facebook",icon:"👤",c:"#1877f2",g:"Social Media"},
-  {id:"YouTube",icon:"📺",c:"#ff0000",g:"Social Media"},{id:"TikTok",icon:"🎵",c:"#010101",g:"Social Media"},
-  {id:"Pinterest",icon:"📌",c:"#e60023",g:"Social Media"},{id:"Snapchat",icon:"👻",c:"#f5c518",g:"Social Media"},
-  {id:"X (Twitter)",icon:"🐦",c:"#14171a",g:"Social Media"},{id:"LinkedIn",icon:"💼",c:"#0077b5",g:"Social Media"},
-  {id:"Telegram",icon:"✈️",c:"#0088cc",g:"Social Media"},{id:"WhatsApp Business",icon:"💬",c:"#25d366",g:"Social Media"},
-  {id:"Discord",icon:"🎮",c:"#5865f2",g:"Social Media"},{id:"Reddit",icon:"🔴",c:"#ff4500",g:"Social Media"},
-  {id:"Quora",icon:"❓",c:"#a82400",g:"Social Media"},{id:"Moj",icon:"🎬",c:"#ff4081",g:"Social Media"},
-  {id:"ShareChat",icon:"💬",c:"#00bcd4",g:"Social Media"},{id:"Josh",icon:"🎭",c:"#ff6d00",g:"Social Media"},
-  {id:"Google Play Store",icon:"▶️",c:"#01875f",g:"App Stores"},{id:"Apple App Store",icon:"🍎",c:"#0071e3",g:"App Stores"},
-  {id:"Steam",icon:"🎮",c:"#1b2838",g:"App Stores"},{id:"PlayStation Store",icon:"🎯",c:"#003087",g:"App Stores"},
-  {id:"Xbox Store",icon:"🟢",c:"#107c10",g:"App Stores"},
-  {id:"Udemy",icon:"📖",c:"#a435f0",g:"Courses"},{id:"Skillshare",icon:"✏️",c:"#00ccb1",g:"Courses"},
-  {id:"Gumroad",icon:"💰",c:"#ff90e8",g:"Courses"},{id:"Patreon",icon:"🎁",c:"#ff424d",g:"Courses"},
-  {id:"Substack",icon:"📧",c:"#ff6719",g:"Courses"},{id:"Teachable",icon:"🎓",c:"#5cb85c",g:"Courses"},
-  {id:"Fiverr",icon:"💚",c:"#1dbf73",g:"Freelance"},{id:"Upwork",icon:"🔵",c:"#14a800",g:"Freelance"},
-  {id:"Zomato",icon:"🍕",c:"#e23744",g:"Food"},{id:"Swiggy",icon:"🛵",c:"#fc8019",g:"Food"},
-  {id:"BigBasket",icon:"🛒",c:"#84c225",g:"Food"},{id:"Blinkit",icon:"⚡",c:"#f8c700",g:"Food"},
-  {id:"Own Website",icon:"🌐",c:"#6366f1",g:"Other"},{id:"Any Other",icon:"✨",c:"#94a3b8",g:"Other"},
+  // Ecommerce
+  {id:"Amazon",icon:"https://cdn.simpleicons.org/amazon/FF9900",c:"#FF9900",g:"Ecommerce"},
+  {id:"Flipkart",icon:"https://cdn.simpleicons.org/flipkart/2874F0",c:"#2874f0",g:"Ecommerce"},
+  {id:"Meesho",icon:"https://cdn.simpleicons.org/meesho/F43397",c:"#e91e8c",g:"Ecommerce"},
+  {id:"Shopify",icon:"https://cdn.simpleicons.org/shopify/96BF48",c:"#96bf48",g:"Ecommerce"},
+  {id:"WooCommerce",icon:"https://cdn.simpleicons.org/woocommerce/7F54B3",c:"#7f54b3",g:"Ecommerce"},
+  {id:"Etsy",icon:"https://cdn.simpleicons.org/etsy/F56400",c:"#f56400",g:"Ecommerce"},
+  {id:"Nykaa",icon:null,emoji:"💄",c:"#fc2779",g:"Ecommerce"},
+  {id:"Myntra",icon:null,emoji:"👗",c:"#ff3f6c",g:"Ecommerce"},
+  {id:"Ajio",icon:null,emoji:"👠",c:"#ed1c24",g:"Ecommerce"},
+  {id:"IndiaMART",icon:null,emoji:"🏭",c:"#0077b5",g:"Ecommerce"},
+  {id:"JioMart",icon:null,emoji:"🛍️",c:"#003087",g:"Ecommerce"},
+  {id:"Snapdeal",icon:null,emoji:"🏷️",c:"#e40000",g:"Ecommerce"},
+  // Social Media
+  {id:"Instagram",icon:"https://cdn.simpleicons.org/instagram/E1306C",c:"#e1306c",g:"Social Media"},
+  {id:"Facebook",icon:"https://cdn.simpleicons.org/facebook/1877F2",c:"#1877f2",g:"Social Media"},
+  {id:"YouTube",icon:"https://cdn.simpleicons.org/youtube/FF0000",c:"#ff0000",g:"Social Media"},
+  {id:"TikTok",icon:"https://cdn.simpleicons.org/tiktok/000000",c:"#010101",g:"Social Media"},
+  {id:"Pinterest",icon:"https://cdn.simpleicons.org/pinterest/E60023",c:"#e60023",g:"Social Media"},
+  {id:"Snapchat",icon:"https://cdn.simpleicons.org/snapchat/FFFC00",c:"#f5c518",g:"Social Media"},
+  {id:"X (Twitter)",icon:"https://cdn.simpleicons.org/x/000000",c:"#14171a",g:"Social Media"},
+  {id:"LinkedIn",icon:"https://cdn.simpleicons.org/linkedin/0077B5",c:"#0077b5",g:"Social Media"},
+  {id:"Telegram",icon:"https://cdn.simpleicons.org/telegram/26A5E4",c:"#0088cc",g:"Social Media"},
+  {id:"WhatsApp Business",icon:"https://cdn.simpleicons.org/whatsapp/25D366",c:"#25d366",g:"Social Media"},
+  {id:"Discord",icon:"https://cdn.simpleicons.org/discord/5865F2",c:"#5865f2",g:"Social Media"},
+  {id:"Reddit",icon:"https://cdn.simpleicons.org/reddit/FF4500",c:"#ff4500",g:"Social Media"},
+  {id:"Moj",icon:null,emoji:"🎬",c:"#ff4081",g:"Social Media"},
+  {id:"ShareChat",icon:null,emoji:"💬",c:"#00bcd4",g:"Social Media"},
+  // App Stores
+  {id:"Google Play Store",icon:"https://cdn.simpleicons.org/googleplay/414141",c:"#01875f",g:"App Stores"},
+  {id:"Apple App Store",icon:"https://cdn.simpleicons.org/appstore/0071E3",c:"#0071e3",g:"App Stores"},
+  {id:"Steam",icon:"https://cdn.simpleicons.org/steam/000000",c:"#1b2838",g:"App Stores"},
+  {id:"PlayStation Store",icon:"https://cdn.simpleicons.org/playstation/003087",c:"#003087",g:"App Stores"},
+  {id:"Xbox Store",icon:"https://cdn.simpleicons.org/xbox/107C10",c:"#107c10",g:"App Stores"},
+  // Courses
+  {id:"Udemy",icon:"https://cdn.simpleicons.org/udemy/A435F0",c:"#a435f0",g:"Courses"},
+  {id:"Skillshare",icon:"https://cdn.simpleicons.org/skillshare/00FF84",c:"#00ccb1",g:"Courses"},
+  {id:"Gumroad",icon:"https://cdn.simpleicons.org/gumroad/FF90E8",c:"#ff90e8",g:"Courses"},
+  {id:"Patreon",icon:"https://cdn.simpleicons.org/patreon/FF424D",c:"#ff424d",g:"Courses"},
+  {id:"Substack",icon:"https://cdn.simpleicons.org/substack/FF6719",c:"#ff6719",g:"Courses"},
+  {id:"Teachable",icon:null,emoji:"🎓",c:"#5cb85c",g:"Courses"},
+  // Freelance
+  {id:"Fiverr",icon:"https://cdn.simpleicons.org/fiverr/1DBF73",c:"#1dbf73",g:"Freelance"},
+  {id:"Upwork",icon:"https://cdn.simpleicons.org/upwork/6FDA44",c:"#14a800",g:"Freelance"},
+  // Food
+  {id:"Zomato",icon:"https://cdn.simpleicons.org/zomato/E23744",c:"#e23744",g:"Food"},
+  {id:"Swiggy",icon:null,emoji:"🛵",c:"#fc8019",g:"Food"},
+  {id:"BigBasket",icon:null,emoji:"🛒",c:"#84c225",g:"Food"},
+  {id:"Blinkit",icon:null,emoji:"⚡",c:"#f8c700",g:"Food"},
+  // Other
+  {id:"Own Website",icon:"https://cdn.simpleicons.org/internetexplorer/0076D6",c:"#6366f1",g:"Other"},
+  {id:"Any Other",icon:null,emoji:"✨",c:"#94a3b8",g:"Other"},
 ];
 
 const ADPLATS = [
-  {id:"g",n:"Google Ads",c:"#4285f4"},{id:"fb",n:"Facebook",c:"#1877f2"},
-  {id:"ig",n:"Instagram",c:"#e1306c"},{id:"yt",n:"YouTube",c:"#ff0000"},
-  {id:"tt",n:"TikTok",c:"#010101"},{id:"pin",n:"Pinterest",c:"#e60023"},
-  {id:"sc",n:"Snapchat",c:"#f5c518"},{id:"tw",n:"X/Twitter",c:"#14171a"},
+  {id:"g",n:"Google Ads",c:"#4285f4",logo:"https://cdn.simpleicons.org/google/4285F4"},
+  {id:"fb",n:"Facebook",c:"#1877f2",logo:"https://cdn.simpleicons.org/facebook/1877F2"},
+  {id:"ig",n:"Instagram",c:"#e1306c",logo:"https://cdn.simpleicons.org/instagram/E1306C"},
+  {id:"yt",n:"YouTube",c:"#ff0000",logo:"https://cdn.simpleicons.org/youtube/FF0000"},
+  {id:"tt",n:"TikTok",c:"#010101",logo:"https://cdn.simpleicons.org/tiktok/000000"},
+  {id:"pin",n:"Pinterest",c:"#e60023",logo:"https://cdn.simpleicons.org/pinterest/E60023"},
+  {id:"sc",n:"Snapchat",c:"#f5c518",logo:"https://cdn.simpleicons.org/snapchat/000000"},
+  {id:"tw",n:"X/Twitter",c:"#14171a",logo:"https://cdn.simpleicons.org/x/000000"},
 ];
 
 const S = {
@@ -856,13 +907,21 @@ export default function App() {
             <div style={{marginBottom:5}}>
               <label className="ilbl">Platform * {pf.plat && <span style={{color:"#10b981",marginLeft:4,fontSize:10}}>✅ {pf.plat}</span>}</label>
               <button className={"pick-btn"+(pf.plat?" sel":"")} onClick={()=>{setShowPlats(!showPlats);setShowCats(false);}}>
-                <span>{pf.plat?(PLATS.find(p=>p.id===pf.plat)?.icon||"")+" "+pf.plat:"🌐 Select Platform"}</span>
+                <span style={{display:"flex",alignItems:"center",gap:7}}>
+                  {pf.plat&&(()=>{const pl=PLATS.find(p=>p.id===pf.plat);return pl?.icon?<img src={pl.icon} alt={pf.plat} style={{width:16,height:16,objectFit:"contain"}} onError={(e)=>{e.target.style.display="none";}}/>:<span>{pl?.emoji||"🌐"}</span>;})()}
+                  <span>{pf.plat||"Select Platform"}</span>
+                </span>
                 <span style={{fontSize:10,color:"#6366f1"}}>{showPlats?"▲":"▼"}</span>
               </button>
               {showPlats && <div className="pick-drop">
                 {platGroups.map(g=><div key={g}>
                   <div className="pg-lbl">{g==="Ecommerce"?"🛒 "+g:g==="Social Media"?"📱 "+g:g==="App Stores"?"📲 "+g:g==="Courses"?"🎓 "+g:g==="Freelance"?"💼 "+g:g==="Food"?"🍔 "+g:"🌐 "+g}</div>
-                  <div className="chips">{PLATS.filter(p=>p.g===g).map(p=><button key={p.id} className={"chip"+(pf.plat===p.id?" on":"")} style={pf.plat===p.id?{background:p.c,borderColor:p.c}:{}} onClick={()=>{setPf({...pf,plat:p.id});setShowPlats(false);}}><span>{p.icon}</span>{p.id}</button>)}</div>
+                  <div className="chips">{PLATS.filter(p=>p.g===g).map(p=>(
+                      <button key={p.id} className={"chip"+(pf.plat===p.id?" on":"")} style={pf.plat===p.id?{background:p.c,borderColor:p.c}:{}} onClick={()=>{setPf({...pf,plat:p.id});setShowPlats(false);}}>
+                        {p.icon?<img src={p.icon} alt={p.id} style={{width:13,height:13,objectFit:"contain",flexShrink:0}} onError={(e)=>{e.target.style.display="none";}}/>:<span style={{fontSize:12}}>{p.emoji||"•"}</span>}
+                        {p.id}
+                      </button>
+                    ))}</div>
                 </div>)}
               </div>}
             </div>
@@ -905,12 +964,12 @@ export default function App() {
               <div className="psh"><div className="pst">📺 Run Ads + Publish Content</div></div>
               <p className="pss">Complete ad strategy for every platform</p>
               <div className="pgrid">{ADPLATS.map(p=>(
-                <div key={p.id} className={"ppb"+(selP===p.id?" on":"")} onClick={()=>fetchPlat(p.id)} style={{borderColor:selP===p.id?p.c:undefined}}>
+                <div key={p.id} className={"ppb"+(selP===p.id?" on":"")} onClick={()=>fetchPlat(p.id)} style={{borderColor:selP===p.id?p.c:undefined,background:selP===p.id?"rgba(99,102,241,.15)":"rgba(2,8,23,.7)"}}>
                   {isLocked&&<div className="pplk">🔒</div>}
-                  <div style={{width:20,height:20,background:p.c,borderRadius:5,margin:"0 auto 4px",display:"flex",alignItems:"center",justifyContent:"center",color:"#fff",fontSize:10,fontWeight:800}}>
-                    {p.n[0]}
+                  <div style={{width:26,height:26,margin:"0 auto 5px",display:"flex",alignItems:"center",justifyContent:"center",background:p.id==="sc"?"#FFFC00":p.id==="tt"?"#000":p.id==="tw"?"#000":"transparent",borderRadius:6}}>
+                    <img src={p.logo} alt={p.n} style={{width:20,height:20,objectFit:"contain"}} onError={(e)=>{e.target.style.display="none";}}/>
                   </div>
-                  <div style={{fontSize:8,fontWeight:700,color:"#94a3b8"}}>{p.n}</div>
+                  <div style={{fontSize:8,fontWeight:700,color:selP===p.id?"#a5b4fc":"#94a3b8",lineHeight:1.2}}>{p.n}</div>
                 </div>
               ))}</div>
               {selP && !isLocked && <div className="pdet">
