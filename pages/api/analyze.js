@@ -275,3 +275,4 @@ Return ONLY valid JSON with real, specific data:
     return res.status(500).json({ error: "Analysis failed: " + err.message });
   }
 }
+
