@@ -37,7 +37,7 @@ const CATS = [
   {id:"Mobile Apps",logo:"https://cdn.simpleicons.org/android/3DDC84",g:"Digital"},
   {id:"PC / Console Games",logo:"https://cdn.simpleicons.org/steam/000000",g:"Digital"},
   {id:"Online Courses",logo:"https://cdn.simpleicons.org/udemy/A435F0",g:"Digital"},
-  {id:"Software & SaaS",logo:"https://cdn.simpleicons.org/microsoftsaazure/0078D4",g:"Digital"},
+  {id:"Software & SaaS",logo:"https://cdn.simpleicons.org/microsoftazure/0078D4",g:"Digital"},
   {id:"Website / Blog",logo:"https://cdn.simpleicons.org/wordpress/21759B",g:"Digital"},
   {id:"YouTube Channel",logo:"https://cdn.simpleicons.org/youtube/FF0000",g:"Digital"},
   {id:"Instagram Page",logo:"https://cdn.simpleicons.org/instagram/E1306C",g:"Digital"},
@@ -173,9 +173,7 @@ export default function App() {
   const [starF,setStarF] = useState({budget:"5000",exp:"beginner"});
   const [starD,setStarD] = useState(null);const [starL,setStarL] = useState(false);
   const [begF,setBegF] = useState({budget:"5000",category:"Fashion"});
-  const [showTrendCats, setShowTrendCats] = useState(false);
-  const [showBegCats, setShowBegCats] = useState(false);
-  const [begD,setBegD] = useState(null);const [begL,setBegL] = useState(false);
+      const [begD,setBegD] = useState(null);const [begL,setBegL] = useState(false);
   const [invF,setInvF] = useState({buy:"",sell:"",units:"10",fee:"10",ship:"60",ads:"200"});
   const [invR,setInvR] = useState(null);
   const [salesD,setSalesD] = useState(null);const [salesL,setSalesL] = useState(false);
