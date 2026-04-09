@@ -134,6 +134,8 @@ export default function App() {
   const [form,setForm] = useState({email:"",password:"",name:""});
   const [saved,setSaved] = useState([]);
   const [showPw,setShowPw] = useState(false);
+  const [showTrendCats,setShowTrendCats] = useState(false);
+  const [showBegCats,setShowBegCats] = useState(false);
   const [gLoad,setGLoad] = useState(false);
   const [authErr,setAuthErr] = useState("");
   const [usage,setUsage] = useState(null);
@@ -171,6 +173,8 @@ export default function App() {
   const [starF,setStarF] = useState({budget:"5000",exp:"beginner"});
   const [starD,setStarD] = useState(null);const [starL,setStarL] = useState(false);
   const [begF,setBegF] = useState({budget:"5000",category:"Fashion"});
+  const [showTrendCats, setShowTrendCats] = useState(false);
+  const [showBegCats, setShowBegCats] = useState(false);
   const [begD,setBegD] = useState(null);const [begL,setBegL] = useState(false);
   const [invF,setInvF] = useState({buy:"",sell:"",units:"10",fee:"10",ship:"60",ads:"200"});
   const [invR,setInvR] = useState(null);
@@ -1012,7 +1016,27 @@ export default function App() {
           {tab==="starter" && <div className="fbox fa" style={{position:"relative"}}>{isLocked&&<LockBox/>}
             <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>🎓 Starter Guide</h3>
             <p style={{color:"#64748b",fontSize:10,marginBottom:11}}>Personalized plan for your budget</p>
-            <div className="prow"><div className="pfield"><label>Budget (₹)</label><input type="number" placeholder="5000" value={starF.budget} onChange={e=>setStarF({...starF,budget:e.target.value})}/></div><div className="pfield"><label>Experience</label><select value={starF.exp} onChange={e=>setStarF({...starF,exp:e.target.value})}><option value="beginner">Beginner</option><option value="some">Some Exp</option><option value="intermediate">Intermediate</option></select></div></div>
+            <div style={{marginBottom:12}}>
+              <label className="ilbl">Budget (₹)</label>
+              <input className="di" type="number" placeholder="5000" value={starF.budget} onChange={e=>setStarF({...starF,budget:e.target.value})}/>
+            </div>
+            <div style={{marginBottom:12}}>
+              <label className="ilbl">Experience Level</label>
+              <div style={{display:"flex",gap:7,flexWrap:"wrap",marginTop:4}}>
+                {[{id:"beginner",label:"🌱 Beginner",sub:"Bilkul naya"},{id:"some",label:"📈 Some Exp",sub:"Thoda jaanta hoon"},{id:"intermediate",label:"🚀 Intermediate",sub:"Kuch time se kar raha hoon"}].map(opt=>(
+                  <button key={opt.id} onClick={()=>setStarF({...starF,exp:opt.id})} style={{
+                    flex:1,minWidth:90,background:starF.exp===opt.id?"linear-gradient(135deg,#6366f1,#8b5cf6)":"rgba(15,23,42,.7)",
+                    border:starF.exp===opt.id?"1px solid #6366f1":"1px solid #1e293b",
+                    borderRadius:10,padding:"10px 8px",cursor:"pointer",textAlign:"center",
+                    fontFamily:"Inter,sans-serif",transition:"all .2s"
+                  }}>
+                    <div style={{fontSize:16,marginBottom:3}}>{opt.label.split(" ")[0]}</div>
+                    <div style={{fontSize:11,fontWeight:700,color:starF.exp===opt.id?"#fff":"#94a3b8"}}>{opt.label.split(" ").slice(1).join(" ")}</div>
+                    <div style={{fontSize:9,color:starF.exp===opt.id?"rgba(255,255,255,.7)":"#475569",marginTop:2}}>{opt.sub}</div>
+                  </button>
+                ))}
+              </div>
+            </div>
             <button className="gbtn2" style={{background:"linear-gradient(135deg,#6366f1,#8b5cf6)"}} onClick={async()=>{setStarL(true);try{const d=await apiCall("starter_guide",{budget:starF.budget,experience:starF.exp});setStarD(d);}catch{}setStarL(false);}} disabled={starL}>{starL?"⏳ Generating...":"🎓 Generate Guide"}</button>
             {starL&&<div className="ssp"/>}
             {starD&&!starL&&<div style={{marginTop:13}} className="fa">
@@ -1025,7 +1049,37 @@ export default function App() {
           {tab==="beginner" && <div className="fbox fa" style={{position:"relative"}}>{isLocked&&<LockBox/>}
             <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>🔰 Beginner Product Finder</h3>
             <p style={{color:"#64748b",fontSize:10,marginBottom:11}}>Low risk, high profit products</p>
-            <div className="prow"><div className="pfield"><label>Budget (₹)</label><input type="number" placeholder="5000" value={begF.budget} onChange={e=>setBegF({...begF,budget:e.target.value})}/></div><div className="pfield"><label>Category</label><select value={begF.category} onChange={e=>setBegF({...begF,category:e.target.value})}>{["Fashion","Electronics","Beauty & Skincare","Home & Kitchen","Fitness","Digital Products","Online Courses","Any Other"].map(c=><option key={c}>{c}</option>)}</select></div></div>
+            <div style={{marginBottom:12}}>
+              <label className="ilbl">Budget (₹)</label>
+              <input className="di" type="number" placeholder="5000" value={begF.budget} onChange={e=>setBegF({...begF,budget:e.target.value})} style={{marginBottom:10}}/>
+            </div>
+            <div style={{marginBottom:12}}>
+              <label className="ilbl">Category {begF.category&&<span style={{color:"#10b981",marginLeft:5,fontSize:10}}>✅ {begF.category}</span>}</label>
+              <button onClick={()=>setShowBegCats(!showBegCats)} style={{width:"100%",background:begF.category?"rgba(16,185,129,.08)":"rgba(15,23,42,.7)",border:begF.category?"1px solid rgba(16,185,129,.3)":"1px solid #1e293b",borderRadius:10,padding:"9px 13px",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"space-between",color:begF.category?"#f8fafc":"#64748b",fontSize:12,fontWeight:600,fontFamily:"Inter,sans-serif",marginBottom:4}}>
+                <span style={{display:"flex",alignItems:"center",gap:7}}>
+                  {begF.category&&(()=>{const ct=CATS.find(c=>c.id===begF.category);return ct?.logo?<img src={ct.logo} alt={begF.category} style={{width:15,height:15,objectFit:"contain"}} onError={(e)=>{e.target.style.display="none";}}/>:<span style={{fontSize:14}}>{ct?.e||"📂"}</span>;})()}
+                  {begF.category||"Select Category"}
+                </span>
+                <span style={{fontSize:10,color:"#10b981"}}>{showBegCats?"▲":"▼"}</span>
+              </button>
+              {showBegCats&&<div className="pick-drop">
+                {["Physical","Digital"].map(g=>(
+                  <div key={g}>
+                    <div className="pglbl">{g==="Physical"?"📦 Physical Products":"💻 Digital & Virtual"}</div>
+                    <div className="chips">
+                      {CATS.filter(c=>c.g===g).map(c=>(
+                        <button key={c.id} className={"chip"+(begF.category===c.id?" on":"")}
+                          style={begF.category===c.id?{background:"linear-gradient(135deg,#10b981,#059669)",borderColor:"#10b981"}:{}}
+                          onClick={()=>{setBegF({...begF,category:c.id});setShowBegCats(false);}}>
+                          {c.logo?<img src={c.logo} alt={c.id} style={{width:13,height:13,objectFit:"contain",flexShrink:0}} onError={(e)=>{e.target.style.display="none";}}/>:<span style={{fontSize:11}}>{c.e||"•"}</span>}
+                          {c.id}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>}
+            </div>
             <button className="gbtn2" style={{background:"linear-gradient(135deg,#10b981,#059669)"}} onClick={async()=>{setBegL(true);try{const d=await apiCall("beginner_product",begF);setBegD(d);}catch{}setBegL(false);}} disabled={begL}>{begL?"⏳ Finding...":"🔰 Find Products"}</button>
             {begL&&<div className="ssp"/>}
             {begD&&!begL&&<div style={{marginTop:13}} className="fa">{begD.products?.map((p,i)=><div key={i} className="cc" style={{marginBottom:6}}><div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:4,flexWrap:"wrap",gap:3}}><div style={{fontWeight:700,fontSize:12,color:"#e2e8f0"}}>#{i+1} {p.name}</div><span style={{background:p.risk==="Low"?"rgba(16,185,129,.1)":"rgba(245,158,11,.1)",color:p.risk==="Low"?"#10b981":"#f59e0b",borderRadius:5,padding:"1px 6px",fontSize:10,fontWeight:600}}>Risk: {p.risk}</span></div><div style={{display:"flex",gap:5,flexWrap:"wrap",marginBottom:4}}><span style={{color:"#ef4444",fontSize:11,fontWeight:600}}>Buy: {p.buy_price}</span><span style={{color:"#94a3b8"}}>→</span><span style={{color:"#10b981",fontSize:11,fontWeight:600}}>Sell: {p.sell_price}</span><span style={{color:"#f59e0b",fontSize:11,fontWeight:700}}>💰 {p.profit_per_unit}</span></div><div style={{color:"#94a3b8",fontSize:10,marginBottom:4}}>{p.why_good}</div><div style={{display:"flex",gap:3,flexWrap:"wrap"}}><span style={{background:"rgba(99,102,241,.1)",color:"#a5b4fc",borderRadius:5,padding:"1px 6px",fontSize:10}}>📦 {p.platform}</span><span style={{background:"rgba(16,185,129,.1)",color:"#10b981",borderRadius:5,padding:"1px 6px",fontSize:10}}>🏭 {p.suppliers}</span></div></div>)}</div>}
@@ -1051,7 +1105,35 @@ export default function App() {
           {tab==="trending" && <div className="fbox fa" style={{position:"relative"}}>{isLocked&&<LockBox/>}
             <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>🔥 Trending Products</h3>
             <p style={{color:"#64748b",fontSize:10,marginBottom:11}}>Top trending in India right now</p>
-            <div style={{display:"flex",gap:7,flexWrap:"wrap",marginBottom:10}}><select className="di" style={{flex:1,minWidth:120}} value={trendCat} onChange={e=>setTrendCat(e.target.value)}>{CATS.map(c=><option key={c.id} value={c.id}>{c.icon} {c.id}</option>)}</select><button className="cbtn" onClick={async()=>{setTrendL(true);try{const d=await apiCall("trending",{category:trendCat});setTrendD(d);}catch{}setTrendL(false);}} disabled={trendL}>{trendL?"⏳":"🔥 Get"}</button></div>
+            {/* Category Visual Picker */}
+            <div style={{marginBottom:14}}>
+              <label className="ilbl" style={{marginBottom:6}}>Select Category {trendCat&&<span style={{color:"#10b981",marginLeft:5,fontSize:10}}>✅ {trendCat}</span>}</label>
+              <button onClick={()=>setShowTrendCats(!showTrendCats)} style={{width:"100%",background:trendCat?"rgba(99,102,241,.1)":"rgba(15,23,42,.7)",border:trendCat?"1px solid rgba(99,102,241,.35)":"1px solid #1e293b",borderRadius:10,padding:"9px 13px",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"space-between",color:trendCat?"#f8fafc":"#64748b",fontSize:12,fontWeight:600,fontFamily:"Inter,sans-serif",marginBottom:4}}>
+                <span style={{display:"flex",alignItems:"center",gap:7}}>
+                  {trendCat&&(()=>{const ct=CATS.find(c=>c.id===trendCat);return ct?.logo?<img src={ct.logo} alt={trendCat} style={{width:15,height:15,objectFit:"contain"}} onError={(e)=>{e.target.style.display="none";}}/>:<span style={{fontSize:14}}>{ct?.e||"📂"}</span>;})()}
+                  {trendCat||"Select Category"}
+                </span>
+                <span style={{fontSize:10,color:"#6366f1"}}>{showTrendCats?"▲":"▼"}</span>
+              </button>
+              {showTrendCats&&<div className="pick-drop">
+                {["Physical","Digital"].map(g=>(
+                  <div key={g}>
+                    <div className="pglbl">{g==="Physical"?"📦 Physical Products":"💻 Digital & Virtual"}</div>
+                    <div className="chips">
+                      {CATS.filter(c=>c.g===g).map(c=>(
+                        <button key={c.id} className={"chip"+(trendCat===c.id?" on":"")}
+                          style={trendCat===c.id?{background:"linear-gradient(135deg,#f59e0b,#ef4444)",borderColor:"#f59e0b"}:{}}
+                          onClick={()=>{setTrendCat(c.id);setShowTrendCats(false);}}>
+                          {c.logo?<img src={c.logo} alt={c.id} style={{width:13,height:13,objectFit:"contain",flexShrink:0}} onError={(e)=>{e.target.style.display="none";}}/>:<span style={{fontSize:11}}>{c.e||"•"}</span>}
+                          {c.id}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>}
+            </div>
+            <button className="cbtn" style={{background:"linear-gradient(135deg,#f59e0b,#ef4444)",width:"100%"}} onClick={async()=>{setTrendL(true);try{const d=await apiCall("trending",{category:trendCat});setTrendD(d);}catch{}setTrendL(false);}} disabled={trendL}>{trendL?"⏳ Loading...":"🔥 Get Trending Products"}</button>
             {trendL&&<div className="ssp"/>}
             {trendD&&!trendL&&<div className="tgrid fa">{trendD.products?.map((p,i)=><div key={i} className="tcard"><div className="trnk">{i+1}</div><div style={{fontWeight:700,fontSize:11,color:"#e2e8f0",marginBottom:3}}>{p.name}</div><div style={{color:"#64748b",fontSize:10,marginBottom:5,lineHeight:1.5}}>{p.why_trending}</div><div style={{color:"#f59e0b",fontSize:10,fontWeight:600,marginBottom:4}}>💰 {p.price_range}</div><div style={{display:"flex",flexWrap:"wrap",gap:3}}>{p.tags?.map((t,j)=><span key={j} className="tc">{t}</span>)}</div></div>)}</div>}
           </div>}
