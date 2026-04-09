@@ -689,6 +689,8 @@ export default function App() {
         <title>YesYouPro — AI Product Analyzer for Indian Sellers</title>
         <meta name="description" content="YesYouPro — AI product analyzer for Indian ecommerce sellers. Get viral hooks, keywords, competitor analysis & 13 premium tools. Free to try!" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-KHCWZ13QJE"/>
+        <script dangerouslySetInnerHTML={{__html:`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-KHCWZ13QJE');`}}/>
       </Head>
       <style>{css}</style>
       {toast && <div className="toast">{toast}</div>}
@@ -864,10 +866,72 @@ export default function App() {
         </nav>
 
         <div className="dc">
-          <div className="hero">
-            <div className="hbadge">✨ Universal AI Analyzer</div>
-            <h1 className="htitle">Analyze Anything<br/><span className="grad">Powered by YesYouPro</span></h1>
-            <p className="hsub">Products, apps, games, websites, channels — AI insights for anything! No login needed.</p>
+          {/* ── HERO ── */}
+          <div style={{textAlign:"center",padding:"28px 0 32px"}}>
+
+            {/* Top badge */}
+            <div style={{display:"inline-flex",alignItems:"center",gap:8,background:"rgba(99,102,241,.1)",border:"1px solid rgba(99,102,241,.3)",borderRadius:100,padding:"5px 16px",fontSize:11,color:"#a5b4fc",fontWeight:700,marginBottom:16,animation:"fadeIn .6s ease"}}>
+              <span style={{width:6,height:6,background:"#10b981",borderRadius:"50%",display:"inline-block",boxShadow:"0 0 8px #10b981"}}/>
+              🇮🇳 India ka #1 AI Product Analyzer — 2025
+            </div>
+
+            {/* Main headline */}
+            <h1 style={{fontWeight:900,fontSize:"clamp(26px,6vw,52px)",lineHeight:1.08,letterSpacing:"-1.5px",marginBottom:14,color:"#f8fafc"}}>
+              30 Second Mein<br/>
+              <span style={{background:"linear-gradient(135deg,#6366f1,#a855f7,#ec4899)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",backgroundClip:"text"}}>Winning Product</span><br/>
+              Dhundo 🔥
+            </h1>
+
+            {/* Subheadline */}
+            <p style={{color:"#64748b",fontSize:14,maxWidth:500,margin:"0 auto 22px",lineHeight:1.7}}>
+              Meesho, Amazon, Flipkart — kaunsa product bechna hai ye AI 30 second mein bata dega.<br/>
+              <span style={{color:"#94a3b8",fontSize:12}}>Koi login nahi chahiye. Bilkul free shuru karo.</span>
+            </p>
+
+            {/* Stats row */}
+            <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:6,flexWrap:"wrap",marginBottom:22}}>
+              {[
+                {n:"17+",l:"AI Tools"},
+                {n:"2,847+",l:"Sellers"},
+                {n:"30 sec",l:"Analysis Time"},
+                {n:"Free",l:"Try Now"},
+              ].map((s,i)=>(
+                <div key={i} style={{background:"rgba(15,23,42,.8)",border:"1px solid rgba(255,255,255,.06)",borderRadius:12,padding:"9px 16px",textAlign:"center",minWidth:70}}>
+                  <div style={{fontWeight:900,fontSize:16,color:"#f8fafc",lineHeight:1}}>{s.n}</div>
+                  <div style={{fontSize:10,color:"#64748b",marginTop:2,fontWeight:600}}>{s.l}</div>
+                </div>
+              ))}
+            </div>
+
+            {/* Feature pills */}
+            <div style={{display:"flex",flexWrap:"wrap",justifyContent:"center",gap:6,marginBottom:24}}>
+              {["✅ Viral Hooks","✅ SEO Keywords","✅ Competitor Analysis","✅ Profit Calculator","✅ Supplier Finder","✅ Return Manager","✅ Festival Planner","✅ ROAS Calculator"].map((f,i)=>(
+                <span key={i} style={{background:"rgba(16,185,129,.06)",border:"1px solid rgba(16,185,129,.15)",color:"#6ee7b7",borderRadius:100,padding:"4px 12px",fontSize:11,fontWeight:600}}>{f}</span>
+              ))}
+            </div>
+
+            {/* Social proof */}
+            <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:10,marginBottom:8}}>
+              <div style={{display:"flex"}}>
+                {["🧑","👩","👨","🧑‍💼","👩‍💼"].map((e,i)=>(
+                  <div key={i} style={{width:28,height:28,borderRadius:"50%",background:"linear-gradient(135deg,#6366f1,#8b5cf6)",border:"2px solid #020817",display:"flex",alignItems:"center",justifyContent:"center",fontSize:14,marginLeft:i>0?-8:0,zIndex:5-i}}>
+                    {e}
+                  </div>
+                ))}
+              </div>
+              <div style={{textAlign:"left"}}>
+                <div style={{fontSize:12,fontWeight:700,color:"#f8fafc"}}>2,847+ Indian Sellers</div>
+                <div style={{fontSize:10,color:"#64748b"}}>Already using YesYouPro</div>
+              </div>
+              <div style={{display:"flex",gap:2}}>
+                {[1,2,3,4,5].map(s=><span key={s} style={{color:"#f59e0b",fontSize:13}}>★</span>)}
+              </div>
+            </div>
+
+            {/* Scroll down hint */}
+            <div style={{color:"#334155",fontSize:11,marginTop:10,display:"flex",alignItems:"center",justifyContent:"center",gap:5}}>
+              <span>👇</span> Neeche product analyze karo — bilkul free
+            </div>
           </div>
 
           {timer && curPlan==="free" && <div className="tbox">
