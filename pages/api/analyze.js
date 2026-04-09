@@ -196,6 +196,65 @@ Return ONLY valid JSON:
   {"name":"n6","competition":"Medium","demand":"Very High","profit_margin":"X%","investment":"INR X","why_untapped":"reason","best_platform":"p","example_products":["p1","p2"],"trend":"Growing"}
 ]}`;
 
+  } else if (mode === "return_manager") {
+    prompt = `You are an ecommerce returns expert for India. Analyze return rate and prevention for: "${name}" (${category||"Any"}) on ${platform||"Online"}.
+Return ONLY valid JSON:
+{
+  "return_rate": "X-Y%",
+  "industry_average": "Industry average: X%",
+  "main_reasons": ["reason1","reason2","reason3","reason4","reason5"],
+  "prevention_tips": ["tip1 to reduce returns","tip2","tip3","tip4","tip5"],
+  "packaging_tips": "Specific packaging advice to reduce returns for this product",
+  "description_fixes": ["What to add/fix in description1","fix2","fix3"],
+  "policy_advice": "Return policy wording that reduces returns"
+}`;
+
+  } else if (mode === "festival_planner") {
+    const season = req.body.season || "Diwali";
+    prompt = `You are an Indian ecommerce festival strategist. Create complete ${season} plan for: "${name}" (${category||"Any"}) on ${platform||"Online"}.
+Return ONLY valid JSON:
+{
+  "overview": "2-3 sentences about ${season} opportunity for this product in India",
+  "timeline": [
+    {"when":"4 weeks before","action":"Specific action to take"},
+    {"when":"2 weeks before","action":"action"},
+    {"when":"1 week before","action":"action"},
+    {"when":"Festival week","action":"action"},
+    {"when":"After festival","action":"action"}
+  ],
+  "pricing_strategy": "Specific pricing advice for ${season} - when to increase, how much discount",
+  "stock_recommendation": "How much stock to keep, when to order, safety stock",
+  "ad_strategy": "Ad budget breakdown and platform strategy for ${season}",
+  "expected_sales_boost": "X-Y% increase expected during ${season}"
+}`;
+
+  } else if (mode === "multi_platform") {
+    prompt = `You are a multi-platform ecommerce expert for India. Suggest 3 best platforms to expand "${name}" (${category||"Any"}) beyond ${platform||"current platform"}.
+Return ONLY valid JSON:
+{
+  "platforms": [
+    {"name":"Best Platform Name","potential":"High","fee":"X%","why":"Specific reason why this platform suits this product","pricing_tip":"Price suggestion for this platform","setup_steps":"3-step quick setup guide"},
+    {"name":"Platform 2","potential":"High","fee":"X%","why":"reason","pricing_tip":"tip","setup_steps":"steps"},
+    {"name":"Platform 3","potential":"Medium","fee":"X%","why":"reason","pricing_tip":"tip","setup_steps":"steps"}
+  ],
+  "strategy": "Overall multi-platform expansion strategy for ${name}",
+  "priority_order": ["Platform1","Platform2","Platform3"],
+  "risk_warning": "What to avoid when expanding to multiple platforms"
+}`;
+
+  } else if (mode === "bundle_creator") {
+    prompt = `You are a product bundling expert for Indian ecommerce. Create 4 profitable bundle ideas for "${name}" (${category||"Any"}) on ${platform||"Online"}.
+Return ONLY valid JSON:
+{
+  "bundles": [
+    {"name":"Creative bundle name","items":["${name}","Complementary item 2","item 3"],"single_price":"INR X (total if bought separately)","bundle_price":"INR Y (discounted)","margin_increase":"+X%","why_works":"Why customers will buy this bundle","listing_tip":"How to list/title this bundle for maximum sales"},
+    {"name":"bundle2","items":["${name}","item2"],"single_price":"INR X","bundle_price":"INR Y","margin_increase":"+X%","why_works":"reason","listing_tip":"tip"},
+    {"name":"bundle3","items":["${name}","item2","item3","item4"],"single_price":"INR X","bundle_price":"INR Y","margin_increase":"+X%","why_works":"reason","listing_tip":"tip"},
+    {"name":"bundle4","items":["${name}","item2"],"single_price":"INR X","bundle_price":"INR Y","margin_increase":"+X%","why_works":"reason","listing_tip":"tip"}
+  ],
+  "top_bundle": "Recommend which bundle to launch first and exactly why"
+}`;
+
   } else {
     // DEFAULT - Universal analysis for ANYTHING
     prompt = `You are a universal market expert for India. Deeply analyze this:
@@ -275,4 +334,3 @@ Return ONLY valid JSON with real, specific data:
     return res.status(500).json({ error: "Analysis failed: " + err.message });
   }
 }
-
