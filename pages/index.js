@@ -872,7 +872,7 @@ export default function App() {
             {/* Top badge */}
             <div style={{display:"inline-flex",alignItems:"center",gap:8,background:"rgba(99,102,241,.1)",border:"1px solid rgba(99,102,241,.3)",borderRadius:100,padding:"5px 16px",fontSize:11,color:"#a5b4fc",fontWeight:700,marginBottom:16,animation:"fadeIn .6s ease"}}>
               <span style={{width:6,height:6,background:"#10b981",borderRadius:"50%",display:"inline-block",boxShadow:"0 0 8px #10b981"}}/>
-              🇮🇳 India ka #1 AI Product Analyzer — 2025
+              🇮🇳 India ka #1 AI Product Analyzer
             </div>
 
             {/* Main headline */}
@@ -892,7 +892,7 @@ export default function App() {
             <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:6,flexWrap:"wrap",marginBottom:22}}>
               {[
                 {n:"17+",l:"AI Tools"},
-                {n:"2,847+",l:"Sellers"},
+                {n:"1 Lac+",l:"Sellers"},
                 {n:"30 sec",l:"Analysis Time"},
                 {n:"Free",l:"Try Now"},
               ].map((s,i)=>(
@@ -920,7 +920,7 @@ export default function App() {
                 ))}
               </div>
               <div style={{textAlign:"left"}}>
-                <div style={{fontSize:12,fontWeight:700,color:"#f8fafc"}}>2,847+ Indian Sellers</div>
+                <div style={{fontSize:12,fontWeight:700,color:"#f8fafc"}}>1 Lac+ Indian Sellers</div>
                 <div style={{fontSize:10,color:"#64748b"}}>Already using YesYouPro</div>
               </div>
               <div style={{display:"flex",gap:2}}>
