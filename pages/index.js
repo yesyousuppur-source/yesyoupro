@@ -197,99 +197,7 @@ export default function App() {
   const showT = (m) => { setToast(m); setTimeout(()=>setToast(null),3500); };
 
   // ── REFERRAL SYSTEM ──────────────────────────────────────────────────────
-  const getRefCode = (u) => {
-    if(!u?.email) return "";
-    const base = u.email.split("@")[0].replace(/[^a-z0-9]/gi,"").toLowerCase().slice(0,8);
-    const hash = u.email.split("").reduce((a,c)=>a+c.charCodeAt(0),0)%1000;
-    return base+String(hash);
-  };
-
-  const getRefData = (u) => {
-    if(!u?.email) return {count:0,users:[],rewarded:false};
-    return S.get("yyp_ref_"+u.email)||{count:0,users:[],rewarded:false};
-  };
-
-  const applyReferral = (currentUser) => {
-    if(typeof window==="undefined"||!currentUser?.email) return;
-    const params = new URLSearchParams(window.location.search);
-    const refCode = params.get("ref");
-    if(!refCode) return;
-    const allAccs = S.get("yyp_accounts")||[];
-    const referer = allAccs.find(a=>{
-      const code = a.email.split("@")[0].replace(/[^a-z0-9]/gi,"").toLowerCase().slice(0,8)+
-                   String(a.email.split("").reduce((acc,c)=>acc+c.charCodeAt(0),0)%1000);
-      return code===refCode;
-    });
-    if(!referer||referer.email===currentUser.email) return;
-    const rd = S.get("yyp_ref_"+referer.email)||{count:0,users:[],rewarded:false};
-    if(rd.users.find(u=>u.email===currentUser.email)) return;
-    rd.users.push({email:currentUser.email,name:currentUser.name||"User",date:new Date().toLocaleDateString("en-IN")});
-    rd.count = rd.users.length;
-    if(rd.count>=10&&!rd.rewarded){
-      rd.rewarded = true;
-      const exp = new Date(Date.now()+7*86400000).toISOString();
-      S.set("yyp_prem_"+referer.email,{expiry:exp,used:0});
-      S.set("yyp_plan_"+referer.email,"premium");
-      showT("🎉 Someone used your referral link! Progress updated.");
-    }
-    S.set("yyp_ref_"+referer.email,rd);
-    try{window.history.replaceState({},document.title,window.location.pathname);}catch{}
-  };
-  const todayK = () => { const d=new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); };
-  const curPlan = user ? (S.get("yyp_plan_"+user.email)||"free") : "free";
-  const isGuest = !!user?.isGuest;
-  const isLocked = curPlan!=="premium" && (!usage||usage.remaining<=0||!!timer);
-  const platGroups = [...new Set(PLATS.map(p=>p.g))];
-
-  // Logo image component
-  const Logo = ({src,alt,size=14,bg="transparent"}) => src ? (
-    <span style={{width:size,height:size,display:"inline-flex",alignItems:"center",justifyContent:"center",flexShrink:0,background:bg,borderRadius:3}}>
-      <img src={src} alt={alt||""} style={{width:size,height:size,objectFit:"contain"}} onError={(e)=>{e.target.style.display="none";}}/>
-    </span>
-  ) : null;
-
-  const calcUsage = (u) => {
-    if(!u?.email) return {plan:"free",remaining:FREE_LIMIT,total:FREE_LIMIT,used:0};
-    const plan = S.get("yyp_plan_"+u.email)||"free";
-    if(plan==="premium"){
-      const pd = S.get("yyp_prem_"+u.email);
-      if(!pd){S.set("yyp_plan_"+u.email,"free");return{plan:"free",remaining:FREE_LIMIT,total:FREE_LIMIT,used:0};}
-      if(new Date()>new Date(pd.expiry)){S.set("yyp_plan_"+u.email,"free");return{plan:"free",remaining:FREE_LIMIT,total:FREE_LIMIT,expired:true};}
-      const used = pd.used||0;
-      return {plan,remaining:Math.max(0,PREM_LIMIT-used),total:PREM_LIMIT,used,expiry:pd.expiry};
-    }
-    const used = parseInt(S.get("yyp_daily_"+u.email+"_"+todayK())||"0");
-    return {plan:"free",remaining:Math.max(0,FREE_LIMIT-used),total:FREE_LIMIT,used};
-  };
-
-  const addUsage = (u) => {
-    if(!u?.email) return;
-    const plan = S.get("yyp_plan_"+u.email)||"free";
-    if(plan==="premium"){const pd=S.get("yyp_prem_"+u.email);if(pd)S.set("yyp_prem_"+u.email,{...pd,used:(pd.used||0)+1});}
-    else{const k="yyp_daily_"+u.email+"_"+todayK();S.set(k,String(parseInt(S.get(k)||"0")+1));}
-  };
-
-  const startTimer = (u) => {
-    if(!u) return;
-    if((S.get("yyp_plan_"+u.email)||"free")==="premium"){setTimer(null);return;}
-    const used = parseInt(S.get("yyp_daily_"+u.email+"_"+todayK())||"0");
-    if(used<FREE_LIMIT){setTimer(null);return;}
-    const hit = S.get("yyp_hit_"+u.email);
-    if(!hit) return;
-    clearInterval(timerRef.current);
-    timerRef.current = setInterval(()=>{
-      const rem = hit+86400000-Date.now();
-      if(rem<=0){clearInterval(timerRef.current);S.set("yyp_daily_"+u.email+"_"+todayK(),"0");S.set("yyp_hit_"+u.email,null);setTimer(null);showT("✅ 2 free analyses reset!");}
-      else setTimer({h:Math.floor(rem/3600000),m:Math.floor((rem%3600000)/60000),s:Math.floor((rem%60000)/1000),total:rem});
-    },1000);
-  };
-
-  const makeGuest = () => {
-    const sg = S.get("yyp_guest");
-    if(sg?.email){setUser(sg);setUsage(calcUsage(sg));return sg;}
-    const g = {email:"guest_"+Date.now(),name:"Guest",photo:null,plan:"free",isGuest:true};
-    S.set("yyp_guest",g);setUser(g);setUsage(calcUsage(g));return g;
-  };
+;
 
   // ── REFERRAL SYSTEM ──────────────────────────────────────────────────────
   const genRefCode = (email) => {
@@ -333,7 +241,7 @@ export default function App() {
       const exp=new Date(Date.now()+7*86400000).toISOString();
       S.set("yyp_prem_"+referrer.email,{expiry:exp,used:0});
       S.set("yyp_plan_"+referrer.email,"premium");
-      showToast("🎉 Referral reward milega!");
+      showT("🎉 Referral reward milega!");
     }
     try{await fetch("/api/referral",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"register",referrerEmail:referrer.email,newUserEmail:newEmail,newUserName:newName,refCode})});}catch{}
     window.history.replaceState({},"","/");
@@ -393,14 +301,14 @@ export default function App() {
         const plan = applyPending(form.email);
         const u = {email:form.email,name:form.name,photo:null,plan};
         S.set("yyp_current",u);S.set("yyp_guest",null);saveAcc(form.email,form.name,form.password,null);
-        setUser(u);setUsage(calcUsage(u));setScreen("dashboard");setTimeout(()=>applyReferral(u),800);showT(plan==="premium"?"🎉 Premium activated!":"✅ Welcome!");
+        setUser(u);setUsage(calcUsage(u));setScreen("dashboard");checkIncomingRef(u.email,u.name);showT(plan==="premium"?"🎉 Premium activated!":"✅ Welcome!");
       } else {
         const {signInWithEmailAndPassword} = await import("firebase/auth");
         const r = await signInWithEmailAndPassword(auth,form.email,form.password);
         const plan = applyPending(form.email);
         const u = {email:r.user.email,name:r.user.displayName||form.email.split("@")[0],photo:null,plan};
         S.set("yyp_current",u);S.set("yyp_guest",null);saveAcc(form.email,u.name,form.password,null);
-        setUser(u);setUsage(calcUsage(u));startTimer(u);setScreen("dashboard");setTimeout(()=>applyReferral(u),800);showT(plan==="premium"?"🎉 Premium activated!":"✅ Welcome back!");
+        setUser(u);setUsage(calcUsage(u));startTimer(u);setScreen("dashboard");checkIncomingRef(u.email,u.name);showT(plan==="premium"?"🎉 Premium activated!":"✅ Welcome back!");
       }
     }catch(e){
       const allU = S.get("yyp_users")||{};
