@@ -136,6 +136,8 @@ export default function App() {
   const [showPw,setShowPw] = useState(false);
   const [showTrendCats,setShowTrendCats] = useState(false);
   const [showBegCats,setShowBegCats] = useState(false);
+  const [showRef,setShowRef] = useState(false);
+  const [refCopied,setRefCopied] = useState(false);
   const [gLoad,setGLoad] = useState(false);
   const [authErr,setAuthErr] = useState("");
   const [usage,setUsage] = useState(null);
@@ -164,6 +166,7 @@ export default function App() {
   const [q,setQ] = useState("");
   const [qLoad,setQLoad] = useState(false);
   const [qSent,setQSent] = useState(false);
+  const [profRefTab,setProfRefTab] = useState(false); // show referral section in profile
   const [profF,setProfF] = useState({buy:"",sell:"",units:"1",fee:"10",ship:"60",ads:"200"});
   const [profR,setProfR] = useState(null);
   const [descD,setDescD] = useState(null);const [descL,setDescL] = useState(false);
@@ -192,6 +195,46 @@ export default function App() {
   const [bundleD,setBundleD] = useState(null);const [bundleL,setBundleL] = useState(false);
 
   const showT = (m) => { setToast(m); setTimeout(()=>setToast(null),3500); };
+
+  // ── REFERRAL SYSTEM ──────────────────────────────────────────────────────
+  const getRefCode = (u) => {
+    if(!u?.email) return "";
+    const base = u.email.split("@")[0].replace(/[^a-z0-9]/gi,"").toLowerCase().slice(0,8);
+    const hash = u.email.split("").reduce((a,c)=>a+c.charCodeAt(0),0)%1000;
+    return base+String(hash);
+  };
+
+  const getRefData = (u) => {
+    if(!u?.email) return {count:0,users:[],rewarded:false};
+    return S.get("yyp_ref_"+u.email)||{count:0,users:[],rewarded:false};
+  };
+
+  const applyReferral = (currentUser) => {
+    if(typeof window==="undefined"||!currentUser?.email) return;
+    const params = new URLSearchParams(window.location.search);
+    const refCode = params.get("ref");
+    if(!refCode) return;
+    const allAccs = S.get("yyp_accounts")||[];
+    const referer = allAccs.find(a=>{
+      const code = a.email.split("@")[0].replace(/[^a-z0-9]/gi,"").toLowerCase().slice(0,8)+
+                   String(a.email.split("").reduce((acc,c)=>acc+c.charCodeAt(0),0)%1000);
+      return code===refCode;
+    });
+    if(!referer||referer.email===currentUser.email) return;
+    const rd = S.get("yyp_ref_"+referer.email)||{count:0,users:[],rewarded:false};
+    if(rd.users.find(u=>u.email===currentUser.email)) return;
+    rd.users.push({email:currentUser.email,name:currentUser.name||"User",date:new Date().toLocaleDateString("en-IN")});
+    rd.count = rd.users.length;
+    if(rd.count>=10&&!rd.rewarded){
+      rd.rewarded = true;
+      const exp = new Date(Date.now()+7*86400000).toISOString();
+      S.set("yyp_prem_"+referer.email,{expiry:exp,used:0});
+      S.set("yyp_plan_"+referer.email,"premium");
+      showT("🎉 Someone used your referral link! Progress updated.");
+    }
+    S.set("yyp_ref_"+referer.email,rd);
+    try{window.history.replaceState({},document.title,window.location.pathname);}catch{}
+  };
   const todayK = () => { const d=new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); };
   const curPlan = user ? (S.get("yyp_plan_"+user.email)||"free") : "free";
   const isGuest = !!user?.isGuest;
@@ -248,6 +291,54 @@ export default function App() {
     S.set("yyp_guest",g);setUser(g);setUsage(calcUsage(g));return g;
   };
 
+  // ── REFERRAL SYSTEM ──────────────────────────────────────────────────────
+  const genRefCode = (email) => {
+    const base = email.split("@")[0].replace(/[^a-zA-Z0-9]/g,"").toLowerCase().substring(0,8);
+    const hash = Math.abs(email.split("").reduce((a,c)=>((a<<5)-a)+c.charCodeAt(0),0)).toString(36).substring(0,4);
+    return base+hash;
+  };
+
+  const getRefData = (email) => {
+    if(!email) return {code:"",referrals:[],rewarded:false};
+    const code = genRefCode(email);
+    const data = S.get("yyp_ref_"+email)||{code,referrals:[],rewarded:false};
+    if(!data.code) data.code=code;
+    return data;
+  };
+
+  const getRefLink = (email) => "https://yesyoupro.com/?ref="+genRefCode(email);
+
+  const copyRefLink = (email) => {
+    const link = getRefLink(email);
+    try{navigator.clipboard.writeText(link).then(()=>{setRefCopied(true);setTimeout(()=>setRefCopied(false),2500);});}
+    catch{const el=document.createElement("textarea");el.value=link;document.body.appendChild(el);el.select();document.execCommand("copy");document.body.removeChild(el);setRefCopied(true);setTimeout(()=>setRefCopied(false),2500);}
+  };
+
+  const checkIncomingRef = async (newEmail, newName) => {
+    if(typeof window==="undefined") return;
+    const urlParams = new URLSearchParams(window.location.search);
+    const refCode = urlParams.get("ref");
+    if(!refCode) return;
+    const allAccounts = S.get("yyp_accounts")||[];
+    const referrer = allAccounts.find(a=>genRefCode(a.email)===refCode);
+    if(!referrer||referrer.email===newEmail) return;
+    const refData = getRefData(referrer.email);
+    const alreadyCounted = refData.referrals.some(r=>r.email===newEmail);
+    if(alreadyCounted) return;
+    refData.referrals.push({email:newEmail,name:newName,time:Date.now(),verified:true});
+    S.set("yyp_ref_"+referrer.email,refData);
+    if(refData.referrals.length>=10&&!refData.rewarded){
+      refData.rewarded=true;
+      S.set("yyp_ref_"+referrer.email,refData);
+      const exp=new Date(Date.now()+7*86400000).toISOString();
+      S.set("yyp_prem_"+referrer.email,{expiry:exp,used:0});
+      S.set("yyp_plan_"+referrer.email,"premium");
+      showToast("🎉 Referral reward milega!");
+    }
+    try{await fetch("/api/referral",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"register",referrerEmail:referrer.email,newUserEmail:newEmail,newUserName:newName,refCode})});}catch{}
+    window.history.replaceState({},"","/");
+  };
+
   useEffect(()=>{
     setSaved(S.get("yyp_accounts")||[]);
     const sv = S.get("yyp_current");
@@ -302,14 +393,14 @@ export default function App() {
         const plan = applyPending(form.email);
         const u = {email:form.email,name:form.name,photo:null,plan};
         S.set("yyp_current",u);S.set("yyp_guest",null);saveAcc(form.email,form.name,form.password,null);
-        setUser(u);setUsage(calcUsage(u));setScreen("dashboard");showT(plan==="premium"?"🎉 Premium activated!":"✅ Welcome!");
+        setUser(u);setUsage(calcUsage(u));setScreen("dashboard");setTimeout(()=>applyReferral(u),800);showT(plan==="premium"?"🎉 Premium activated!":"✅ Welcome!");
       } else {
         const {signInWithEmailAndPassword} = await import("firebase/auth");
         const r = await signInWithEmailAndPassword(auth,form.email,form.password);
         const plan = applyPending(form.email);
         const u = {email:r.user.email,name:r.user.displayName||form.email.split("@")[0],photo:null,plan};
         S.set("yyp_current",u);S.set("yyp_guest",null);saveAcc(form.email,u.name,form.password,null);
-        setUser(u);setUsage(calcUsage(u));startTimer(u);setScreen("dashboard");showT(plan==="premium"?"🎉 Premium activated!":"✅ Welcome back!");
+        setUser(u);setUsage(calcUsage(u));startTimer(u);setScreen("dashboard");setTimeout(()=>applyReferral(u),800);showT(plan==="premium"?"🎉 Premium activated!":"✅ Welcome back!");
       }
     }catch(e){
       const allU = S.get("yyp_users")||{};
@@ -774,7 +865,13 @@ export default function App() {
               <div style={{fontSize:11,color:"#94a3b8"}}>{usage.remaining} analyses left</div>
             </div>}
             <div className="pmenu">
-              <button className="pmbtn" onClick={()=>setProfTab("terms")}><span className="pmico">📋</span><span>Terms & Conditions</span><span className="pmarr">›</span></button>
+              <button className="pmbtn" onClick={()=>setProfTab("referral")} style={{borderColor:"rgba(16,185,129,.2)"}}>
+                    <span className="pmico">🎁</span>
+                    <span style={{flex:1}}>Refer &amp; Earn Premium <span style={{background:"linear-gradient(135deg,#10b981,#059669)",color:"#fff",fontSize:8,fontWeight:800,padding:"2px 6px",borderRadius:100,marginLeft:4}}>FREE</span></span>
+                    {!isGuest&&<span style={{fontSize:10,color:"#10b981",fontWeight:700,marginRight:4}}>{getRefData(user?.email).referrals.length}/10</span>}
+                    <span className="pmarr">›</span>
+                  </button>
+                  <button className="pmbtn" onClick={()=>setProfTab("terms")}><span className="pmico">📋</span><span>Terms &amp; Conditions</span><span className="pmarr">›</span></button>
               <button className="pmbtn" onClick={()=>setProfTab("question")}><span className="pmico">❓</span><span>Any Questions?</span><span className="pmarr">›</span></button>
               {curPlan==="free" && <button className="pmbtn" onClick={()=>{setShowProf(false);setShowPrem(true);}}><span className="pmico">💎</span><span>Upgrade Premium — ₹249</span><span className="pmarr">›</span></button>}
               {isGuest
@@ -798,6 +895,64 @@ export default function App() {
             </div>
             <button className="pmbtn" onClick={()=>setProfTab("main")} style={{justifyContent:"center"}}>← Back</button>
           </>}
+
+          {profTab==="referral"&&!isGuest&&(()=>{
+              const rd=getRefData(user?.email);
+              const count=rd.referrals.length;
+              const pct=Math.min(100,(count/10)*100);
+              const refCodeStr=genRefCode(user?.email);
+              const refLink="https://yesyoupro.com/?ref="+refCodeStr;
+              const waMsg=encodeURIComponent("Bhai YesYouPro try karo - AI se 30 sec mein winning product dhundho FREE: "+refLink);
+              return(<>
+                <div className="prh"><button className="prcl" style={{background:"none",fontSize:19}} onClick={()=>setProfTab("main")}>&#8592;</button><div style={{fontWeight:800,fontSize:14,color:"#f8fafc"}}>🎁 Refer &amp; Earn</div><div style={{width:30}}/></div>
+                {rd.rewarded?(<div style={{background:"linear-gradient(135deg,rgba(245,158,11,.15),rgba(239,68,68,.08))",border:"1px solid rgba(245,158,11,.3)",borderRadius:13,padding:15,textAlign:"center",marginBottom:13}}><div style={{fontSize:34,marginBottom:6}}>🏆</div><div style={{fontWeight:800,fontSize:14,color:"#f59e0b",marginBottom:2}}>Reward Claim Ho Gaya!</div><div style={{fontSize:11,color:"#94a3b8"}}>7 days Premium aapko mil gaya tha!</div></div>):(<div style={{background:"linear-gradient(135deg,rgba(16,185,129,.1),rgba(6,95,70,.06))",border:"1px solid rgba(16,185,129,.25)",borderRadius:13,padding:13,marginBottom:13}}><div style={{fontWeight:800,fontSize:12,color:"#10b981",marginBottom:2}}>🎁 10 Referrals = Premium FREE (7 days)</div><div style={{fontSize:11,color:"#94a3b8",lineHeight:1.6}}>Link share karo &#8594; 10 log sign up karein &#8594; Premium auto!</div></div>)}
+                <div style={{background:"rgba(2,8,23,.5)",border:"1px solid #1e293b",borderRadius:11,padding:12,marginBottom:11}}>
+                  <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:7}}><span style={{fontSize:11,color:"#94a3b8",fontWeight:600}}>Progress</span><span style={{fontSize:14,fontWeight:900,color:"#a5b4fc"}}>{count}/10</span></div>
+                  <div style={{background:"#1e293b",borderRadius:100,height:9,overflow:"hidden",marginBottom:7}}><div style={{height:"100%",width:pct+"%",background:"linear-gradient(90deg,#6366f1,#a855f7,#10b981)",borderRadius:100,transition:"width .6s ease"}}/></div>
+                  <div style={{display:"flex",justifyContent:"space-between",fontSize:9,color:"#475569"}}><span>0</span><span style={{color:"#6366f1",fontWeight:700}}>{count} joined</span><span style={{color:"#f59e0b",fontWeight:700}}>10 = 🎁</span></div>
+                </div>
+                <div style={{marginBottom:10}}>
+                  <div style={{fontSize:10,color:"#64748b",fontWeight:700,marginBottom:5,textTransform:"uppercase"}}>Aapka Referral Link</div>
+                  <div style={{background:"rgba(2,8,23,.7)",border:"1px solid rgba(99,102,241,.25)",borderRadius:10,padding:"9px 11px",display:"flex",alignItems:"center",gap:7}}>
+                    <div style={{fontSize:11,color:"#a5b4fc",fontWeight:600,flex:1,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{"yesyoupro.com/?ref="+refCodeStr}</div>
+                    <button onClick={()=>copyRefLink(user?.email)} style={{background:refCopied?"linear-gradient(135deg,#10b981,#059669)":"linear-gradient(135deg,#6366f1,#8b5cf6)",border:"none",borderRadius:7,padding:"5px 11px",color:"#fff",fontSize:10,fontWeight:700,cursor:"pointer",fontFamily:"Inter,sans-serif",whiteSpace:"nowrap"}}>{refCopied?"✅ Copied!":"📋 Copy"}</button>
+                  </div>
+                </div>
+                <div style={{marginBottom:5,fontSize:10,color:"#64748b",fontWeight:700,textTransform:"uppercase"}}>Share Karo</div>
+                <div style={{display:"flex",gap:6,marginBottom:12,flexWrap:"wrap"}}>
+                  {/* WhatsApp */}
+                  <a href={"https://wa.me/?text="+waMsg} target="_blank" rel="noreferrer" style={{flex:1,minWidth:48,background:"#25d366",borderRadius:10,padding:"9px 6px",textDecoration:"none",display:"flex",flexDirection:"column",alignItems:"center",gap:3}}>
+                    <img src="https://cdn.simpleicons.org/whatsapp/ffffff" alt="WhatsApp" style={{width:20,height:20}}/>
+                    <span style={{fontSize:9,color:"#fff",fontWeight:700}}>WhatsApp</span>
+                  </a>
+                  {/* Instagram */}
+                  <button onClick={()=>copyRefLink(user?.email)} style={{flex:1,minWidth:48,background:"linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)",border:"none",borderRadius:10,padding:"9px 6px",cursor:"pointer",display:"flex",flexDirection:"column",alignItems:"center",gap:3,fontFamily:"Inter,sans-serif"}}>
+                    <img src="https://cdn.simpleicons.org/instagram/ffffff" alt="Instagram" style={{width:20,height:20}}/>
+                    <span style={{fontSize:9,color:"#fff",fontWeight:700}}>Instagram</span>
+                  </button>
+                  {/* Facebook */}
+                  <a href={"https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(refLink)} target="_blank" rel="noreferrer" style={{flex:1,minWidth:48,background:"#1877f2",borderRadius:10,padding:"9px 6px",textDecoration:"none",display:"flex",flexDirection:"column",alignItems:"center",gap:3}}>
+                    <img src="https://cdn.simpleicons.org/facebook/ffffff" alt="Facebook" style={{width:20,height:20}}/>
+                    <span style={{fontSize:9,color:"#fff",fontWeight:700}}>Facebook</span>
+                  </a>
+                  {/* Twitter/X */}
+                  <a href={"https://twitter.com/intent/tweet?text="+encodeURIComponent("YesYouPro try karo - AI se 30 sec mein winning product dhundho FREE: "+refLink)} target="_blank" rel="noreferrer" style={{flex:1,minWidth:48,background:"#000",borderRadius:10,padding:"9px 6px",textDecoration:"none",display:"flex",flexDirection:"column",alignItems:"center",gap:3,border:"1px solid #333"}}>
+                    <img src="https://cdn.simpleicons.org/x/ffffff" alt="X Twitter" style={{width:20,height:20}}/>
+                    <span style={{fontSize:9,color:"#fff",fontWeight:700}}>Twitter</span>
+                  </a>
+                  {/* LinkedIn */}
+                  <a href={"https://www.linkedin.com/sharing/share-offsite/?url="+encodeURIComponent(refLink)} target="_blank" rel="noreferrer" style={{flex:1,minWidth:48,background:"#0077b5",borderRadius:10,padding:"9px 6px",textDecoration:"none",display:"flex",flexDirection:"column",alignItems:"center",gap:3}}>
+                    <img src="https://cdn.simpleicons.org/linkedin/ffffff" alt="LinkedIn" style={{width:20,height:20}}/>
+                    <span style={{fontSize:9,color:"#fff",fontWeight:700}}>LinkedIn</span>
+                  </a>
+                </div>
+                {rd.referrals.length>0&&(<div style={{marginBottom:11}}><div style={{fontSize:10,color:"#64748b",fontWeight:700,textTransform:"uppercase",marginBottom:6}}>Joined ({rd.referrals.length}/10)</div><div style={{background:"rgba(2,8,23,.4)",border:"1px solid #1e293b",borderRadius:10,padding:"5px 9px",maxHeight:150,overflowY:"auto"}}>{rd.referrals.map((r,i)=>(<div key={i} style={{display:"flex",alignItems:"center",gap:7,padding:"5px 0",borderBottom:i<rd.referrals.length-1?"1px solid rgba(255,255,255,.04)":"none"}}><div style={{width:24,height:24,background:"linear-gradient(135deg,#6366f1,#8b5cf6)",borderRadius:"50%",display:"flex",alignItems:"center",justifyContent:"center",fontSize:10,fontWeight:800,color:"#fff",flexShrink:0}}>{r.name?.[0]?.toUpperCase()||"U"}</div><div style={{flex:1,minWidth:0}}><div style={{fontSize:11,fontWeight:700,color:"#e2e8f0",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{r.name}</div><div style={{fontSize:9,color:"#475569"}}>{new Date(r.time).toLocaleDateString("en-IN")}</div></div><span style={{background:"rgba(16,185,129,.1)",color:"#10b981",fontSize:9,fontWeight:700,padding:"2px 6px",borderRadius:100,flexShrink:0}}>✅</span></div>))}</div></div>)}
+                <div style={{background:"rgba(99,102,241,.05)",border:"1px solid rgba(99,102,241,.12)",borderRadius:10,padding:10}}>
+                  <div style={{fontWeight:700,color:"#a5b4fc",fontSize:11,marginBottom:5}}>📋 Anti-Fraud Rules</div>
+                  {["Real sign up hona chahiye — fake nahi","Ek user sirf ek baar count hoga","Khud ko refer nahi kar sakte","10 referrals = Auto premium 7 days","Reward sirf ek baar milega"].map((r,i)=>(<div key={i} style={{fontSize:10,color:"#64748b",padding:"2px 0",display:"flex",gap:5}}><span style={{color:"#6366f1"}}>&#8226;</span><span>{r}</span></div>))}
+                </div>
+              </>);
+            })()}
 
           {profTab==="question" && <>
             <div className="prh"><button className="prcl" style={{background:"none",fontSize:18}} onClick={()=>setProfTab("main")}>←</button><div style={{fontWeight:800,fontSize:14,color:"#f8fafc"}}>Any Questions?</div><div style={{width:29}}/></div>
