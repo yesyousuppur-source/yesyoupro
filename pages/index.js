@@ -247,28 +247,73 @@ export default function App(){
     try{navigator.clipboard.writeText(link).then(()=>{setRefCopied(true);setTimeout(()=>setRefCopied(false),2500);});}
     catch{const el=document.createElement("textarea");el.value=link;document.body.appendChild(el);el.select();document.execCommand("copy");document.body.removeChild(el);setRefCopied(true);setTimeout(()=>setRefCopied(false),2500);}
   };
+  // ── SUPABASE REFERRAL TRACKING ──────────────────────────────────────────
+  const loadRefFromSupabase=async(email)=>{
+    if(!email)return null;
+    try{
+      const r=await fetch("/api/referral",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"get_count",referrerEmail:email})});
+      const d=await r.json();
+      if(d.success){
+        // Merge with local data
+        const local=getRefData(email);
+        const supaRefs=(d.referrals||[]).map(r=>({email:r.new_user_email,name:r.new_user_name,time:new Date(r.created_at).getTime(),verified:true}));
+        const merged=[...supaRefs];
+        (local.referrals||[]).forEach(lr=>{if(!merged.find(m=>m.email===lr.email))merged.push(lr);});
+        const updated={...local,referrals:merged};
+        S.set("yyp_ref_"+email,updated);
+        return{count:d.count,referrals:merged};
+      }
+      return null;
+    }catch{return null;}
+  };
+
   const checkIncomingRef=async(newEmail,newName)=>{
-    if(typeof window==="undefined"||!newEmail)return;
-    const urlParams=new URLSearchParams(window.location.search);
-    const refCode=urlParams.get("ref");
+    if(!newEmail)return;
+    const savedRef=S.get("yyp_pending_ref");
+    const refCode=savedRef||(typeof window!=="undefined"?new URLSearchParams(window.location.search).get("ref"):"");
     if(!refCode)return;
+    S.set("yyp_pending_ref",null);
+    // Find referrer by code
     const allAccounts=S.get("yyp_accounts")||[];
-    const referrer=allAccounts.find(a=>genRefCode(a.email)===refCode);
-    if(!referrer||referrer.email===newEmail)return;
-    const refData=getRefData(referrer.email);
-    if(refData.referrals.some(r=>r.email===newEmail))return;
-    refData.referrals.push({email:newEmail,name:newName,time:Date.now(),verified:true});
-    S.set("yyp_ref_"+referrer.email,refData);
-    if((refData.referrals||[]).length>=10&&!refData.rewarded){
-      refData.rewarded=true;
-      S.set("yyp_ref_"+referrer.email,refData);
-      const exp=new Date(Date.now()+7*86400000).toISOString();
-      S.set("yyp_prem_"+referrer.email,{expiry:exp,used:0});
-      S.set("yyp_plan_"+referrer.email,"premium");
-      showT("Referral reward activated!");
+    // Also check if refCode matches any known account
+    let referrerEmail=null;
+    for(const acc of allAccounts){
+      if(genRefCode(acc.email)===refCode){referrerEmail=acc.email;break;}
     }
-    try{await fetch("/api/referral",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"register",referrerEmail:referrer.email,newUserEmail:newEmail,newUserName:newName,refCode})});}catch{}
-    window.history.replaceState({},"","/");
+    // If not found locally, try API
+    if(!referrerEmail){
+      try{
+        const r=await fetch("/api/referral",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"find_referrer",refCode})});
+        const d=await r.json();
+        if(d.referrerEmail)referrerEmail=d.referrerEmail;
+      }catch{}
+    }
+    if(!referrerEmail||referrerEmail===newEmail)return;
+    // Save to Supabase (real-time cross-device)
+    try{
+      const r=await fetch("/api/referral",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"register",referrerEmail,newUserEmail:newEmail,newUserName:newName,refCode})});
+      const d=await r.json();
+      if(d.success){
+        // Update local cache
+        const localRef=getRefData(referrerEmail);
+        if(!localRef.referrals.find(x=>x.email===newEmail)){
+          localRef.referrals.push({email:newEmail,name:newName,time:Date.now(),verified:true});
+          S.set("yyp_ref_"+referrerEmail,localRef);
+        }
+        // Check reward
+        if(d.count>=10&&!localRef.rewarded){
+          localRef.rewarded=true;
+          S.set("yyp_ref_"+referrerEmail,localRef);
+          if(user?.email===referrerEmail){
+            const exp=new Date(Date.now()+7*86400000).toISOString();
+            S.set("yyp_prem_"+referrerEmail,{expiry:exp,used:0});
+            S.set("yyp_plan_"+referrerEmail,"premium");
+            showT("10 referrals! Premium activated!");
+          }
+        }
+      }
+    }catch(e){console.log("Referral save error:",e);}
+    if(typeof window!=="undefined")window.history.replaceState({},"","/");
   };
 
   const applyPending=(email)=>{
@@ -304,15 +349,39 @@ export default function App(){
           });
         }catch{}
       })();
-      // Check ref in URL
+      // Save ref code from URL immediately when page loads
       const urlParams=new URLSearchParams(window.location.search);
       const refCode=urlParams.get("ref");
-      if(refCode)S.set("yyp_pending_ref",refCode);
+      if(refCode){
+        S.set("yyp_pending_ref",refCode);
+        // Clean URL without reload
+        window.history.replaceState({},"","/");
+      }
     }
     return()=>clearInterval(timerRef.current);
   },[]);
 
   useEffect(()=>{if(!user||isGuest)return;startTimer(user);return()=>clearInterval(timerRef.current);},[user?.email]);
+
+  // Sync referral data from Supabase when user opens profile
+  useEffect(()=>{
+    if(!user?.email||isGuest)return;
+    (async()=>{
+      const data=await loadRefFromSupabase(user.email);
+      if(data&&data.count>=10){
+        const local=getRefData(user.email);
+        if(!local.rewarded){
+          local.rewarded=true;
+          S.set("yyp_ref_"+user.email,local);
+          const exp=new Date(Date.now()+7*86400000).toISOString();
+          S.set("yyp_prem_"+user.email,{expiry:exp,used:0});
+          S.set("yyp_plan_"+user.email,"premium");
+          const u={...user,plan:"premium"};setUser(u);setUsage(calcUsage(u));
+          showT("10 referrals! Premium activated!");
+        }
+      }
+    })();
+  },[user?.email]);
   useEffect(()=>{if(loading){setLoadStep(0);[1,2,3].forEach((s,i)=>setTimeout(()=>setLoadStep(s),(i+1)*1200));}},[loading]);
 
   const saveAcc=(email,name,pw,photo)=>{
@@ -891,7 +960,7 @@ export default function App(){
                     );
                   })()}
                   <button className="pmbtn" onClick={()=>setProfTab("terms")}><span className="pmico">📋</span><span>Terms and Conditions</span><span className="pmarr">›</span></button>
-              <button className="pmbtn" onClick={()=>setProfTab("question")}><span className="pmico">❓</span><span>Any Questions?</span><span className="pmarr">›</span></button>
+              <button className="pmbtn" onClick={()=>setProfTab("privacy")}><span className="pmico">🔒</span><span>Privacy Policy</span><span className="pmarr">›</span></button>
               {curPlan==="free" && <button className="pmbtn" onClick={()=>{setShowProf(false);setShowPrem(true);}}><span className="pmico">💎</span><span>Upgrade Premium — ₹249</span><span className="pmarr">›</span></button>}
               {isGuest
                 ? <button className="pmbtn" onClick={()=>{setShowProf(false);setScreen("auth");}} style={{borderColor:"rgba(99,102,241,.25)",color:"#a5b4fc"}}><span className="pmico">🔐</span><span>Login / Sign Up</span><span className="pmarr">›</span></button>
@@ -917,6 +986,7 @@ export default function App(){
 
           {profTab==="referral"&&!isGuest&&(()=>{
               const rd=user?.email?getRefData(user.email):{code:'',referrals:[],rewarded:false};
+              // Note: Firebase data loads async - local data shown instantly, Firebase syncs in background
               const count=(rd.referrals||[]).length;
               const pct=Math.min(100,(count/10)*100);
               const refCodeStr=user?.email?genRefCode(user.email):'';
@@ -972,6 +1042,39 @@ export default function App(){
                 </div>
               </>);
             })()}
+
+          {profTab==="privacy" && <>
+            <div className="prh">
+              <button className="prcl" style={{background:"none",fontSize:19}} onClick={()=>setProfTab("main")}>←</button>
+              <div style={{fontWeight:800,fontSize:14,color:"#f8fafc"}}>🔒 Privacy Policy</div>
+              <div style={{width:30}}/>
+            </div>
+            <div className="tbox2">
+              <div className="th">1. Data Collection</div>
+              <p className="tp">We collect your email, name and usage data when you sign up or use YesYouPro. This helps us provide personalized analysis and improve our service.</p>
+              <div className="th">2. How We Use Your Data</div>
+              <p className="tp">Your data is used only to operate YesYouPro — tracking analyses, managing your plan, and sending support replies. We never sell your personal data to third parties.</p>
+              <div className="th">3. Payment Data</div>
+              <p className="tp">All payments are processed securely by Razorpay. YesYouPro does not store your card or bank details. Razorpay is PCI-DSS compliant.</p>
+              <div className="th">4. Cookies and Local Storage</div>
+              <p className="tp">We use browser local storage to save your login session and usage count. No tracking cookies are used for advertising purposes.</p>
+              <div className="th">5. AI Analysis Data</div>
+              <p className="tp">Product names and categories you enter for analysis may be used to improve our AI models. No personally identifiable information is included in AI training.</p>
+              <div className="th">6. Data Security</div>
+              <p className="tp">Your account is secured via Firebase Authentication by Google. We use industry-standard encryption to protect your data.</p>
+              <div className="th">7. Your Rights</div>
+              <p className="tp">You can delete your account and data at any time by contacting us. You can also request a copy of your data.</p>
+              <div className="th">8. Third Party Services</div>
+              <p className="tp">We use Firebase (Google), Razorpay, OpenAI, and EmailJS. Each has their own privacy policy governing their data use.</p>
+              <div className="th">9. Children</div>
+              <p className="tp">YesYouPro is not intended for users under 13 years of age.</p>
+              <div className="th">10. Contact</div>
+              <p className="tp">For privacy concerns: yesyousuppur@gmail.com or WhatsApp: +91 9958540498</p>
+              <div className="th">Last Updated</div>
+              <p className="tp">January 2025</p>
+            </div>
+            <button className="pmbtn" onClick={()=>setProfTab("main")} style={{justifyContent:"center"}}>← Back</button>
+          </>}
 
           {profTab==="question" && <>
             <div className="prh"><button className="prcl" style={{background:"none",fontSize:18}} onClick={()=>setProfTab("main")}>←</button><div style={{fontWeight:800,fontSize:14,color:"#f8fafc"}}>Any Questions?</div><div style={{width:29}}/></div>
