@@ -872,6 +872,24 @@ export default function App(){
                     {!isGuest&&user?.email&&<span style={{fontSize:10,color:"#10b981",fontWeight:700,marginRight:4}}>{(S.get("yyp_ref_"+user.email)||{referrals:[]}).referrals.length}/10</span>}
                     <span className="pmarr">›</span>
                   </button>
+                  {/* WhatsApp Support Button */}
+                  {!isGuest&&(()=>{
+                    const waName=encodeURIComponent(user?.name||"User");
+                    const waPlan=encodeURIComponent(curPlan==="premium"?"Premium":"Free");
+                    const waMsg=encodeURIComponent("Hello, I'm "+( user?.name||"User")+" (Plan: "+(curPlan==="premium"?"Premium":"Free")+"). I need help with YesYouPro.");
+                    return(
+                      <a href={"https://wa.me/919958540498?text="+waMsg} target="_blank" rel="noreferrer" style={{display:"flex",alignItems:"center",gap:10,background:"rgba(37,211,102,.08)",border:"1px solid rgba(37,211,102,.25)",borderRadius:11,padding:"11px 14px",textDecoration:"none",marginBottom:0,transition:"all .2s"}}>
+                        <span style={{fontSize:18,width:24,textAlign:"center",flexShrink:0}}>
+                          <img src="https://cdn.simpleicons.org/whatsapp/25D366" alt="WhatsApp" style={{width:22,height:22,objectFit:"contain"}}/>
+                        </span>
+                        <span style={{flex:1}}>
+                          <div style={{fontSize:13,fontWeight:700,color:"#25d366"}}>WhatsApp Support</div>
+                          <div style={{fontSize:10,color:"#64748b"}}>Click karo — message auto-fill hoga</div>
+                        </span>
+                        <span style={{color:"#25d366",fontSize:13}}>›</span>
+                      </a>
+                    );
+                  })()}
                   <button className="pmbtn" onClick={()=>setProfTab("terms")}><span className="pmico">📋</span><span>Terms and Conditions</span><span className="pmarr">›</span></button>
               <button className="pmbtn" onClick={()=>setProfTab("question")}><span className="pmico">❓</span><span>Any Questions?</span><span className="pmarr">›</span></button>
               {curPlan==="free" && <button className="pmbtn" onClick={()=>{setShowProf(false);setShowPrem(true);}}><span className="pmico">💎</span><span>Upgrade Premium — ₹249</span><span className="pmarr">›</span></button>}
