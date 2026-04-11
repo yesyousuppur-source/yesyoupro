@@ -273,20 +273,19 @@ export default function App(){
     const refCode=savedRef||(typeof window!=="undefined"?new URLSearchParams(window.location.search).get("ref"):"");
     if(!refCode)return;
     S.set("yyp_pending_ref",null);
-    // Find referrer by code
+    // Find referrer - first check local, then Supabase
     const allAccounts=S.get("yyp_accounts")||[];
-    // Also check if refCode matches any known account
     let referrerEmail=null;
     for(const acc of allAccounts){
       if(genRefCode(acc.email)===refCode){referrerEmail=acc.email;break;}
     }
-    // If not found locally, try API
+    // Always try Supabase (cross-device)
     if(!referrerEmail){
       try{
         const r=await fetch("/api/referral",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"find_referrer",refCode})});
         const d=await r.json();
         if(d.referrerEmail)referrerEmail=d.referrerEmail;
-      }catch{}
+      }catch(e){console.log("find_referrer error:",e);}
     }
     if(!referrerEmail||referrerEmail===newEmail)return;
     // Save to Supabase (real-time cross-device)
@@ -404,6 +403,8 @@ export default function App(){
       saveAcc(r.user.email,r.user.displayName,"",r.user.photoURL);
       setUser(u);setUsage(calcUsage(u));startTimer(u);setScreen("dashboard");
       showT("Signed in with Google!");
+      // Save ref code to Supabase for cross-device referral tracking
+      try{fetch("/api/referral",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"save_ref_code",userEmail:r.user.email,refCode:genRefCode(r.user.email)})});}catch{}
     }catch(e){
       if(e.code==="auth/popup-closed-by-user")setAuthErr("Cancelled.");
       else if(e.code==="auth/unauthorized-domain")setAuthErr("Domain not authorized. Add domain in Firebase Console.");
@@ -430,6 +431,8 @@ export default function App(){
         setUser(u);setUsage(calcUsage(u));setScreen("dashboard");
         checkIncomingRef(form.email,form.name);
         showT(plan==="premium"?"Premium activated! Welcome!":"Welcome to YesYouPro!");
+        // Save ref code to Supabase
+        try{fetch("/api/referral",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"save_ref_code",userEmail:form.email,refCode:genRefCode(form.email)})});}catch{}
       }else{
         const{signInWithEmailAndPassword}=await import("firebase/auth");
         const r=await signInWithEmailAndPassword(auth,form.email,form.password);
