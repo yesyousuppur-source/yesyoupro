@@ -12,8 +12,7 @@ const FB = {
   messagingSenderId:"455406578867",
   appId:"1:455406578867:web:fc5a2b6a00af996bc114c6"
 };
-
-const CATS = [
+const CATS=[
   {id:"Electronics",logo:"https://cdn.simpleicons.org/samsung/1428A0",g:"Physical"},
   {id:"Beauty & Skincare",logo:null,e:"💄",g:"Physical"},
   {id:"Home & Kitchen",logo:null,e:"🏠",g:"Physical"},
@@ -23,7 +22,7 @@ const CATS = [
   {id:"Toys & Games",logo:"https://cdn.simpleicons.org/lego/E3000B",g:"Physical"},
   {id:"Health & Wellness",logo:null,e:"❤️",g:"Physical"},
   {id:"Outdoor & Sports",logo:null,e:"⛺",g:"Physical"},
-  {id:"Food & Beverages",logo:"https://cdn.simpleicons.org/mcdonalds/FBC817",g:"Physical"},
+  {id:"Food & Beverages",logo:null,e:"🍔",g:"Physical"},
   {id:"Automotive",logo:null,e:"🚗",g:"Physical"},
   {id:"Books & Education",logo:null,e:"📚",g:"Physical"},
   {id:"Jewelry",logo:null,e:"💍",g:"Physical"},
@@ -52,8 +51,7 @@ const CATS = [
   {id:"Digital Products",logo:"https://cdn.simpleicons.org/gumroad/FF90E8",g:"Digital"},
   {id:"Any Other",logo:null,e:"✨",g:"Digital"},
 ];
-
-const PLATS = [
+const PLATS=[
   {id:"Amazon",logo:"https://cdn.simpleicons.org/amazon/FF9900",c:"#FF9900",g:"Ecommerce"},
   {id:"Flipkart",logo:null,e:"⚡",c:"#2874f0",g:"Ecommerce"},
   {id:"Meesho",logo:null,e:"🌸",c:"#e91e8c",g:"Ecommerce"},
@@ -62,10 +60,8 @@ const PLATS = [
   {id:"Etsy",logo:"https://cdn.simpleicons.org/etsy/F56400",c:"#f56400",g:"Ecommerce"},
   {id:"Nykaa",logo:null,e:"💄",c:"#fc2779",g:"Ecommerce"},
   {id:"Myntra",logo:null,e:"👗",c:"#ff3f6c",g:"Ecommerce"},
-  {id:"Ajio",logo:null,e:"👠",c:"#ed1c24",g:"Ecommerce"},
   {id:"IndiaMART",logo:null,e:"🏭",c:"#0077b5",g:"Ecommerce"},
   {id:"JioMart",logo:null,e:"🛍️",c:"#003087",g:"Ecommerce"},
-  {id:"Snapdeal",logo:null,e:"🏷️",c:"#e40000",g:"Ecommerce"},
   {id:"Instagram",logo:"https://cdn.simpleicons.org/instagram/E1306C",c:"#e1306c",g:"Social Media"},
   {id:"Facebook",logo:"https://cdn.simpleicons.org/facebook/1877F2",c:"#1877f2",g:"Social Media"},
   {id:"YouTube",logo:"https://cdn.simpleicons.org/youtube/FF0000",c:"#ff0000",g:"Social Media"},
@@ -78,8 +74,6 @@ const PLATS = [
   {id:"WhatsApp Business",logo:"https://cdn.simpleicons.org/whatsapp/25D366",c:"#25d366",g:"Social Media"},
   {id:"Discord",logo:"https://cdn.simpleicons.org/discord/5865F2",c:"#5865f2",g:"Social Media"},
   {id:"Reddit",logo:"https://cdn.simpleicons.org/reddit/FF4500",c:"#ff4500",g:"Social Media"},
-  {id:"Moj",logo:null,e:"🎬",c:"#ff4081",g:"Social Media"},
-  {id:"ShareChat",logo:null,e:"💬",c:"#00bcd4",g:"Social Media"},
   {id:"Google Play Store",logo:"https://cdn.simpleicons.org/googleplay/414141",c:"#01875f",g:"App Stores"},
   {id:"Apple App Store",logo:null,e:"🍎",c:"#0071e3",g:"App Stores"},
   {id:"Steam",logo:"https://cdn.simpleicons.org/steam/000000",c:"#1b2838",g:"App Stores"},
@@ -90,149 +84,179 @@ const PLATS = [
   {id:"Gumroad",logo:"https://cdn.simpleicons.org/gumroad/FF90E8",c:"#ff90e8",g:"Courses"},
   {id:"Patreon",logo:"https://cdn.simpleicons.org/patreon/FF424D",c:"#ff424d",g:"Courses"},
   {id:"Substack",logo:"https://cdn.simpleicons.org/substack/FF6719",c:"#ff6719",g:"Courses"},
-  {id:"Teachable",logo:null,e:"🎓",c:"#5cb85c",g:"Courses"},
   {id:"Fiverr",logo:"https://cdn.simpleicons.org/fiverr/1DBF73",c:"#1dbf73",g:"Freelance"},
   {id:"Upwork",logo:"https://cdn.simpleicons.org/upwork/6FDA44",c:"#14a800",g:"Freelance"},
   {id:"Zomato",logo:"https://cdn.simpleicons.org/zomato/E23744",c:"#e23744",g:"Food"},
   {id:"Swiggy",logo:null,e:"🛵",c:"#fc8019",g:"Food"},
   {id:"BigBasket",logo:null,e:"🛒",c:"#84c225",g:"Food"},
-  {id:"Blinkit",logo:null,e:"⚡",c:"#f8c700",g:"Food"},
-  {id:"Own Website",logo:null,e:"🌐",c:"#6366f1",g:"Other"},
+  {id:"Own Website",logo:"https://cdn.simpleicons.org/googlechrome/4285F4",c:"#6366f1",g:"Other"},
   {id:"Any Other",logo:null,e:"✨",c:"#94a3b8",g:"Other"},
 ];
-
-const ADPLATS = [
-  {id:"g",n:"Google Ads",c:"#4285f4",logo:null,e:"G"},
+const ADPLATS=[
+  {id:"g",n:"Google Ads",c:"#4285f4",logo:"https://cdn.simpleicons.org/google/4285F4"},
   {id:"fb",n:"Facebook",c:"#1877f2",logo:"https://cdn.simpleicons.org/facebook/1877F2"},
   {id:"ig",n:"Instagram",c:"#e1306c",logo:"https://cdn.simpleicons.org/instagram/E1306C"},
   {id:"yt",n:"YouTube",c:"#ff0000",logo:"https://cdn.simpleicons.org/youtube/FF0000"},
   {id:"tt",n:"TikTok",c:"#010101",logo:"https://cdn.simpleicons.org/tiktok/000000"},
   {id:"pin",n:"Pinterest",c:"#e60023",logo:"https://cdn.simpleicons.org/pinterest/E60023"},
-  {id:"sc",n:"Snapchat",c:"#FFFC00",logo:"https://cdn.simpleicons.org/snapchat/000000"},
+  {id:"sc",n:"Snapchat",c:"#f5c518",logo:"https://cdn.simpleicons.org/snapchat/000000"},
   {id:"tw",n:"X/Twitter",c:"#14171a",logo:"https://cdn.simpleicons.org/x/000000"},
 ];
-
-const S = {
+const S={
   get:(k)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):null;}catch{return null;}},
   set:(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));}catch{}},
 };
-
-let _auth = null;
-async function getFA() {
-  if(_auth) return _auth;
-  const {initializeApp,getApps} = await import("firebase/app");
-  const {getAuth} = await import("firebase/auth");
-  const app = getApps().length ? getApps()[0] : initializeApp(FB);
-  _auth = getAuth(app);
-  return _auth;
+let _auth=null;
+async function getFA(){
+  if(_auth)return _auth;
+  const{initializeApp,getApps}=await import("firebase/app");
+  const{getAuth}=await import("firebase/auth");
+  const app=getApps().length?getApps()[0]:initializeApp(FB);
+  _auth=getAuth(app);return _auth;
 }
 
-export default function App() {
-  const [screen,setScreen] = useState("loading");
-  const [user,setUser] = useState(null);
-  const [authMode,setAuthMode] = useState("login");
-  const [form,setForm] = useState({email:"",password:"",name:""});
-  const [saved,setSaved] = useState([]);
-  const [showPw,setShowPw] = useState(false);
-  const [showTrendCats,setShowTrendCats] = useState(false);
-  const [showBegCats,setShowBegCats] = useState(false);
-  const [showRef,setShowRef] = useState(false);
-  const [refCopied,setRefCopied] = useState(false);
-  const [gLoad,setGLoad] = useState(false);
-  const [authErr,setAuthErr] = useState("");
-  const [usage,setUsage] = useState(null);
-  const [timer,setTimer] = useState(null);
-  const timerRef = useRef(null);
-  const [pf,setPf] = useState({name:"",cat:"",plat:""});
-  const [result,setResult] = useState(null);
-  const [loading,setLoading] = useState(false);
-  const [loadStep,setLoadStep] = useState(0);
-  const [err,setErr] = useState("");
-  const [showAd,setShowAd] = useState(false);
-  const [adT,setAdT] = useState(5);
-  const adRef = useRef(null);
-  const [showPrem,setShowPrem] = useState(false);
-  const [showPay,setShowPay] = useState(false);
-  const [payStep,setPayStep] = useState("form");
-  const [selP,setSelP] = useState(null);
-  const [platD,setPlatD] = useState({});
-  const [platLoad,setPlatLoad] = useState(false);
-  const [tab,setTab] = useState("profit");
-  const [toast,setToast] = useState(null);
-  const [showCats,setShowCats] = useState(false);
-  const [showPlats,setShowPlats] = useState(false);
-  const [showProf,setShowProf] = useState(false);
-  const [profTab,setProfTab] = useState("main");
-  const [q,setQ] = useState("");
-  const [qLoad,setQLoad] = useState(false);
-  const [qSent,setQSent] = useState(false);
-  const [profRefTab,setProfRefTab] = useState(false); // show referral section in profile
-  const [profF,setProfF] = useState({buy:"",sell:"",units:"1",fee:"10",ship:"60",ads:"200"});
-  const [profR,setProfR] = useState(null);
-  const [descD,setDescD] = useState(null);const [descL,setDescL] = useState(false);
-  const [trendD,setTrendD] = useState(null);const [trendL,setTrendL] = useState(false);const [trendCat,setTrendCat] = useState("Fashion");
-  const [compD,setCompD] = useState(null);const [compL,setCompL] = useState(false);
-  const [suppD,setSuppD] = useState(null);const [suppL,setSuppL] = useState(false);
-  const [starF,setStarF] = useState({budget:"5000",exp:"beginner"});
-  const [starD,setStarD] = useState(null);const [starL,setStarL] = useState(false);
-  const [begF,setBegF] = useState({budget:"5000",category:"Fashion"});
-      const [begD,setBegD] = useState(null);const [begL,setBegL] = useState(false);
-  const [invF,setInvF] = useState({buy:"",sell:"",units:"10",fee:"10",ship:"60",ads:"200"});
-  const [invR,setInvR] = useState(null);
-  const [salesD,setSalesD] = useState(null);const [salesL,setSalesL] = useState(false);
-  const [priceD,setPriceD] = useState(null);const [priceL,setPriceL] = useState(false);
-  const [invtF,setInvtF] = useState({units:"50"});
-  const [invtD,setInvtD] = useState(null);const [invtL,setInvtL] = useState(false);
-  const [revD,setRevD] = useState(null);const [revL,setRevL] = useState(false);
-  const [nicheD,setNicheD] = useState(null);const [nicheL,setNicheL] = useState(false);
-  // New features
-  const [returnD,setReturnD] = useState(null);const [returnL,setReturnL] = useState(false);
-  const [festF,setFestF] = useState({season:"Diwali"});
-  const [festD,setFestD] = useState(null);const [festL,setFestL] = useState(false);
-  const [roasF,setRoasF] = useState({spend:"",sales:"",platform:"Instagram"});
-  const [roasR,setRoasR] = useState(null);
-  const [multiD,setMultiD] = useState(null);const [multiL,setMultiL] = useState(false);
-  const [bundleD,setBundleD] = useState(null);const [bundleL,setBundleL] = useState(false);
+export default function App(){
+  const[screen,setScreen]=useState("loading");
+  const[user,setUser]=useState(null);
+  const[authMode,setAuthMode]=useState("login");
+  const[form,setForm]=useState({email:"",password:"",name:""});
+  const[saved,setSaved]=useState([]);
+  const[showPw,setShowPw]=useState(false);
+  const[gLoad,setGLoad]=useState(false);
+  const[authErr,setAuthErr]=useState("");
+  const[usage,setUsage]=useState(null);
+  const[timer,setTimer]=useState(null);
+  const timerRef=useRef(null);
+  const[pf,setPf]=useState({name:"",cat:"",plat:""});
+  const[result,setResult]=useState(null);
+  const[loading,setLoading]=useState(false);
+  const[loadStep,setLoadStep]=useState(0);
+  const[err,setErr]=useState("");
+  const[showAd,setShowAd]=useState(false);
+  const[adT,setAdT]=useState(5);
+  const adRef=useRef(null);
+  const[showPrem,setShowPrem]=useState(false);
+  const[showPay,setShowPay]=useState(false);
+  const[payStep,setPayStep]=useState("form");
+  const[selP,setSelP]=useState(null);
+  const[platD,setPlatD]=useState({});
+  const[platLoad,setPlatLoad]=useState(false);
+  const[tab,setTab]=useState("profit");
+  const[toast,setToast]=useState(null);
+  const[showCats,setShowCats]=useState(false);
+  const[showPlats,setShowPlats]=useState(false);
+  const[showTrendCats,setShowTrendCats]=useState(false);
+  const[showBegCats,setShowBegCats]=useState(false);
+  const[showProf,setShowProf]=useState(false);
+  const[profTab,setProfTab]=useState("main");
+  const[qTxt,setQTxt]=useState("");
+  const[qLoad,setQLoad]=useState(false);
+  const[qSent,setQSent]=useState(false);
+  const[refCopied,setRefCopied]=useState(false);
+  const[profF,setProfF]=useState({buy:"",sell:"",units:"1",fee:"10",ship:"60",ads:"200"});
+  const[profR,setProfR]=useState(null);
+  const[descD,setDescD]=useState(null);const[descL,setDescL]=useState(false);
+  const[trendD,setTrendD]=useState(null);const[trendL,setTrendL]=useState(false);const[trendCat,setTrendCat]=useState("Fashion");
+  const[compD,setCompD]=useState(null);const[compL,setCompL]=useState(false);
+  const[suppD,setSuppD]=useState(null);const[suppL,setSuppL]=useState(false);
+  const[starF,setStarF]=useState({budget:"5000",exp:"beginner"});
+  const[starD,setStarD]=useState(null);const[starL,setStarL]=useState(false);
+  const[begF,setBegF]=useState({budget:"5000",category:"Fashion"});
+  const[begD,setBegD]=useState(null);const[begL,setBegL]=useState(false);
+  const[invF,setInvF]=useState({buy:"",sell:"",units:"10",fee:"10",ship:"60",ads:"200"});
+  const[invR,setInvR]=useState(null);
+  const[salesD,setSalesD]=useState(null);const[salesL,setSalesL]=useState(false);
+  const[priceD,setPriceD]=useState(null);const[priceL,setPriceL]=useState(false);
+  const[invtF,setInvtF]=useState({units:"50"});
+  const[invtD,setInvtD]=useState(null);const[invtL,setInvtL]=useState(false);
+  const[revD,setRevD]=useState(null);const[revL,setRevL]=useState(false);
+  const[nicheD,setNicheD]=useState(null);const[nicheL,setNicheL]=useState(false);
+  const[returnD,setReturnD]=useState(null);const[returnL,setReturnL]=useState(false);
+  const[festF,setFestF]=useState({season:"Diwali"});
+  const[festD,setFestD]=useState(null);const[festL,setFestL]=useState(false);
+  const[roasF,setRoasF]=useState({spend:"",sales:"",platform:"Instagram"});
+  const[roasR,setRoasR]=useState(null);
+  const[multiD,setMultiD]=useState(null);const[multiL,setMultiL]=useState(false);
+  const[bundleD,setBundleD]=useState(null);const[bundleL,setBundleL]=useState(false);
 
-  const showT = (m) => { setToast(m); setTimeout(()=>setToast(null),3500); };
+  const showT=(m)=>{setToast(m);setTimeout(()=>setToast(null),3000);};
+  const todayK=()=>{const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");};
+  const curPlan=user?(S.get("yyp_plan_"+user.email)||"free"):"free";
+  const isGuest=!!user?.isGuest;
+  const isLocked=curPlan!=="premium"&&(!usage||usage.remaining<=0||!!timer);
+  const platGroups=[...new Set(PLATS.map(p=>p.g))];
 
-  // ── REFERRAL SYSTEM ──────────────────────────────────────────────────────
-;
+  const calcUsage=(u)=>{
+    if(!u?.email)return{plan:"free",remaining:FREE_LIMIT,total:FREE_LIMIT,used:0};
+    const plan=S.get("yyp_plan_"+u.email)||"free";
+    if(plan==="premium"){
+      const pd=S.get("yyp_prem_"+u.email);
+      if(!pd){S.set("yyp_plan_"+u.email,"free");return{plan:"free",remaining:FREE_LIMIT,total:FREE_LIMIT,used:0};}
+      if(new Date()>new Date(pd.expiry)){S.set("yyp_plan_"+u.email,"free");return{plan:"free",remaining:FREE_LIMIT,total:FREE_LIMIT,expired:true};}
+      return{plan,remaining:Math.max(0,PREM_LIMIT-(pd.used||0)),total:PREM_LIMIT,used:pd.used||0,expiry:pd.expiry};
+    }
+    const used=parseInt(S.get("yyp_daily_"+u.email+"_"+todayK())||"0");
+    return{plan:"free",remaining:Math.max(0,FREE_LIMIT-used),total:FREE_LIMIT,used};
+  };
 
-  // ── REFERRAL SYSTEM ──────────────────────────────────────────────────────
-  const genRefCode = (email) => {
-    const base = email.split("@")[0].replace(/[^a-zA-Z0-9]/g,"").toLowerCase().substring(0,8);
-    const hash = Math.abs(email.split("").reduce((a,c)=>((a<<5)-a)+c.charCodeAt(0),0)).toString(36).substring(0,4);
+  const addUsage=(u)=>{
+    if(!u?.email)return;
+    const plan=S.get("yyp_plan_"+u.email)||"free";
+    if(plan==="premium"){const pd=S.get("yyp_prem_"+u.email);if(pd)S.set("yyp_prem_"+u.email,{...pd,used:(pd.used||0)+1});}
+    else{const k="yyp_daily_"+u.email+"_"+todayK();S.set(k,String(parseInt(S.get(k)||"0")+1));}
+  };
+
+  const startTimer=(u)=>{
+    if(!u)return;
+    if((S.get("yyp_plan_"+u.email)||"free")==="premium"){setTimer(null);return;}
+    const used=parseInt(S.get("yyp_daily_"+u.email+"_"+todayK())||"0");
+    if(used<FREE_LIMIT){setTimer(null);return;}
+    const hit=S.get("yyp_hit_"+u.email);
+    if(!hit)return;
+    clearInterval(timerRef.current);
+    timerRef.current=setInterval(()=>{
+      const rem=hit+86400000-Date.now();
+      if(rem<=0){clearInterval(timerRef.current);S.set("yyp_daily_"+u.email+"_"+todayK(),"0");S.set("yyp_hit_"+u.email,null);setTimer(null);showT("2 free analyses reset!");}
+      else setTimer({h:Math.floor(rem/3600000),m:Math.floor((rem%3600000)/60000),s:Math.floor((rem%60000)/1000),total:rem});
+    },1000);
+  };
+
+  const makeGuest=()=>{
+    const sg=S.get("yyp_guest");
+    if(sg?.email){setUser(sg);setUsage(calcUsage(sg));return sg;}
+    const g={email:"guest_"+Date.now(),name:"Guest",photo:null,plan:"free",isGuest:true};
+    S.set("yyp_guest",g);setUser(g);setUsage(calcUsage(g));return g;
+  };
+
+  const genRefCode=(email)=>{
+    if(!email)return"";
+    const base=email.split("@")[0].replace(/[^a-zA-Z0-9]/g,"").toLowerCase().substring(0,8);
+    const hash=Math.abs(email.split("").reduce((a,c)=>((a<<5)-a)+c.charCodeAt(0),0)).toString(36).substring(0,4);
     return base+hash;
   };
-
-  const getRefData = (email) => {
-    if(!email) return {code:"",referrals:[],rewarded:false};
-    const code = genRefCode(email);
-    const data = S.get("yyp_ref_"+email)||{code,referrals:[],rewarded:false};
-    if(!data.code) data.code=code;
+  const getRefData=(email)=>{
+    if(!email)return{code:"",referrals:[],rewarded:false};
+    const code=genRefCode(email);
+    const data=S.get("yyp_ref_"+email)||{code,referrals:[],rewarded:false};
+    if(!data.code)data.code=code;
     return data;
   };
-
-  const getRefLink = (email) => "https://yesyoupro.com/?ref="+genRefCode(email);
-
-  const copyRefLink = (email) => {
-    const link = getRefLink(email);
+  const getRefLink=(email)=>"https://yesyoupro.com/?ref="+genRefCode(email);
+  const copyRefLink=(email)=>{
+    const link=getRefLink(email);
     try{navigator.clipboard.writeText(link).then(()=>{setRefCopied(true);setTimeout(()=>setRefCopied(false),2500);});}
     catch{const el=document.createElement("textarea");el.value=link;document.body.appendChild(el);el.select();document.execCommand("copy");document.body.removeChild(el);setRefCopied(true);setTimeout(()=>setRefCopied(false),2500);}
   };
-
-  const checkIncomingRef = async (newEmail, newName) => {
-    if(typeof window==="undefined") return;
-    const urlParams = new URLSearchParams(window.location.search);
-    const refCode = urlParams.get("ref");
-    if(!refCode) return;
-    const allAccounts = S.get("yyp_accounts")||[];
-    const referrer = allAccounts.find(a=>genRefCode(a.email)===refCode);
-    if(!referrer||referrer.email===newEmail) return;
-    const refData = getRefData(referrer.email);
-    const alreadyCounted = refData.referrals.some(r=>r.email===newEmail);
-    if(alreadyCounted) return;
+  const checkIncomingRef=async(newEmail,newName)=>{
+    if(typeof window==="undefined"||!newEmail)return;
+    const urlParams=new URLSearchParams(window.location.search);
+    const refCode=urlParams.get("ref");
+    if(!refCode)return;
+    const allAccounts=S.get("yyp_accounts")||[];
+    const referrer=allAccounts.find(a=>genRefCode(a.email)===refCode);
+    if(!referrer||referrer.email===newEmail)return;
+    const refData=getRefData(referrer.email);
+    if(refData.referrals.some(r=>r.email===newEmail))return;
     refData.referrals.push({email:newEmail,name:newName,time:Date.now(),verified:true});
     S.set("yyp_ref_"+referrer.email,refData);
     if((refData.referrals||[]).length>=10&&!refData.rewarded){
@@ -241,225 +265,294 @@ export default function App() {
       const exp=new Date(Date.now()+7*86400000).toISOString();
       S.set("yyp_prem_"+referrer.email,{expiry:exp,used:0});
       S.set("yyp_plan_"+referrer.email,"premium");
-      showT("🎉 Referral reward milega!");
+      showT("Referral reward activated!");
     }
     try{await fetch("/api/referral",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"register",referrerEmail:referrer.email,newUserEmail:newEmail,newUserName:newName,refCode})});}catch{}
     window.history.replaceState({},"","/");
   };
 
+  const applyPending=(email)=>{
+    if(S.get("yyp_pending_prem")){
+      S.set("yyp_pending_prem",null);
+      const exp=new Date(Date.now()+PREM_DAYS*86400000).toISOString();
+      S.set("yyp_prem_"+email,{expiry:exp,used:0});
+      S.set("yyp_plan_"+email,"premium");
+      return"premium";
+    }
+    return S.get("yyp_plan_"+email)||"free";
+  };
+
   useEffect(()=>{
     setSaved(S.get("yyp_accounts")||[]);
-    const sv = S.get("yyp_current");
-    if(sv?.email){const u={...sv,plan:S.get("yyp_plan_"+sv.email)||"free"};setUser(u);setUsage(calcUsage(u));startTimer(u);}
-    else makeGuest();
+    const sv=S.get("yyp_current");
+    if(sv?.email){
+      const u={...sv,plan:S.get("yyp_plan_"+sv.email)||"free"};
+      setUser(u);setUsage(calcUsage(u));startTimer(u);
+    }else{makeGuest();}
     setScreen("dashboard");
-    (async()=>{try{const auth=await getFA();const{onAuthStateChanged}=await import("firebase/auth");onAuthStateChanged(auth,(fbU)=>{if(fbU){const u={email:fbU.email,name:fbU.displayName||fbU.email.split("@")[0],photo:fbU.photoURL||null,plan:S.get("yyp_plan_"+fbU.email)||"free"};S.set("yyp_current",u);S.set("yyp_guest",null);setUser(u);setUsage(calcUsage(u));startTimer(u);}});}catch{}})();
-    return ()=>clearInterval(timerRef.current);
+    if(typeof window!=="undefined"){
+      (async()=>{
+        try{
+          const auth=await getFA();
+          const{onAuthStateChanged}=await import("firebase/auth");
+          onAuthStateChanged(auth,(fbU)=>{
+            if(fbU){
+              const u={email:fbU.email,name:fbU.displayName||fbU.email.split("@")[0],photo:fbU.photoURL||null,plan:S.get("yyp_plan_"+fbU.email)||"free"};
+              S.set("yyp_current",u);S.set("yyp_guest",null);
+              setUser(u);setUsage(calcUsage(u));startTimer(u);
+            }
+          });
+        }catch{}
+      })();
+      // Check ref in URL
+      const urlParams=new URLSearchParams(window.location.search);
+      const refCode=urlParams.get("ref");
+      if(refCode)S.set("yyp_pending_ref",refCode);
+    }
+    return()=>clearInterval(timerRef.current);
   },[]);
 
   useEffect(()=>{if(!user||isGuest)return;startTimer(user);return()=>clearInterval(timerRef.current);},[user?.email]);
   useEffect(()=>{if(loading){setLoadStep(0);[1,2,3].forEach((s,i)=>setTimeout(()=>setLoadStep(s),(i+1)*1200));}},[loading]);
 
-  const saveAcc = (email,name,pw,photo) => {
-    const list = S.get("yyp_accounts")||[];
-    const i = list.findIndex(a=>a.email===email);
-    const acc = {email,name,password:pw||"",photo:photo||null};
-    if(i>=0)list[i]=acc; else list.push(acc);
+  const saveAcc=(email,name,pw,photo)=>{
+    const list=S.get("yyp_accounts")||[];
+    const i=list.findIndex(a=>a.email===email);
+    const acc={email,name,password:pw||"",photo:photo||null};
+    if(i>=0)list[i]=acc;else list.push(acc);
     S.set("yyp_accounts",list);setSaved([...list]);
   };
 
-  const handleGoogle = async () => {
+  const handleGoogle=async()=>{
     setGLoad(true);setAuthErr("");
     try{
-      const auth = await getFA();
-      const {signInWithPopup,GoogleAuthProvider} = await import("firebase/auth");
-      const r = await signInWithPopup(auth,new GoogleAuthProvider());
-      const u = {email:r.user.email,name:r.user.displayName,photo:r.user.photoURL,plan:S.get("yyp_plan_"+r.user.email)||"free"};
-      if(S.get("yyp_pending_prem")){S.set("yyp_pending_prem",null);const exp=new Date(Date.now()+PREM_DAYS*86400000).toISOString();S.set("yyp_prem_"+u.email,{expiry:exp,used:0});S.set("yyp_plan_"+u.email,"premium");u.plan="premium";}
-      S.set("yyp_current",u);S.set("yyp_guest",null);saveAcc(r.user.email,r.user.displayName,"",r.user.photoURL);
-      setUser(u);setUsage(calcUsage(u));startTimer(u);setScreen("dashboard");showT("✅ Signed in!");
-    }catch(e){setAuthErr(e.code==="auth/popup-closed-by-user"?"Cancelled.":"Google sign-in failed.");}
+      const auth=await getFA();
+      const{signInWithPopup,GoogleAuthProvider}=await import("firebase/auth");
+      const r=await signInWithPopup(auth,new GoogleAuthProvider());
+      const plan=applyPending(r.user.email);
+      const u={email:r.user.email,name:r.user.displayName,photo:r.user.photoURL,plan};
+      S.set("yyp_current",u);S.set("yyp_guest",null);
+      saveAcc(r.user.email,r.user.displayName,"",r.user.photoURL);
+      setUser(u);setUsage(calcUsage(u));startTimer(u);setScreen("dashboard");
+      showT("Signed in with Google!");
+    }catch(e){
+      if(e.code==="auth/popup-closed-by-user")setAuthErr("Cancelled.");
+      else if(e.code==="auth/unauthorized-domain")setAuthErr("Domain not authorized. Add domain in Firebase Console.");
+      else setAuthErr("Google sign-in failed. Try email login.");
+    }
     setGLoad(false);
   };
 
-  const applyPending = (email) => {
-    if(S.get("yyp_pending_prem")){S.set("yyp_pending_prem",null);const exp=new Date(Date.now()+PREM_DAYS*86400000).toISOString();S.set("yyp_prem_"+email,{expiry:exp,used:0});S.set("yyp_plan_"+email,"premium");return "premium";}
-    return S.get("yyp_plan_"+email)||"free";
-  };
-
-  const handleAuth = async () => {
+  const handleAuth=async()=>{
     if(!form.email||!form.password){setAuthErr("Please fill all fields");return;}
     if(authMode==="signup"&&!form.name){setAuthErr("Name required");return;}
     if(form.password.length<6){setAuthErr("Password must be 6+ chars");return;}
     setAuthErr("");
     try{
-      const auth = await getFA();
+      const auth=await getFA();
       if(authMode==="signup"){
-        const {createUserWithEmailAndPassword,updateProfile} = await import("firebase/auth");
-        const r = await createUserWithEmailAndPassword(auth,form.email,form.password);
+        const{createUserWithEmailAndPassword,updateProfile}=await import("firebase/auth");
+        const r=await createUserWithEmailAndPassword(auth,form.email,form.password);
         await updateProfile(r.user,{displayName:form.name});
-        const plan = applyPending(form.email);
-        const u = {email:form.email,name:form.name,photo:null,plan};
-        S.set("yyp_current",u);S.set("yyp_guest",null);saveAcc(form.email,form.name,form.password,null);
-        setUser(u);setUsage(calcUsage(u));setScreen("dashboard");checkIncomingRef(u.email,u.name);showT(plan==="premium"?"🎉 Premium activated!":"✅ Welcome!");
-      } else {
-        const {signInWithEmailAndPassword} = await import("firebase/auth");
-        const r = await signInWithEmailAndPassword(auth,form.email,form.password);
-        const plan = applyPending(form.email);
-        const u = {email:r.user.email,name:r.user.displayName||form.email.split("@")[0],photo:null,plan};
-        S.set("yyp_current",u);S.set("yyp_guest",null);saveAcc(form.email,u.name,form.password,null);
-        setUser(u);setUsage(calcUsage(u));startTimer(u);setScreen("dashboard");checkIncomingRef(u.email,u.name);showT(plan==="premium"?"🎉 Premium activated!":"✅ Welcome back!");
+        const plan=applyPending(form.email);
+        const u={email:form.email,name:form.name,photo:null,plan};
+        S.set("yyp_current",u);S.set("yyp_guest",null);
+        saveAcc(form.email,form.name,form.password,null);
+        setUser(u);setUsage(calcUsage(u));setScreen("dashboard");
+        checkIncomingRef(form.email,form.name);
+        showT(plan==="premium"?"Premium activated! Welcome!":"Welcome to YesYouPro!");
+      }else{
+        const{signInWithEmailAndPassword}=await import("firebase/auth");
+        const r=await signInWithEmailAndPassword(auth,form.email,form.password);
+        const plan=applyPending(form.email);
+        const u={email:r.user.email,name:r.user.displayName||form.email.split("@")[0],photo:null,plan};
+        S.set("yyp_current",u);S.set("yyp_guest",null);
+        saveAcc(form.email,u.name,form.password,null);
+        setUser(u);setUsage(calcUsage(u));startTimer(u);setScreen("dashboard");
+        checkIncomingRef(form.email,u.name);
+        showT(plan==="premium"?"Premium activated!":"Welcome back, "+u.name+"!");
       }
     }catch(e){
-      const allU = S.get("yyp_users")||{};
+      const allU=S.get("yyp_users")||{};
       if(authMode==="signup"){
         if(allU[form.email]){setAuthErr("Email already registered.");return;}
-        allU[form.email]={email:form.email,name:form.name,password:form.password};S.set("yyp_users",allU);
-        const plan = applyPending(form.email);
-        const u = {email:form.email,name:form.name,photo:null,plan};
-        S.set("yyp_current",u);S.set("yyp_guest",null);saveAcc(form.email,form.name,form.password,null);
-        setUser(u);setUsage(calcUsage(u));setScreen("dashboard");showT("✅ Account created!");
-      } else {
-        const found = allU[form.email];
-        if(!found){setAuthErr("No account found. Sign Up first.");return;}
+        allU[form.email]={email:form.email,name:form.name,password:form.password};
+        S.set("yyp_users",allU);
+        const plan=applyPending(form.email);
+        const u={email:form.email,name:form.name,photo:null,plan};
+        S.set("yyp_current",u);S.set("yyp_guest",null);
+        saveAcc(form.email,form.name,form.password,null);
+        setUser(u);setUsage(calcUsage(u));setScreen("dashboard");
+        checkIncomingRef(form.email,form.name);
+        showT(plan==="premium"?"Premium activated!":"Account created!");
+      }else{
+        const found=allU[form.email];
+        if(!found){setAuthErr("No account found. Please Sign Up.");return;}
         if(found.password!==form.password){setAuthErr("Wrong password.");return;}
-        const plan = applyPending(form.email);
-        const u = {email:found.email,name:found.name,photo:null,plan};
-        S.set("yyp_current",u);S.set("yyp_guest",null);saveAcc(form.email,found.name,form.password,null);
-        setUser(u);setUsage(calcUsage(u));startTimer(u);setScreen("dashboard");showT("✅ Welcome back!");
+        const plan=applyPending(form.email);
+        const u={email:found.email,name:found.name,photo:null,plan};
+        S.set("yyp_current",u);S.set("yyp_guest",null);
+        saveAcc(form.email,found.name,form.password,null);
+        setUser(u);setUsage(calcUsage(u));startTimer(u);setScreen("dashboard");
+        showT(plan==="premium"?"Premium activated!":"Welcome back!");
       }
     }
   };
 
-  const handleLogout = async () => {
+  const quickLogin=async(acc)=>{
+    setAuthErr("");
+    if(!acc.password){handleGoogle();return;}
+    try{const auth=await getFA();const{signInWithEmailAndPassword}=await import("firebase/auth");await signInWithEmailAndPassword(auth,acc.email,acc.password);}
+    catch{
+      const allU=S.get("yyp_users")||{};const found=allU[acc.email];
+      if(found&&found.password===acc.password){
+        const u={email:found.email,name:found.name,photo:acc.photo||null,plan:S.get("yyp_plan_"+found.email)||"free"};
+        S.set("yyp_current",u);S.set("yyp_guest",null);
+        setUser(u);setUsage(calcUsage(u));startTimer(u);setScreen("dashboard");showT("Welcome back!");
+      }else setAuthErr("Login failed.");
+    }
+  };
+
+  const handleForgotPw=async()=>{
+    if(!form.email){setAuthErr("Enter email first");return;}
+    try{const auth=await getFA();const{sendPasswordResetEmail}=await import("firebase/auth");await sendPasswordResetEmail(auth,form.email);showT("Reset email sent!");setAuthErr("");}
+    catch{setAuthErr("Could not send reset email.");}
+  };
+
+  const handleLogout=async()=>{
     try{const auth=await getFA();const{signOut}=await import("firebase/auth");await signOut(auth);}catch{}
     S.set("yyp_current",null);clearInterval(timerRef.current);
     makeGuest();setResult(null);setTimer(null);setScreen("dashboard");showT("Logged out.");
   };
 
-  const quickLogin = async (acc) => {
-    setAuthErr("");
-    if(!acc.password){handleGoogle();return;}
-    try{const auth=await getFA();const{signInWithEmailAndPassword}=await import("firebase/auth");await signInWithEmailAndPassword(auth,acc.email,acc.password);}
-    catch{const allU=S.get("yyp_users")||{};const f=allU[acc.email];if(f&&f.password===acc.password){const plan=S.get("yyp_plan_"+f.email)||"free";const u={email:f.email,name:f.name,photo:null,plan};S.set("yyp_current",u);S.set("yyp_guest",null);setUser(u);setUsage(calcUsage(u));startTimer(u);setScreen("dashboard");showT("✅ Welcome back!");}else setAuthErr("Login failed.");}
-  };
-
-  const handleForgotPw = async () => {
-    if(!form.email){setAuthErr("Enter email first");return;}
-    try{const auth=await getFA();const{sendPasswordResetEmail}=await import("firebase/auth");await sendPasswordResetEmail(auth,form.email);showT("✅ Reset email sent!");setAuthErr("");}
-    catch{setAuthErr("Could not send reset email.");}
-  };
-
-  const showInterAd = () => new Promise(resolve=>{
+  const showInterAd=()=>new Promise(resolve=>{
     setAdT(5);setShowAd(true);let t=5;
     adRef.current=setInterval(()=>{t--;setAdT(t);if(t<=0)clearInterval(adRef.current);},1000);
     window._adRes=resolve;
   });
-  const closeAd = () => {
-    if(adT>0) return;
+  const closeAd=()=>{
+    if(adT>0)return;
     clearInterval(adRef.current);setShowAd(false);
     if(window._adRes){window._adRes();window._adRes=null;}
   };
 
-  const runAnalysis = async () => {
+  const runAnalysis=async()=>{
     if(!pf.name||!pf.cat||!pf.plat){setErr("Please fill all fields");return;}
     setErr("");
-    if(calcUsage(user).remaining<=0){setShowPrem(true);return;}
-    if(curPlan==="free") await showInterAd();
+    const info=calcUsage(user);
+    if(info.remaining<=0){setShowPrem(true);return;}
+    if(curPlan==="free")await showInterAd();
     setLoading(true);setResult(null);setSelP(null);setPlatD({});
     try{
-      const res = await fetch("/api/analyze",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:pf.name,category:pf.cat,platform:pf.plat})});
-      const data = await res.json();
-      if(!res.ok) throw new Error(data.error||"Failed");
+      const res=await fetch("/api/analyze",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:pf.name,category:pf.cat,platform:pf.plat})});
+      const data=await res.json();
+      if(!res.ok)throw new Error(data.error||"Failed");
       addUsage(user);
-      const ni = calcUsage(user);setUsage(ni);
-      if(ni.remaining<=0&&curPlan==="free"&&!S.get("yyp_hit_"+user.email)){S.set("yyp_hit_"+user.email,Date.now());setTimeout(()=>startTimer(user),300);}
-      setResult(data);showT("✅ Analysis complete!");
+      const ni=calcUsage(user);setUsage(ni);
+      if(ni.remaining<=0&&curPlan==="free"&&!S.get("yyp_hit_"+user.email)){
+        S.set("yyp_hit_"+user.email,Date.now());
+        setTimeout(()=>startTimer(user),300);
+      }
+      setResult(data);showT("Analysis complete!");
     }catch(e){setErr("Analysis failed: "+e.message);}
     setLoading(false);
   };
 
-  const fetchPlat = async (pid) => {
+  const fetchPlat=async(pid)=>{
     if(isLocked){setShowPrem(true);return;}
-    setSelP(pid);if(platD[pid])return;setPlatLoad(true);
+    setSelP(pid);if(platD[pid])return;
+    setPlatLoad(true);
     try{
-      const pl = ADPLATS.find(p=>p.id===pid);
-      const ctrl = new AbortController();const to=setTimeout(()=>ctrl.abort(),25000);
-      const res = await fetch("/api/analyze",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:pf.name,category:pf.cat,platform:pl.n,mode:"ads_platform"}),signal:ctrl.signal});
+      const pl=ADPLATS.find(p=>p.id===pid);
+      const ctrl=new AbortController();const to=setTimeout(()=>ctrl.abort(),25000);
+      const res=await fetch("/api/analyze",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:pf.name,category:pf.cat,platform:pl.n,mode:"ads_platform"}),signal:ctrl.signal});
       clearTimeout(to);
-      const data = await res.json();if(data.error)throw new Error(data.error);
+      if(!res.ok)throw new Error("err");
+      const data=await res.json();if(data.error)throw new Error(data.error);
       setPlatD(prev=>({...prev,[pid]:data}));
-    }catch(e){showT(e.name==="AbortError"?"Timed out.":"Failed. Try again.");setSelP(null);}
+    }catch(e){showT(e.name==="AbortError"?"Timed out.":"Failed.");setSelP(null);}
     setPlatLoad(false);
   };
 
-  const apiCall = async (mode,extra={}) => {
+  const apiCall=async(mode,extra={})=>{
     if(isLocked){setShowPrem(true);throw new Error("locked");}
-    const res = await fetch("/api/analyze",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:pf.name||"general",category:pf.cat||"Fashion",platform:pf.plat||"Amazon",mode,...extra})});
-    if(!res.ok) throw new Error("err");
+    const res=await fetch("/api/analyze",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:pf.name||"general",category:pf.cat||"Fashion",platform:pf.plat||"Amazon",mode,...extra})});
+    if(!res.ok)throw new Error("err");
     return res.json();
   };
 
-  const calcP = () => {
+  const calcP=()=>{
     const b=parseFloat(profF.buy)||0,s=parseFloat(profF.sell)||0,u=parseInt(profF.units)||1;
     const f=parseFloat(profF.fee)||0,sh=parseFloat(profF.ship)||0,a=parseFloat(profF.ads)||0;
     const cut=s*(f/100),np=s-b-cut-sh,tp=(np*u)-a,tc=(b*u)+a;
     setProfR({profit:tp.toFixed(0),np:np.toFixed(0),roi:tc>0?((tp/tc)*100).toFixed(1):0,margin:s>0?((np/s)*100).toFixed(1):0,cost:tc.toFixed(0),rev:(s*u).toFixed(0),be:np>0?Math.ceil(a/np):0});
   };
-
-  const calcI = () => {
+  const calcI=()=>{
     const b=parseFloat(invF.buy)||0,s=parseFloat(invF.sell)||0,u=parseInt(invF.units)||1;
     const f=parseFloat(invF.fee)||0,sh=parseFloat(invF.ship)||0,a=parseFloat(invF.ads)||0;
     const cut=s*(f/100),np=s-b-cut-sh,tp=(np*u)-a,tc=(b*u)+a;
     setInvR({profit:tp.toFixed(0),np:np.toFixed(0),roi:tc>0?((tp/tc)*100).toFixed(1):0,margin:s>0?((np/s)*100).toFixed(1):0,cost:tc.toFixed(0),rev:(s*u).toFixed(0),be:np>0?Math.ceil(a/np):0});
   };
 
-  const copyTxt = (text,lbl) => {
+  const copyTxt=(text,lbl)=>{
     if(curPlan!=="premium"){setShowPrem(true);return;}
-    try{navigator.clipboard.writeText(text).then(()=>showT("📋 Copied: "+lbl));}
-    catch{const el=document.createElement("textarea");el.value=text;document.body.appendChild(el);el.select();document.execCommand("copy");document.body.removeChild(el);showT("📋 Copied: "+lbl);}
+    try{navigator.clipboard.writeText(text).then(()=>showT("Copied: "+lbl));}
+    catch{const el=document.createElement("textarea");el.value=text;document.body.appendChild(el);el.select();document.execCommand("copy");document.body.removeChild(el);showT("Copied: "+lbl);}
   };
 
-  const activatePrem = () => {
+  const activatePrem=()=>{
     if(isGuest){setPayStep("make_account");return;}
-    const exp = new Date(Date.now()+PREM_DAYS*86400000).toISOString();
-    S.set("yyp_prem_"+user.email,{expiry:exp,used:0});S.set("yyp_plan_"+user.email,"premium");
-    S.set("yyp_hit_"+user.email,null);clearInterval(timerRef.current);setTimer(null);
-    const u = {...user,plan:"premium"};setUser(u);setUsage(calcUsage(u));
-    setPayStep("success");showT("🎉 Premium activated!");
+    const exp=new Date(Date.now()+PREM_DAYS*86400000).toISOString();
+    S.set("yyp_prem_"+user.email,{expiry:exp,used:0});
+    S.set("yyp_plan_"+user.email,"premium");
+    S.set("yyp_hit_"+user.email,null);
+    clearInterval(timerRef.current);setTimer(null);
+    const u={...user,plan:"premium"};
+    setUser(u);setUsage(calcUsage(u));
+    setPayStep("success");showT("Premium activated!");
   };
 
-  const handlePay = async () => {
+  const handlePay=async()=>{
     setPayStep("processing");
     try{
-      const kr = await fetch("/api/payment");const kd = await kr.json();
+      const kr=await fetch("/api/payment");const kd=await kr.json();
       if(!kd.key){await new Promise(r=>setTimeout(r,1500));activatePrem();return;}
-      const loaded = await new Promise(resolve=>{if(window.Razorpay){resolve(true);return;}const s=document.createElement("script");s.src="https://checkout.razorpay.com/v1/checkout.js";s.onload=()=>resolve(true);s.onerror=()=>resolve(false);document.body.appendChild(s);});
-      if(!loaded){showT("Payment failed to load");setPayStep("form");return;}
+      const loaded=await new Promise(resolve=>{
+        if(window.Razorpay){resolve(true);return;}
+        const s=document.createElement("script");s.src="https://checkout.razorpay.com/v1/checkout.js";
+        s.onload=()=>resolve(true);s.onerror=()=>resolve(false);document.body.appendChild(s);
+      });
+      if(!loaded){showT("Payment failed");setPayStep("form");return;}
       setPayStep("form");
-      const rzp = new window.Razorpay({key:kd.key,amount:24900,currency:"INR",name:"YesYouPro",description:"Premium 7 Days",handler:(r)=>{if(r.razorpay_payment_id)activatePrem();},prefill:{name:isGuest?"":user?.name||"",email:isGuest?"":user?.email||""},theme:{color:"#6366f1"},modal:{ondismiss:()=>{setPayStep("form");showT("Payment cancelled.");}}});
-      rzp.on("payment.failed",()=>{setPayStep("form");showT("Payment failed.");});rzp.open();
+      const rzp=new window.Razorpay({
+        key:kd.key,amount:24900,currency:"INR",name:"YesYouPro",description:"Premium 7 Days",
+        handler:(r)=>{if(r.razorpay_payment_id)activatePrem();},
+        prefill:{name:user?.name||"",email:isGuest?"":user?.email||""},
+        theme:{color:"#6366f1"},
+        modal:{ondismiss:()=>{setPayStep("form");showT("Payment cancelled.");}}
+      });
+      rzp.on("payment.failed",()=>{setPayStep("form");showT("Payment failed.");});
+      rzp.open();
     }catch{await new Promise(r=>setTimeout(r,1000));activatePrem();}
   };
 
-  const sendQ = async () => {
-    if(!q.trim()){showT("Please type your question");return;}
+  const sendQ=async()=>{
+    if(!qTxt.trim()){showT("Please type your question");return;}
     setQLoad(true);
-    try{await fetch("/api/contact",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:user?.email,name:user?.name,message:q,plan:curPlan})});setQSent(true);setQ("");showT("✅ Question sent!");}
+    try{await fetch("/api/contact",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:user?.email,name:user?.name,message:qTxt,plan:curPlan})});setQSent(true);setQTxt("");showT("Question sent!");}
     catch{showT("Failed. Try again.");}
     setQLoad(false);
   };
 
-  const STEPS = ["Product data received","Analyzing market trends","Generating AI insights","Creating viral hooks"];
-
-  const LockBox = () => (
-    <div onClick={()=>setShowPrem(true)} style={{position:"absolute",inset:0,background:"rgba(2,8,23,.9)",borderRadius:16,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",cursor:"pointer",zIndex:10,backdropFilter:"blur(4px)"}}>
+  const LockBox=()=>(
+    <div onClick={()=>setShowPrem(true)} style={{position:"absolute",inset:0,background:"rgba(2,8,23,.88)",borderRadius:"inherit",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",cursor:"pointer",zIndex:10,backdropFilter:"blur(5px)"}}>
       <div style={{fontSize:36,marginBottom:8}}>🔒</div>
       <div style={{fontWeight:800,fontSize:14,color:"#f8fafc",marginBottom:12}}>Premium Feature</div>
-      <button onClick={(e)=>{e.stopPropagation();setShowPrem(true);}} style={{background:"linear-gradient(135deg,#f59e0b,#ef4444)",border:"none",borderRadius:10,padding:"9px 22px",color:"#fff",fontWeight:800,fontSize:13,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>💎 Unlock ₹249</button>
+      <button onClick={(e)=>{e.stopPropagation();setShowPrem(true);}} style={{background:"linear-gradient(135deg,#f59e0b,#ef4444)",border:"none",borderRadius:10,padding:"9px 22px",color:"#fff",fontWeight:800,fontSize:13,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>Unlock Rs.249</button>
     </div>
   );
 
+  const STEPS=["Product data received","Analyzing market trends","Generating AI insights","Creating viral hooks"];
   const css = `
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
     *{margin:0;padding:0;box-sizing:border-box;}
