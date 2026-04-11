@@ -15,17 +15,17 @@ const FB = {
 
 const CATS = [
   {id:"Electronics",logo:"https://cdn.simpleicons.org/samsung/1428A0",g:"Physical"},
-  {id:"Beauty & Skincare",logo:"https://cdn.simpleicons.org/nykaa/FC2779",g:"Physical"},
-  {id:"Home & Kitchen",logo:"https://cdn.simpleicons.org/ikea/0058A3",g:"Physical"},
-  {id:"Fitness",logo:"https://cdn.simpleicons.org/underarmour/1D1D1D",g:"Physical"},
-  {id:"Fashion",logo:"https://cdn.simpleicons.org/zara/000000",g:"Physical"},
+  {id:"Beauty & Skincare",logo:null,e:"💄",g:"Physical"},
+  {id:"Home & Kitchen",logo:null,e:"🏠",g:"Physical"},
+  {id:"Fitness",logo:null,e:"💪",g:"Physical"},
+  {id:"Fashion",logo:null,e:"👗",g:"Physical"},
   {id:"Pet Supplies",logo:null,e:"🐾",g:"Physical"},
   {id:"Toys & Games",logo:"https://cdn.simpleicons.org/lego/E3000B",g:"Physical"},
   {id:"Health & Wellness",logo:null,e:"❤️",g:"Physical"},
-  {id:"Outdoor & Sports",logo:"https://cdn.simpleicons.org/adidas/000000",g:"Physical"},
+  {id:"Outdoor & Sports",logo:null,e:"⛺",g:"Physical"},
   {id:"Food & Beverages",logo:"https://cdn.simpleicons.org/mcdonalds/FBC817",g:"Physical"},
-  {id:"Automotive",logo:"https://cdn.simpleicons.org/tesla/CC0000",g:"Physical"},
-  {id:"Books & Education",logo:"https://cdn.simpleicons.org/goodreads/553B08",g:"Physical"},
+  {id:"Automotive",logo:null,e:"🚗",g:"Physical"},
+  {id:"Books & Education",logo:null,e:"📚",g:"Physical"},
   {id:"Jewelry",logo:null,e:"💍",g:"Physical"},
   {id:"Baby & Kids",logo:null,e:"👶",g:"Physical"},
   {id:"Tools & Hardware",logo:null,e:"🔧",g:"Physical"},
@@ -43,7 +43,7 @@ const CATS = [
   {id:"Instagram Page",logo:"https://cdn.simpleicons.org/instagram/E1306C",g:"Digital"},
   {id:"Podcast",logo:"https://cdn.simpleicons.org/spotify/1DB954",g:"Digital"},
   {id:"NFT & Crypto",logo:"https://cdn.simpleicons.org/ethereum/627EEA",g:"Digital"},
-  {id:"Ebooks & Templates",logo:"https://cdn.simpleicons.org/kindle/FF9900",g:"Digital"},
+  {id:"Ebooks & Templates",logo:null,e:"📄",g:"Digital"},
   {id:"Freelance Services",logo:"https://cdn.simpleicons.org/fiverr/1DBF73",g:"Digital"},
   {id:"Social Media Account",logo:"https://cdn.simpleicons.org/facebook/1877F2",g:"Digital"},
   {id:"Dropshipping",logo:"https://cdn.simpleicons.org/shopify/96BF48",g:"Digital"},
@@ -55,12 +55,12 @@ const CATS = [
 
 const PLATS = [
   {id:"Amazon",logo:"https://cdn.simpleicons.org/amazon/FF9900",c:"#FF9900",g:"Ecommerce"},
-  {id:"Flipkart",logo:"https://cdn.simpleicons.org/flipkart/2874F0",c:"#2874f0",g:"Ecommerce"},
-  {id:"Meesho",logo:"https://cdn.simpleicons.org/meesho/F43397",c:"#e91e8c",g:"Ecommerce"},
+  {id:"Flipkart",logo:null,e:"⚡",c:"#2874f0",g:"Ecommerce"},
+  {id:"Meesho",logo:null,e:"🌸",c:"#e91e8c",g:"Ecommerce"},
   {id:"Shopify",logo:"https://cdn.simpleicons.org/shopify/96BF48",c:"#96bf48",g:"Ecommerce"},
   {id:"WooCommerce",logo:"https://cdn.simpleicons.org/woocommerce/7F54B3",c:"#7f54b3",g:"Ecommerce"},
   {id:"Etsy",logo:"https://cdn.simpleicons.org/etsy/F56400",c:"#f56400",g:"Ecommerce"},
-  {id:"Nykaa",logo:"https://cdn.simpleicons.org/nykaa/FC2779",c:"#fc2779",g:"Ecommerce"},
+  {id:"Nykaa",logo:null,e:"💄",c:"#fc2779",g:"Ecommerce"},
   {id:"Myntra",logo:null,e:"👗",c:"#ff3f6c",g:"Ecommerce"},
   {id:"Ajio",logo:null,e:"👠",c:"#ed1c24",g:"Ecommerce"},
   {id:"IndiaMART",logo:null,e:"🏭",c:"#0077b5",g:"Ecommerce"},
@@ -81,7 +81,7 @@ const PLATS = [
   {id:"Moj",logo:null,e:"🎬",c:"#ff4081",g:"Social Media"},
   {id:"ShareChat",logo:null,e:"💬",c:"#00bcd4",g:"Social Media"},
   {id:"Google Play Store",logo:"https://cdn.simpleicons.org/googleplay/414141",c:"#01875f",g:"App Stores"},
-  {id:"Apple App Store",logo:"https://cdn.simpleicons.org/appstore/0071E3",c:"#0071e3",g:"App Stores"},
+  {id:"Apple App Store",logo:null,e:"🍎",c:"#0071e3",g:"App Stores"},
   {id:"Steam",logo:"https://cdn.simpleicons.org/steam/000000",c:"#1b2838",g:"App Stores"},
   {id:"PlayStation Store",logo:"https://cdn.simpleicons.org/playstation/003087",c:"#003087",g:"App Stores"},
   {id:"Xbox Store",logo:"https://cdn.simpleicons.org/xbox/107C10",c:"#107c10",g:"App Stores"},
@@ -97,12 +97,12 @@ const PLATS = [
   {id:"Swiggy",logo:null,e:"🛵",c:"#fc8019",g:"Food"},
   {id:"BigBasket",logo:null,e:"🛒",c:"#84c225",g:"Food"},
   {id:"Blinkit",logo:null,e:"⚡",c:"#f8c700",g:"Food"},
-  {id:"Own Website",logo:"https://cdn.simpleicons.org/googlechrome/4285F4",c:"#6366f1",g:"Other"},
+  {id:"Own Website",logo:null,e:"🌐",c:"#6366f1",g:"Other"},
   {id:"Any Other",logo:null,e:"✨",c:"#94a3b8",g:"Other"},
 ];
 
 const ADPLATS = [
-  {id:"g",n:"Google Ads",c:"#4285f4",logo:"https://cdn.simpleicons.org/googleads/4285F4"},
+  {id:"g",n:"Google Ads",c:"#4285f4",logo:null,e:"G"},
   {id:"fb",n:"Facebook",c:"#1877f2",logo:"https://cdn.simpleicons.org/facebook/1877F2"},
   {id:"ig",n:"Instagram",c:"#e1306c",logo:"https://cdn.simpleicons.org/instagram/E1306C"},
   {id:"yt",n:"YouTube",c:"#ff0000",logo:"https://cdn.simpleicons.org/youtube/FF0000"},
@@ -999,7 +999,7 @@ export default function App() {
           {authErr && <p className="nerr">⚠️ {authErr}</p>}
           {authMode==="login" && <div className="rem"><input type="checkbox" id="rem" defaultChecked/><label htmlFor="rem">Remember me</label><span className="fgot" onClick={handleForgotPw}>Forgot password?</span></div>}
           <button className="nbtn" onClick={handleAuth}>{authMode==="login"?"Sign In →":"Create Account →"}</button>
-          <p className="swtxt">{authMode==="login"?"Don't have an account? ":"Already have an account? "}<span className="swlnk" onClick={()=>{setAuthMode(authMode==="login"?"signup":"login");setAuthErr("");setForm({email:"",password:"",name:""}); }}>{authMode==="login"?"Sign Up Free":"Sign In"}</span></p>
+          <p className="swtxt">{authMode==="login"?"Dont have an account? ":"Already have an account? "}<span className="swlnk" onClick={()=>{setAuthMode(authMode==="login"?"signup":"login");setAuthErr("");setForm({email:"",password:"",name:""}); }}>{authMode==="login"?"Sign Up Free":"Sign In"}</span></p>
         </div>
       </div>}
 
