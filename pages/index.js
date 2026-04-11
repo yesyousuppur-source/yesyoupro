@@ -867,11 +867,11 @@ export default function App() {
             <div className="pmenu">
               <button className="pmbtn" onClick={()=>setProfTab("referral")} style={{borderColor:"rgba(16,185,129,.2)"}}>
                     <span className="pmico">🎁</span>
-                    <span style={{flex:1}}>Refer &amp; Earn Premium <span style={{background:"linear-gradient(135deg,#10b981,#059669)",color:"#fff",fontSize:8,fontWeight:800,padding:"2px 6px",borderRadius:100,marginLeft:4}}>FREE</span></span>
+                    <span style={{flex:1}}>Refer and Earn Premium <span style={{background:"linear-gradient(135deg,#10b981,#059669)",color:"#fff",fontSize:8,fontWeight:800,padding:"2px 6px",borderRadius:100,marginLeft:4}}>FREE</span></span>
                     {!isGuest&&<span style={{fontSize:10,color:"#10b981",fontWeight:700,marginRight:4}}>{getRefData(user?.email).referrals.length}/10</span>}
                     <span className="pmarr">›</span>
                   </button>
-                  <button className="pmbtn" onClick={()=>setProfTab("terms")}><span className="pmico">📋</span><span>Terms &amp; Conditions</span><span className="pmarr">›</span></button>
+                  <button className="pmbtn" onClick={()=>setProfTab("terms")}><span className="pmico">📋</span><span>Terms and Conditions</span><span className="pmarr">›</span></button>
               <button className="pmbtn" onClick={()=>setProfTab("question")}><span className="pmico">❓</span><span>Any Questions?</span><span className="pmarr">›</span></button>
               {curPlan==="free" && <button className="pmbtn" onClick={()=>{setShowProf(false);setShowPrem(true);}}><span className="pmico">💎</span><span>Upgrade Premium — ₹249</span><span className="pmarr">›</span></button>}
               {isGuest
@@ -904,8 +904,8 @@ export default function App() {
               const refLink="https://yesyoupro.com/?ref="+refCodeStr;
               const waMsg=encodeURIComponent("Bhai YesYouPro try karo - AI se 30 sec mein winning product dhundho FREE: "+refLink);
               return(<>
-                <div className="prh"><button className="prcl" style={{background:"none",fontSize:19}} onClick={()=>setProfTab("main")}>&#8592;</button><div style={{fontWeight:800,fontSize:14,color:"#f8fafc"}}>🎁 Refer &amp; Earn</div><div style={{width:30}}/></div>
-                {rd.rewarded?(<div style={{background:"linear-gradient(135deg,rgba(245,158,11,.15),rgba(239,68,68,.08))",border:"1px solid rgba(245,158,11,.3)",borderRadius:13,padding:15,textAlign:"center",marginBottom:13}}><div style={{fontSize:34,marginBottom:6}}>🏆</div><div style={{fontWeight:800,fontSize:14,color:"#f59e0b",marginBottom:2}}>Reward Claim Ho Gaya!</div><div style={{fontSize:11,color:"#94a3b8"}}>7 days Premium aapko mil gaya tha!</div></div>):(<div style={{background:"linear-gradient(135deg,rgba(16,185,129,.1),rgba(6,95,70,.06))",border:"1px solid rgba(16,185,129,.25)",borderRadius:13,padding:13,marginBottom:13}}><div style={{fontWeight:800,fontSize:12,color:"#10b981",marginBottom:2}}>🎁 10 Referrals = Premium FREE (7 days)</div><div style={{fontSize:11,color:"#94a3b8",lineHeight:1.6}}>Link share karo &#8594; 10 log sign up karein &#8594; Premium auto!</div></div>)}
+                <div className="prh"><button className="prcl" style={{background:"none",fontSize:19}} onClick={()=>setProfTab("main")}>←</button><div style={{fontWeight:800,fontSize:14,color:"#f8fafc"}}>🎁 Refer and Earn</div><div style={{width:30}}/></div>
+                {rd.rewarded?(<div style={{background:"linear-gradient(135deg,rgba(245,158,11,.15),rgba(239,68,68,.08))",border:"1px solid rgba(245,158,11,.3)",borderRadius:13,padding:15,textAlign:"center",marginBottom:13}}><div style={{fontSize:34,marginBottom:6}}>🏆</div><div style={{fontWeight:800,fontSize:14,color:"#f59e0b",marginBottom:2}}>Reward Claim Ho Gaya!</div><div style={{fontSize:11,color:"#94a3b8"}}>7 days Premium aapko mil gaya tha!</div></div>):(<div style={{background:"linear-gradient(135deg,rgba(16,185,129,.1),rgba(6,95,70,.06))",border:"1px solid rgba(16,185,129,.25)",borderRadius:13,padding:13,marginBottom:13}}><div style={{fontWeight:800,fontSize:12,color:"#10b981",marginBottom:2}}>🎁 10 Referrals = Premium FREE (7 days)</div><div style={{fontSize:11,color:"#94a3b8",lineHeight:1.6}}>Link share karo → 10 log sign up karein → Premium auto!</div></div>)}
                 <div style={{background:"rgba(2,8,23,.5)",border:"1px solid #1e293b",borderRadius:11,padding:12,marginBottom:11}}>
                   <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:7}}><span style={{fontSize:11,color:"#94a3b8",fontWeight:600}}>Progress</span><span style={{fontSize:14,fontWeight:900,color:"#a5b4fc"}}>{count}/10</span></div>
                   <div style={{background:"#1e293b",borderRadius:100,height:9,overflow:"hidden",marginBottom:7}}><div style={{height:"100%",width:pct+"%",background:"linear-gradient(90deg,#6366f1,#a855f7,#10b981)",borderRadius:100,transition:"width .6s ease"}}/></div>
@@ -949,7 +949,7 @@ export default function App() {
                 {rd.referrals.length>0&&(<div style={{marginBottom:11}}><div style={{fontSize:10,color:"#64748b",fontWeight:700,textTransform:"uppercase",marginBottom:6}}>Joined ({rd.referrals.length}/10)</div><div style={{background:"rgba(2,8,23,.4)",border:"1px solid #1e293b",borderRadius:10,padding:"5px 9px",maxHeight:150,overflowY:"auto"}}>{rd.referrals.map((r,i)=>(<div key={i} style={{display:"flex",alignItems:"center",gap:7,padding:"5px 0",borderBottom:i<rd.referrals.length-1?"1px solid rgba(255,255,255,.04)":"none"}}><div style={{width:24,height:24,background:"linear-gradient(135deg,#6366f1,#8b5cf6)",borderRadius:"50%",display:"flex",alignItems:"center",justifyContent:"center",fontSize:10,fontWeight:800,color:"#fff",flexShrink:0}}>{r.name?.[0]?.toUpperCase()||"U"}</div><div style={{flex:1,minWidth:0}}><div style={{fontSize:11,fontWeight:700,color:"#e2e8f0",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{r.name}</div><div style={{fontSize:9,color:"#475569"}}>{new Date(r.time).toLocaleDateString("en-IN")}</div></div><span style={{background:"rgba(16,185,129,.1)",color:"#10b981",fontSize:9,fontWeight:700,padding:"2px 6px",borderRadius:100,flexShrink:0}}>✅</span></div>))}</div></div>)}
                 <div style={{background:"rgba(99,102,241,.05)",border:"1px solid rgba(99,102,241,.12)",borderRadius:10,padding:10}}>
                   <div style={{fontWeight:700,color:"#a5b4fc",fontSize:11,marginBottom:5}}>📋 Anti-Fraud Rules</div>
-                  {["Real sign up hona chahiye — fake nahi","Ek user sirf ek baar count hoga","Khud ko refer nahi kar sakte","10 referrals = Auto premium 7 days","Reward sirf ek baar milega"].map((r,i)=>(<div key={i} style={{fontSize:10,color:"#64748b",padding:"2px 0",display:"flex",gap:5}}><span style={{color:"#6366f1"}}>&#8226;</span><span>{r}</span></div>))}
+                  {["Real sign up hona chahiye — fake nahi","Ek user sirf ek baar count hoga","Khud ko refer nahi kar sakte","10 referrals = Auto premium 7 days","Reward sirf ek baar milega"].map((r,i)=>(<div key={i} style={{fontSize:10,color:"#64748b",padding:"2px 0",display:"flex",gap:5}}><span style={{color:"#6366f1"}}>•</span><span>{r}</span></div>))}
                 </div>
               </>);
             })()}
@@ -999,7 +999,7 @@ export default function App() {
           {authErr && <p className="nerr">⚠️ {authErr}</p>}
           {authMode==="login" && <div className="rem"><input type="checkbox" id="rem" defaultChecked/><label htmlFor="rem">Remember me</label><span className="fgot" onClick={handleForgotPw}>Forgot password?</span></div>}
           <button className="nbtn" onClick={handleAuth}>{authMode==="login"?"Sign In →":"Create Account →"}</button>
-          <p className="swtxt">{authMode==="login"?"Dont have an account? ":"Already have an account? "}<span className="swlnk" onClick={()=>{setAuthMode(authMode==="login"?"signup":"login");setAuthErr("");setForm({email:"",password:"",name:""}); }}>{authMode==="login"?"Sign Up Free":"Sign In"}</span></p>
+          <p className="swtxt">{authMode==="login"?"Don't have an account? ":"Already have an account? "}<span className="swlnk" onClick={()=>{setAuthMode(authMode==="login"?"signup":"login");setAuthErr("");setForm({email:"",password:"",name:""}); }}>{authMode==="login"?"Sign Up Free":"Sign In"}</span></p>
         </div>
       </div>}
 
@@ -1099,7 +1099,7 @@ export default function App() {
             </div>
             <div className="tprog"><div className="tpf" style={{width:Math.max(0,100-(timer.total/86400000)*100)+"%"}}/></div>
             <div style={{marginTop:9,display:"flex",alignItems:"center",justifyContent:"center",gap:7,flexWrap:"wrap"}}>
-              <span style={{color:"#64748b",fontSize:11}}>Don&apos;t want to wait?</span>
+              <span style={{color:"#64748b",fontSize:11}}>Don't want to wait?</span>
               <button onClick={()=>setShowPrem(true)} style={{background:"linear-gradient(135deg,#f59e0b,#ef4444)",border:"none",borderRadius:100,padding:"6px 13px",color:"#fff",fontWeight:800,fontSize:11,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>💎 Get Premium ₹249</button>
             </div>
           </div>}
@@ -1432,7 +1432,7 @@ export default function App() {
           {tab==="return" && (
             <div className="fbox fa" style={{position:"relative"}}>
               {isLocked&&<LockBox/>}
-              <h3 style={{fontWeight:800,fontSize:14,marginBottom:3,color:"#f8fafc"}}>📦 Return &amp; Refund Manager</h3>
+              <h3 style={{fontWeight:800,fontSize:14,marginBottom:3,color:"#f8fafc"}}>📦 Return and Refund Manager</h3>
               <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Return rate kam karo — AI se smart strategy lo</p>
               {!pf.name&&<div className="errbanner">⚠️ Run product analysis first</div>}
               <button className="gbtn2" style={{background:"linear-gradient(135deg,#ef4444,#dc2626)"}} onClick={async()=>{setReturnL(true);try{const d=await apiCall("return_manager");setReturnD(d);}catch(e){console.error(e);}setReturnL(false);}} disabled={returnL||!pf.name}>{returnL?"⏳ Analyzing...":"📦 Analyze Returns"}</button>
