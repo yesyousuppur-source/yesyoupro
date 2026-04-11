@@ -235,7 +235,7 @@ export default function App() {
     if(alreadyCounted) return;
     refData.referrals.push({email:newEmail,name:newName,time:Date.now(),verified:true});
     S.set("yyp_ref_"+referrer.email,refData);
-    if(refData.referrals.length>=10&&!refData.rewarded){
+    if((refData.referrals||[]).length>=10&&!refData.rewarded){
       refData.rewarded=true;
       S.set("yyp_ref_"+referrer.email,refData);
       const exp=new Date(Date.now()+7*86400000).toISOString();
@@ -776,7 +776,7 @@ export default function App() {
               <button className="pmbtn" onClick={()=>setProfTab("referral")} style={{borderColor:"rgba(16,185,129,.2)"}}>
                     <span className="pmico">🎁</span>
                     <span style={{flex:1}}>Refer and Earn Premium <span style={{background:"linear-gradient(135deg,#10b981,#059669)",color:"#fff",fontSize:8,fontWeight:800,padding:"2px 6px",borderRadius:100,marginLeft:4}}>FREE</span></span>
-                    {!isGuest&&<span style={{fontSize:10,color:"#10b981",fontWeight:700,marginRight:4}}>{getRefData(user?.email).referrals.length}/10</span>}
+                    {!isGuest&&user?.email&&<span style={{fontSize:10,color:"#10b981",fontWeight:700,marginRight:4}}>{(S.get("yyp_ref_"+user.email)||{referrals:[]}).referrals.length}/10</span>}
                     <span className="pmarr">›</span>
                   </button>
                   <button className="pmbtn" onClick={()=>setProfTab("terms")}><span className="pmico">📋</span><span>Terms and Conditions</span><span className="pmarr">›</span></button>
@@ -805,10 +805,10 @@ export default function App() {
           </>}
 
           {profTab==="referral"&&!isGuest&&(()=>{
-              const rd=getRefData(user?.email);
-              const count=rd.referrals.length;
+              const rd=user?.email?getRefData(user.email):{code:'',referrals:[],rewarded:false};
+              const count=(rd.referrals||[]).length;
               const pct=Math.min(100,(count/10)*100);
-              const refCodeStr=genRefCode(user?.email);
+              const refCodeStr=user?.email?genRefCode(user.email):'';
               const refLink="https://yesyoupro.com/?ref="+refCodeStr;
               const waMsg=encodeURIComponent("Bhai YesYouPro try karo - AI se 30 sec mein winning product dhundho FREE: "+refLink);
               return(<>
@@ -823,7 +823,7 @@ export default function App() {
                   <div style={{fontSize:10,color:"#64748b",fontWeight:700,marginBottom:5,textTransform:"uppercase"}}>Aapka Referral Link</div>
                   <div style={{background:"rgba(2,8,23,.7)",border:"1px solid rgba(99,102,241,.25)",borderRadius:10,padding:"9px 11px",display:"flex",alignItems:"center",gap:7}}>
                     <div style={{fontSize:11,color:"#a5b4fc",fontWeight:600,flex:1,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{"yesyoupro.com/?ref="+refCodeStr}</div>
-                    <button onClick={()=>copyRefLink(user?.email)} style={{background:refCopied?"linear-gradient(135deg,#10b981,#059669)":"linear-gradient(135deg,#6366f1,#8b5cf6)",border:"none",borderRadius:7,padding:"5px 11px",color:"#fff",fontSize:10,fontWeight:700,cursor:"pointer",fontFamily:"Inter,sans-serif",whiteSpace:"nowrap"}}>{refCopied?"✅ Copied!":"📋 Copy"}</button>
+                    <button onClick={()=>user?.email&&copyRefLink(user.email)} style={{background:refCopied?"linear-gradient(135deg,#10b981,#059669)":"linear-gradient(135deg,#6366f1,#8b5cf6)",border:"none",borderRadius:7,padding:"5px 11px",color:"#fff",fontSize:10,fontWeight:700,cursor:"pointer",fontFamily:"Inter,sans-serif",whiteSpace:"nowrap"}}>{refCopied?"✅ Copied!":"📋 Copy"}</button>
                   </div>
                 </div>
                 <div style={{marginBottom:5,fontSize:10,color:"#64748b",fontWeight:700,textTransform:"uppercase"}}>Share Karo</div>
@@ -834,7 +834,7 @@ export default function App() {
                     <span style={{fontSize:9,color:"#fff",fontWeight:700}}>WhatsApp</span>
                   </a>
                   {/* Instagram */}
-                  <button onClick={()=>copyRefLink(user?.email)} style={{flex:1,minWidth:48,background:"linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)",border:"none",borderRadius:10,padding:"9px 6px",cursor:"pointer",display:"flex",flexDirection:"column",alignItems:"center",gap:3,fontFamily:"Inter,sans-serif"}}>
+                  <button onClick={()=>user?.email&&copyRefLink(user.email)} style={{flex:1,minWidth:48,background:"linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)",border:"none",borderRadius:10,padding:"9px 6px",cursor:"pointer",display:"flex",flexDirection:"column",alignItems:"center",gap:3,fontFamily:"Inter,sans-serif"}}>
                     <img src="https://cdn.simpleicons.org/instagram/ffffff" alt="Instagram" style={{width:20,height:20}}/>
                     <span style={{fontSize:9,color:"#fff",fontWeight:700}}>Instagram</span>
                   </button>
