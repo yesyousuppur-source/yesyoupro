@@ -228,6 +228,22 @@ Return ONLY valid JSON:
   "expected_sales_boost": "X-Y% increase expected during ${season}"
 }`;
 
+  } else if (mode === "launch_strategy") {
+    prompt = `You are an expert ecommerce product launch strategist for India. Create a 30-day launch plan for "${name}" (${category||"Any"}) on ${platform||"Amazon"}.
+Return ONLY valid JSON:
+{
+  "overview": "2-3 sentences about launch opportunity",
+  "week_plan": [
+    {"week":"Week 1 (Days 1-7)","tasks":["task1","task2","task3","task4"]},
+    {"week":"Week 2 (Days 8-14)","tasks":["task1","task2","task3","task4"]},
+    {"week":"Week 3 (Days 15-21)","tasks":["task1","task2","task3","task4"]},
+    {"week":"Week 4 (Days 22-30)","tasks":["task1","task2","task3","task4"]}
+  ],
+  "pricing_strategy": "Detailed pricing advice for launch phase",
+  "ad_budget": "How to allocate ad budget week by week",
+  "review_strategy": "How to get first reviews legitimately"
+}`;
+
   } else if (mode === "multi_platform") {
     prompt = `You are a multi-platform ecommerce expert for India. Suggest 3 best platforms to expand "${name}" (${category||"Any"}) beyond ${platform||"current platform"}.
 Return ONLY valid JSON:
