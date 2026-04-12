@@ -178,6 +178,17 @@ export default function App(){
   const[roasR,setRoasR]=useState(null);
   const[multiD,setMultiD]=useState(null);const[multiL,setMultiL]=useState(false);
   const[bundleD,setBundleD]=useState(null);const[bundleL,setBundleL]=useState(false);
+  // Advanced features
+  const[history,setHistory]=useState([]);
+  const[gstF,setGstF]=useState({sell:"",cat:"Fashion",plat:"Amazon"});
+  const[gstR,setGstR]=useState(null);
+  const[launchD,setLaunchD]=useState(null);const[launchL,setLaunchL]=useState(false);
+  const[compA,setCompA]=useState({name:"",cat:"",plat:""});
+  const[compB,setCompB]=useState({name:"",cat:"",plat:""});
+  const[compRes,setCompRes]=useState(null);const[compRunL,setCompRunL]=useState(false);
+  const[shipF,setShipF]=useState({weight:"1",zone:"local",cod:"no"});
+  const[shipR,setShipR]=useState(null);
+  const[showHist,setShowHist]=useState(false);
 
   const showT=(m)=>{setToast(m);setTimeout(()=>setToast(null),3000);};
   const todayK=()=>{const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");};
@@ -320,6 +331,7 @@ export default function App(){
 
   useEffect(()=>{
     setSaved(S.get("yyp_accounts")||[]);
+    setHistory(S.get("yyp_history")||[]);
     const sv=S.get("yyp_current");
     if(sv?.email){
       const u={...sv,plan:S.get("yyp_plan_"+sv.email)||"free"};
@@ -507,6 +519,11 @@ export default function App(){
         setTimeout(()=>startTimer(user),300);
       }
       setResult(data);showT("Analysis complete!");
+      // Save to history
+      const hEntry={id:Date.now(),name:pf.name,cat:pf.cat,plat:pf.plat,result:data,time:new Date().toLocaleDateString("en-IN")};
+      const hist=S.get("yyp_history")||[];
+      const newHist=[hEntry,...hist].slice(0,20); // keep last 20
+      S.set("yyp_history",newHist);setHistory(newHist);
     }catch(e){setErr("Analysis failed: "+e.message);}
     setLoading(false);
   };
@@ -1138,6 +1155,32 @@ export default function App(){
 
         <div className="dc">
           {/* ── HERO ── */}
+          {history.length>0&&(
+            <div style={{display:"flex",justifyContent:"flex-end",marginBottom:8}}>
+              <button onClick={()=>setShowHist(!showHist)} style={{background:"rgba(15,23,42,.7)",border:"1px solid rgba(99,102,241,.2)",borderRadius:100,padding:"5px 13px",color:"#a5b4fc",fontSize:11,fontWeight:600,cursor:"pointer",fontFamily:"Inter,sans-serif",display:"flex",alignItems:"center",gap:5}}>
+                🕐 History ({history.length})
+              </button>
+            </div>
+          )}
+          {showHist&&history.length>0&&(
+            <div style={{background:"rgba(15,23,42,.85)",border:"1px solid rgba(99,102,241,.2)",borderRadius:14,padding:14,marginBottom:16}} className="fa">
+              <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:10}}>
+                <div style={{fontWeight:800,fontSize:13,color:"#f8fafc"}}>📋 Analyzed Products</div>
+                <button onClick={()=>{S.set("yyp_history",[]);setHistory([]);setShowHist(false);showT("History cleared!");}} style={{background:"rgba(239,68,68,.1)",border:"1px solid rgba(239,68,68,.2)",borderRadius:7,padding:"3px 9px",color:"#ef4444",fontSize:10,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>Clear All</button>
+              </div>
+              <div style={{display:"flex",flexDirection:"column",gap:6,maxHeight:240,overflowY:"auto"}}>
+                {history.map((h,i)=>(
+                  <div key={i} onClick={()=>{setPf({name:h.name,cat:h.cat,plat:h.plat});setResult(h.result);setShowHist(false);showT("Loaded: "+h.name);}} style={{background:"rgba(2,8,23,.6)",border:"1px solid #1e293b",borderRadius:9,padding:"9px 11px",cursor:"pointer",display:"flex",alignItems:"center",gap:8,transition:"all .15s"}} onMouseOver={e=>e.currentTarget.style.borderColor="rgba(99,102,241,.3)"} onMouseOut={e=>e.currentTarget.style.borderColor="#1e293b"}>
+                    <div style={{flex:1,minWidth:0}}>
+                      <div style={{fontWeight:700,fontSize:12,color:"#e2e8f0",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}>{h.name}</div>
+                      <div style={{fontSize:10,color:"#64748b"}}>{h.cat} • {h.plat} • {h.time}</div>
+                    </div>
+                    <div style={{fontSize:10,color:"#a5b4fc",fontWeight:600,flexShrink:0}}>Load →</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
           <div style={{textAlign:"center",padding:"28px 0 32px"}}>
 
             {/* Top badge */}
@@ -1340,7 +1383,7 @@ export default function App(){
             <div className="ftabs"><button className={"ftab"+(tab==="profit"?" on":"")} onClick={()=>setTab("profit")}>💰 Profit Calculator</button></div>
             <div className="fglbl" style={{color:isLocked?"#ef4444":"#10b981"}}>{isLocked?"🔒 Locked (Buy Premium to Unlock)":"✅ Premium Tools (Unlocked)"}</div>
             <div className="ftabs">
-              {[{id:"starter",l:"🎓 Starter Guide"},{id:"beginner",l:"🔰 Beginner Products"},{id:"investment",l:"🧮 Investment Calc"},{id:"description",l:"📝 Description"},{id:"trending",l:"🔥 Trending"},{id:"competitor",l:"⚔️ Competitor"},{id:"supplier",l:"📦 Supplier"},{id:"sales",l:"📊 Sales Estimator"},{id:"price",l:"🏷️ Price Optimizer"},{id:"inventory",l:"📦 Inventory"},{id:"review",l:"⭐ Reviews"},{id:"niche",l:"🎯 Niche Finder"},{id:"return",l:"📦 Return Manager"},{id:"festival",l:"🎊 Festival Planner"},{id:"roas",l:"💰 ROAS Calculator"},{id:"multi",l:"📱 Multi-Platform"},{id:"bundle",l:"🎁 Bundle Creator"}].map(t=>(
+              {[{id:"starter",l:"🎓 Starter Guide"},{id:"beginner",l:"🔰 Beginner Products"},{id:"investment",l:"🧮 Investment Calc"},{id:"description",l:"📝 Description"},{id:"trending",l:"🔥 Trending"},{id:"competitor",l:"⚔️ Competitor"},{id:"supplier",l:"📦 Supplier"},{id:"sales",l:"📊 Sales Estimator"},{id:"price",l:"🏷️ Price Optimizer"},{id:"inventory",l:"📦 Inventory"},{id:"review",l:"⭐ Reviews"},{id:"niche",l:"🎯 Niche Finder"},{id:"return",l:"📦 Return Manager"},{id:"festival",l:"🎊 Festival Planner"},{id:"roas",l:"💰 ROAS Calculator"},{id:"multi",l:"📱 Multi-Platform"},{id:"bundle",l:"🎁 Bundle Creator"},{id:"gst",l:"🧾 GST Calculator"},{id:"launch",l:"🚀 Launch Strategy"},{id:"compare",l:"⚡ Compare Products"},{id:"shipping",l:"🚚 Shipping Cost"}].map(t=>(
                 <button key={t.id} className={"ftab"+(tab===t.id?" on":"")} onClick={()=>{if(isLocked){setShowPrem(true);return;}setTab(t.id);}}>{t.l}{isLocked&&" 🔒"}</button>
               ))}
             </div>
@@ -1791,6 +1834,229 @@ export default function App(){
                       <p style={{color:"#94a3b8",fontSize:11,lineHeight:1.65}}>{bundleD.top_bundle}</p>
                     </div>
                   )}
+                </div>
+              )}
+            </div>
+          )}
+
+        
+          {/* ── GST CALCULATOR ── */}
+          {tab==="gst" && (
+            <div className="fbox fa">
+              <h3 style={{fontWeight:800,fontSize:14,marginBottom:3,color:"#f8fafc"}}>🧾 GST Calculator</h3>
+              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Selling price ke baad actual profit calculate karo GST ke saath</p>
+              <div className="prow">
+                <div className="pfield"><label>Selling Price (Rs.)</label><input type="number" placeholder="500" value={gstF.sell} onChange={e=>setGstF({...gstF,sell:e.target.value})}/></div>
+                <div className="pfield"><label>GST Rate</label>
+                  <select value={gstF.cat} onChange={e=>setGstF({...gstF,cat:e.target.value})}>
+                    <option value="0">0% - Essentials</option>
+                    <option value="5">5% - Food/Books</option>
+                    <option value="12">12% - Fashion/Home</option>
+                    <option value="18">18% - Electronics</option>
+                    <option value="28">28% - Luxury</option>
+                  </select>
+                </div>
+              </div>
+              <button className="cbtn" style={{width:"100%"}} onClick={()=>{
+                const s=parseFloat(gstF.sell)||0;
+                const rate=parseFloat(gstF.cat)||0;
+                const basePrice=s/(1+rate/100);
+                const gstAmt=s-basePrice;
+                const cgst=gstAmt/2;const sgst=gstAmt/2;
+                const igst=gstAmt;
+                setGstR({selling:s.toFixed(2),base:basePrice.toFixed(2),gst:gstAmt.toFixed(2),cgst:cgst.toFixed(2),sgst:sgst.toFixed(2),igst:igst.toFixed(2),rate,effective:(gstAmt/s*100).toFixed(1)});
+              }}>🧾 Calculate GST</button>
+              {gstR&&(
+                <div style={{marginTop:14}} className="fa">
+                  <div style={{background:"rgba(99,102,241,.08)",border:"1px solid rgba(99,102,241,.2)",borderRadius:12,padding:14,marginBottom:10,textAlign:"center"}}>
+                    <div style={{fontSize:10,color:"#64748b",marginBottom:2}}>GST Amount</div>
+                    <div style={{fontSize:28,fontWeight:900,color:"#ef4444"}}>Rs. {gstR.gst}</div>
+                    <div style={{fontSize:11,color:"#64748b"}}>@ {gstR.rate}% GST rate</div>
+                  </div>
+                  <div className="presult">
+                    {[{l:"Selling Price",v:"Rs."+gstR.selling,c:"#f8fafc"},{l:"Base Price",v:"Rs."+gstR.base,c:"#10b981"},{l:"CGST",v:"Rs."+gstR.cgst,c:"#f59e0b"},{l:"SGST",v:"Rs."+gstR.sgst,c:"#f59e0b"},{l:"IGST (Inter-state)",v:"Rs."+gstR.igst,c:"#a5b4fc"},{l:"Effective Rate",v:gstR.effective+"%",c:"#ef4444"}].map(r=>(
+                      <div key={r.l} className="prc"><div className="prl">{r.l}</div><div className="prv" style={{color:r.c,fontSize:13}}>{r.v}</div></div>
+                    ))}
+                  </div>
+                  <div style={{background:"rgba(16,185,129,.07)",border:"1px solid rgba(16,185,129,.2)",borderRadius:10,padding:11,marginTop:10}}>
+                    <div style={{fontWeight:700,color:"#10b981",fontSize:12,marginBottom:5}}>GST Tips</div>
+                    <div style={{color:"#94a3b8",fontSize:11,lineHeight:1.65}}>
+                      • CGST + SGST = Same state delivery<br/>
+                      • IGST = Different state delivery<br/>
+                      • Base price aapki actual earning hai<br/>
+                      • Input tax credit (ITC) le sako agar registered ho
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* ── LAUNCH STRATEGY ── */}
+          {tab==="launch" && (
+            <div className="fbox fa" style={{position:"relative"}}>
+              {isLocked&&<LockBox/>}
+              <h3 style={{fontWeight:800,fontSize:14,marginBottom:3,color:"#f8fafc"}}>🚀 Launch Strategy Generator</h3>
+              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Day 1 se Day 30 ka complete product launch plan</p>
+              {!pf.name&&<div className="errbanner">Run product analysis first</div>}
+              <button className="gbtn2" style={{background:"linear-gradient(135deg,#6366f1,#a855f7)"}} onClick={async()=>{setLaunchL(true);try{const d=await apiCall("launch_strategy");setLaunchD(d);}catch(e){console.error(e);}setLaunchL(false);}} disabled={launchL||!pf.name}>{launchL?"Generating...":"🚀 Generate Launch Plan"}</button>
+              {launchL&&<div className="ssp"/>}
+              {launchD&&!launchL&&(
+                <div style={{marginTop:14}} className="fa">
+                  <div style={{background:"linear-gradient(135deg,rgba(99,102,241,.12),rgba(168,85,247,.08))",border:"1px solid rgba(99,102,241,.3)",borderRadius:12,padding:14,marginBottom:12}}>
+                    <div style={{fontWeight:800,fontSize:13,color:"#a5b4fc",marginBottom:4}}>Launch Overview</div>
+                    <p style={{color:"#94a3b8",fontSize:11,lineHeight:1.65}}>{launchD.overview}</p>
+                  </div>
+                  {launchD.week_plan?.map((w,i)=>(
+                    <div key={i} className="gcard" style={{marginBottom:8}}>
+                      <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:8}}>
+                        <div style={{width:26,height:26,background:"linear-gradient(135deg,#6366f1,#8b5cf6)",borderRadius:"50%",display:"flex",alignItems:"center",justifyContent:"center",fontWeight:800,fontSize:11,color:"#fff"}}>{i+1}</div>
+                        <div style={{fontWeight:700,fontSize:12,color:"#e2e8f0"}}>{w.week}</div>
+                      </div>
+                      {w.tasks?.map((t,j)=>(
+                        <div key={j} style={{display:"flex",gap:6,padding:"4px 0",color:"#94a3b8",fontSize:11}}>
+                          <span style={{color:"#6366f1",flexShrink:0}}>•</span><span>{t}</span>
+                        </div>
+                      ))}
+                    </div>
+                  ))}
+                  {launchD.pricing_strategy&&<div className="gcard" style={{marginBottom:8}}><div className="gct" style={{marginBottom:5}}>Pricing Strategy</div><p className="gctx">{launchD.pricing_strategy}</p></div>}
+                  {launchD.ad_budget&&<div className="gcard" style={{marginBottom:8}}><div className="gct" style={{marginBottom:5}}>Ad Budget Plan</div><p className="gctx">{launchD.ad_budget}</p></div>}
+                  {launchD.review_strategy&&<div className="gcard"><div className="gct" style={{marginBottom:5}}>Review Strategy</div><p className="gctx">{launchD.review_strategy}</p></div>}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* ── COMPARE PRODUCTS ── */}
+          {tab==="compare" && (
+            <div className="fbox fa" style={{position:"relative"}}>
+              {isLocked&&<LockBox/>}
+              <h3 style={{fontWeight:800,fontSize:14,marginBottom:3,color:"#f8fafc"}}>⚡ Compare Products</h3>
+              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>2 products side by side compare karo — konsa better hai?</p>
+              <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginBottom:12}}>
+                <div style={{background:"rgba(2,8,23,.5)",border:"1px solid rgba(99,102,241,.2)",borderRadius:10,padding:11}}>
+                  <div style={{fontSize:10,fontWeight:700,color:"#a5b4fc",marginBottom:8}}>PRODUCT A</div>
+                  <input className="di" placeholder="Product name..." value={compA.name} onChange={e=>setCompA({...compA,name:e.target.value})} style={{marginBottom:6}}/>
+                  <select className="di" style={{marginBottom:6}} value={compA.cat} onChange={e=>setCompA({...compA,cat:e.target.value})}>
+                    {CATS.map(c=><option key={c.id} value={c.id}>{c.id}</option>)}
+                  </select>
+                  <select className="di" value={compA.plat} onChange={e=>setCompA({...compA,plat:e.target.value})}>
+                    {PLATS.map(p=><option key={p.id} value={p.id}>{p.id}</option>)}
+                  </select>
+                </div>
+                <div style={{background:"rgba(2,8,23,.5)",border:"1px solid rgba(239,68,68,.2)",borderRadius:10,padding:11}}>
+                  <div style={{fontSize:10,fontWeight:700,color:"#f87171",marginBottom:8}}>PRODUCT B</div>
+                  <input className="di" placeholder="Product name..." value={compB.name} onChange={e=>setCompB({...compB,name:e.target.value})} style={{marginBottom:6}}/>
+                  <select className="di" style={{marginBottom:6}} value={compB.cat} onChange={e=>setCompB({...compB,cat:e.target.value})}>
+                    {CATS.map(c=><option key={c.id} value={c.id}>{c.id}</option>)}
+                  </select>
+                  <select className="di" value={compB.plat} onChange={e=>setCompB({...compB,plat:e.target.value})}>
+                    {PLATS.map(p=><option key={p.id} value={p.id}>{p.id}</option>)}
+                  </select>
+                </div>
+              </div>
+              <button className="cbtn" style={{width:"100%",background:"linear-gradient(135deg,#6366f1,#ec4899)"}} onClick={async()=>{
+                if(!compA.name||!compB.name){showT("Dono products ka naam likho!");return;}
+                setCompRunL(true);setCompRes(null);
+                try{
+                  const [dA,dB]=await Promise.all([
+                    fetch("/api/analyze",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:compA.name,category:compA.cat||"Fashion",platform:compA.plat||"Amazon"})}).then(r=>r.json()),
+                    fetch("/api/analyze",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:compB.name,category:compB.cat||"Fashion",platform:compB.plat||"Amazon"})}).then(r=>r.json())
+                  ]);
+                  setCompRes({a:{...dA,name:compA.name},b:{...dB,name:compB.name}});
+                  showT("Comparison ready!");
+                }catch{showT("Failed. Try again.");}
+                setCompRunL(false);
+              }} disabled={compRunL}>{compRunL?"Comparing...":"⚡ Compare Now"}</button>
+              {compRunL&&<div className="ssp"/>}
+              {compRes&&!compRunL&&(
+                <div style={{marginTop:14}} className="fa">
+                  <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginBottom:12}}>
+                    {[{d:compRes.a,c:"#6366f1",label:"A"},{d:compRes.b,c:"#ef4444",label:"B"}].map((item,i)=>(
+                      <div key={i} style={{background:"rgba(2,8,23,.6)",border:`1px solid ${item.c}33`,borderRadius:12,padding:12}}>
+                        <div style={{fontWeight:800,fontSize:12,color:item.c,marginBottom:8}}>Product {item.label}: {item.d.name}</div>
+                        {[{l:"Viral Score",v:item.d.viral_score},{l:"Demand",v:item.d.demand_level},{l:"Competition",v:item.d.competition_level},{l:"Price",v:item.d.price_range}].map(m=>(
+                          <div key={m.l} style={{display:"flex",justifyContent:"space-between",padding:"4px 0",borderBottom:"1px solid rgba(255,255,255,.04)",fontSize:11}}>
+                            <span style={{color:"#64748b"}}>{m.l}</span>
+                            <span style={{color:"#f8fafc",fontWeight:600}}>{m.v}</span>
+                          </div>
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                  <div style={{background:"rgba(16,185,129,.08)",border:"1px solid rgba(16,185,129,.25)",borderRadius:12,padding:14}}>
+                    <div style={{fontWeight:800,color:"#10b981",fontSize:13,marginBottom:6}}>Verdict</div>
+                    <p style={{color:"#94a3b8",fontSize:12,lineHeight:1.65}}>
+                      {(() => {
+                        const aScore = parseInt(compRes.a.viral_score)||0;
+                        const bScore = parseInt(compRes.b.viral_score)||0;
+                        const winner = aScore>=bScore?compRes.a.name:compRes.b.name;
+                        return winner+" better choice lag raha hai higher viral potential ke saath. Dono ka profit calculator mein analysis karo final decision ke liye.";
+                      })()}
+                    </p>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* ── SHIPPING COST ── */}
+          {tab==="shipping" && (
+            <div className="fbox fa">
+              <h3 style={{fontWeight:800,fontSize:14,marginBottom:3,color:"#f8fafc"}}>🚚 Shipping Cost Comparator</h3>
+              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Major couriers compare karo — best rate dhundho</p>
+              <div className="prow">
+                <div className="pfield"><label>Weight (kg)</label><input type="number" placeholder="0.5" step="0.1" value={shipF.weight} onChange={e=>setShipF({...shipF,weight:e.target.value})}/></div>
+                <div className="pfield"><label>Zone</label>
+                  <select value={shipF.zone} onChange={e=>setShipF({...shipF,zone:e.target.value})}>
+                    <option value="local">Local (Same City)</option>
+                    <option value="zone1">Zone 1 (Nearby State)</option>
+                    <option value="zone2">Zone 2 (Far State)</option>
+                    <option value="zone3">Zone 3 (Extreme Far)</option>
+                  </select>
+                </div>
+                <div className="pfield"><label>Payment</label>
+                  <select value={shipF.cod} onChange={e=>setShipF({...shipF,cod:e.target.value})}>
+                    <option value="no">Prepaid</option>
+                    <option value="yes">COD</option>
+                  </select>
+                </div>
+              </div>
+              <button className="cbtn" style={{width:"100%"}} onClick={()=>{
+                const w=parseFloat(shipF.weight)||0.5;
+                const cod=shipF.cod==="yes";
+                const z=shipF.zone;
+                const zMult={local:1,zone1:1.3,zone2:1.6,zone3:2}[z]||1;
+                const codExtra=cod?35:0;
+                const couriers=[
+                  {name:"Delhivery",base:35,perKg:45,color:"#ef4444"},
+                  {name:"Shiprocket",base:40,perKg:50,color:"#6366f1"},
+                  {name:"Amazon FBA",base:30,perKg:40,color:"#f59e0b"},
+                  {name:"Ekart",base:28,perKg:38,color:"#10b981"},
+                  {name:"Shadowfax",base:32,perKg:42,color:"#8b5cf6"},
+                  {name:"XpressBees",base:36,perKg:46,color:"#f97316"},
+                ];
+                const results=couriers.map(c=>{
+                  const cost=Math.round((c.base+c.perKg*Math.max(0.5,w))*zMult+codExtra);
+                  return{...c,cost};
+                }).sort((a,b)=>a.cost-b.cost);
+                setShipR({couriers:results,weight:w,zone:z,cod});
+              }}>🚚 Compare Rates</button>
+              {shipR&&(
+                <div style={{marginTop:14}} className="fa">
+                  {shipR.couriers.map((c,i)=>(
+                    <div key={i} style={{display:"flex",alignItems:"center",gap:10,padding:"9px 11px",background:i===0?"rgba(16,185,129,.07)":"rgba(2,8,23,.4)",border:`1px solid ${i===0?"rgba(16,185,129,.25)":"#1e293b"}`,borderRadius:10,marginBottom:6}}>
+                      {i===0&&<div style={{fontSize:9,fontWeight:800,background:"linear-gradient(135deg,#10b981,#059669)",color:"#fff",padding:"2px 6px",borderRadius:100,flexShrink:0}}>BEST</div>}
+                      <div style={{width:8,height:8,borderRadius:"50%",background:c.color,flexShrink:0}}/>
+                      <div style={{flex:1,fontWeight:600,fontSize:12,color:"#e2e8f0"}}>{c.name}</div>
+                      <div style={{fontWeight:900,fontSize:14,color:i===0?"#10b981":"#f8fafc"}}>Rs.{c.cost}</div>
+                    </div>
+                  ))}
+                  {shipR.cod&&<div style={{background:"rgba(245,158,11,.07)",border:"1px solid rgba(245,158,11,.2)",borderRadius:9,padding:"8px 11px",fontSize:11,color:"#f59e0b",marginTop:6}}>COD charge (+Rs.35) already included</div>}
+                  <div style={{background:"rgba(99,102,241,.06)",border:"1px solid rgba(99,102,241,.15)",borderRadius:9,padding:"8px 11px",marginTop:8,fontSize:11,color:"#94a3b8",lineHeight:1.6}}>
+                    Note: Rates estimated — actual rates vary by courier partner. Shiprocket/Delhivery ke exact rates unki website pe check karo.
+                  </div>
                 </div>
               )}
             </div>
