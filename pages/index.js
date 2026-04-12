@@ -2018,8 +2018,10 @@ export default function App(){
             </div>
           )}
 
+            
                 <footer>🧠 YesYouPro · AI Product Analyzer · Made in India 🇮🇳 · © 2025</footer>
       </div>}
     </>
   );
 }
+
