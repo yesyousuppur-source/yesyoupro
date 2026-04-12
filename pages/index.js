@@ -838,6 +838,16 @@ export default function App(){
     .qinp::placeholder{color:#475569}
     footer{text-align:center;padding:15px;color:#334155;font-size:10px;border-top:1px solid rgba(255,255,255,.03)}
     @media(max-width:600px){.nav{padding:10px 11px}.dc{padding:18px 9px 60px}.pgrid{gap:4px}.ppb{padding:8px 2px 6px}.nc{padding:24px 14px}.icard{padding:15px 11px}}
+
+    /* ── ANIMATED SLIDE BUTTONS ── */
+    .yyp-btn{outline:0;border:0;cursor:pointer;display:inline-flex;flex-direction:column;border-radius:10px;overflow:hidden;position:relative;font-family:'Inter',sans-serif;transition:0.6s cubic-bezier(.16,1,.3,1);}
+    .yyp-btn .binn{width:100%;transition:0.6s cubic-bezier(.16,1,.3,1);}
+    .yyp-btn .bt,.yyp-btn .bb{display:flex;align-items:center;justify-content:center;gap:7px;padding:0 20px;white-space:nowrap;font-weight:800;color:#fff;font-size:13px;font-family:'Inter',sans-serif;}
+    .yyp-btn:hover .binn{transform:translateY(-100%);}
+    .yyp-btn:active{transform:scale(0.96);}
+    .yyp-btn-full{width:100%;border-radius:12px;}
+    .yyp-btn-full .bt,.yyp-btn-full .bb{justify-content:center;}
+    .yyp-btn-sm .bt,.yyp-btn-sm .bb{padding:0 12px;font-size:11px;}
   `;
 
   if(screen==="loading") return (
@@ -883,7 +893,7 @@ export default function App(){
             <div className="ppr">₹249 <span>/ 7 days</span></div>
             <div className="phigh">📊 30 analyses / 7 days (Free: 2/day only)<br/>⏰ No 24hr lockout<br/>🚫 Zero ads<br/>📋 Copy any AI result<br/>🔓 All 13 tools unlocked</div>
             <div className="pflist">{["✅ 30 analyses / 7 days","✅ Zero ads","✅ No 24hr lockout","📋 Copy full reports","🎓 Starter Guide","🔰 Beginner Products","🧮 Investment Calculator","📊 Sales Estimator","🏷️ Price Optimizer","📦 Inventory Calculator","⭐ Review Analyzer","🎯 Niche Finder","📺 Ads on 8 platforms"].map(f=><div key={f} className="pfi">{f}</div>)}</div>
-            <button className="pbtn2" onClick={()=>setShowPay(true)}>🔓 Unlock Premium — ₹249</button>
+            <button className="yyp-btn yyp-btn-full" onClick={()=>setShowPay(true)} style={{height:50,boxShadow:"0 6px 22px rgba(245,158,11,.35)"}}><div className="binn"><div className="bt" style={{height:50,background:"linear-gradient(135deg,#f59e0b,#ef4444)"}}>💎 Unlock Premium — ₹249</div><div className="bb" style={{height:50,background:"linear-gradient(135deg,#f97316,#dc2626)"}}>🔥 Get 30 Analyses!</div></div></button>
             <button className="mcan" onClick={()=>setShowPrem(false)}>Maybe later</button>
           </>}
           {showPay && payStep==="form" && <>
@@ -895,7 +905,7 @@ export default function App(){
               <div className="pr2"><span>All 13 Tools</span><span style={{color:"#10b981"}}>✅ Unlocked</span></div>
               <div className="pr2"><span>Copy Results</span><span style={{color:"#a5b4fc"}}>✅ Enabled</span></div>
             </div>
-            <button className="pbtn2" onClick={handlePay}><svg width="14" height="14" viewBox="0 0 30 30" fill="none"><path d="M14.396 0L0 19.578h9.979L7.242 30l22.758-19.56H19.5L22.25 0z" fill="#528FF0"/></svg>Pay ₹249 via Razorpay</button>
+            <button className="yyp-btn yyp-btn-full" onClick={handlePay} style={{height:50,boxShadow:"0 6px 22px rgba(245,158,11,.35)"}}><div className="binn"><div className="bt" style={{height:50,background:"linear-gradient(135deg,#f59e0b,#ef4444)"}}>💳 Pay ₹249 via Razorpay</div><div className="bb" style={{height:50,background:"linear-gradient(135deg,#10b981,#059669)"}}>✅ Secure Payment</div></div></button>
             <button className="mcan" onClick={()=>setShowPay(false)}>← Back</button>
           </>}
           {showPay && payStep==="processing" && <div style={{textAlign:"center",padding:30}}><div className="sp" style={{margin:"0 auto"}}/><p style={{color:"#94a3b8",marginTop:11}}>Processing...</p></div>}
@@ -903,7 +913,7 @@ export default function App(){
             <div style={{fontSize:50,marginBottom:8}}>🎉</div>
             <h2 className="ptitle">Payment Successful!</h2>
             <p style={{color:"#94a3b8",fontSize:12,marginBottom:15,lineHeight:1.6}}>Create your account to activate Premium!</p>
-            <button className="pbtn2" onClick={()=>{setShowPrem(false);setShowPay(false);setPayStep("form");S.set("yyp_pending_prem",true);setScreen("auth");}}>🔐 Create Account to Activate</button>
+            <button className="yyp-btn yyp-btn-full" onClick={()=>{setShowPrem(false);setShowPay(false);setPayStep("form");S.set("yyp_pending_prem",true);setScreen("auth");}} style={{height:50,boxShadow:"0 6px 22px rgba(99,102,241,.35)"}}><div className="binn"><div className="bt" style={{height:50,background:"linear-gradient(135deg,#6366f1,#8b5cf6)"}}>🔐 Create Account to Activate</div><div className="bb" style={{height:50,background:"linear-gradient(135deg,#10b981,#059669)"}}>✅ Let's Go!</div></div></button>
           </div>}
           {showPay && payStep==="success" && <div style={{textAlign:"center"}}>
             <div style={{fontSize:50,marginBottom:8}}>🎉</div>
@@ -914,7 +924,7 @@ export default function App(){
               <div className="sfi2">✅ Copy results enabled</div>
               <div className="sfi2">✅ All 13 tools unlocked</div>
             </div>
-            <button className="pbtn2" onClick={()=>{setShowPrem(false);setShowPay(false);setPayStep("form");}}>🚀 Start Analyzing →</button>
+            <button className="yyp-btn yyp-btn-full" onClick={()=>{setShowPrem(false);setShowPay(false);setPayStep("form");}} style={{height:50,boxShadow:"0 6px 22px rgba(16,185,129,.35)"}}><div className="binn"><div className="bt" style={{height:50,background:"linear-gradient(135deg,#10b981,#059669)"}}>🚀 Start Analyzing!</div><div className="bb" style={{height:50,background:"linear-gradient(135deg,#6366f1,#8b5cf6)"}}>✨ Let's Go!</div></div></button>
           </div>}
         </div>
       </div>}
@@ -967,7 +977,7 @@ export default function App(){
               {curPlan==="free" && <button className="pmbtn" onClick={()=>{setShowProf(false);setShowPrem(true);}}><span className="pmico">💎</span><span>Upgrade Premium — ₹249</span><span className="pmarr">›</span></button>}
               {isGuest
                 ? <button className="pmbtn" onClick={()=>{setShowProf(false);setScreen("auth");}} style={{borderColor:"rgba(99,102,241,.25)",color:"#a5b4fc"}}><span className="pmico">🔐</span><span>Login / Sign Up</span><span className="pmarr">›</span></button>
-                : <button className="pmbtn lo" onClick={()=>{setShowProf(false);handleLogout();}}><span className="pmico">🚪</span><span>Logout</span></button>
+                : <button className="yyp-btn yyp-btn-full" onClick={()=>{setShowProf(false);handleLogout();}} style={{height:44,boxShadow:"0 4px 14px rgba(239,68,68,.2)"}}><div className="binn"><div className="bt" style={{height:44,background:"linear-gradient(135deg,#ef4444,#dc2626)"}}>🚪 Logout</div><div className="bb" style={{height:44,background:"linear-gradient(135deg,#dc2626,#b91c1c)"}}>👋 Goodbye!</div></div></button>
               }
             </div>
             <div style={{textAlign:"center",fontSize:10,color:"#334155"}}>YesYouPro · yesyoupro.com</div>
@@ -1113,7 +1123,7 @@ export default function App(){
             <div className="dvl"><div className="dl"/><div className="dt">OR MANUALLY</div><div className="dl"/></div>
           </div>}
           <div className="ntabs">{["login","signup"].map(m=><button key={m} className={"ntab"+(authMode===m?" on":"")} onClick={()=>{setAuthMode(m);setAuthErr("");setForm({email:"",password:"",name:""});}}>{m==="login"?"Login":"Sign Up"}</button>)}</div>
-          <button className="gbtn" onClick={handleGoogle} disabled={gLoad}>
+          <button className="yyp-btn yyp-btn-full" onClick={handleGoogle} disabled={gLoad} style={{height:46,boxShadow:"0 4px 16px rgba(255,255,255,.08)",opacity:gLoad?.7:1}}><div className="binn"><div className="bt" style={{height:46,background:"#fff",gap:"8px"}}><svg width="15" height="15" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg><span style={{color:"#1a1a2e",fontWeight:700,fontSize:"13px"}}>{gLoad?"Signing in...":"Continue with Google"}</span></div><div className="bb" style={{height:46,background:"#f1f5f9"}}><span style={{color:"#1a1a2e",fontWeight:700,fontSize:"13px"}}>✅ Redirecting...</span></div></div>
             {gLoad?<div className="sp" style={{width:14,height:14,border:"2px solid rgba(99,102,241,.2)",borderTop:"2px solid #6366f1"}}/>:<svg width="14" height="14" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>}
             {gLoad?"Signing in...":"Continue with Google"}
           </button>
@@ -1123,7 +1133,7 @@ export default function App(){
           <div className="niw"><span className="nii">🔒</span><input className="ni" placeholder="Password" type={showPw?"text":"password"} autoComplete="new-password" value={form.password} onChange={e=>setForm({...form,password:e.target.value})}/><button className="eye" onClick={()=>setShowPw(!showPw)}>{showPw?"🙈":"👁️"}</button></div>
           {authErr && <p className="nerr">⚠️ {authErr}</p>}
           {authMode==="login" && <div className="rem"><input type="checkbox" id="rem" defaultChecked/><label htmlFor="rem">Remember me</label><span className="fgot" onClick={handleForgotPw}>Forgot password?</span></div>}
-          <button className="nbtn" onClick={handleAuth}>{authMode==="login"?"Sign In →":"Create Account →"}</button>
+          <button className="yyp-btn yyp-btn-full" onClick={handleAuth} style={{height:46,boxShadow:"0 6px 20px rgba(99,102,241,.4)"}}><div className="binn"><div className="bt" style={{height:46,background:"linear-gradient(135deg,#6366f1,#8b5cf6)"}}>{authMode==="login"?"🔐 Sign In →":"🎉 Create Account"}</div><div className="bb" style={{height:46,background:"linear-gradient(135deg,#10b981,#059669)"}}>{authMode==="login"?"✅ Welcome Back!":"✅ Account Created!"}</div></div></button>
           <p className="swtxt">{authMode==="login"?"Don't have an account? ":"Already have an account? "}<span className="swlnk" onClick={()=>{setAuthMode(authMode==="login"?"signup":"login");setAuthErr("");setForm({email:"",password:"",name:""}); }}>{authMode==="login"?"Sign Up Free":"Sign In"}</span></p>
         </div>
       </div>}
@@ -1137,7 +1147,7 @@ export default function App(){
             <span style={{color:usage.remaining>0?"#10b981":"#ef4444",fontWeight:700}}>{curPlan==="premium"?usage.remaining+" left":usage.remaining+"/2 today"}</span>
           </div>}
           <div className="navr">
-            {curPlan==="free" && <button className="upbtn" onClick={()=>setShowPrem(true)}>💎 ₹249</button>}
+            {curPlan==="free"&&<button className="yyp-btn" onClick={()=>setShowPrem(true)} style={{height:34,minWidth:80,borderRadius:"100px",boxShadow:"0 4px 14px rgba(245,158,11,.35)"}}><div className="binn"><div className="bt" style={{height:34,background:"linear-gradient(135deg,#f59e0b,#ef4444)",borderRadius:"100px",padding:"0 14px",fontSize:"11px"}}>💎 ₹249</div><div className="bb" style={{height:34,background:"linear-gradient(135deg,#10b981,#059669)",borderRadius:"100px",padding:"0 14px",fontSize:"11px"}}>🔓 Unlock</div></div></button>}
             {isGuest
               ? <button onClick={()=>setScreen("auth")} style={{background:"rgba(99,102,241,.12)",border:"1px solid rgba(99,102,241,.35)",borderRadius:100,padding:"5px 11px",color:"#a5b4fc",fontWeight:700,fontSize:11,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>Login / Sign Up</button>
               : <div className="avt" onClick={()=>{setShowProf(true);setProfTab("main");}}>{user?.photo?<img src={user.photo} alt=""/>:user?.name?.[0]?.toUpperCase()||"U"}</div>
@@ -1284,8 +1294,8 @@ export default function App(){
             </div>
 
             {err && <div className="errbanner">{err}</div>}
-            <button className="abtn" onClick={runAnalysis} disabled={loading||(!!timer&&curPlan==="free")}>
-              🚀 Get AI Analysis {curPlan==="free" && !timer && <span className="anote">· Ad plays first</span>}
+            <button className="yyp-btn yyp-btn-full" onClick={runAnalysis} disabled={loading||(!!timer&&curPlan==="free")} style={{height:50,boxShadow:"0 6px 22px rgba(99,102,241,.35)",opacity:(loading||(!!timer&&curPlan==="free"))?.6:1,cursor:(loading||(!!timer&&curPlan==="free"))?"not-allowed":"pointer"}}>
+              <div className="binn"><div className="bt" style={{height:50,background:"linear-gradient(135deg,#6366f1,#8b5cf6,#a855f7)"}}>🚀 Get AI Analysis</div><div className="bb" style={{height:50,background:"linear-gradient(135deg,#10b981,#059669)"}}>🧠 Analyzing...</div></div>
             </button>
           </div>
 
@@ -1359,7 +1369,7 @@ export default function App(){
             <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>💰 Profit Calculator</h3>
             <p style={{color:"#64748b",fontSize:10,marginBottom:11}}>Calculate profit, margin & ROI</p>
             <div className="prow">{[{l:"Buy Price (₹)",k:"buy"},{l:"Sell Price (₹)",k:"sell"},{l:"Units",k:"units"},{l:"Platform Fee%",k:"fee"},{l:"Shipping (₹)",k:"ship"},{l:"Ad Budget (₹)",k:"ads"}].map(f=><div key={f.k} className="pfield"><label>{f.l}</label><input type="number" placeholder="0" value={profF[f.k]} onChange={e=>setProfF({...profF,[f.k]:e.target.value})}/></div>)}</div>
-            <button className="cbtn" onClick={calcP}>📊 Calculate</button>
+            <button className="yyp-btn" onClick={calcP} style={{height:42,minWidth:140,boxShadow:"0 5px 16px rgba(99,102,241,.3)"}}><div className="binn"><div className="bt" style={{height:42,background:"linear-gradient(135deg,#6366f1,#8b5cf6)"}}>📊 Calculate</div><div className="bb" style={{height:42,background:"linear-gradient(135deg,#10b981,#059669)"}}>✅ Done!</div></div></button>
             {profR && <div className="presult">{[{l:"Net Profit",v:"₹"+profR.profit,c:parseFloat(profR.profit)>0?"#10b981":"#ef4444"},{l:"Per Unit",v:"₹"+profR.np,c:"#a5b4fc"},{l:"ROI",v:profR.roi+"%",c:"#f59e0b"},{l:"Margin",v:profR.margin+"%",c:"#6366f1"},{l:"Revenue",v:"₹"+profR.rev,c:"#10b981"},{l:"Break Even",v:profR.be+" units",c:"#94a3b8"}].map(r=><div key={r.l} className="prc"><div className="prl">{r.l}</div><div className="prv" style={{color:r.c}}>{r.v}</div></div>)}</div>}
           </div>}
 
@@ -1387,7 +1397,7 @@ export default function App(){
                 ))}
               </div>
             </div>
-            <button className="gbtn2" style={{background:"linear-gradient(135deg,#6366f1,#8b5cf6)"}} onClick={async()=>{setStarL(true);try{const d=await apiCall("starter_guide",{budget:starF.budget,experience:starF.exp});setStarD(d);}catch{}setStarL(false);}} disabled={starL}>{starL?"⏳ Generating...":"🎓 Generate Guide"}</button>
+            <button className="yyp-btn yyp-btn-full" onClick={async()=>{setStarL(true);try{const d=await apiCall("starter_guide",{budget:starF.budget,experience:starF.exp});setStarD(d);}catch{}setStarL(false);}} disabled={starL} style={{height:46,boxShadow:"0 5px 16px rgba(99,102,241,.25)"}}><div className="binn"><div className="bt" style={{height:46,background:"linear-gradient(135deg,#6366f1,#8b5cf6)"}}>{starL?"⏳ Generating...":"🎓 Generate Guide"}</div><div className="bb" style={{height:46,background:"linear-gradient(135deg,#10b981,#059669)"}}>✅ Guide Ready!</div></div></button>
             {starL&&<div className="ssp"/>}
             {starD&&!starL&&<div style={{marginTop:13}} className="fa">
               {starD.platform_recommendation&&<div style={{background:"rgba(16,185,129,.08)",border:"1px solid rgba(16,185,129,.2)",borderRadius:9,padding:10,marginBottom:9}}><div style={{fontWeight:800,fontSize:12,color:"#10b981",marginBottom:2}}>✅ Best: {starD.platform_recommendation.name}</div><div style={{color:"#94a3b8",fontSize:11}}>{starD.platform_recommendation.why}</div></div>}
@@ -1430,7 +1440,7 @@ export default function App(){
                 ))}
               </div>}
             </div>
-            <button className="gbtn2" style={{background:"linear-gradient(135deg,#10b981,#059669)"}} onClick={async()=>{setBegL(true);try{const d=await apiCall("beginner_product",begF);setBegD(d);}catch{}setBegL(false);}} disabled={begL}>{begL?"⏳ Finding...":"🔰 Find Products"}</button>
+            <button className="yyp-btn yyp-btn-full" onClick={async()=>{setBegL(true);try{const d=await apiCall("beginner_product",begF);setBegD(d);}catch{}setBegL(false);}} disabled={begL} style={{height:46,boxShadow:"0 5px 16px rgba(16,185,129,.25)"}}><div className="binn"><div className="bt" style={{height:46,background:"linear-gradient(135deg,#10b981,#059669)"}}>{begL?"⏳ Finding...":"🔰 Find Products"}</div><div className="bb" style={{height:46,background:"linear-gradient(135deg,#6366f1,#8b5cf6)"}}>✅ Found!</div></div></button>
             {begL&&<div className="ssp"/>}
             {begD&&!begL&&<div style={{marginTop:13}} className="fa">{begD.products?.map((p,i)=><div key={i} className="cc" style={{marginBottom:6}}><div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:4,flexWrap:"wrap",gap:3}}><div style={{fontWeight:700,fontSize:12,color:"#e2e8f0"}}>#{i+1} {p.name}</div><span style={{background:p.risk==="Low"?"rgba(16,185,129,.1)":"rgba(245,158,11,.1)",color:p.risk==="Low"?"#10b981":"#f59e0b",borderRadius:5,padding:"1px 6px",fontSize:10,fontWeight:600}}>Risk: {p.risk}</span></div><div style={{display:"flex",gap:5,flexWrap:"wrap",marginBottom:4}}><span style={{color:"#ef4444",fontSize:11,fontWeight:600}}>Buy: {p.buy_price}</span><span style={{color:"#94a3b8"}}>→</span><span style={{color:"#10b981",fontSize:11,fontWeight:600}}>Sell: {p.sell_price}</span><span style={{color:"#f59e0b",fontSize:11,fontWeight:700}}>💰 {p.profit_per_unit}</span></div><div style={{color:"#94a3b8",fontSize:10,marginBottom:4}}>{p.why_good}</div><div style={{display:"flex",gap:3,flexWrap:"wrap"}}><span style={{background:"rgba(99,102,241,.1)",color:"#a5b4fc",borderRadius:5,padding:"1px 6px",fontSize:10}}>📦 {p.platform}</span><span style={{background:"rgba(16,185,129,.1)",color:"#10b981",borderRadius:5,padding:"1px 6px",fontSize:10}}>🏭 {p.suppliers}</span></div></div>)}</div>}
           </div>}
@@ -1439,7 +1449,7 @@ export default function App(){
             <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>🧮 Investment Calculator</h3>
             <p style={{color:"#64748b",fontSize:10,marginBottom:11}}>Full ROI with platform fees</p>
             <div className="prow">{[{l:"Buy Price (₹)",k:"buy"},{l:"Sell Price (₹)",k:"sell"},{l:"Units",k:"units"},{l:"Platform Fee%",k:"fee"},{l:"Shipping (₹)",k:"ship"},{l:"Ad Budget (₹)",k:"ads"}].map(f=><div key={f.k} className="pfield"><label>{f.l}</label><input type="number" placeholder="0" value={invF[f.k]} onChange={e=>setInvF({...invF,[f.k]:e.target.value})}/></div>)}</div>
-            <button className="cbtn" style={{width:"100%"}} onClick={calcI}>🧮 Calculate</button>
+            <button className="yyp-btn yyp-btn-full" onClick={calcI} style={{height:44,boxShadow:"0 5px 16px rgba(99,102,241,.3)"}}><div className="binn"><div className="bt" style={{height:44,background:"linear-gradient(135deg,#6366f1,#8b5cf6)"}}>🧮 Calculate Investment</div><div className="bb" style={{height:44,background:"linear-gradient(135deg,#10b981,#059669)"}}>📊 ROI Ready!</div></div></button>
             {invR&&<div className="presult">{[{l:"Total Profit",v:"₹"+invR.profit,c:parseFloat(invR.profit)>0?"#10b981":"#ef4444"},{l:"Per Unit",v:"₹"+invR.np,c:"#a5b4fc"},{l:"ROI",v:invR.roi+"%",c:"#f59e0b"},{l:"Margin",v:invR.margin+"%",c:"#6366f1"},{l:"Investment",v:"₹"+invR.cost,c:"#94a3b8"},{l:"Break Even",v:invR.be+" units",c:"#94a3b8"}].map(r=><div key={r.l} className="prc"><div className="prl">{r.l}</div><div className="prv" style={{color:r.c}}>{r.v}</div></div>)}</div>}
           </div>}
 
@@ -1447,7 +1457,7 @@ export default function App(){
             <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>📝 Description Generator</h3>
             <p style={{color:"#64748b",fontSize:10,marginBottom:11}}>SEO listings for Amazon, Meesho, Flipkart & more</p>
             {!pf.name&&<div className="errbanner">⚠️ Run product analysis first</div>}
-            <button className="gbtn2" style={{background:"linear-gradient(135deg,#6366f1,#a855f7)"}} onClick={async()=>{setDescL(true);try{const d=await apiCall("description");setDescD(d);}catch{}setDescL(false);}} disabled={descL||!pf.name}>{descL?"⏳ Generating...":"✨ Generate Descriptions"}</button>
+            <button className="yyp-btn yyp-btn-full"  disabled={descL||!pf.name} style={{height:46,boxShadow:"0 5px 16px rgba(99,102,241,.25)"}}><div className="binn"><div className="bt" style={{height:46,background:"linear-gradient(135deg,#6366f1,#a855f7)"}}>{descL?"⏳ Generating...":"✨ Generate Descriptions"}</div><div className="bb" style={{height:46,background:"linear-gradient(135deg,#10b981,#059669)"}}>⏳ Processing...</div></div></button>
             {descL&&<div className="ssp"/>}
             {descD&&!descL&&<div style={{marginTop:13}} className="fa">{descD.listings?.map((l,i)=><div key={i} style={{background:"rgba(2,8,23,.5)",border:"1px solid #1e293b",borderRadius:10,padding:11,marginBottom:7}}><div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:6}}><div style={{display:"inline-block",background:"linear-gradient(135deg,#6366f1,#8b5cf6)",color:"#fff",fontSize:9,fontWeight:700,padding:"2px 8px",borderRadius:100}}>{l.platform}</div>{curPlan==="premium"&&<button className="cpybtn" onClick={()=>copyTxt([l.title,l.description,...(l.bullets||[])].join("\n"),l.platform)}>📋</button>}</div><div style={{fontSize:12,fontWeight:700,color:"#e2e8f0",marginBottom:4}}>📌 {l.title}</div><div style={{color:"#94a3b8",fontSize:11,lineHeight:1.65,marginBottom:4}}>{l.description}</div>{l.bullets&&<div>{l.bullets.map((b,j)=><div key={j} style={{color:"#a5b4fc",fontSize:10,display:"flex",gap:4,marginBottom:2}}><span>✅</span><span>{b}</span></div>)}</div>}</div>)}</div>}
           </div>}
@@ -1483,7 +1493,7 @@ export default function App(){
                 ))}
               </div>}
             </div>
-            <button className="cbtn" style={{background:"linear-gradient(135deg,#f59e0b,#ef4444)",width:"100%"}} onClick={async()=>{setTrendL(true);try{const d=await apiCall("trending",{category:trendCat});setTrendD(d);}catch{}setTrendL(false);}} disabled={trendL}>{trendL?"⏳ Loading...":"🔥 Get Trending Products"}</button>
+            <button className="yyp-btn yyp-btn-full" onClick={async()=>{setTrendL(true);try{const d=await apiCall("trending",{category:trendCat});setTrendD(d);}catch{}setTrendL(false);}} disabled={trendL} style={{height:46,boxShadow:"0 5px 16px rgba(245,158,11,.3)"}}><div className="binn"><div className="bt" style={{height:46,background:"linear-gradient(135deg,#f59e0b,#ef4444)"}}>{trendL?"⏳ Loading...":"🔥 Get Trending"}</div><div className="bb" style={{height:46,background:"linear-gradient(135deg,#10b981,#059669)"}}>📊 Fetching...</div></div></button>
             {trendL&&<div className="ssp"/>}
             {trendD&&!trendL&&<div className="tgrid fa">{trendD.products?.map((p,i)=><div key={i} className="tcard"><div className="trnk">{i+1}</div><div style={{fontWeight:700,fontSize:11,color:"#e2e8f0",marginBottom:3}}>{p.name}</div><div style={{color:"#64748b",fontSize:10,marginBottom:5,lineHeight:1.5}}>{p.why_trending}</div><div style={{color:"#f59e0b",fontSize:10,fontWeight:600,marginBottom:4}}>💰 {p.price_range}</div><div style={{display:"flex",flexWrap:"wrap",gap:3}}>{p.tags?.map((t,j)=><span key={j} className="tc">{t}</span>)}</div></div>)}</div>}
           </div>}
@@ -1492,7 +1502,7 @@ export default function App(){
             <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>⚔️ Competitor Analysis</h3>
             <p style={{color:"#64748b",fontSize:10,marginBottom:11}}>Top 4 competitors — prices, strengths & weaknesses</p>
             {!pf.name&&<div className="errbanner">⚠️ Run product analysis first</div>}
-            <button className="cbtn" onClick={async()=>{setCompL(true);try{const d=await apiCall("competitor");setCompD(d);}catch{}setCompL(false);}} disabled={compL||!pf.name}>{compL?"⏳ Analyzing...":"🔍 Analyze Competitors"}</button>
+            <button className="yyp-btn yyp-btn-full" onClick={async()=>{setCompL(true);try{const d=await apiCall("competitor");setCompD(d);}catch{}setCompL(false);}} disabled={compL||!pf.name} style={{height:46,boxShadow:"0 5px 16px rgba(99,102,241,.25)"}}><div className="binn"><div className="bt" style={{height:46,background:"linear-gradient(135deg,#6366f1,#8b5cf6)"}}>{compL?"⏳ Analyzing...":"⚔️ Analyze Competitors"}</div><div className="bb" style={{height:46,background:"linear-gradient(135deg,#10b981,#059669)"}}>📊 Done!</div></div></button>
             {compL&&<div className="ssp"/>}
             {compD&&!compL&&<div style={{marginTop:13}} className="fa">{compD.competitors?.map((c,i)=><div key={i} className="cc"><div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:4,flexWrap:"wrap",gap:4}}><div style={{fontWeight:700,fontSize:12,color:"#e2e8f0"}}>🏪 {c.name}</div><div style={{display:"flex",gap:4}}><span style={{background:"rgba(245,158,11,.1)",color:"#f59e0b",borderRadius:5,padding:"1px 6px",fontSize:10,fontWeight:700}}>{c.price}</span><span style={{color:"#64748b",fontSize:10}}>⭐ {c.rating}</span></div></div><div className="ccrow"><div className="ccbox"><div className="ccbt" style={{color:"#10b981"}}>✅ Strengths</div>{c.strengths?.map((s,j)=><div key={j} className="cpt"><span style={{color:"#10b981"}}>+</span><span>{s}</span></div>)}</div><div className="ccbox"><div className="ccbt" style={{color:"#ef4444"}}>❌ Weaknesses</div>{c.weaknesses?.map((w,j)=><div key={j} className="cpt"><span style={{color:"#ef4444"}}>-</span><span>{w}</span></div>)}</div></div>{c.opportunity&&<div style={{marginTop:7,background:"rgba(99,102,241,.07)",border:"1px solid rgba(99,102,241,.18)",borderRadius:6,padding:"6px 9px",color:"#a5b4fc",fontSize:10}}>💡 {c.opportunity}</div>}</div>)}</div>}
           </div>}
@@ -1501,7 +1511,7 @@ export default function App(){
             <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>📦 Supplier Finder</h3>
             <p style={{color:"#64748b",fontSize:10,marginBottom:11}}>Best suppliers with price, MOQ & tips</p>
             {!pf.name&&<div className="errbanner">⚠️ Run product analysis first</div>}
-            <button className="cbtn" style={{background:"linear-gradient(135deg,#10b981,#059669)"}} onClick={async()=>{setSuppL(true);try{const d=await apiCall("supplier");setSuppD(d);}catch{}setSuppL(false);}} disabled={suppL||!pf.name}>{suppL?"⏳ Finding...":"🔍 Find Suppliers"}</button>
+            <button className="yyp-btn yyp-btn-full" onClick={async()=>{setSuppL(true);try{const d=await apiCall("supplier");setSuppD(d);}catch{}setSuppL(false);}} disabled={suppL||!pf.name} style={{height:46,boxShadow:"0 5px 16px rgba(16,185,129,.3)"}}><div className="binn"><div className="bt" style={{height:46,background:"linear-gradient(135deg,#10b981,#059669)"}}>{suppL?"⏳ Finding...":"📦 Find Suppliers"}</div><div className="bb" style={{height:46,background:"linear-gradient(135deg,#0d9488,#0f766e)"}}>✅ Found!</div></div></button>
             {suppL&&<div className="ssp"/>}
             {suppD&&!suppL&&<div style={{marginTop:13}} className="fa">{suppD.suppliers?.map((s,i)=><div key={i} className="sc"><div style={{fontWeight:700,fontSize:12,color:"#e2e8f0",marginBottom:5}}>🏭 {s.name}</div><div style={{display:"flex",gap:4,flexWrap:"wrap",marginBottom:5}}><span className="schip">💰 {s.price_range}</span><span className="schip">📦 MOQ: {s.moq}</span><span className="schip">⭐ {s.rating}</span><span className="schip">🚚 {s.delivery}</span></div><div style={{color:"#94a3b8",fontSize:10,marginBottom:4}}>{s.description}</div>{s.tip&&<div style={{background:"rgba(245,158,11,.07)",border:"1px solid rgba(245,158,11,.2)",borderRadius:7,padding:"5px 8px",color:"#f59e0b",fontSize:10,marginBottom:4}}>💡 {s.tip}</div>}<a className="slink" href={s.search_url||"#"} target="_blank" rel="noreferrer">🔗 Search on {s.platform}</a></div>)}</div>}
           </div>}
@@ -1510,7 +1520,7 @@ export default function App(){
             <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>📊 Sales Estimator</h3>
             <p style={{color:"#64748b",fontSize:10,marginBottom:11}}>Monthly sales & revenue forecast</p>
             {!pf.name&&<div className="errbanner">⚠️ Run product analysis first</div>}
-            <button className="cbtn" onClick={async()=>{setSalesL(true);try{const d=await apiCall("sales_estimator");setSalesD(d);}catch{}setSalesL(false);}} disabled={salesL||!pf.name}>{salesL?"⏳ Estimating...":"📊 Estimate Sales"}</button>
+            <button className="yyp-btn yyp-btn-full" onClick={async()=>{setSalesL(true);try{const d=await apiCall("sales_estimator");setSalesD(d);}catch{}setSalesL(false);}} disabled={salesL||!pf.name} style={{height:46,boxShadow:"0 5px 16px rgba(99,102,241,.25)"}}><div className="binn"><div className="bt" style={{height:46,background:"linear-gradient(135deg,#6366f1,#8b5cf6)"}}>{salesL?"⏳ Estimating...":"📊 Estimate Sales"}</div><div className="bb" style={{height:46,background:"linear-gradient(135deg,#10b981,#059669)"}}>📈 Results!</div></div></button>
             {salesL&&<div className="ssp"/>}
             {salesD&&!salesL&&<div style={{marginTop:13}} className="fa"><div className="presult" style={{marginBottom:9}}>{[{l:"Low Units",v:(salesD.monthly_units?.low||0)+" units",c:"#ef4444"},{l:"Avg Units",v:(salesD.monthly_units?.medium||0)+" units",c:"#f59e0b"},{l:"High Units",v:(salesD.monthly_units?.high||0)+" units",c:"#10b981"}].map(r=><div key={r.l} className="prc"><div className="prl">{r.l}</div><div className="prv" style={{color:r.c,fontSize:13}}>{r.v}</div></div>)}</div><div className="presult" style={{marginBottom:9}}>{[{l:"Low Revenue",v:salesD.monthly_revenue?.low,c:"#ef4444"},{l:"Avg Revenue",v:salesD.monthly_revenue?.medium,c:"#f59e0b"},{l:"High Revenue",v:salesD.monthly_revenue?.high,c:"#10b981"}].map(r=><div key={r.l} className="prc"><div className="prl">{r.l}</div><div className="prv" style={{color:r.c,fontSize:12}}>{r.v}</div></div>)}</div>{salesD.tips?.length>0&&<div className="gcard"><div className="gct" style={{marginBottom:5}}>💡 Tips</div>{salesD.tips.map((t,i)=><div key={i} style={{color:"#94a3b8",fontSize:10,padding:"2px 0",display:"flex",gap:4}}><span style={{color:"#10b981"}}>✓</span><span>{t}</span></div>)}</div>}</div>}
           </div>}
@@ -1519,7 +1529,7 @@ export default function App(){
             <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>🏷️ Price Optimizer</h3>
             <p style={{color:"#64748b",fontSize:10,marginBottom:11}}>Best price to maximize profit</p>
             {!pf.name&&<div className="errbanner">⚠️ Run product analysis first</div>}
-            <button className="cbtn" style={{background:"linear-gradient(135deg,#f59e0b,#ef4444)"}} onClick={async()=>{setPriceL(true);try{const d=await apiCall("price_optimizer");setPriceD(d);}catch{}setPriceL(false);}} disabled={priceL||!pf.name}>{priceL?"⏳ Optimizing...":"🏷️ Optimize Price"}</button>
+            <button className="yyp-btn yyp-btn-full" onClick={async()=>{setPriceL(true);try{const d=await apiCall("price_optimizer");setPriceD(d);}catch{}setPriceL(false);}} disabled={priceL||!pf.name} style={{height:46,boxShadow:"0 5px 16px rgba(245,158,11,.3)"}}><div className="binn"><div className="bt" style={{height:46,background:"linear-gradient(135deg,#f59e0b,#ef4444)"}}>{priceL?"⏳ Optimizing...":"🏷️ Optimize Price"}</div><div className="bb" style={{height:46,background:"linear-gradient(135deg,#10b981,#059669)"}}>✅ Optimized!</div></div></button>
             {priceL&&<div className="ssp"/>}
             {priceD&&!priceL&&<div style={{marginTop:13}} className="fa"><div style={{background:"linear-gradient(135deg,rgba(16,185,129,.1),rgba(6,95,70,.1))",border:"1px solid rgba(16,185,129,.3)",borderRadius:11,padding:13,textAlign:"center",marginBottom:9}}><div style={{fontSize:10,color:"#64748b",marginBottom:2}}>Recommended Price</div><div style={{fontSize:26,fontWeight:900,color:"#10b981"}}>{priceD.recommended_price}</div></div>{priceD.competitor_prices?.length>0&&<div className="gcard" style={{marginBottom:7}}><div className="gct" style={{marginBottom:5}}>⚔️ Competitor Prices</div>{priceD.competitor_prices.map((c,i)=><div key={i} style={{display:"flex",justifyContent:"space-between",padding:"4px 0",borderBottom:"1px solid rgba(255,255,255,.04)",color:"#94a3b8",fontSize:11}}><span>{c.seller}</span><span style={{color:"#f59e0b",fontWeight:600}}>{c.price}</span></div>)}</div>}{priceD.psychological_tricks?.length>0&&<div className="gcard"><div className="gct" style={{marginBottom:5}}>🧠 Pricing Tips</div>{priceD.psychological_tricks.map((t,i)=><div key={i} style={{color:"#94a3b8",fontSize:10,padding:"2px 0",display:"flex",gap:4}}><span style={{color:"#a5b4fc"}}>→</span><span>{t}</span></div>)}</div>}</div>}
           </div>}
@@ -1529,7 +1539,7 @@ export default function App(){
             <p style={{color:"#64748b",fontSize:10,marginBottom:11}}>Plan stock to never overstock</p>
             {!pf.name&&<div className="errbanner">⚠️ Run product analysis first</div>}
             <div className="prow"><div className="pfield"><label>Starting Units</label><input type="number" placeholder="50" value={invtF.units} onChange={e=>setInvtF({units:e.target.value})}/></div></div>
-            <button className="gbtn2" style={{background:"linear-gradient(135deg,#6366f1,#8b5cf6)"}} onClick={async()=>{setInvtL(true);try{const d=await apiCall("inventory",{units:invtF.units});setInvtD(d);}catch{}setInvtL(false);}} disabled={invtL||!pf.name}>{invtL?"⏳ Calculating...":"📦 Calculate"}</button>
+            <button className="yyp-btn yyp-btn-full"  disabled={invtL||!pf.name} style={{height:46,boxShadow:"0 5px 16px rgba(99,102,241,.25)"}}><div className="binn"><div className="bt" style={{height:46,background:"linear-gradient(135deg,#6366f1,#8b5cf6)"}}>{invtL?"⏳ Calculating...":"📦 Calculate"}</div><div className="bb" style={{height:46,background:"linear-gradient(135deg,#10b981,#059669)"}}>⏳ Processing...</div></div></button>
             {invtL&&<div className="ssp"/>}
             {invtD&&!invtL&&<div style={{marginTop:13}} className="fa"><div className="presult" style={{marginBottom:9}}>{[{l:"Starter Stock",v:invtD.recommended_stock?.starter,c:"#10b981"},{l:"Safe Stock",v:invtD.recommended_stock?.safe,c:"#f59e0b"},{l:"Reorder At",v:invtD.reorder_point,c:"#ef4444"}].map(r=><div key={r.l} className="prc"><div className="prl">{r.l}</div><div className="prv" style={{color:r.c,fontSize:11}}>{r.v}</div></div>)}</div><div className="gcard"><div className="gct" style={{marginBottom:5}}>📋 Info</div><div style={{color:"#94a3b8",fontSize:11}}><span style={{color:"#f59e0b"}}>Storage: </span>{invtD.storage_cost}</div><div style={{color:"#94a3b8",fontSize:11,marginTop:2}}><span style={{color:"#a5b4fc"}}>Duration: </span>{invtD.turnover_days}</div><div style={{color:"#94a3b8",fontSize:11,marginTop:2}}><span style={{color:"#ef4444"}}>Risk: </span>{invtD.risk}</div></div></div>}
           </div>}
@@ -1538,7 +1548,7 @@ export default function App(){
             <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>⭐ Review Analyzer</h3>
             <p style={{color:"#64748b",fontSize:10,marginBottom:11}}>What customers love & hate</p>
             {!pf.name&&<div className="errbanner">⚠️ Run product analysis first</div>}
-            <button className="cbtn" style={{background:"linear-gradient(135deg,#f59e0b,#f97316)"}} onClick={async()=>{setRevL(true);try{const d=await apiCall("review_analyzer");setRevD(d);}catch{}setRevL(false);}} disabled={revL||!pf.name}>{revL?"⏳ Analyzing...":"⭐ Analyze Reviews"}</button>
+            <button className="yyp-btn yyp-btn-full" onClick={async()=>{setRevL(true);try{const d=await apiCall("review_analyzer");setRevD(d);}catch{}setRevL(false);}} disabled={revL||!pf.name} style={{height:46,boxShadow:"0 5px 16px rgba(245,158,11,.3)"}}><div className="binn"><div className="bt" style={{height:46,background:"linear-gradient(135deg,#f59e0b,#f97316)"}}>{revL?"⏳ Analyzing...":"⭐ Analyze Reviews"}</div><div className="bb" style={{height:46,background:"linear-gradient(135deg,#10b981,#059669)"}}>📊 Done!</div></div></button>
             {revL&&<div className="ssp"/>}
             {revD&&!revL&&<div style={{marginTop:13}} className="fa"><div style={{background:"rgba(99,102,241,.07)",border:"1px solid rgba(99,102,241,.2)",borderRadius:10,padding:11,textAlign:"center",marginBottom:9}}><div style={{fontSize:10,color:"#64748b"}}>Sentiment Score</div><div style={{fontSize:22,fontWeight:900,color:"#6366f1"}}>{revD.sentiment_score}</div></div><div className="ccrow" style={{marginBottom:7}}><div className="ccbox"><div className="ccbt" style={{color:"#10b981"}}>❤️ Love</div>{revD.what_customers_love?.map((l,i)=><div key={i} className="cpt"><span style={{color:"#10b981"}}>+</span><span>{l}</span></div>)}</div><div className="ccbox"><div className="ccbt" style={{color:"#ef4444"}}>😠 Hate</div>{revD.common_complaints?.map((c,i)=><div key={i} className="cpt"><span style={{color:"#ef4444"}}>-</span><span>{c}</span></div>)}</div></div>{revD.opportunities?.length>0&&<div className="gcard"><div className="gct" style={{marginBottom:5}}>💡 Opportunities</div>{revD.opportunities.map((o,i)=><div key={i} style={{color:"#94a3b8",fontSize:10,padding:"2px 0",display:"flex",gap:4}}><span style={{color:"#a5b4fc"}}>→</span><span>{o}</span></div>)}</div>}</div>}
           </div>}
@@ -1546,7 +1556,7 @@ export default function App(){
           {tab==="niche" && <div className="fbox fa" style={{position:"relative"}}>{isLocked&&<LockBox/>}
             <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>🎯 Niche Finder</h3>
             <p style={{color:"#64748b",fontSize:10,marginBottom:11}}>6 untapped profitable niches in India</p>
-            <button className="cbtn" style={{background:"linear-gradient(135deg,#a855f7,#7c3aed)"}} onClick={async()=>{setNicheL(true);try{const d=await apiCall("niche_finder");setNicheD(d);}catch{}setNicheL(false);}} disabled={nicheL}>{nicheL?"⏳ Finding...":"🎯 Find Niches"}</button>
+            <button className="yyp-btn yyp-btn-full" onClick={async()=>{setNicheL(true);try{const d=await apiCall("niche_finder");setNicheD(d);}catch{}setNicheL(false);}} disabled={nicheL} style={{height:46,boxShadow:"0 5px 16px rgba(168,85,247,.3)"}}><div className="binn"><div className="bt" style={{height:46,background:"linear-gradient(135deg,#a855f7,#7c3aed)"}}>{nicheL?"⏳ Finding...":"🎯 Find Niches"}</div><div className="bb" style={{height:46,background:"linear-gradient(135deg,#10b981,#059669)"}}>✅ Found!</div></div></button>
             {nicheL&&<div className="ssp"/>}
             {nicheD&&!nicheL&&<div className="tgrid fa" style={{marginTop:13}}>{nicheD.niches?.map((n,i)=><div key={i} className="tcard"><div style={{display:"flex",alignItems:"center",gap:5,marginBottom:5}}><div className="trnk">{i+1}</div><div style={{fontWeight:700,fontSize:11,color:"#e2e8f0"}}>{n.name}</div></div><div style={{display:"flex",gap:3,flexWrap:"wrap",marginBottom:4}}><span style={{background:"rgba(16,185,129,.1)",color:"#10b981",borderRadius:5,padding:"1px 5px",fontSize:9,fontWeight:600}}>Comp: {n.competition}</span><span style={{background:"rgba(245,158,11,.1)",color:"#f59e0b",borderRadius:5,padding:"1px 5px",fontSize:9,fontWeight:600}}>Margin: {n.profit_margin}</span></div><div style={{color:"#64748b",fontSize:10,marginBottom:4,lineHeight:1.5}}>{n.why_untapped}</div><div style={{color:"#a5b4fc",fontSize:9,marginBottom:3}}>💰 {n.investment}</div><div style={{display:"flex",gap:3,flexWrap:"wrap"}}>{n.example_products?.map((p,j)=><span key={j} className="tc">{p}</span>)}</div><div style={{marginTop:4,fontSize:9,color:n.trend==="Growing"?"#10b981":"#f59e0b",fontWeight:600}}>📈 {n.trend}</div></div>)}</div>}
           </div>}
@@ -1560,7 +1570,7 @@ export default function App(){
               <h3 style={{fontWeight:800,fontSize:14,marginBottom:3,color:"#f8fafc"}}>📦 Return and Refund Manager</h3>
               <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Return rate kam karo — AI se smart strategy lo</p>
               {!pf.name&&<div className="errbanner">⚠️ Run product analysis first</div>}
-              <button className="gbtn2" style={{background:"linear-gradient(135deg,#ef4444,#dc2626)"}} onClick={async()=>{setReturnL(true);try{const d=await apiCall("return_manager");setReturnD(d);}catch(e){console.error(e);}setReturnL(false);}} disabled={returnL||!pf.name}>{returnL?"⏳ Analyzing...":"📦 Analyze Returns"}</button>
+              <button className="yyp-btn yyp-btn-full"  disabled={returnL||!pf.name} style={{height:46,boxShadow:"0 5px 16px rgba(99,102,241,.25)"}}><div className="binn"><div className="bt" style={{height:46,background:"linear-gradient(135deg,#ef4444,#dc2626)"}}>{returnL?"⏳ Analyzing...":"📦 Analyze Returns"}</div><div className="bb" style={{height:46,background:"linear-gradient(135deg,#10b981,#059669)"}}>⏳ Processing...</div></div></button>
               {returnL&&<div className="ssp"/>}
               {returnD&&!returnL&&(
                 <div style={{marginTop:14}} className="fa">
@@ -1619,7 +1629,7 @@ export default function App(){
                 </div>
               </div>
               {!pf.name&&<div className="errbanner">⚠️ Run product analysis first</div>}
-              <button className="gbtn2" style={{background:"linear-gradient(135deg,#f59e0b,#f97316)"}} onClick={async()=>{setFestL(true);try{const d=await apiCall("festival_planner",{season:festF.season});setFestD(d);}catch(e){console.error(e);}setFestL(false);}} disabled={festL||!pf.name}>{festL?"⏳ Planning...":"🎊 Generate Festival Plan"}</button>
+              <button className="yyp-btn yyp-btn-full"  disabled={festL||!pf.name} style={{height:46,boxShadow:"0 5px 16px rgba(99,102,241,.25)"}}><div className="binn"><div className="bt" style={{height:46,background:"linear-gradient(135deg,#f59e0b,#f97316)"}}>{festL?"⏳ Planning...":"🎊 Generate Festival Plan"}</div><div className="bb" style={{height:46,background:"linear-gradient(135deg,#10b981,#059669)"}}>⏳ Processing...</div></div></button>
               {festL&&<div className="ssp"/>}
               {festD&&!festL&&(
                 <div style={{marginTop:14}} className="fa">
@@ -1733,7 +1743,7 @@ export default function App(){
               <h3 style={{fontWeight:800,fontSize:14,marginBottom:3,color:"#f8fafc"}}>📱 Multi-Platform Expander</h3>
               <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Ek platform pe dependent mat raho — expand karo</p>
               {!pf.name&&<div className="errbanner">⚠️ Run product analysis first</div>}
-              <button className="gbtn2" style={{background:"linear-gradient(135deg,#3b82f6,#1d4ed8)"}} onClick={async()=>{setMultiL(true);try{const d=await apiCall("multi_platform");setMultiD(d);}catch(e){console.error(e);}setMultiL(false);}} disabled={multiL||!pf.name}>{multiL?"⏳ Analyzing...":"📱 Find Best Platforms"}</button>
+              <button className="yyp-btn yyp-btn-full"  disabled={multiL||!pf.name} style={{height:46,boxShadow:"0 5px 16px rgba(99,102,241,.25)"}}><div className="binn"><div className="bt" style={{height:46,background:"linear-gradient(135deg,#3b82f6,#1d4ed8)"}}>{multiL?"⏳ Analyzing...":"📱 Find Best Platforms"}</div><div className="bb" style={{height:46,background:"linear-gradient(135deg,#10b981,#059669)"}}>⏳ Processing...</div></div></button>
               {multiL&&<div className="ssp"/>}
               {multiD&&!multiL&&(
                 <div style={{marginTop:14}} className="fa">
@@ -1772,7 +1782,7 @@ export default function App(){
               <h3 style={{fontWeight:800,fontSize:14,marginBottom:3,color:"#f8fafc"}}>🎁 Bundle Product Creator</h3>
               <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Single product se zyada margin — smart bundles banao</p>
               {!pf.name&&<div className="errbanner">⚠️ Run product analysis first</div>}
-              <button className="gbtn2" style={{background:"linear-gradient(135deg,#ec4899,#be185d)"}} onClick={async()=>{setBundleL(true);try{const d=await apiCall("bundle_creator");setBundleD(d);}catch(e){console.error(e);}setBundleL(false);}} disabled={bundleL||!pf.name}>{bundleL?"⏳ Creating...":"🎁 Create Bundle Ideas"}</button>
+              <button className="yyp-btn yyp-btn-full"  disabled={bundleL||!pf.name} style={{height:46,boxShadow:"0 5px 16px rgba(99,102,241,.25)"}}><div className="binn"><div className="bt" style={{height:46,background:"linear-gradient(135deg,#ec4899,#be185d)"}}>{bundleL?"⏳ Creating...":"🎁 Create Bundle Ideas"}</div><div className="bb" style={{height:46,background:"linear-gradient(135deg,#10b981,#059669)"}}>⏳ Processing...</div></div></button>
               {bundleL&&<div className="ssp"/>}
               {bundleD&&!bundleL&&(
                 <div style={{marginTop:14}} className="fa">
