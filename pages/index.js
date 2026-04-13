@@ -1,4 +1,4 @@
- import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import Head from "next/head";
 
 const FREE_LIMIT = 2;
@@ -12,652 +12,395 @@ const FB = {
   messagingSenderId:"455406578867",
   appId:"1:455406578867:web:fc5a2b6a00af996bc114c6"
 };
-const CATS=[
-  {id:"Electronics",logo:"https://cdn.simpleicons.org/samsung/1428A0",g:"Physical"},
-  {id:"Beauty & Skincare",logo:"https://cdn.simpleicons.org/sephora/000000",g:"Physical"},
-  {id:"Home & Kitchen",logo:"https://cdn.simpleicons.org/ikea/0058A3",g:"Physical"},
-  {id:"Fitness",logo:"https://cdn.simpleicons.org/peloton/000000",g:"Physical"},
-  {id:"Fashion",logo:"https://cdn.simpleicons.org/uniqlo/FF0000",g:"Physical"},
-  {id:"Pet Supplies",logo:null,e:"🐾",g:"Physical"},
-  {id:"Toys & Games",logo:"https://cdn.simpleicons.org/lego/E3000B",g:"Physical"},
-  {id:"Health & Wellness",logo:"https://cdn.simpleicons.org/headspace/F47D31",g:"Physical"},
-  {id:"Outdoor & Sports",logo:"https://cdn.simpleicons.org/decathlon/0082C3",g:"Physical"},
-  {id:"Food & Beverages",logo:"https://cdn.simpleicons.org/zomato/E23744",g:"Physical"},
-  {id:"Automotive",logo:"https://cdn.simpleicons.org/uber/000000",g:"Physical"},
-  {id:"Books & Education",logo:"https://cdn.simpleicons.org/audible/F8991C",g:"Physical"},
-  {id:"Jewelry",logo:null,e:"💍",g:"Physical"},
-  {id:"Baby & Kids",logo:null,e:"👶",g:"Physical"},
-  {id:"Tools & Hardware",logo:"https://cdn.simpleicons.org/instructables/F7971C",g:"Physical"},
-  {id:"Garden & Plants",logo:null,e:"🌱",g:"Physical"},
-  {id:"Travel & Luggage",logo:"https://cdn.simpleicons.org/airbnb/FF5A5F",g:"Physical"},
-  {id:"Art & Crafts",logo:"https://cdn.simpleicons.org/etsy/F56400",g:"Physical"},
-  {id:"Office Supplies",logo:"https://cdn.simpleicons.org/notion/000000",g:"Physical"},
-  {id:"Music & Audio",logo:"https://cdn.simpleicons.org/spotify/1DB954",g:"Physical"},
-  {id:"Mobile Apps",logo:"https://cdn.simpleicons.org/android/3DDC84",g:"Digital"},
-  {id:"PC / Console Games",logo:"https://cdn.simpleicons.org/steam/000000",g:"Digital"},
-  {id:"Online Courses",logo:"https://cdn.simpleicons.org/udemy/A435F0",g:"Digital"},
-  {id:"Software & SaaS",logo:"https://cdn.simpleicons.org/microsoftazure/0078D4",g:"Digital"},
-  {id:"Website / Blog",logo:"https://cdn.simpleicons.org/wordpress/21759B",g:"Digital"},
-  {id:"YouTube Channel",logo:"https://cdn.simpleicons.org/youtube/FF0000",g:"Digital"},
-  {id:"Instagram Page",logo:"https://cdn.simpleicons.org/instagram/E1306C",g:"Digital"},
-  {id:"Podcast",logo:"https://cdn.simpleicons.org/spotify/1DB954",g:"Digital"},
-  {id:"NFT & Crypto",logo:"https://cdn.simpleicons.org/ethereum/627EEA",g:"Digital"},
-  {id:"Ebooks & Templates",logo:"https://cdn.simpleicons.org/amazon/FF9900",g:"Digital"},
-  {id:"Freelance Services",logo:"https://cdn.simpleicons.org/fiverr/1DBF73",g:"Digital"},
-  {id:"Social Media Account",logo:"https://cdn.simpleicons.org/instagram/E1306C",g:"Digital"},
-  {id:"Dropshipping",logo:"https://cdn.simpleicons.org/shopify/96BF48",g:"Digital"},
-  {id:"Affiliate Marketing",logo:"https://cdn.simpleicons.org/amazon/FF9900",g:"Digital"},
-  {id:"Print on Demand",logo:"https://cdn.simpleicons.org/redbubble/E41321",g:"Digital"},
-  {id:"Digital Products",logo:"https://cdn.simpleicons.org/gumroad/FF90E8",g:"Digital"},
-  {id:"Any Other",logo:null,e:"✨",g:"Digital"},
+
+const CATS = [
+  {id:"Electronics",icon:"💻",g:"Physical"},{id:"Beauty & Skincare",icon:"💄",g:"Physical"},
+  {id:"Home & Kitchen",icon:"🏠",g:"Physical"},{id:"Fitness",icon:"💪",g:"Physical"},
+  {id:"Fashion",icon:"👗",g:"Physical"},{id:"Pet Supplies",icon:"🐾",g:"Physical"},
+  {id:"Toys & Games",icon:"🎮",g:"Physical"},{id:"Health & Wellness",icon:"❤️",g:"Physical"},
+  {id:"Outdoor & Sports",icon:"⛺",g:"Physical"},{id:"Food & Beverages",icon:"🍔",g:"Physical"},
+  {id:"Automotive",icon:"🚗",g:"Physical"},{id:"Books & Education",icon:"📚",g:"Physical"},
+  {id:"Jewelry",icon:"💍",g:"Physical"},{id:"Baby & Kids",icon:"👶",g:"Physical"},
+  {id:"Tools & Hardware",icon:"🔧",g:"Physical"},{id:"Garden & Plants",icon:"🌱",g:"Physical"},
+  {id:"Travel & Luggage",icon:"✈️",g:"Physical"},{id:"Art & Crafts",icon:"🎨",g:"Physical"},
+  {id:"Office Supplies",icon:"🗂️",g:"Physical"},{id:"Music & Audio",icon:"🎵",g:"Physical"},
+  {id:"Mobile Apps",icon:"📱",g:"Digital"},{id:"PC / Console Games",icon:"🕹️",g:"Digital"},
+  {id:"Online Courses",icon:"🎓",g:"Digital"},{id:"Software & SaaS",icon:"💿",g:"Digital"},
+  {id:"Website / Blog",icon:"🌐",g:"Digital"},{id:"YouTube Channel",icon:"📺",g:"Digital"},
+  {id:"Instagram Page",icon:"📸",g:"Digital"},{id:"Podcast",icon:"🎙️",g:"Digital"},
+  {id:"NFT & Crypto",icon:"🖼️",g:"Digital"},{id:"Ebooks & Templates",icon:"📄",g:"Digital"},
+  {id:"Freelance Services",icon:"🛠️",g:"Digital"},{id:"Social Media Account",icon:"👥",g:"Digital"},
+  {id:"Dropshipping",icon:"🚚",g:"Digital"},{id:"Affiliate Marketing",icon:"🔗",g:"Digital"},
+  {id:"Print on Demand",icon:"🖨️",g:"Digital"},{id:"Digital Products",icon:"📦",g:"Digital"},
+  {id:"Any Other",icon:"✨",g:"Digital"},
 ];
-const PLATS=[
-  {id:"Amazon",logo:"https://cdn.simpleicons.org/amazon/FF9900",c:"#FF9900",g:"Ecommerce"},
-  {id:"Flipkart",logo:"https://cdn.simpleicons.org/flipkart/2874F0",c:"#2874f0",g:"Ecommerce"},
-  {id:"Meesho",logo:"https://cdn.simpleicons.org/meesho/F43397",c:"#e91e8c",g:"Ecommerce"},
-  {id:"Shopify",logo:"https://cdn.simpleicons.org/shopify/96BF48",c:"#96bf48",g:"Ecommerce"},
-  {id:"WooCommerce",logo:"https://cdn.simpleicons.org/woocommerce/7F54B3",c:"#7f54b3",g:"Ecommerce"},
-  {id:"Etsy",logo:"https://cdn.simpleicons.org/etsy/F56400",c:"#f56400",g:"Ecommerce"},
-  {id:"Nykaa",logo:"https://cdn.simpleicons.org/nykaa/FC2779",c:"#fc2779",g:"Ecommerce"},
-  {id:"Myntra",logo:null,e:"👗",c:"#ff3f6c",g:"Ecommerce"},
-  {id:"IndiaMART",logo:null,e:"🏭",c:"#0077b5",g:"Ecommerce"},
-  {id:"JioMart",logo:null,e:"🛍️",c:"#003087",g:"Ecommerce"},
-  {id:"Instagram",logo:"https://cdn.simpleicons.org/instagram/E1306C",c:"#e1306c",g:"Social Media"},
-  {id:"Facebook",logo:"https://cdn.simpleicons.org/facebook/1877F2",c:"#1877f2",g:"Social Media"},
-  {id:"YouTube",logo:"https://cdn.simpleicons.org/youtube/FF0000",c:"#ff0000",g:"Social Media"},
-  {id:"TikTok",logo:"https://cdn.simpleicons.org/tiktok/000000",c:"#010101",g:"Social Media"},
-  {id:"Pinterest",logo:"https://cdn.simpleicons.org/pinterest/E60023",c:"#e60023",g:"Social Media"},
-  {id:"Snapchat",logo:"https://cdn.simpleicons.org/snapchat/FFFC00",c:"#f5c518",g:"Social Media"},
-  {id:"X (Twitter)",logo:"https://cdn.simpleicons.org/x/000000",c:"#14171a",g:"Social Media"},
-  {id:"LinkedIn",logo:"https://cdn.simpleicons.org/linkedin/0077B5",c:"#0077b5",g:"Social Media"},
-  {id:"Telegram",logo:"https://cdn.simpleicons.org/telegram/26A5E4",c:"#0088cc",g:"Social Media"},
-  {id:"WhatsApp Business",logo:"https://cdn.simpleicons.org/whatsapp/25D366",c:"#25d366",g:"Social Media"},
-  {id:"Discord",logo:"https://cdn.simpleicons.org/discord/5865F2",c:"#5865f2",g:"Social Media"},
-  {id:"Reddit",logo:"https://cdn.simpleicons.org/reddit/FF4500",c:"#ff4500",g:"Social Media"},
-  {id:"Google Play Store",logo:"https://cdn.simpleicons.org/googleplay/414141",c:"#01875f",g:"App Stores"},
-  {id:"Apple App Store",logo:"https://cdn.simpleicons.org/apple/000000",c:"#0071e3",g:"App Stores"},
-  {id:"Steam",logo:"https://cdn.simpleicons.org/steam/000000",c:"#1b2838",g:"App Stores"},
-  {id:"PlayStation Store",logo:"https://cdn.simpleicons.org/playstation/003087",c:"#003087",g:"App Stores"},
-  {id:"Xbox Store",logo:"https://cdn.simpleicons.org/xbox/107C10",c:"#107c10",g:"App Stores"},
-  {id:"Udemy",logo:"https://cdn.simpleicons.org/udemy/A435F0",c:"#a435f0",g:"Courses"},
-  {id:"Skillshare",logo:"https://cdn.simpleicons.org/skillshare/00FF84",c:"#00ccb1",g:"Courses"},
-  {id:"Gumroad",logo:"https://cdn.simpleicons.org/gumroad/FF90E8",c:"#ff90e8",g:"Courses"},
-  {id:"Patreon",logo:"https://cdn.simpleicons.org/patreon/FF424D",c:"#ff424d",g:"Courses"},
-  {id:"Substack",logo:"https://cdn.simpleicons.org/substack/FF6719",c:"#ff6719",g:"Courses"},
-  {id:"Teachable",logo:null,e:"🎓",c:"#5cb85c",g:"Courses"},
-  {id:"Fiverr",logo:"https://cdn.simpleicons.org/fiverr/1DBF73",c:"#1dbf73",g:"Freelance"},
-  {id:"Upwork",logo:"https://cdn.simpleicons.org/upwork/6FDA44",c:"#14a800",g:"Freelance"},
-  {id:"Zomato",logo:"https://cdn.simpleicons.org/zomato/E23744",c:"#e23744",g:"Food"},
-  {id:"Swiggy",logo:null,e:"🛵",c:"#fc8019",g:"Food"},
-  {id:"BigBasket",logo:null,e:"🛒",c:"#84c225",g:"Food"},
-  {id:"Own Website",logo:"https://cdn.simpleicons.org/googlechrome/4285F4",c:"#6366f1",g:"Other"},
-  {id:"Any Other",logo:null,e:"✨",c:"#94a3b8",g:"Other"},
+
+const PLATS = [
+  {id:"Amazon",icon:"📦",c:"#f59e0b",g:"Ecommerce"},{id:"Flipkart",icon:"⚡",c:"#2874f0",g:"Ecommerce"},
+  {id:"Meesho",icon:"🌸",c:"#e91e8c",g:"Ecommerce"},{id:"Shopify",icon:"🛒",c:"#96bf48",g:"Ecommerce"},
+  {id:"WooCommerce",icon:"🌐",c:"#7f54b3",g:"Ecommerce"},{id:"Etsy",icon:"🎨",c:"#f56400",g:"Ecommerce"},
+  {id:"Nykaa",icon:"💄",c:"#fc2779",g:"Ecommerce"},{id:"Myntra",icon:"👗",c:"#ff3f6c",g:"Ecommerce"},
+  {id:"Ajio",icon:"👠",c:"#ed1c24",g:"Ecommerce"},{id:"Snapdeal",icon:"🏷️",c:"#e40000",g:"Ecommerce"},
+  {id:"JioMart",icon:"🛍️",c:"#003087",g:"Ecommerce"},{id:"IndiaMART",icon:"🏭",c:"#0077b5",g:"Ecommerce"},
+  {id:"Paytm Mall",icon:"💙",c:"#002970",g:"Ecommerce"},{id:"TradeIndia",icon:"🏪",c:"#ff6600",g:"Ecommerce"},
+  {id:"Instagram",icon:"📸",c:"#e1306c",g:"Social Media"},{id:"Facebook",icon:"👤",c:"#1877f2",g:"Social Media"},
+  {id:"YouTube",icon:"📺",c:"#ff0000",g:"Social Media"},{id:"TikTok",icon:"🎵",c:"#010101",g:"Social Media"},
+  {id:"Pinterest",icon:"📌",c:"#e60023",g:"Social Media"},{id:"Snapchat",icon:"👻",c:"#f5c518",g:"Social Media"},
+  {id:"X (Twitter)",icon:"🐦",c:"#14171a",g:"Social Media"},{id:"LinkedIn",icon:"💼",c:"#0077b5",g:"Social Media"},
+  {id:"Telegram",icon:"✈️",c:"#0088cc",g:"Social Media"},{id:"WhatsApp Business",icon:"💬",c:"#25d366",g:"Social Media"},
+  {id:"Discord",icon:"🎮",c:"#5865f2",g:"Social Media"},{id:"Reddit",icon:"🔴",c:"#ff4500",g:"Social Media"},
+  {id:"Quora",icon:"❓",c:"#a82400",g:"Social Media"},{id:"Moj",icon:"🎬",c:"#ff4081",g:"Social Media"},
+  {id:"ShareChat",icon:"💬",c:"#00bcd4",g:"Social Media"},{id:"Josh",icon:"🎭",c:"#ff6d00",g:"Social Media"},
+  {id:"Google Play Store",icon:"▶️",c:"#01875f",g:"App Stores"},{id:"Apple App Store",icon:"🍎",c:"#0071e3",g:"App Stores"},
+  {id:"Steam",icon:"🎮",c:"#1b2838",g:"App Stores"},{id:"PlayStation Store",icon:"🎯",c:"#003087",g:"App Stores"},
+  {id:"Xbox Store",icon:"🟢",c:"#107c10",g:"App Stores"},
+  {id:"Udemy",icon:"📖",c:"#a435f0",g:"Courses"},{id:"Skillshare",icon:"✏️",c:"#00ccb1",g:"Courses"},
+  {id:"Gumroad",icon:"💰",c:"#ff90e8",g:"Courses"},{id:"Patreon",icon:"🎁",c:"#ff424d",g:"Courses"},
+  {id:"Substack",icon:"📧",c:"#ff6719",g:"Courses"},{id:"Teachable",icon:"🎓",c:"#5cb85c",g:"Courses"},
+  {id:"Fiverr",icon:"💚",c:"#1dbf73",g:"Freelance"},{id:"Upwork",icon:"🔵",c:"#14a800",g:"Freelance"},
+  {id:"Zomato",icon:"🍕",c:"#e23744",g:"Food"},{id:"Swiggy",icon:"🛵",c:"#fc8019",g:"Food"},
+  {id:"BigBasket",icon:"🛒",c:"#84c225",g:"Food"},{id:"Blinkit",icon:"⚡",c:"#f8c700",g:"Food"},
+  {id:"Own Website",icon:"🌐",c:"#6366f1",g:"Other"},{id:"Any Other",icon:"✨",c:"#94a3b8",g:"Other"},
 ];
-const ADPLATS=[
-  {id:"g",n:"Google Ads",c:"#4285f4",logo:"https://cdn.simpleicons.org/google/4285F4"},
-  {id:"fb",n:"Facebook",c:"#1877f2",logo:"https://cdn.simpleicons.org/facebook/1877F2"},
-  {id:"ig",n:"Instagram",c:"#e1306c",logo:"https://cdn.simpleicons.org/instagram/E1306C"},
-  {id:"yt",n:"YouTube",c:"#ff0000",logo:"https://cdn.simpleicons.org/youtube/FF0000"},
-  {id:"tt",n:"TikTok",c:"#010101",logo:"https://cdn.simpleicons.org/tiktok/000000"},
-  {id:"pin",n:"Pinterest",c:"#e60023",logo:"https://cdn.simpleicons.org/pinterest/E60023"},
-  {id:"sc",n:"Snapchat",c:"#f5c518",logo:"https://cdn.simpleicons.org/snapchat/000000"},
-  {id:"tw",n:"X/Twitter",c:"#14171a",logo:"https://cdn.simpleicons.org/x/000000"},
+
+const ADPLATS = [
+  {id:"g",n:"Google Ads",c:"#4285f4"},{id:"fb",n:"Facebook",c:"#1877f2"},
+  {id:"ig",n:"Instagram",c:"#e1306c"},{id:"yt",n:"YouTube",c:"#ff0000"},
+  {id:"tt",n:"TikTok",c:"#010101"},{id:"pin",n:"Pinterest",c:"#e60023"},
+  {id:"sc",n:"Snapchat",c:"#f5c518"},{id:"tw",n:"X/Twitter",c:"#14171a"},
 ];
-const S={
+
+const S = {
   get:(k)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):null;}catch{return null;}},
   set:(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));}catch{}},
 };
-let _auth=null;
-async function getFA(){
-  if(_auth)return _auth;
-  const{initializeApp,getApps}=await import("firebase/app");
-  const{getAuth}=await import("firebase/auth");
-  const app=getApps().length?getApps()[0]:initializeApp(FB);
-  _auth=getAuth(app);return _auth;
+
+let _auth = null;
+async function getFA() {
+  if(_auth) return _auth;
+  const {initializeApp,getApps} = await import("firebase/app");
+  const {getAuth} = await import("firebase/auth");
+  const app = getApps().length ? getApps()[0] : initializeApp(FB);
+  _auth = getAuth(app);
+  return _auth;
 }
 
-export default function App(){
-  const[screen,setScreen]=useState("loading");
-  const[user,setUser]=useState(null);
-  const[authMode,setAuthMode]=useState("login");
-  const[form,setForm]=useState({email:"",password:"",name:""});
-  const[saved,setSaved]=useState([]);
-  const[showPw,setShowPw]=useState(false);
-  const[gLoad,setGLoad]=useState(false);
-  const[authErr,setAuthErr]=useState("");
-  const[usage,setUsage]=useState(null);
-  const[timer,setTimer]=useState(null);
-  const timerRef=useRef(null);
-  const[pf,setPf]=useState({name:"",cat:"",plat:""});
-  const[result,setResult]=useState(null);
-  const[loading,setLoading]=useState(false);
-  const[loadStep,setLoadStep]=useState(0);
-  const[err,setErr]=useState("");
-  const[showAd,setShowAd]=useState(false);
-  const[adT,setAdT]=useState(5);
-  const adRef=useRef(null);
-  const[showPrem,setShowPrem]=useState(false);
-  const[showPay,setShowPay]=useState(false);
-  const[payStep,setPayStep]=useState("form");
-  const[selP,setSelP]=useState(null);
-  const[platD,setPlatD]=useState({});
-  const[platLoad,setPlatLoad]=useState(false);
-  const[tab,setTab]=useState("profit");
-  const[toast,setToast]=useState(null);
-  const[showCats,setShowCats]=useState(false);
-  const[showPlats,setShowPlats]=useState(false);
-  const[showTrendCats,setShowTrendCats]=useState(false);
-  const[showBegCats,setShowBegCats]=useState(false);
-  const[showProf,setShowProf]=useState(false);
-  const[profTab,setProfTab]=useState("main");
-  const[qTxt,setQTxt]=useState("");
-  const[qLoad,setQLoad]=useState(false);
-  const[qSent,setQSent]=useState(false);
-  const[refCopied,setRefCopied]=useState(false);
-  const[showRef,setShowRef]=useState(false);
-  const[profF,setProfF]=useState({buy:"",sell:"",units:"1",fee:"10",ship:"60",ads:"200"});
-  const[profR,setProfR]=useState(null);
-  const[descD,setDescD]=useState(null);const[descL,setDescL]=useState(false);
-  const[trendD,setTrendD]=useState(null);const[trendL,setTrendL]=useState(false);const[trendCat,setTrendCat]=useState("Fashion");
-  const[compD,setCompD]=useState(null);const[compL,setCompL]=useState(false);
-  const[suppD,setSuppD]=useState(null);const[suppL,setSuppL]=useState(false);
-  const[starF,setStarF]=useState({budget:"5000",exp:"beginner"});
-  const[starD,setStarD]=useState(null);const[starL,setStarL]=useState(false);
-  const[begF,setBegF]=useState({budget:"5000",category:"Fashion"});
-  const[begD,setBegD]=useState(null);const[begL,setBegL]=useState(false);
-  const[invF,setInvF]=useState({buy:"",sell:"",units:"10",fee:"10",ship:"60",ads:"200"});
-  const[invR,setInvR]=useState(null);
-  const[salesD,setSalesD]=useState(null);const[salesL,setSalesL]=useState(false);
-  const[priceD,setPriceD]=useState(null);const[priceL,setPriceL]=useState(false);
-  const[invtF,setInvtF]=useState({units:"50"});
-  const[invtD,setInvtD]=useState(null);const[invtL,setInvtL]=useState(false);
-  const[revD,setRevD]=useState(null);const[revL,setRevL]=useState(false);
-  const[nicheD,setNicheD]=useState(null);const[nicheL,setNicheL]=useState(false);
-  const[returnD,setReturnD]=useState(null);const[returnL,setReturnL]=useState(false);
-  const[festF,setFestF]=useState({season:"Diwali"});
-  const[festD,setFestD]=useState(null);const[festL,setFestL]=useState(false);
-  const[roasF,setRoasF]=useState({spend:"",sales:"",platform:"Instagram"});
-  const[roasR,setRoasR]=useState(null);
-  const[multiD,setMultiD]=useState(null);const[multiL,setMultiL]=useState(false);
-  const[bundleD,setBundleD]=useState(null);const[bundleL,setBundleL]=useState(false);
-  // Advanced features
-  const[history,setHistory]=useState([]);
-  const[gstF,setGstF]=useState({sell:"",cat:"Fashion",plat:"Amazon"});
-  const[gstR,setGstR]=useState(null);
-  const[launchD,setLaunchD]=useState(null);const[launchL,setLaunchL]=useState(false);
-  const[compA,setCompA]=useState({name:"",cat:"",plat:""});
-  const[compB,setCompB]=useState({name:"",cat:"",plat:""});
-  const[compRes,setCompRes]=useState(null);const[compRunL,setCompRunL]=useState(false);
-  const[shipF,setShipF]=useState({weight:"1",zone:"local",cod:"no"});
-  const[shipR,setShipR]=useState(null);
-  const[showHist,setShowHist]=useState(false);
-  const[newUserTimer,setNewUserTimer]=useState(null);
-  const newUserTimerRef=useRef(null);
+export default function App() {
+  const [screen,setScreen] = useState("loading");
+  const [user,setUser] = useState(null);
+  const [authMode,setAuthMode] = useState("login");
+  const [form,setForm] = useState({email:"",password:"",name:""});
+  const [saved,setSaved] = useState([]);
+  const [showPw,setShowPw] = useState(false);
+  const [gLoad,setGLoad] = useState(false);
+  const [authErr,setAuthErr] = useState("");
+  const [usage,setUsage] = useState(null);
+  const [timer,setTimer] = useState(null);
+  const timerRef = useRef(null);
+  const [pf,setPf] = useState({name:"",cat:"",plat:""});
+  const [result,setResult] = useState(null);
+  const [loading,setLoading] = useState(false);
+  const [loadStep,setLoadStep] = useState(0);
+  const [err,setErr] = useState("");
+  const [showAd,setShowAd] = useState(false);
+  const [adT,setAdT] = useState(5);
+  const adRef = useRef(null);
+  const [showPrem,setShowPrem] = useState(false);
+  const [showPay,setShowPay] = useState(false);
+  const [payStep,setPayStep] = useState("form");
+  const [selP,setSelP] = useState(null);
+  const [platD,setPlatD] = useState({});
+  const [platLoad,setPlatLoad] = useState(false);
+  const [tab,setTab] = useState("profit");
+  const [toast,setToast] = useState(null);
+  const [showCats,setShowCats] = useState(false);
+  const [showPlats,setShowPlats] = useState(false);
+  const [showProf,setShowProf] = useState(false);
+  const [profTab,setProfTab] = useState("main");
+  const [q,setQ] = useState("");
+  const [qLoad,setQLoad] = useState(false);
+  const [qSent,setQSent] = useState(false);
+  const [profF,setProfF] = useState({buy:"",sell:"",units:"1",fee:"10",ship:"60",ads:"200"});
+  const [profR,setProfR] = useState(null);
+  const [descD,setDescD] = useState(null);const [descL,setDescL] = useState(false);
+  const [trendD,setTrendD] = useState(null);const [trendL,setTrendL] = useState(false);const [trendCat,setTrendCat] = useState("Fashion");
+  const [compD,setCompD] = useState(null);const [compL,setCompL] = useState(false);
+  const [suppD,setSuppD] = useState(null);const [suppL,setSuppL] = useState(false);
+  const [starF,setStarF] = useState({budget:"5000",exp:"beginner"});
+  const [starD,setStarD] = useState(null);const [starL,setStarL] = useState(false);
+  const [begF,setBegF] = useState({budget:"5000",category:"Fashion"});
+  const [begD,setBegD] = useState(null);const [begL,setBegL] = useState(false);
+  const [invF,setInvF] = useState({buy:"",sell:"",units:"10",fee:"10",ship:"60",ads:"200"});
+  const [invR,setInvR] = useState(null);
+  const [salesD,setSalesD] = useState(null);const [salesL,setSalesL] = useState(false);
+  const [priceD,setPriceD] = useState(null);const [priceL,setPriceL] = useState(false);
+  const [invtF,setInvtF] = useState({units:"50"});
+  const [invtD,setInvtD] = useState(null);const [invtL,setInvtL] = useState(false);
+  const [revD,setRevD] = useState(null);const [revL,setRevL] = useState(false);
+  const [nicheD,setNicheD] = useState(null);const [nicheL,setNicheL] = useState(false);
 
-  const showT=(m)=>{setToast(m);setTimeout(()=>setToast(null),3000);};
-  const todayK=()=>{const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");};
-  const curPlan=user?(S.get("yyp_plan_"+user.email)||"free"):"free";
-  const isGuest=!!user?.isGuest;
-  const isLocked=curPlan!=="premium"&&(!usage||usage.remaining<=0||!!timer);
-  const platGroups=[...new Set(PLATS.map(p=>p.g))];
+  const showT = (m) => { setToast(m); setTimeout(()=>setToast(null),3500); };
+  const todayK = () => { const d=new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); };
+  const curPlan = user ? (S.get("yyp_plan_"+user.email)||"free") : "free";
+  const isGuest = !!user?.isGuest;
+  const isLocked = curPlan!=="premium" && (!usage||usage.remaining<=0||!!timer);
+  const platGroups = [...new Set(PLATS.map(p=>p.g))];
 
-  const calcUsage=(u)=>{
-    if(!u?.email)return{plan:"free",remaining:FREE_LIMIT,total:FREE_LIMIT,used:0};
-    const plan=S.get("yyp_plan_"+u.email)||"free";
+  const calcUsage = (u) => {
+    if(!u?.email) return {plan:"free",remaining:FREE_LIMIT,total:FREE_LIMIT,used:0};
+    const plan = S.get("yyp_plan_"+u.email)||"free";
     if(plan==="premium"){
-      const pd=S.get("yyp_prem_"+u.email);
+      const pd = S.get("yyp_prem_"+u.email);
       if(!pd){S.set("yyp_plan_"+u.email,"free");return{plan:"free",remaining:FREE_LIMIT,total:FREE_LIMIT,used:0};}
       if(new Date()>new Date(pd.expiry)){S.set("yyp_plan_"+u.email,"free");return{plan:"free",remaining:FREE_LIMIT,total:FREE_LIMIT,expired:true};}
-      return{plan,remaining:Math.max(0,PREM_LIMIT-(pd.used||0)),total:PREM_LIMIT,used:pd.used||0,expiry:pd.expiry};
+      const used = pd.used||0;
+      return {plan,remaining:Math.max(0,PREM_LIMIT-used),total:PREM_LIMIT,used,expiry:pd.expiry};
     }
-    const used=parseInt(S.get("yyp_daily_"+u.email+"_"+todayK())||"0");
-    return{plan:"free",remaining:Math.max(0,FREE_LIMIT-used),total:FREE_LIMIT,used};
+    const used = parseInt(S.get("yyp_daily_"+u.email+"_"+todayK())||"0");
+    return {plan:"free",remaining:Math.max(0,FREE_LIMIT-used),total:FREE_LIMIT,used};
   };
 
-  const addUsage=(u)=>{
-    if(!u?.email)return;
-    const plan=S.get("yyp_plan_"+u.email)||"free";
+  const addUsage = (u) => {
+    if(!u?.email) return;
+    const plan = S.get("yyp_plan_"+u.email)||"free";
     if(plan==="premium"){const pd=S.get("yyp_prem_"+u.email);if(pd)S.set("yyp_prem_"+u.email,{...pd,used:(pd.used||0)+1});}
     else{const k="yyp_daily_"+u.email+"_"+todayK();S.set(k,String(parseInt(S.get(k)||"0")+1));}
   };
 
-  const startTimer=(u)=>{
-    if(!u)return;
+  const startTimer = (u) => {
+    if(!u) return;
     if((S.get("yyp_plan_"+u.email)||"free")==="premium"){setTimer(null);return;}
-    const used=parseInt(S.get("yyp_daily_"+u.email+"_"+todayK())||"0");
+    const used = parseInt(S.get("yyp_daily_"+u.email+"_"+todayK())||"0");
     if(used<FREE_LIMIT){setTimer(null);return;}
-    const hit=S.get("yyp_hit_"+u.email);
-    if(!hit)return;
+    const hit = S.get("yyp_hit_"+u.email);
+    if(!hit) return;
     clearInterval(timerRef.current);
-    timerRef.current=setInterval(()=>{
-      const rem=hit+86400000-Date.now();
-      if(rem<=0){clearInterval(timerRef.current);S.set("yyp_daily_"+u.email+"_"+todayK(),"0");S.set("yyp_hit_"+u.email,null);setTimer(null);showT("2 free analyses reset!");}
+    timerRef.current = setInterval(()=>{
+      const rem = hit+86400000-Date.now();
+      if(rem<=0){clearInterval(timerRef.current);S.set("yyp_daily_"+u.email+"_"+todayK(),"0");S.set("yyp_hit_"+u.email,null);setTimer(null);showT("✅ 2 free analyses reset!");}
       else setTimer({h:Math.floor(rem/3600000),m:Math.floor((rem%3600000)/60000),s:Math.floor((rem%60000)/1000),total:rem});
     },1000);
   };
 
-  const makeGuest=()=>{
-    const sg=S.get("yyp_guest");
+  const makeGuest = () => {
+    const sg = S.get("yyp_guest");
     if(sg?.email){setUser(sg);setUsage(calcUsage(sg));return sg;}
-    const g={email:"guest_"+Date.now(),name:"Guest",photo:null,plan:"free",isGuest:true};
+    const g = {email:"guest_"+Date.now(),name:"Guest",photo:null,plan:"free",isGuest:true};
     S.set("yyp_guest",g);setUser(g);setUsage(calcUsage(g));return g;
-  };
-
-  const genRefCode=(email)=>{
-    if(!email)return"";
-    const base=email.split("@")[0].replace(/[^a-zA-Z0-9]/g,"").toLowerCase().substring(0,8);
-    const hash=Math.abs(email.split("").reduce((a,c)=>((a<<5)-a)+c.charCodeAt(0),0)).toString(36).substring(0,4);
-    return base+hash;
-  };
-  const getRefData=(email)=>{
-    if(!email)return{code:"",referrals:[],rewarded:false};
-    const code=genRefCode(email);
-    const data=S.get("yyp_ref_"+email)||{code,referrals:[],rewarded:false};
-    if(!data.code)data.code=code;
-    return data;
-  };
-  const getRefLink=(email)=>"https://yesyoupro.com/?ref="+genRefCode(email);
-  const copyRefLink=(email)=>{
-    const link=getRefLink(email);
-    try{navigator.clipboard.writeText(link).then(()=>{setRefCopied(true);setTimeout(()=>setRefCopied(false),2500);});}
-    catch{const el=document.createElement("textarea");el.value=link;document.body.appendChild(el);el.select();document.execCommand("copy");document.body.removeChild(el);setRefCopied(true);setTimeout(()=>setRefCopied(false),2500);}
-  };
-  // ── SUPABASE REFERRAL ─────────────────────────────────────────────────────
-  const loadRefFromSupabase=async(email)=>{
-    if(!email)return null;
-    try{
-      const r=await fetch("/api/referral",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"get_count",referrerEmail:email})});
-      const d=await r.json();
-      if(d.success){
-        const local=getRefData(email);
-        const supaRefs=(d.referrals||[]).map(r=>({email:r.new_user_email,name:r.new_user_name,time:new Date(r.created_at).getTime(),verified:true}));
-        const merged=[...supaRefs];
-        (local.referrals||[]).forEach(lr=>{if(!merged.find(m=>m.email===lr.email))merged.push(lr);});
-        const updated={...local,referrals:merged};
-        S.set("yyp_ref_"+email,updated);
-        return{count:d.count,referrals:merged};
-      }
-      return null;
-    }catch{return null;}
-  };
-
-  const checkIncomingRef=async(newEmail,newName)=>{
-    if(!newEmail)return;
-    const savedRef=S.get("yyp_pending_ref");
-    const refCode=savedRef||(typeof window!=="undefined"?new URLSearchParams(window.location.search).get("ref"):"");
-    if(!refCode)return;
-    S.set("yyp_pending_ref",null);
-    const allAccounts=S.get("yyp_accounts")||[];
-    let referrerEmail=null;
-    for(const acc of allAccounts){if(genRefCode(acc.email)===refCode){referrerEmail=acc.email;break;}}
-    if(!referrerEmail){
-      try{
-        const r=await fetch("/api/referral",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"find_referrer",refCode})});
-        const d=await r.json();
-        if(d.referrerEmail)referrerEmail=d.referrerEmail;
-      }catch{}
-    }
-    if(!referrerEmail||referrerEmail===newEmail)return;
-    try{
-      const r=await fetch("/api/referral",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"register",referrerEmail,newUserEmail:newEmail,newUserName:newName,refCode})});
-      const d=await r.json();
-      if(d.success){
-        const localRef=getRefData(referrerEmail);
-        if(!localRef.referrals.find(x=>x.email===newEmail)){
-          localRef.referrals.push({email:newEmail,name:newName,time:Date.now(),verified:true});
-          S.set("yyp_ref_"+referrerEmail,localRef);
-        }
-        if(d.count>=10&&!localRef.rewarded){
-          localRef.rewarded=true;
-          S.set("yyp_ref_"+referrerEmail,localRef);
-          if(user?.email===referrerEmail){
-            const exp=new Date(Date.now()+7*86400000).toISOString();
-            S.set("yyp_prem_"+referrerEmail,{expiry:exp,used:0});
-            S.set("yyp_plan_"+referrerEmail,"premium");
-            showT("10 referrals! Premium activated!");
-          }
-        }
-      }
-    }catch(e){console.log("Referral error:",e);}
-    if(typeof window!=="undefined")window.history.replaceState({},"","/");
-  };
-
-  const applyPending=(email)=>{
-    if(S.get("yyp_pending_prem")){
-      S.set("yyp_pending_prem",null);
-      const exp=new Date(Date.now()+PREM_DAYS*86400000).toISOString();
-      S.set("yyp_prem_"+email,{expiry:exp,used:0});
-      S.set("yyp_plan_"+email,"premium");
-      return"premium";
-    }
-    return S.get("yyp_plan_"+email)||"free";
   };
 
   useEffect(()=>{
     setSaved(S.get("yyp_accounts")||[]);
-    setHistory(S.get("yyp_history")||[]);
-    // New user 3-day countdown
-    if(!S.get("yyp_first_visit")){
-      S.set("yyp_first_visit", Date.now());
-    }
-    const fv = S.get("yyp_first_visit");
-    if(fv){
-      const expiry = fv + 3*86400000;
-      const calcT = () => {
-        const rem = expiry - Date.now();
-        if(rem <= 0) return null;
-        return {h:Math.floor(rem/3600000),m:Math.floor((rem%3600000)/60000),s:Math.floor((rem%60000)/1000),pct:Math.max(0,(1-rem/(3*86400000))*100)};
-      };
-      // Set immediately - no 1 second delay
-      const initialT = calcT();
-      if(initialT) {
-        setNewUserTimer(initialT);
-        clearInterval(newUserTimerRef.current);
-        newUserTimerRef.current = setInterval(()=>{
-          const t = calcT();
-          if(!t){ clearInterval(newUserTimerRef.current); setNewUserTimer(null); }
-          else setNewUserTimer(t);
-        },1000);
-      }
-    }
-    const sv=S.get("yyp_current");
-    if(sv?.email){
-      const u={...sv,plan:S.get("yyp_plan_"+sv.email)||"free"};
-      setUser(u);setUsage(calcUsage(u));startTimer(u);
-    }else{makeGuest();}
+    const sv = S.get("yyp_current");
+    if(sv?.email){const u={...sv,plan:S.get("yyp_plan_"+sv.email)||"free"};setUser(u);setUsage(calcUsage(u));startTimer(u);}
+    else makeGuest();
     setScreen("dashboard");
-    if(typeof window!=="undefined"){
-      (async()=>{
-        try{
-          const auth=await getFA();
-          const{onAuthStateChanged}=await import("firebase/auth");
-          onAuthStateChanged(auth,(fbU)=>{
-            if(fbU){
-              const u={email:fbU.email,name:fbU.displayName||fbU.email.split("@")[0],photo:fbU.photoURL||null,plan:S.get("yyp_plan_"+fbU.email)||"free"};
-              S.set("yyp_current",u);S.set("yyp_guest",null);
-              setUser(u);setUsage(calcUsage(u));startTimer(u);
-            }
-          });
-        }catch{}
-      })();
-      // Check ref in URL
-      const urlParams=new URLSearchParams(window.location.search);
-      const refCode=urlParams.get("ref");
-      if(refCode)S.set("yyp_pending_ref",refCode);
-    }
-    return()=>{clearInterval(timerRef.current);clearInterval(newUserTimerRef.current);};
+    (async()=>{try{const auth=await getFA();const{onAuthStateChanged}=await import("firebase/auth");onAuthStateChanged(auth,(fbU)=>{if(fbU){const u={email:fbU.email,name:fbU.displayName||fbU.email.split("@")[0],photo:fbU.photoURL||null,plan:S.get("yyp_plan_"+fbU.email)||"free"};S.set("yyp_current",u);S.set("yyp_guest",null);setUser(u);setUsage(calcUsage(u));startTimer(u);}});}catch{}})();
+    return ()=>clearInterval(timerRef.current);
   },[]);
 
   useEffect(()=>{if(!user||isGuest)return;startTimer(user);return()=>clearInterval(timerRef.current);},[user?.email]);
-
-  useEffect(()=>{
-    if(!user?.email||isGuest)return;
-    (async()=>{
-      const data=await loadRefFromSupabase(user.email);
-      if(data&&data.count>=10){
-        const local=getRefData(user.email);
-        if(!local.rewarded){
-          local.rewarded=true;S.set("yyp_ref_"+user.email,local);
-          const exp=new Date(Date.now()+7*86400000).toISOString();
-          S.set("yyp_prem_"+user.email,{expiry:exp,used:0});S.set("yyp_plan_"+user.email,"premium");
-          const u={...user,plan:"premium"};setUser(u);setUsage(calcUsage(u));
-          showT("10 referrals! Premium activated!");
-        }
-      }
-    })();
-  },[user?.email]);
   useEffect(()=>{if(loading){setLoadStep(0);[1,2,3].forEach((s,i)=>setTimeout(()=>setLoadStep(s),(i+1)*1200));}},[loading]);
 
-  const saveAcc=(email,name,pw,photo)=>{
-    const list=S.get("yyp_accounts")||[];
-    const i=list.findIndex(a=>a.email===email);
-    const acc={email,name,password:pw||"",photo:photo||null};
-    if(i>=0)list[i]=acc;else list.push(acc);
+  const saveAcc = (email,name,pw,photo) => {
+    const list = S.get("yyp_accounts")||[];
+    const i = list.findIndex(a=>a.email===email);
+    const acc = {email,name,password:pw||"",photo:photo||null};
+    if(i>=0)list[i]=acc; else list.push(acc);
     S.set("yyp_accounts",list);setSaved([...list]);
   };
 
-  const handleGoogle=async()=>{
+  const handleGoogle = async () => {
     setGLoad(true);setAuthErr("");
     try{
-      const auth=await getFA();
-      const{signInWithPopup,GoogleAuthProvider}=await import("firebase/auth");
-      const r=await signInWithPopup(auth,new GoogleAuthProvider());
-      const plan=applyPending(r.user.email);
-      const u={email:r.user.email,name:r.user.displayName,photo:r.user.photoURL,plan};
-      S.set("yyp_current",u);S.set("yyp_guest",null);
-      saveAcc(r.user.email,r.user.displayName,"",r.user.photoURL);
-      setUser(u);setUsage(calcUsage(u));startTimer(u);setScreen("dashboard");
-      showT("Signed in with Google!");
-    }catch(e){
-      if(e.code==="auth/popup-closed-by-user")setAuthErr("Cancelled.");
-      else if(e.code==="auth/unauthorized-domain")setAuthErr("Domain not authorized. Add domain in Firebase Console.");
-      else setAuthErr("Google sign-in failed. Try email login.");
-    }
+      const auth = await getFA();
+      const {signInWithPopup,GoogleAuthProvider} = await import("firebase/auth");
+      const r = await signInWithPopup(auth,new GoogleAuthProvider());
+      const u = {email:r.user.email,name:r.user.displayName,photo:r.user.photoURL,plan:S.get("yyp_plan_"+r.user.email)||"free"};
+      if(S.get("yyp_pending_prem")){S.set("yyp_pending_prem",null);const exp=new Date(Date.now()+PREM_DAYS*86400000).toISOString();S.set("yyp_prem_"+u.email,{expiry:exp,used:0});S.set("yyp_plan_"+u.email,"premium");u.plan="premium";}
+      S.set("yyp_current",u);S.set("yyp_guest",null);saveAcc(r.user.email,r.user.displayName,"",r.user.photoURL);
+      setUser(u);setUsage(calcUsage(u));startTimer(u);setScreen("dashboard");showT("✅ Signed in!");
+    }catch(e){setAuthErr(e.code==="auth/popup-closed-by-user"?"Cancelled.":"Google sign-in failed.");}
     setGLoad(false);
   };
 
-  const handleAuth=async()=>{
+  const applyPending = (email) => {
+    if(S.get("yyp_pending_prem")){S.set("yyp_pending_prem",null);const exp=new Date(Date.now()+PREM_DAYS*86400000).toISOString();S.set("yyp_prem_"+email,{expiry:exp,used:0});S.set("yyp_plan_"+email,"premium");return "premium";}
+    return S.get("yyp_plan_"+email)||"free";
+  };
+
+  const handleAuth = async () => {
     if(!form.email||!form.password){setAuthErr("Please fill all fields");return;}
     if(authMode==="signup"&&!form.name){setAuthErr("Name required");return;}
     if(form.password.length<6){setAuthErr("Password must be 6+ chars");return;}
     setAuthErr("");
     try{
-      const auth=await getFA();
+      const auth = await getFA();
       if(authMode==="signup"){
-        const{createUserWithEmailAndPassword,updateProfile}=await import("firebase/auth");
-        const r=await createUserWithEmailAndPassword(auth,form.email,form.password);
+        const {createUserWithEmailAndPassword,updateProfile} = await import("firebase/auth");
+        const r = await createUserWithEmailAndPassword(auth,form.email,form.password);
         await updateProfile(r.user,{displayName:form.name});
-        const plan=applyPending(form.email);
-        const u={email:form.email,name:form.name,photo:null,plan};
-        S.set("yyp_current",u);S.set("yyp_guest",null);
-        saveAcc(form.email,form.name,form.password,null);
-        setUser(u);setUsage(calcUsage(u));setScreen("dashboard");
-        checkIncomingRef(form.email,form.name);
-        showT(plan==="premium"?"Premium activated! Welcome!":"Welcome to YesYouPro!");
-      }else{
-        const{signInWithEmailAndPassword}=await import("firebase/auth");
-        const r=await signInWithEmailAndPassword(auth,form.email,form.password);
-        const plan=applyPending(form.email);
-        const u={email:r.user.email,name:r.user.displayName||form.email.split("@")[0],photo:null,plan};
-        S.set("yyp_current",u);S.set("yyp_guest",null);
-        saveAcc(form.email,u.name,form.password,null);
-        setUser(u);setUsage(calcUsage(u));startTimer(u);setScreen("dashboard");
-        checkIncomingRef(form.email,u.name);
-        showT(plan==="premium"?"Premium activated!":"Welcome back, "+u.name+"!");
+        const plan = applyPending(form.email);
+        const u = {email:form.email,name:form.name,photo:null,plan};
+        S.set("yyp_current",u);S.set("yyp_guest",null);saveAcc(form.email,form.name,form.password,null);
+        setUser(u);setUsage(calcUsage(u));setScreen("dashboard");showT(plan==="premium"?"🎉 Premium activated!":"✅ Welcome!");
+      } else {
+        const {signInWithEmailAndPassword} = await import("firebase/auth");
+        const r = await signInWithEmailAndPassword(auth,form.email,form.password);
+        const plan = applyPending(form.email);
+        const u = {email:r.user.email,name:r.user.displayName||form.email.split("@")[0],photo:null,plan};
+        S.set("yyp_current",u);S.set("yyp_guest",null);saveAcc(form.email,u.name,form.password,null);
+        setUser(u);setUsage(calcUsage(u));startTimer(u);setScreen("dashboard");showT(plan==="premium"?"🎉 Premium activated!":"✅ Welcome back!");
       }
     }catch(e){
-      const allU=S.get("yyp_users")||{};
+      const allU = S.get("yyp_users")||{};
       if(authMode==="signup"){
         if(allU[form.email]){setAuthErr("Email already registered.");return;}
-        allU[form.email]={email:form.email,name:form.name,password:form.password};
-        S.set("yyp_users",allU);
-        const plan=applyPending(form.email);
-        const u={email:form.email,name:form.name,photo:null,plan};
-        S.set("yyp_current",u);S.set("yyp_guest",null);
-        saveAcc(form.email,form.name,form.password,null);
-        setUser(u);setUsage(calcUsage(u));setScreen("dashboard");
-        checkIncomingRef(form.email,form.name);
-        showT(plan==="premium"?"Premium activated!":"Account created!");
-      }else{
-        const found=allU[form.email];
-        if(!found){setAuthErr("No account found. Please Sign Up.");return;}
+        allU[form.email]={email:form.email,name:form.name,password:form.password};S.set("yyp_users",allU);
+        const plan = applyPending(form.email);
+        const u = {email:form.email,name:form.name,photo:null,plan};
+        S.set("yyp_current",u);S.set("yyp_guest",null);saveAcc(form.email,form.name,form.password,null);
+        setUser(u);setUsage(calcUsage(u));setScreen("dashboard");showT("✅ Account created!");
+      } else {
+        const found = allU[form.email];
+        if(!found){setAuthErr("No account found. Sign Up first.");return;}
         if(found.password!==form.password){setAuthErr("Wrong password.");return;}
-        const plan=applyPending(form.email);
-        const u={email:found.email,name:found.name,photo:null,plan};
-        S.set("yyp_current",u);S.set("yyp_guest",null);
-        saveAcc(form.email,found.name,form.password,null);
-        setUser(u);setUsage(calcUsage(u));startTimer(u);setScreen("dashboard");
-        showT(plan==="premium"?"Premium activated!":"Welcome back!");
+        const plan = applyPending(form.email);
+        const u = {email:found.email,name:found.name,photo:null,plan};
+        S.set("yyp_current",u);S.set("yyp_guest",null);saveAcc(form.email,found.name,form.password,null);
+        setUser(u);setUsage(calcUsage(u));startTimer(u);setScreen("dashboard");showT("✅ Welcome back!");
       }
     }
   };
 
-  const quickLogin=async(acc)=>{
-    setAuthErr("");
-    if(!acc.password){handleGoogle();return;}
-    try{const auth=await getFA();const{signInWithEmailAndPassword}=await import("firebase/auth");await signInWithEmailAndPassword(auth,acc.email,acc.password);}
-    catch{
-      const allU=S.get("yyp_users")||{};const found=allU[acc.email];
-      if(found&&found.password===acc.password){
-        const u={email:found.email,name:found.name,photo:acc.photo||null,plan:S.get("yyp_plan_"+found.email)||"free"};
-        S.set("yyp_current",u);S.set("yyp_guest",null);
-        setUser(u);setUsage(calcUsage(u));startTimer(u);setScreen("dashboard");showT("Welcome back!");
-      }else setAuthErr("Login failed.");
-    }
-  };
-
-  const handleForgotPw=async()=>{
-    if(!form.email){setAuthErr("Enter email first");return;}
-    try{const auth=await getFA();const{sendPasswordResetEmail}=await import("firebase/auth");await sendPasswordResetEmail(auth,form.email);showT("Reset email sent!");setAuthErr("");}
-    catch{setAuthErr("Could not send reset email.");}
-  };
-
-  const handleLogout=async()=>{
+  const handleLogout = async () => {
     try{const auth=await getFA();const{signOut}=await import("firebase/auth");await signOut(auth);}catch{}
     S.set("yyp_current",null);clearInterval(timerRef.current);
     makeGuest();setResult(null);setTimer(null);setScreen("dashboard");showT("Logged out.");
   };
 
-  const showInterAd=()=>new Promise(resolve=>{
+  const quickLogin = async (acc) => {
+    setAuthErr("");
+    if(!acc.password){handleGoogle();return;}
+    try{const auth=await getFA();const{signInWithEmailAndPassword}=await import("firebase/auth");await signInWithEmailAndPassword(auth,acc.email,acc.password);}
+    catch{const allU=S.get("yyp_users")||{};const f=allU[acc.email];if(f&&f.password===acc.password){const plan=S.get("yyp_plan_"+f.email)||"free";const u={email:f.email,name:f.name,photo:null,plan};S.set("yyp_current",u);S.set("yyp_guest",null);setUser(u);setUsage(calcUsage(u));startTimer(u);setScreen("dashboard");showT("✅ Welcome back!");}else setAuthErr("Login failed.");}
+  };
+
+  const handleForgotPw = async () => {
+    if(!form.email){setAuthErr("Enter email first");return;}
+    try{const auth=await getFA();const{sendPasswordResetEmail}=await import("firebase/auth");await sendPasswordResetEmail(auth,form.email);showT("✅ Reset email sent!");setAuthErr("");}
+    catch{setAuthErr("Could not send reset email.");}
+  };
+
+  const showInterAd = () => new Promise(resolve=>{
     setAdT(5);setShowAd(true);let t=5;
     adRef.current=setInterval(()=>{t--;setAdT(t);if(t<=0)clearInterval(adRef.current);},1000);
     window._adRes=resolve;
   });
-  const closeAd=()=>{
-    if(adT>0)return;
+  const closeAd = () => {
+    if(adT>0) return;
     clearInterval(adRef.current);setShowAd(false);
     if(window._adRes){window._adRes();window._adRes=null;}
   };
 
-  const runAnalysis=async()=>{
+  const runAnalysis = async () => {
     if(!pf.name||!pf.cat||!pf.plat){setErr("Please fill all fields");return;}
     setErr("");
-    const info=calcUsage(user);
-    if(info.remaining<=0){setShowPrem(true);return;}
-    if(curPlan==="free")await showInterAd();
+    if(calcUsage(user).remaining<=0){setShowPrem(true);return;}
+    if(curPlan==="free") await showInterAd();
     setLoading(true);setResult(null);setSelP(null);setPlatD({});
     try{
-      const res=await fetch("/api/analyze",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:pf.name,category:pf.cat,platform:pf.plat})});
-      const data=await res.json();
-      if(!res.ok)throw new Error(data.error||"Failed");
+      const res = await fetch("/api/analyze",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:pf.name,category:pf.cat,platform:pf.plat})});
+      const data = await res.json();
+      if(!res.ok) throw new Error(data.error||"Failed");
       addUsage(user);
-      const ni=calcUsage(user);setUsage(ni);
-      if(ni.remaining<=0&&curPlan==="free"&&!S.get("yyp_hit_"+user.email)){
-        S.set("yyp_hit_"+user.email,Date.now());
-        setTimeout(()=>startTimer(user),300);
-      }
-      setResult(data);showT("Analysis complete!");
-      // Save to history
-      const hEntry={id:Date.now(),name:pf.name,cat:pf.cat,plat:pf.plat,result:data,time:new Date().toLocaleDateString("en-IN")};
-      const hist=S.get("yyp_history")||[];
-      const newHist=[hEntry,...hist].slice(0,20); // keep last 20
-      S.set("yyp_history",newHist);setHistory(newHist);
+      const ni = calcUsage(user);setUsage(ni);
+      if(ni.remaining<=0&&curPlan==="free"&&!S.get("yyp_hit_"+user.email)){S.set("yyp_hit_"+user.email,Date.now());setTimeout(()=>startTimer(user),300);}
+      setResult(data);showT("✅ Analysis complete!");
     }catch(e){setErr("Analysis failed: "+e.message);}
     setLoading(false);
   };
 
-  const fetchPlat=async(pid)=>{
+  const fetchPlat = async (pid) => {
     if(isLocked){setShowPrem(true);return;}
-    setSelP(pid);if(platD[pid])return;
-    setPlatLoad(true);
+    setSelP(pid);if(platD[pid])return;setPlatLoad(true);
     try{
-      const pl=ADPLATS.find(p=>p.id===pid);
-      const ctrl=new AbortController();const to=setTimeout(()=>ctrl.abort(),25000);
-      const res=await fetch("/api/analyze",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:pf.name,category:pf.cat,platform:pl.n,mode:"ads_platform"}),signal:ctrl.signal});
+      const pl = ADPLATS.find(p=>p.id===pid);
+      const ctrl = new AbortController();const to=setTimeout(()=>ctrl.abort(),25000);
+      const res = await fetch("/api/analyze",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:pf.name,category:pf.cat,platform:pl.n,mode:"ads_platform"}),signal:ctrl.signal});
       clearTimeout(to);
-      if(!res.ok)throw new Error("err");
-      const data=await res.json();if(data.error)throw new Error(data.error);
+      const data = await res.json();if(data.error)throw new Error(data.error);
       setPlatD(prev=>({...prev,[pid]:data}));
-    }catch(e){showT(e.name==="AbortError"?"Timed out.":"Failed.");setSelP(null);}
+    }catch(e){showT(e.name==="AbortError"?"Timed out.":"Failed. Try again.");setSelP(null);}
     setPlatLoad(false);
   };
 
-  const apiCall=async(mode,extra={})=>{
+  const apiCall = async (mode,extra={}) => {
     if(isLocked){setShowPrem(true);throw new Error("locked");}
-    const res=await fetch("/api/analyze",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:pf.name||"general",category:pf.cat||"Fashion",platform:pf.plat||"Amazon",mode,...extra})});
-    if(!res.ok)throw new Error("err");
+    const res = await fetch("/api/analyze",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:pf.name||"general",category:pf.cat||"Fashion",platform:pf.plat||"Amazon",mode,...extra})});
+    if(!res.ok) throw new Error("err");
     return res.json();
   };
 
-  const calcP=()=>{
+  const calcP = () => {
     const b=parseFloat(profF.buy)||0,s=parseFloat(profF.sell)||0,u=parseInt(profF.units)||1;
     const f=parseFloat(profF.fee)||0,sh=parseFloat(profF.ship)||0,a=parseFloat(profF.ads)||0;
     const cut=s*(f/100),np=s-b-cut-sh,tp=(np*u)-a,tc=(b*u)+a;
     setProfR({profit:tp.toFixed(0),np:np.toFixed(0),roi:tc>0?((tp/tc)*100).toFixed(1):0,margin:s>0?((np/s)*100).toFixed(1):0,cost:tc.toFixed(0),rev:(s*u).toFixed(0),be:np>0?Math.ceil(a/np):0});
   };
-  const calcI=()=>{
+
+  const calcI = () => {
     const b=parseFloat(invF.buy)||0,s=parseFloat(invF.sell)||0,u=parseInt(invF.units)||1;
     const f=parseFloat(invF.fee)||0,sh=parseFloat(invF.ship)||0,a=parseFloat(invF.ads)||0;
     const cut=s*(f/100),np=s-b-cut-sh,tp=(np*u)-a,tc=(b*u)+a;
     setInvR({profit:tp.toFixed(0),np:np.toFixed(0),roi:tc>0?((tp/tc)*100).toFixed(1):0,margin:s>0?((np/s)*100).toFixed(1):0,cost:tc.toFixed(0),rev:(s*u).toFixed(0),be:np>0?Math.ceil(a/np):0});
   };
 
-  const copyTxt=(text,lbl)=>{
+  const copyTxt = (text,lbl) => {
     if(curPlan!=="premium"){setShowPrem(true);return;}
-    try{navigator.clipboard.writeText(text).then(()=>showT("Copied: "+lbl));}
-    catch{const el=document.createElement("textarea");el.value=text;document.body.appendChild(el);el.select();document.execCommand("copy");document.body.removeChild(el);showT("Copied: "+lbl);}
+    try{navigator.clipboard.writeText(text).then(()=>showT("📋 Copied: "+lbl));}
+    catch{const el=document.createElement("textarea");el.value=text;document.body.appendChild(el);el.select();document.execCommand("copy");document.body.removeChild(el);showT("📋 Copied: "+lbl);}
   };
 
-  const activatePrem=()=>{
+  const activatePrem = () => {
     if(isGuest){setPayStep("make_account");return;}
-    const exp=new Date(Date.now()+PREM_DAYS*86400000).toISOString();
-    S.set("yyp_prem_"+user.email,{expiry:exp,used:0});
-    S.set("yyp_plan_"+user.email,"premium");
-    S.set("yyp_hit_"+user.email,null);
-    clearInterval(timerRef.current);setTimer(null);
-    const u={...user,plan:"premium"};
-    setUser(u);setUsage(calcUsage(u));
-    setPayStep("success");showT("Premium activated!");
+    const exp = new Date(Date.now()+PREM_DAYS*86400000).toISOString();
+    S.set("yyp_prem_"+user.email,{expiry:exp,used:0});S.set("yyp_plan_"+user.email,"premium");
+    S.set("yyp_hit_"+user.email,null);clearInterval(timerRef.current);setTimer(null);
+    const u = {...user,plan:"premium"};setUser(u);setUsage(calcUsage(u));
+    setPayStep("success");showT("🎉 Premium activated!");
   };
 
-  const handlePay=async()=>{
+  const handlePay = async () => {
     setPayStep("processing");
     try{
-      const kr=await fetch("/api/payment");const kd=await kr.json();
+      const kr = await fetch("/api/payment");const kd = await kr.json();
       if(!kd.key){await new Promise(r=>setTimeout(r,1500));activatePrem();return;}
-      const loaded=await new Promise(resolve=>{
-        if(window.Razorpay){resolve(true);return;}
-        const s=document.createElement("script");s.src="https://checkout.razorpay.com/v1/checkout.js";
-        s.onload=()=>resolve(true);s.onerror=()=>resolve(false);document.body.appendChild(s);
-      });
-      if(!loaded){showT("Payment failed");setPayStep("form");return;}
+      const loaded = await new Promise(resolve=>{if(window.Razorpay){resolve(true);return;}const s=document.createElement("script");s.src="https://checkout.razorpay.com/v1/checkout.js";s.onload=()=>resolve(true);s.onerror=()=>resolve(false);document.body.appendChild(s);});
+      if(!loaded){showT("Payment failed to load");setPayStep("form");return;}
       setPayStep("form");
-      const rzp=new window.Razorpay({
-        key:kd.key,amount:newUserTimer?24900:104900,currency:"INR",name:"YesYouPro",description:"Premium 7 Days",
-        handler:(r)=>{if(r.razorpay_payment_id)activatePrem();},
-        prefill:{name:user?.name||"",email:isGuest?"":user?.email||""},
-        theme:{color:"#6366f1"},
-        modal:{ondismiss:()=>{setPayStep("form");showT("Payment cancelled.");}}
-      });
-      rzp.on("payment.failed",()=>{setPayStep("form");showT("Payment failed.");});
-      rzp.open();
+      const rzp = new window.Razorpay({key:kd.key,amount:24900,currency:"INR",name:"YesYouPro",description:"Premium 7 Days",handler:(r)=>{if(r.razorpay_payment_id)activatePrem();},prefill:{name:isGuest?"":user?.name||"",email:isGuest?"":user?.email||""},theme:{color:"#6366f1"},modal:{ondismiss:()=>{setPayStep("form");showT("Payment cancelled.");}}});
+      rzp.on("payment.failed",()=>{setPayStep("form");showT("Payment failed.");});rzp.open();
     }catch{await new Promise(r=>setTimeout(r,1000));activatePrem();}
   };
 
-  const toggleDarkMode=()=>{
-    const next=!darkMode;
-    setDarkMode(next);
-    S.set("yyp_dark_mode",next);
-  };
-
-  const sendQ=async()=>{
-    if(!qTxt.trim()){showT("Please type your question");return;}
+  const sendQ = async () => {
+    if(!q.trim()){showT("Please type your question");return;}
     setQLoad(true);
-    try{await fetch("/api/contact",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:user?.email,name:user?.name,message:qTxt,plan:curPlan})});setQSent(true);setQTxt("");showT("Question sent!");}
+    try{await fetch("/api/contact",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:user?.email,name:user?.name,message:q,plan:curPlan})});setQSent(true);setQ("");showT("✅ Question sent!");}
     catch{showT("Failed. Try again.");}
     setQLoad(false);
   };
 
-  const LockBox=()=>(
-    <div onClick={()=>setShowPrem(true)} style={{position:"absolute",inset:0,background:"rgba(2,8,23,.88)",borderRadius:"inherit",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",cursor:"pointer",zIndex:10,backdropFilter:"blur(5px)"}}>
+  const STEPS = ["Product data received","Analyzing market trends","Generating AI insights","Creating viral hooks"];
+
+  const LockBox = () => (
+    <div onClick={()=>setShowPrem(true)} style={{position:"absolute",inset:0,background:"rgba(2,8,23,.9)",borderRadius:16,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",cursor:"pointer",zIndex:10,backdropFilter:"blur(4px)"}}>
       <div style={{fontSize:36,marginBottom:8}}>🔒</div>
       <div style={{fontWeight:800,fontSize:14,color:"#f8fafc",marginBottom:12}}>Premium Feature</div>
-      <button onClick={(e)=>{e.stopPropagation();setShowPrem(true);}} style={{background:"linear-gradient(135deg,#f59e0b,#ef4444)",border:"none",borderRadius:10,padding:"9px 22px",color:"#fff",fontWeight:800,fontSize:13,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>Unlock Rs.249</button>
+      <button onClick={(e)=>{e.stopPropagation();setShowPrem(true);}} style={{background:"linear-gradient(135deg,#f59e0b,#ef4444)",border:"none",borderRadius:10,padding:"9px 22px",color:"#fff",fontWeight:800,fontSize:13,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>💎 Unlock ₹249</button>
     </div>
   );
-
-  const STEPS=["Product data received","Analyzing market trends","Generating AI insights","Creating viral hooks"];
-  const D = darkMode; // dark mode flag
 
   const css = `
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
@@ -708,7 +451,7 @@ export default function App(){
     .swlnk{color:#6366f1;cursor:pointer;font-weight:700}
     .dash{min-height:100vh;background:#020817;color:#f8fafc}
     .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.04);background:rgba(2,8,23,.95);backdrop-filter:blur(20px);position:sticky;top:0;z-index:100}
-    .logo{font-weight:900;font-size:16px;display:flex;align-items:center;gap:8px}.logo span{background:linear-gradient(135deg,#6366f1,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .logo{font-weight:900;font-size:16px;background:linear-gradient(135deg,#6366f1,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
     .upill{background:rgba(15,23,42,.9);border:1px solid #1e293b;border-radius:100px;padding:4px 11px;font-size:11px;display:flex;align-items:center;gap:6px}
     .navr{display:flex;align-items:center;gap:6px}
     .upbtn{background:linear-gradient(135deg,#f59e0b,#ef4444);border:none;border-radius:100px;padding:6px 13px;color:#fff;font-weight:800;font-size:11px;cursor:pointer;font-family:Inter,sans-serif}
@@ -745,7 +488,7 @@ export default function App(){
     .pg-lbl{font-size:9px;color:#64748b;font-weight:700;text-transform:uppercase;letter-spacing:.7px;margin-bottom:5px;margin-top:9px}
     .pg-lbl:first-child{margin-top:0}
     .chips{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:3px}
-    .chip{display:flex;align-items:center;gap:5px;padding:5px 12px;border-radius:9px;border:1px solid #1e293b;background:rgba(15,23,42,.6);cursor:pointer;font-size:11px;font-weight:600;color:#94a3b8;font-family:Inter,sans-serif;transition:all .15s}
+    .chip{display:flex;align-items:center;gap:4px;padding:4px 9px;border-radius:7px;border:1px solid #1e293b;background:rgba(15,23,42,.6);cursor:pointer;font-size:11px;font-weight:500;color:#94a3b8;font-family:Inter,sans-serif;transition:all .15s}
     .chip:hover{border-color:rgba(99,102,241,.4);color:#a5b4fc}
     .chip.on{color:#fff;border-color:transparent;font-weight:700}
     .errbanner{background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.25);border-radius:9px;padding:8px 11px;color:#ef4444;font-size:11px;margin-bottom:11px}
@@ -760,7 +503,7 @@ export default function App(){
     .lstp{display:flex;align-items:center;gap:7px;padding:5px 9px;border-radius:7px;border:1px solid transparent;font-size:11px;color:#475569;transition:all .3s}
     .lstp.done{color:#10b981;border-color:rgba(16,185,129,.2);background:rgba(16,185,129,.05)}
     .lstp.act{color:#a5b4fc;border-color:rgba(99,102,241,.25);background:rgba(99,102,241,.07)}
-    .gcard{background:rgba(15,23,42,.82);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:16px;margin-bottom:9px}
+    .gcard{background:rgba(15,23,42,.75);border:1px solid #1e293b;border-radius:13px;padding:15px;margin-bottom:8px}
     .gct{font-weight:800;font-size:12px;color:#e2e8f0}
     .gctx{color:#94a3b8;line-height:1.7;font-size:12px}
     .mrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:11px}
@@ -794,22 +537,20 @@ export default function App(){
     .pdchip{background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.2);color:#a5b4fc;border-radius:5px;padding:2px 6px;font-size:10px}
     .ftw{margin-bottom:16px}
     .fglbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;margin-bottom:5px;margin-top:11px}
-    .ftabs{display:flex;gap:5px;overflow-x:auto;padding-bottom:4px;padding-top:2px}
-    .ftabs::-webkit-scrollbar{height:3px}
-    .ftabs::-webkit-scrollbar-thumb{background:rgba(99,102,241,.3);border-radius:10px}
+    .ftabs{display:flex;gap:5px;overflow-x:auto;padding-bottom:2px}
     .ftabs::-webkit-scrollbar{height:2px}
     .ftabs::-webkit-scrollbar-thumb{background:#1e293b;border-radius:10px}
-    .ftab{flex-shrink:0;padding:7px 14px;background:rgba(15,23,42,.7);border:1px solid #1e293b;border-radius:100px;color:#64748b;font-size:11px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif;display:flex;align-items:center;gap:5px;transition:all .2s;white-space:nowrap}
+    .ftab{flex-shrink:0;padding:6px 11px;background:rgba(15,23,42,.7);border:1px solid #1e293b;border-radius:100px;color:#64748b;font-size:11px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif;transition:all .2s;white-space:nowrap}
     .ftab.on{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;border-color:transparent;box-shadow:0 3px 11px rgba(99,102,241,.3)}
-    .ftab:hover:not(.on){border-color:rgba(99,102,241,.25);color:#a5b4fc;background:rgba(99,102,241,.06)}
-    .fbox{background:rgba(15,23,42,.88);border:1px solid rgba(99,102,241,.18);border-radius:18px;padding:20px 16px;margin-bottom:12px;position:relative;box-shadow:0 4px 24px rgba(0,0,0,.25)}
+    .ftab:hover:not(.on){border-color:rgba(99,102,241,.3);color:#a5b4fc}
+    .fbox{background:rgba(15,23,42,.8);border:1px solid rgba(99,102,241,.12);border-radius:16px;padding:17px 13px;margin-bottom:9px;position:relative}
     .prow{display:grid;grid-template-columns:repeat(auto-fit,minmax(105px,1fr));gap:7px;margin-bottom:10px}
     .pfield{display:flex;flex-direction:column;gap:3px}
     .pfield label{font-size:9px;color:#64748b;font-weight:700;text-transform:uppercase}
     .pfield input,.pfield select{background:#0f172a;border:1px solid #1e293b;border-radius:8px;padding:8px 9px;color:#f8fafc;font-size:12px;font-family:Inter,sans-serif;outline:none}
     .pfield input:focus,.pfield select:focus{border-color:#6366f1}
     .presult{display:grid;grid-template-columns:repeat(auto-fit,minmax(95px,1fr));gap:7px;margin-top:9px;animation:fadeIn .4s ease}
-    .prc{background:rgba(2,8,23,.65);border:1px solid rgba(255,255,255,.06);border-radius:11px;padding:12px 10px;text-align:center;transition:border-color .2s}
+    .prc{background:rgba(2,8,23,.6);border:1px solid #1e293b;border-radius:9px;padding:10px;text-align:center}
     .prl{font-size:9px;color:#64748b;margin-bottom:3px;font-weight:600;text-transform:uppercase}
     .prv{font-size:14px;font-weight:900}
     .cbtn{background:linear-gradient(135deg,#6366f1,#8b5cf6);border:none;border-radius:9px;padding:9px 17px;color:#fff;font-weight:700;font-size:12px;cursor:pointer;font-family:Inter,sans-serif}
@@ -820,10 +561,10 @@ export default function App(){
     .ccbt{font-size:9px;color:#64748b;margin-bottom:3px;font-weight:700;text-transform:uppercase}
     .cpt{font-size:10px;color:#94a3b8;padding:2px 0;display:flex;gap:4px}
     .tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:7px;margin-top:10px}
-    .tcard{background:rgba(15,23,42,.85);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:14px;transition:all .2s}
+    .tcard{background:rgba(15,23,42,.8);border:1px solid #1e293b;border-radius:11px;padding:12px}
     .trnk{width:21px;height:21px;background:linear-gradient(135deg,#f59e0b,#ef4444);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;color:#fff;margin-bottom:5px}
     .tc{background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2);color:#10b981;border-radius:100px;padding:1px 5px;font-size:9px}
-    .sc{background:rgba(15,23,42,.85);border:1px solid rgba(16,185,129,.18);border-radius:14px;padding:14px;margin-bottom:9px}
+    .sc{background:rgba(15,23,42,.8);border:1px solid rgba(16,185,129,.15);border-radius:11px;padding:12px;margin-bottom:7px}
     .schip{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);color:#10b981;border-radius:5px;padding:2px 7px;font-size:10px;font-weight:600}
     .slink{display:inline-block;margin-top:5px;background:linear-gradient(135deg,#10b981,#059669);color:#fff;border-radius:6px;padding:4px 10px;font-size:10px;font-weight:600;text-decoration:none}
     .mov{position:fixed;inset:0;background:rgba(0,0,0,.9);display:flex;align-items:center;justify-content:center;z-index:8000;backdrop-filter:blur(8px)}
@@ -873,65 +614,8 @@ export default function App(){
     .qinp{width:100%;background:none;border:none;color:#f8fafc;font-size:12px;font-family:Inter,sans-serif;padding:9px;outline:none;resize:none;min-height:85px;line-height:1.6}
     .qinp::placeholder{color:#475569}
     footer{text-align:center;padding:15px;color:#334155;font-size:10px;border-top:1px solid rgba(255,255,255,.03)}
-    .tcard:hover{border-color:rgba(99,102,241,.25);transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.3)}
-    .gcard:hover{border-color:rgba(99,102,241,.2)}
-    .prc:hover{border-color:rgba(99,102,241,.25);background:rgba(99,102,241,.06)}
-    .sc:hover{border-color:rgba(16,185,129,.35)}
-    .cbtn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(99,102,241,.4)}
-    .gbtn2:hover{transform:translateY(-1px);filter:brightness(1.08)}
     @media(max-width:600px){.nav{padding:10px 11px}.dc{padding:18px 9px 60px}.pgrid{gap:4px}.ppb{padding:8px 2px 6px}.nc{padding:24px 14px}.icard{padding:15px 11px}}
-
-    /* ── LIGHT MODE ── */
-    .light-mode .dash{background:#f0f4ff;color:#0f172a;}
-    .light-mode .nav{background:rgba(255,255,255,.97);border-bottom:1px solid rgba(99,102,241,.1);box-shadow:0 2px 16px rgba(99,102,241,.08);}
-    .light-mode .icard{background:#ffffff;border:1px solid rgba(99,102,241,.2);box-shadow:0 4px 20px rgba(99,102,241,.08);}
-    .light-mode .di{background:#f8fafc;border:1px solid #e2e8f0;color:#0f172a;}
-    .light-mode .di::placeholder{color:#94a3b8;}
-    .light-mode .di:focus{border-color:#6366f1;}
-    .light-mode .pick-btn{background:#f8fafc;border:1px solid #e2e8f0;color:#475569;}
-    .light-mode .pick-btn.sel{background:rgba(99,102,241,.08);border-color:rgba(99,102,241,.35);color:#0f172a;}
-    .light-mode .pick-drop{background:#ffffff;border:1px solid rgba(99,102,241,.15);box-shadow:0 12px 32px rgba(99,102,241,.12);}
-    .light-mode .chip{background:#f1f5f9;border:1px solid #e2e8f0;color:#475569;}
-    .light-mode .chip:hover{background:#ede9fe;border-color:#6366f1;color:#6366f1;}
-    .light-mode .chip.on{color:#fff;}
-    .light-mode .gcard{background:#ffffff;border:1px solid rgba(99,102,241,.1);box-shadow:0 2px 12px rgba(99,102,241,.06);}
-    .light-mode .gct{color:#0f172a;}
-    .light-mode .gctx{color:#475569;}
-    .light-mode .mc{background:#ffffff;border:1px solid rgba(99,102,241,.12);}
-    .light-mode .ml{color:#64748b;}
-    .light-mode .fbox{background:#ffffff;border:1px solid rgba(99,102,241,.15);box-shadow:0 4px 20px rgba(99,102,241,.06);}
-    .light-mode .fbox h3{color:#0f172a;}
-    .light-mode .pfield label{color:#475569;}
-    .light-mode .pfield input,.light-mode .pfield select{background:#f8fafc;border:1px solid #e2e8f0;color:#0f172a;}
-    .light-mode .prc{background:#f8fafc;border:1px solid rgba(99,102,241,.12);}
-    .light-mode .prl{color:#64748b;}
-    .light-mode .ftab{background:#f1f5f9;border:1px solid #e2e8f0;color:#64748b;}
-    .light-mode .ftab.on{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;border-color:transparent;}
-    .light-mode .fglbl{color:#64748b;}
-    .light-mode .tcard{background:#ffffff;border:1px solid rgba(99,102,241,.1);}
-    .light-mode .sc{background:#ffffff;border:1px solid rgba(16,185,129,.2);}
-    .light-mode .cc{background:#f8fafc;border:1px solid #e2e8f0;}
-    .light-mode .ccbox{background:#f1f5f9;}
-    .light-mode .prov{background:rgba(0,0,0,.5);}
-    .light-mode .prm{background:linear-gradient(180deg,#ffffff,#f8fafc);border:1px solid rgba(0,0,0,.08);}
-    .light-mode .pmbtn{background:rgba(99,102,241,.03);border:1px solid rgba(99,102,241,.1);color:#334155;}
-    .light-mode .pmbtn:hover{background:rgba(99,102,241,.07);border-color:rgba(99,102,241,.25);}
-    .light-mode .tbox2{background:#f8fafc;border:1px solid #e2e8f0;}
-    .light-mode .th{color:#334155;}
-    .light-mode .tp{color:#64748b;}
-    .light-mode .qbox{background:#f8fafc;border:1px solid #e2e8f0;}
-    .light-mode .qinp{color:#0f172a;}
-    .light-mode footer{color:#94a3b8;border-top:1px solid rgba(99,102,241,.08);}
-    .light-mode .upill{background:rgba(255,255,255,.95);border:1px solid rgba(99,102,241,.15);color:#334155;}
-    .light-mode .htitle{color:#0f172a;}
-    .light-mode .hsub{color:#475569;}
-    .light-mode .bnr-g{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);}
-    .light-mode .bnr-r{background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.2);}
-    .light-mode .errbanner{background:rgba(239,68,68,.06);}
-    .light-mode .pglbl{color:#94a3b8;}
-    .light-mode .dc{background:#f0f4ff;}
-    .light-mode .icard h3,.light-mode .fbox p{color:#475569;}
-  `
+  `;
 
   if(screen==="loading") return (
     <><style>{css}</style>
@@ -946,8 +630,6 @@ export default function App(){
         <title>YesYouPro — AI Product Analyzer for Indian Sellers</title>
         <meta name="description" content="YesYouPro — AI product analyzer for Indian ecommerce sellers. Get viral hooks, keywords, competitor analysis & 13 premium tools. Free to try!" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-KHCWZ13QJE"/>
-        <script dangerouslySetInnerHTML={{__html:`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-KHCWZ13QJE');`}}/>
       </Head>
       <style>{css}</style>
       {toast && <div className="toast">{toast}</div>}
@@ -973,63 +655,22 @@ export default function App(){
           {!showPay && <>
             <div className="pb2">💎 PREMIUM</div>
             <h2 className="ptitle">Unlock Everything</h2>
-            <div className="ppr">
-                  {newUserTimer?<>$3 <span>/ 7 days</span></>:<>$13 <span>/ 7 days</span></>}
-                </div>
-                <div style={{fontSize:12,color:"#94a3b8",marginBottom:4}}>
-                  {newUserTimer?<span style={{color:"#10b981",fontWeight:700}}>₹249 — Limited Time!</span>:<span>₹1,049</span>}
-                </div>
-                {newUserTimer&&(
-                  <>
-                    {/* Live countdown timer */}
-                    <div style={{background:"rgba(2,8,23,.6)",border:"1px solid rgba(239,68,68,.25)",borderRadius:13,padding:"14px 12px",marginBottom:10}}>
-                      <div style={{fontSize:10,color:"#64748b",fontWeight:700,textAlign:"center",marginBottom:8,textTransform:"uppercase",letterSpacing:.5}}>⏳ Offer Khatam Hone Mein</div>
-                      <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:7,marginBottom:10}}>
-                        {[{v:String(newUserTimer.h).padStart(2,"0"),l:"Hours"},{sep:true},{v:String(newUserTimer.m).padStart(2,"0"),l:"Min"},{sep:true},{v:String(newUserTimer.s).padStart(2,"0"),l:"Sec"}].map((t,i)=>
-                          t.sep?<span key={i} style={{fontSize:20,fontWeight:900,color:"#ef4444",marginBottom:8}}>:</span>:
-                          <div key={i} style={{background:"rgba(239,68,68,.1)",border:"1px solid rgba(239,68,68,.2)",borderRadius:8,padding:"7px 12px",minWidth:50,textAlign:"center"}}>
-                            <div style={{fontSize:22,fontWeight:900,color:"#ef4444",lineHeight:1,fontVariantNumeric:"tabular-nums"}}>{t.v}</div>
-                            <div style={{fontSize:8,color:"#64748b",fontWeight:600,marginTop:2,textTransform:"uppercase"}}>{t.l}</div>
-                          </div>
-                        )}
-                      </div>
-                      {/* Both prices */}
-                      <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:10}}>
-                        <div style={{textAlign:"center",background:"rgba(16,185,129,.08)",border:"1px solid rgba(16,185,129,.2)",borderRadius:10,padding:"8px 14px",flex:1}}>
-                          <div style={{fontSize:9,color:"#10b981",fontWeight:700,marginBottom:2}}>ABHI KA PRICE</div>
-                          <div style={{fontSize:20,fontWeight:900,color:"#10b981"}}>$3</div>
-                          <div style={{fontSize:10,color:"#94a3b8"}}>₹249</div>
-                        </div>
-                        <div style={{fontSize:18,color:"#f59e0b"}}>→</div>
-                        <div style={{textAlign:"center",background:"rgba(239,68,68,.06)",border:"1px solid rgba(239,68,68,.15)",borderRadius:10,padding:"8px 14px",flex:1,opacity:.7}}>
-                          <div style={{fontSize:9,color:"#ef4444",fontWeight:700,marginBottom:2}}>TIMER BAAD</div>
-                          <div style={{fontSize:20,fontWeight:900,color:"#94a3b8",textDecoration:"line-through"}}>$13</div>
-                          <div style={{fontSize:10,color:"#64748b"}}>₹1,049</div>
-                        </div>
-                      </div>
-                      <div style={{height:4,background:"#1e293b",borderRadius:100,overflow:"hidden",marginTop:10}}>
-                        <div style={{height:"100%",width:newUserTimer.pct+"%",background:"linear-gradient(90deg,#10b981,#f59e0b,#ef4444)",borderRadius:100,transition:"width 1s linear"}}/>
-                      </div>
-                    </div>
-                  </>
-                )}
+            <div className="ppr">₹249 <span>/ 7 days</span></div>
             <div className="phigh">📊 30 analyses / 7 days (Free: 2/day only)<br/>⏰ No 24hr lockout<br/>🚫 Zero ads<br/>📋 Copy any AI result<br/>🔓 All 13 tools unlocked</div>
             <div className="pflist">{["✅ 30 analyses / 7 days","✅ Zero ads","✅ No 24hr lockout","📋 Copy full reports","🎓 Starter Guide","🔰 Beginner Products","🧮 Investment Calculator","📊 Sales Estimator","🏷️ Price Optimizer","📦 Inventory Calculator","⭐ Review Analyzer","🎯 Niche Finder","📺 Ads on 8 platforms"].map(f=><div key={f} className="pfi">{f}</div>)}</div>
-            <button className="pbtn2" onClick={()=>setShowPay(true)}>
-                  {newUserTimer?"🔓 Unlock Premium — $3 (₹249) ⚡":"🔓 Unlock Premium — $13 (₹1,049)"}
-                </button>
+            <button className="pbtn2" onClick={()=>setShowPay(true)}>🔓 Unlock Premium — ₹249</button>
             <button className="mcan" onClick={()=>setShowPrem(false)}>Maybe later</button>
           </>}
           {showPay && payStep==="form" && <>
             <h2 className="ptitle">Complete Payment</h2>
             <div className="paybox">
               <div className="pr2"><span>Plan</span><span>Premium 7-day</span></div>
-              <div className="pr2"><span>Amount</span><span style={{color:"#f59e0b",fontWeight:700}}>{newUserTimer?"$3 (₹249)":"$13 (₹1,049)"}</span></div>
+              <div className="pr2"><span>Amount</span><span style={{color:"#f59e0b",fontWeight:700}}>₹249</span></div>
               <div className="pr2"><span>Analyses</span><span style={{color:"#10b981"}}>30 in 7 days</span></div>
               <div className="pr2"><span>All 13 Tools</span><span style={{color:"#10b981"}}>✅ Unlocked</span></div>
               <div className="pr2"><span>Copy Results</span><span style={{color:"#a5b4fc"}}>✅ Enabled</span></div>
             </div>
-            <button className="pbtn2" onClick={handlePay}><svg width="14" height="14" viewBox="0 0 30 30" fill="none"><path d="M14.396 0L0 19.578h9.979L7.242 30l22.758-19.56H19.5L22.25 0z" fill="#528FF0"/></svg>{newUserTimer?"Pay $3 (₹249) via Razorpay":"Pay $13 (₹1,049) via Razorpay"}</button>
+            <button className="pbtn2" onClick={handlePay}><svg width="14" height="14" viewBox="0 0 30 30" fill="none"><path d="M14.396 0L0 19.578h9.979L7.242 30l22.758-19.56H19.5L22.25 0z" fill="#528FF0"/></svg>Pay ₹249 via Razorpay</button>
             <button className="mcan" onClick={()=>setShowPay(false)}>← Back</button>
           </>}
           {showPay && payStep==="processing" && <div style={{textAlign:"center",padding:30}}><div className="sp" style={{margin:"0 auto"}}/><p style={{color:"#94a3b8",marginTop:11}}>Processing...</p></div>}
@@ -1072,32 +713,7 @@ export default function App(){
               <div style={{fontSize:11,color:"#94a3b8"}}>{usage.remaining} analyses left</div>
             </div>}
             <div className="pmenu">
-<button className="pmbtn" onClick={()=>setProfTab("referral")} style={{borderColor:"rgba(16,185,129,.2)"}}>
-                <span className="pmico">🎁</span>
-                <span style={{flex:1}}>Refer and Earn Premium <span style={{background:"linear-gradient(135deg,#10b981,#059669)",color:"#fff",fontSize:8,fontWeight:800,padding:"2px 6px",borderRadius:100,marginLeft:4}}>FREE</span></span>
-                {!isGuest&&user?.email&&<span style={{fontSize:10,color:"#10b981",fontWeight:700,marginRight:4}}>{((S.get("yyp_ref_"+user.email)||{referrals:[]}).referrals||[]).length}/10</span>}
-                <span className="pmarr">›</span>
-              </button>
-              <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",background:darkMode?"rgba(255,255,255,.03)":"rgba(0,0,0,.02)",border:darkMode?"1px solid rgba(255,255,255,.06)":"1px solid rgba(0,0,0,.07)",borderRadius:11,padding:"11px 14px",marginBottom:7}}>
-                <div style={{display:"flex",alignItems:"center",gap:10}}>
-                  <span style={{fontSize:18,width:24,textAlign:"center"}}>{darkMode?"🌙":"☀️"}</span>
-                  <span style={{fontSize:13,fontWeight:600,color:darkMode?"#e2e8f0":"#334155"}}>{darkMode?"Dark Mode":"Light Mode"}</span>
-                  <span style={{fontSize:9,fontWeight:800,padding:"2px 7px",borderRadius:100,background:darkMode?"rgba(99,102,241,.2)":"rgba(245,158,11,.15)",color:darkMode?"#a5b4fc":"#f59e0b"}}>ON</span>
-                </div>
-                <div onClick={()=>{const newMode=!darkMode;setDarkMode(newMode);S.set("yyp_dark_mode",newMode);}} style={{width:44,height:24,borderRadius:100,background:darkMode?"#1e293b":"linear-gradient(135deg,#6366f1,#8b5cf6)",position:"relative",cursor:"pointer",transition:"all .35s",flexShrink:0}}>
-                  <div style={{position:"absolute",top:3,left:darkMode?3:21,width:18,height:18,borderRadius:"50%",background:darkMode?"#475569":"#fff",transition:"all .35s ease",boxShadow:"0 2px 6px rgba(0,0,0,.3)"}}/>
-                </div>
-              </div>
-              {/* Dark/Light Mode Toggle */}
-              <button onClick={toggleDarkMode} style={{display:"flex",alignItems:"center",gap:10,background:darkMode?"rgba(245,158,11,.08)":"rgba(99,102,241,.08)",border:darkMode?"1px solid rgba(245,158,11,.2)":"1px solid rgba(99,102,241,.2)",borderRadius:11,padding:"11px 14px",cursor:"pointer",width:"100%",fontFamily:"Inter,sans-serif",marginBottom:7,transition:"all .3s"}}>
-                <span style={{fontSize:18,width:24,textAlign:"center"}}>{darkMode?"🌙":"☀️"}</span>
-                <span style={{flex:1,fontSize:13,fontWeight:700,color:darkMode?"#fbbf24":"#6366f1",textAlign:"left"}}>{darkMode?"Dark Mode":"Light Mode"}</span>
-                <div style={{width:44,height:24,background:darkMode?"#1e293b":"#e2e8f0",borderRadius:100,position:"relative",transition:"all .3s",flexShrink:0}}>
-                  <div style={{position:"absolute",width:18,height:18,borderRadius:"50%",background:darkMode?"#f59e0b":"#6366f1",top:3,left:darkMode?3:23,transition:"all .3s",boxShadow:"0 2px 6px rgba(0,0,0,.3)"}}/>
-                </div>
-              </button>
-              <button className="pmbtn" onClick={()=>setProfTab("terms")}><span className="pmico">📋</span><span>Terms and Conditions</span><span className="pmarr">›</span></button>
-              {!isGuest&&(()=>{const waMsg=encodeURIComponent("Hello, I'm "+(user?.name||"User")+" (Plan: "+(curPlan==="premium"?"Premium":"Free")+"). I need help with YesYouPro.");return(<a href={"https://wa.me/919958540498?text="+waMsg} target="_blank" rel="noreferrer" style={{display:"flex",alignItems:"center",gap:10,background:"rgba(37,211,102,.08)",border:"1px solid rgba(37,211,102,.25)",borderRadius:11,padding:"11px 14px",textDecoration:"none",transition:"all .2s"}}><img src="https://cdn.simpleicons.org/whatsapp/25D366" alt="WhatsApp" style={{width:22,height:22,objectFit:"contain",flexShrink:0}}/><span style={{flex:1}}><div style={{fontSize:13,fontWeight:700,color:"#25d366"}}>WhatsApp Support</div><div style={{fontSize:10,color:"#64748b"}}>Click karo — message auto-fill hoga</div></span><span style={{color:"#25d366",fontSize:13}}>›</span></a>);})()} 
+              <button className="pmbtn" onClick={()=>setProfTab("terms")}><span className="pmico">📋</span><span>Terms & Conditions</span><span className="pmarr">›</span></button>
               <button className="pmbtn" onClick={()=>setProfTab("question")}><span className="pmico">❓</span><span>Any Questions?</span><span className="pmarr">›</span></button>
               {curPlan==="free" && <button className="pmbtn" onClick={()=>{setShowProf(false);setShowPrem(true);}}><span className="pmico">💎</span><span>Upgrade Premium — ₹249</span><span className="pmarr">›</span></button>}
               {isGuest
@@ -1118,81 +734,6 @@ export default function App(){
               <div className="th">5. AI Accuracy</div><p className="tp">AI results are suggestions only — not guaranteed business advice. Do your own research.</p>
               <div className="th">6. Privacy</div><p className="tp">We store email and usage data securely. We never sell personal data. Payments via Razorpay.</p>
               <div className="th">7. Contact</div><p className="tp">support@yesyoupro.com</p>
-            </div>
-            <button className="pmbtn" onClick={()=>setProfTab("main")} style={{justifyContent:"center"}}>← Back</button>
-          </>}
-
-          {profTab==="referral"&&!isGuest&&(()=>{
-              const rd=user?.email?getRefData(user.email):{code:'',referrals:[],rewarded:false};
-              const count=(rd.referrals||[]).length;
-              const pct=Math.min(100,(count/10)*100);
-              const refCodeStr=user?.email?genRefCode(user.email):'';
-              const refLink="https://yesyoupro.com/?ref="+refCodeStr;
-              const waMsg=encodeURIComponent("Bhai YesYouPro try karo - AI se 30 sec mein winning product dhundho FREE: "+refLink);
-              return(<>
-                <div className="prh"><button className="prcl" style={{background:"none",fontSize:19}} onClick={()=>setProfTab("main")}>←</button><div style={{fontWeight:800,fontSize:14,color:"#f8fafc"}}>🎁 Refer and Earn</div><div style={{width:30}}/></div>
-                {rd.rewarded?(<div style={{background:"linear-gradient(135deg,rgba(245,158,11,.15),rgba(239,68,68,.08))",border:"1px solid rgba(245,158,11,.3)",borderRadius:13,padding:15,textAlign:"center",marginBottom:13}}><div style={{fontSize:34,marginBottom:6}}>🏆</div><div style={{fontWeight:800,fontSize:14,color:"#f59e0b",marginBottom:2}}>Reward Claim Ho Gaya!</div><div style={{fontSize:11,color:"#94a3b8"}}>7 days Premium aapko mil gaya tha!</div></div>):(<div style={{background:"linear-gradient(135deg,rgba(16,185,129,.1),rgba(6,95,70,.06))",border:"1px solid rgba(16,185,129,.25)",borderRadius:13,padding:13,marginBottom:13}}><div style={{fontWeight:800,fontSize:12,color:"#10b981",marginBottom:2}}>🎁 10 Referrals = Premium FREE (7 days)</div><div style={{fontSize:11,color:"#94a3b8",lineHeight:1.6}}>Link share karo → 10 log sign up karein → Premium auto!</div></div>)}
-                <div style={{background:"rgba(2,8,23,.5)",border:"1px solid #1e293b",borderRadius:11,padding:12,marginBottom:11}}>
-                  <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:7}}><span style={{fontSize:11,color:"#94a3b8",fontWeight:600}}>Progress</span><span style={{fontSize:14,fontWeight:900,color:"#a5b4fc"}}>{count}/10</span></div>
-                  <div style={{background:"#1e293b",borderRadius:100,height:9,overflow:"hidden",marginBottom:7}}><div style={{height:"100%",width:pct+"%",background:"linear-gradient(90deg,#6366f1,#a855f7,#10b981)",borderRadius:100,transition:"width .6s ease"}}/></div>
-                  <div style={{display:"flex",justifyContent:"space-between",fontSize:9,color:"#475569"}}><span>0</span><span style={{color:"#6366f1",fontWeight:700}}>{count} joined</span><span style={{color:"#f59e0b",fontWeight:700}}>10 = 🎁</span></div>
-                </div>
-                <div style={{marginBottom:10}}>
-                  <div style={{fontSize:10,color:"#64748b",fontWeight:700,marginBottom:5,textTransform:"uppercase"}}>Aapka Referral Link</div>
-                  <div style={{background:"rgba(2,8,23,.7)",border:"1px solid rgba(99,102,241,.25)",borderRadius:10,padding:"9px 11px",display:"flex",alignItems:"center",gap:7}}>
-                    <div style={{fontSize:11,color:"#a5b4fc",fontWeight:600,flex:1,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{"yesyoupro.com/?ref="+refCodeStr}</div>
-                    <button onClick={()=>user?.email&&copyRefLink(user.email)} style={{background:refCopied?"linear-gradient(135deg,#10b981,#059669)":"linear-gradient(135deg,#6366f1,#8b5cf6)",border:"none",borderRadius:7,padding:"5px 11px",color:"#fff",fontSize:10,fontWeight:700,cursor:"pointer",fontFamily:"Inter,sans-serif",whiteSpace:"nowrap"}}>{refCopied?"✅ Copied!":"📋 Copy"}</button>
-                  </div>
-                </div>
-                <div style={{marginBottom:5,fontSize:10,color:"#64748b",fontWeight:700,textTransform:"uppercase"}}>Share Karo</div>
-                <div style={{display:"flex",gap:6,marginBottom:12,flexWrap:"wrap"}}>
-                  {/* WhatsApp */}
-                  <a href={"https://wa.me/?text="+waMsg} target="_blank" rel="noreferrer" style={{flex:1,minWidth:48,background:"#25d366",borderRadius:10,padding:"9px 6px",textDecoration:"none",display:"flex",flexDirection:"column",alignItems:"center",gap:3}}>
-                    <img src="https://cdn.simpleicons.org/whatsapp/ffffff" alt="WhatsApp" style={{width:20,height:20}}/>
-                    <span style={{fontSize:9,color:"#fff",fontWeight:700}}>WhatsApp</span>
-                  </a>
-                  {/* Instagram */}
-                  <button onClick={()=>user?.email&&copyRefLink(user.email)} style={{flex:1,minWidth:48,background:"linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)",border:"none",borderRadius:10,padding:"9px 6px",cursor:"pointer",display:"flex",flexDirection:"column",alignItems:"center",gap:3,fontFamily:"Inter,sans-serif"}}>
-                    <img src="https://cdn.simpleicons.org/instagram/ffffff" alt="Instagram" style={{width:20,height:20}}/>
-                    <span style={{fontSize:9,color:"#fff",fontWeight:700}}>Instagram</span>
-                  </button>
-                  {/* Facebook */}
-                  <a href={"https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(refLink)} target="_blank" rel="noreferrer" style={{flex:1,minWidth:48,background:"#1877f2",borderRadius:10,padding:"9px 6px",textDecoration:"none",display:"flex",flexDirection:"column",alignItems:"center",gap:3}}>
-                    <img src="https://cdn.simpleicons.org/facebook/ffffff" alt="Facebook" style={{width:20,height:20}}/>
-                    <span style={{fontSize:9,color:"#fff",fontWeight:700}}>Facebook</span>
-                  </a>
-                  {/* Twitter/X */}
-                  <a href={"https://twitter.com/intent/tweet?text="+encodeURIComponent("YesYouPro try karo - AI se 30 sec mein winning product dhundho FREE: "+refLink)} target="_blank" rel="noreferrer" style={{flex:1,minWidth:48,background:"#000",borderRadius:10,padding:"9px 6px",textDecoration:"none",display:"flex",flexDirection:"column",alignItems:"center",gap:3,border:"1px solid #333"}}>
-                    <img src="https://cdn.simpleicons.org/x/ffffff" alt="X Twitter" style={{width:20,height:20}}/>
-                    <span style={{fontSize:9,color:"#fff",fontWeight:700}}>Twitter</span>
-                  </a>
-                  {/* LinkedIn */}
-                  <a href={"https://www.linkedin.com/sharing/share-offsite/?url="+encodeURIComponent(refLink)} target="_blank" rel="noreferrer" style={{flex:1,minWidth:48,background:"#0077b5",borderRadius:10,padding:"9px 6px",textDecoration:"none",display:"flex",flexDirection:"column",alignItems:"center",gap:3}}>
-                    <img src="https://cdn.simpleicons.org/linkedin/FFFFFF" alt="LinkedIn" style={{width:20,height:20}}/>
-                    <span style={{fontSize:9,color:"#fff",fontWeight:700}}>LinkedIn</span>
-                  </a>
-                </div>
-                {(rd.referrals||[]).length>0&&(<div style={{marginBottom:11}}><div style={{fontSize:10,color:"#64748b",fontWeight:700,textTransform:"uppercase",marginBottom:6}}>Joined ({rd.referrals.length}/10)</div><div style={{background:"rgba(2,8,23,.4)",border:"1px solid #1e293b",borderRadius:10,padding:"5px 9px",maxHeight:150,overflowY:"auto"}}>{(rd.referrals||[]).map((r,i)=>(<div key={i} style={{display:"flex",alignItems:"center",gap:7,padding:"5px 0",borderBottom:i<rd.referrals.length-1?"1px solid rgba(255,255,255,.04)":"none"}}><div style={{width:24,height:24,background:"linear-gradient(135deg,#6366f1,#8b5cf6)",borderRadius:"50%",display:"flex",alignItems:"center",justifyContent:"center",fontSize:10,fontWeight:800,color:"#fff",flexShrink:0}}>{r.name?.[0]?.toUpperCase()||"U"}</div><div style={{flex:1,minWidth:0}}><div style={{fontSize:11,fontWeight:700,color:"#e2e8f0",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{r.name}</div><div style={{fontSize:9,color:"#475569"}}>{new Date(r.time).toLocaleDateString("en-IN")}</div></div><span style={{background:"rgba(16,185,129,.1)",color:"#10b981",fontSize:9,fontWeight:700,padding:"2px 6px",borderRadius:100,flexShrink:0}}>✅</span></div>))}</div></div>)}
-                <div style={{background:"rgba(99,102,241,.05)",border:"1px solid rgba(99,102,241,.12)",borderRadius:10,padding:10}}>
-                  <div style={{fontWeight:700,color:"#a5b4fc",fontSize:11,marginBottom:5}}>📋 Anti-Fraud Rules</div>
-                  {["Real sign up hona chahiye — fake nahi","Ek user sirf ek baar count hoga","Khud ko refer nahi kar sakte","10 referrals = Auto premium 7 days","Reward sirf ek baar milega"].map((r,i)=>(<div key={i} style={{fontSize:10,color:"#64748b",padding:"2px 0",display:"flex",gap:5}}><span style={{color:"#6366f1"}}>•</span><span>{r}</span></div>))}
-                </div>
-              </>);
-            })()}
-
-          {profTab==="privacy"&&<>
-            <div className="prh"><button className="prcl" style={{background:"none",fontSize:19}} onClick={()=>setProfTab("main")}>←</button><div style={{fontWeight:800,fontSize:14,color:"#f8fafc"}}>🔒 Privacy Policy</div><div style={{width:30}}/></div>
-            <div className="tbox2">
-              <div className="th">1. Data Collection</div><p className="tp">We collect your email, name and usage data when you sign up or use YesYouPro to provide personalized analysis.</p>
-              <div className="th">2. How We Use Data</div><p className="tp">Your data is used only to operate YesYouPro. We never sell your personal data to third parties.</p>
-              <div className="th">3. Payment Data</div><p className="tp">All payments are processed by Razorpay (PCI-DSS compliant). We do not store card or bank details.</p>
-              <div className="th">4. Local Storage</div><p className="tp">We use browser local storage to save your login session and usage count. No ad tracking cookies.</p>
-              <div className="th">5. AI Analysis</div><p className="tp">Product names you enter may improve our AI models. No personal info is used in AI training.</p>
-              <div className="th">6. Security</div><p className="tp">Your account is secured via Firebase Authentication by Google with industry-standard encryption.</p>
-              <div className="th">7. Your Rights</div><p className="tp">You can delete your account anytime. Contact us to request your data or deletion.</p>
-              <div className="th">8. Third Party</div><p className="tp">We use Firebase, Razorpay, OpenAI, Supabase and EmailJS — each governed by their own privacy policy.</p>
-              <div className="th">9. Contact</div><p className="tp">yesyousuppur@gmail.com | WhatsApp: +91 9958540498</p>
-              <div className="th">Last Updated</div><p className="tp">January 2025</p>
             </div>
             <button className="pmbtn" onClick={()=>setProfTab("main")} style={{justifyContent:"center"}}>← Back</button>
           </>}
@@ -1246,31 +787,16 @@ export default function App(){
         </div>
       </div>}
 
-      {screen==="dashboard" && <div className={"dash"+(darkMode?"":" light-mode")}>
+      {screen==="dashboard" && <div className="dash">
         <nav className="nav">
-          <div className="logo">🧠 YesYouPro</div>
+          <div className="logo">YesYouPro</div>
           {usage && <div className="upill">
             <span style={{color:curPlan==="premium"?"#f59e0b":"#94a3b8",fontWeight:700}}>{curPlan==="premium"?"💎":"🆓"}</span>
             <span style={{color:"#334155"}}>|</span>
             <span style={{color:usage.remaining>0?"#10b981":"#ef4444",fontWeight:700}}>{curPlan==="premium"?usage.remaining+" left":usage.remaining+"/2 today"}</span>
           </div>}
           <div className="navr">
-            {curPlan==="free" && (
-                <button onClick={()=>setShowPrem(true)} style={{
-                  background:newUserTimer?"linear-gradient(135deg,#ef4444,#f59e0b)":"linear-gradient(135deg,#f59e0b,#ef4444)",
-                  border:"none",borderRadius:100,padding:"5px 12px",color:"#fff",cursor:"pointer",
-                  fontFamily:"Inter,sans-serif",display:"flex",flexDirection:"column",alignItems:"center",gap:0,lineHeight:1.2
-                }}>
-                  {newUserTimer?(
-                    <>
-                      <span style={{fontSize:8,fontWeight:700,color:"rgba(255,255,255,.85)"}}>⚡ {String(newUserTimer.h).padStart(2,"0")}:{String(newUserTimer.m).padStart(2,"0")}:{String(newUserTimer.s).padStart(2,"0")}</span>
-                      <span style={{fontSize:11,fontWeight:900}}>💎 $3 (₹249)</span>
-                    </>
-                  ):(
-                    <span style={{fontSize:11,fontWeight:900}}>💎 $13 (₹1,049)</span>
-                  )}
-                </button>
-              )}
+            {curPlan==="free" && <button className="upbtn" onClick={()=>setShowPrem(true)}>💎 ₹249</button>}
             {isGuest
               ? <button onClick={()=>setScreen("auth")} style={{background:"rgba(99,102,241,.12)",border:"1px solid rgba(99,102,241,.35)",borderRadius:100,padding:"5px 11px",color:"#a5b4fc",fontWeight:700,fontSize:11,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>Login / Sign Up</button>
               : <div className="avt" onClick={()=>{setShowProf(true);setProfTab("main");}}>{user?.photo?<img src={user.photo} alt=""/>:user?.name?.[0]?.toUpperCase()||"U"}</div>
@@ -1279,134 +805,11 @@ export default function App(){
         </nav>
 
         <div className="dc">
-          {/* ── HERO ── */}
-          {history.length>0&&(
-            <div style={{display:"flex",justifyContent:"flex-end",marginBottom:8}}>
-              <button onClick={()=>setShowHist(!showHist)} style={{background:"rgba(15,23,42,.7)",border:"1px solid rgba(99,102,241,.2)",borderRadius:100,padding:"5px 13px",color:"#a5b4fc",fontSize:11,fontWeight:600,cursor:"pointer",fontFamily:"Inter,sans-serif",display:"flex",alignItems:"center",gap:5}}>
-                🕐 History ({history.length})
-              </button>
-            </div>
-          )}
-          {showHist&&history.length>0&&(
-            <div style={{background:"rgba(15,23,42,.85)",border:"1px solid rgba(99,102,241,.2)",borderRadius:14,padding:14,marginBottom:16}} className="fa">
-              <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:10}}>
-                <div style={{fontWeight:800,fontSize:13,color:"#f8fafc"}}>📋 Analyzed Products</div>
-                <button onClick={()=>{S.set("yyp_history",[]);setHistory([]);setShowHist(false);showT("History cleared!");}} style={{background:"rgba(239,68,68,.1)",border:"1px solid rgba(239,68,68,.2)",borderRadius:7,padding:"3px 9px",color:"#ef4444",fontSize:10,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>Clear All</button>
-              </div>
-              <div style={{display:"flex",flexDirection:"column",gap:6,maxHeight:240,overflowY:"auto"}}>
-                {history.map((h,i)=>(
-                  <div key={i} onClick={()=>{setPf({name:h.name,cat:h.cat,plat:h.plat});setResult(h.result);setShowHist(false);showT("Loaded: "+h.name);}} style={{background:"rgba(2,8,23,.6)",border:"1px solid #1e293b",borderRadius:9,padding:"9px 11px",cursor:"pointer",display:"flex",alignItems:"center",gap:8,transition:"all .15s"}} onMouseOver={e=>e.currentTarget.style.borderColor="rgba(99,102,241,.3)"} onMouseOut={e=>e.currentTarget.style.borderColor="#1e293b"}>
-                    <div style={{flex:1,minWidth:0}}>
-                      <div style={{fontWeight:700,fontSize:12,color:"#e2e8f0",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}>{h.name}</div>
-                      <div style={{fontSize:10,color:"#64748b"}}>{h.cat} • {h.plat} • {h.time}</div>
-                    </div>
-                    <div style={{fontSize:10,color:"#a5b4fc",fontWeight:600,flexShrink:0}}>Load →</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-          <div style={{textAlign:"center",padding:"28px 0 32px"}}>
-
-            {/* Top badge */}
-            <div style={{display:"inline-flex",alignItems:"center",gap:8,background:"rgba(99,102,241,.1)",border:"1px solid rgba(99,102,241,.3)",borderRadius:100,padding:"5px 16px",fontSize:11,color:"#a5b4fc",fontWeight:700,marginBottom:16,animation:"fadeIn .6s ease"}}>
-              <span style={{width:6,height:6,background:"#10b981",borderRadius:"50%",display:"inline-block",boxShadow:"0 0 8px #10b981"}}/>
-              🇮🇳 India ka #1 AI Product Analyzer
-            </div>
-
-            {/* Main headline */}
-            <h1 style={{fontWeight:900,fontSize:"clamp(26px,6vw,52px)",lineHeight:1.08,letterSpacing:"-1.5px",marginBottom:14,color:"#f8fafc"}}>
-              30 Second Mein<br/>
-              <span style={{background:"linear-gradient(135deg,#6366f1,#a855f7,#ec4899)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",backgroundClip:"text"}}>Winning Product</span><br/>
-              Dhundo 🔥
-            </h1>
-
-            {/* Subheadline */}
-            <p style={{color:"#64748b",fontSize:14,maxWidth:500,margin:"0 auto 22px",lineHeight:1.7}}>
-              Meesho, Amazon, Flipkart — kaunsa product bechna hai ye AI 30 second mein bata dega.<br/>
-              <span style={{color:"#94a3b8",fontSize:12}}>Koi login nahi chahiye. Bilkul free shuru karo.</span>
-            </p>
-
-            {/* Stats row */}
-            <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:6,flexWrap:"wrap",marginBottom:22}}>
-              {[
-                {n:"17+",l:"AI Tools"},
-                {n:"1 Lac+",l:"Sellers"},
-                {n:"30 sec",l:"Analysis Time"},
-                {n:"Free",l:"Try Now"},
-              ].map((s,i)=>(
-                <div key={i} style={{background:"rgba(15,23,42,.8)",border:"1px solid rgba(255,255,255,.06)",borderRadius:12,padding:"9px 16px",textAlign:"center",minWidth:70}}>
-                  <div style={{fontWeight:900,fontSize:16,color:"#f8fafc",lineHeight:1}}>{s.n}</div>
-                  <div style={{fontSize:10,color:"#64748b",marginTop:2,fontWeight:600}}>{s.l}</div>
-                </div>
-              ))}
-            </div>
-
-            {/* Feature pills */}
-            <div style={{display:"flex",flexWrap:"wrap",justifyContent:"center",gap:6,marginBottom:24}}>
-              {["✅ Viral Hooks","✅ SEO Keywords","✅ Competitor Analysis","✅ Profit Calculator","✅ Supplier Finder","✅ Return Manager","✅ Festival Planner","✅ ROAS Calculator"].map((f,i)=>(
-                <span key={i} style={{background:"rgba(16,185,129,.06)",border:"1px solid rgba(16,185,129,.15)",color:"#6ee7b7",borderRadius:100,padding:"4px 12px",fontSize:11,fontWeight:600}}>{f}</span>
-              ))}
-            </div>
-
-            {/* Social proof */}
-            <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:10,marginBottom:8}}>
-              <div style={{display:"flex"}}>
-                {["🧑","👩","👨","🧑‍💼","👩‍💼"].map((e,i)=>(
-                  <div key={i} style={{width:28,height:28,borderRadius:"50%",background:"linear-gradient(135deg,#6366f1,#8b5cf6)",border:"2px solid #020817",display:"flex",alignItems:"center",justifyContent:"center",fontSize:14,marginLeft:i>0?-8:0,zIndex:5-i}}>
-                    {e}
-                  </div>
-                ))}
-              </div>
-              <div style={{textAlign:"left"}}>
-                <div style={{fontSize:12,fontWeight:700,color:"#f8fafc"}}>1 Lac+ Indian Sellers</div>
-                <div style={{fontSize:10,color:"#64748b"}}>Already using YesYouPro</div>
-              </div>
-              <div style={{display:"flex",gap:2}}>
-                {[1,2,3,4,5].map(s=><span key={s} style={{color:"#f59e0b",fontSize:13}}>★</span>)}
-              </div>
-            </div>
-
-            {/* Scroll down hint */}
-            <div style={{color:"#334155",fontSize:11,marginTop:10,display:"flex",alignItems:"center",justifyContent:"center",gap:5}}>
-              <span>👇</span> Neeche product analyze karo — bilkul free
-            </div>
-
-            {/* Rating row */}
-            <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:10,marginTop:14,flexWrap:"wrap"}}>
-              <div style={{display:"flex"}}>
-                {["🧑","👩","👨","🧑‍💼","👩‍💼"].map((e,i)=>(
-                  <div key={i} style={{width:28,height:28,borderRadius:"50%",background:["linear-gradient(135deg,#f59e0b,#ef4444)","linear-gradient(135deg,#6366f1,#8b5cf6)","linear-gradient(135deg,#10b981,#059669)","linear-gradient(135deg,#ec4899,#be185d)","linear-gradient(135deg,#f97316,#ea580c)"][i],border:"2px solid #020817",display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,marginLeft:i>0?-8:0,zIndex:5-i}}>{e}</div>
-                ))}
-                <div style={{width:28,height:28,borderRadius:"50%",background:"rgba(99,102,241,.2)",border:"2px solid #020817",display:"flex",alignItems:"center",justifyContent:"center",fontSize:8,color:"#a5b4fc",fontWeight:800,marginLeft:-8}}>1L+</div>
-              </div>
-              <div style={{display:"flex",alignItems:"center",gap:6}}>
-                <span style={{fontWeight:900,fontSize:16,color:"#f8fafc"}}>4.5</span>
-                <div style={{display:"flex",gap:1}}>
-                  {[1,2,3,4].map(s=><span key={s} style={{color:"#f59e0b",fontSize:14}}>★</span>)}
-                  <span style={{color:"#f59e0b",fontSize:14,opacity:.5}}>★</span>
-                </div>
-                <span style={{color:"#64748b",fontSize:11}}>1 Lac+ sellers</span>
-              </div>
-            </div>
-
-            {/* User reviews */}
-            <div style={{display:"flex",gap:8,marginTop:12,flexWrap:"wrap",justifyContent:"center"}}>
-              {[{e:"👩",n:"Priya Sharma",l:"Delhi • Meesho",t:"30 sec mein product research! Amazing!",c:"#f59e0b,#ef4444"},{e:"👨",n:"Rahul Kumar",l:"Mumbai • Amazon",t:"Competitor analysis bahut useful hai!",c:"#6366f1,#8b5cf6"},{e:"🧑",n:"Anjali Gupta",l:"Jaipur • Flipkart",t:"Paise aur time dono bachata hai!",c:"#10b981,#059669"}].map((r,i)=>(
-                <div key={i} style={{background:"rgba(15,23,42,.7)",border:"1px solid #1e293b",borderRadius:12,padding:"10px 12px",display:"flex",gap:8,maxWidth:260,textAlign:"left"}}>
-                  <div style={{width:30,height:30,borderRadius:"50%",background:"linear-gradient(135deg,"+r.c+")",display:"flex",alignItems:"center",justifyContent:"center",fontSize:14,flexShrink:0}}>{r.e}</div>
-                  <div>
-                    <div style={{fontSize:11,fontWeight:700,color:"#e2e8f0"}}>{r.n}</div>
-                    <div style={{fontSize:9,color:"#475569",marginBottom:3}}>{r.l}</div>
-                    <div style={{display:"flex",gap:1,marginBottom:3}}>{[1,2,3,4,5].map(s=><span key={s} style={{color:"#f59e0b",fontSize:9}}>★</span>)}</div>
-                    <div style={{fontSize:10,color:"#94a3b8",lineHeight:1.5}}>{r.t}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
+          <div className="hero">
+            <div className="hbadge">✨ Universal AI Analyzer</div>
+            <h1 className="htitle">Analyze Anything<br/><span className="grad">Powered by YesYouPro</span></h1>
+            <p className="hsub">Products, apps, games, websites, channels — AI insights for anything! No login needed.</p>
           </div>
-
-
 
           {timer && curPlan==="free" && <div className="tbox">
             <div className="ttitle">⏳ Daily Limit Reached</div>
@@ -1418,7 +821,7 @@ export default function App(){
             </div>
             <div className="tprog"><div className="tpf" style={{width:Math.max(0,100-(timer.total/86400000)*100)+"%"}}/></div>
             <div style={{marginTop:9,display:"flex",alignItems:"center",justifyContent:"center",gap:7,flexWrap:"wrap"}}>
-              <span style={{color:"#64748b",fontSize:11}}>Don't want to wait?</span>
+              <span style={{color:"#64748b",fontSize:11}}>Don&apos;t want to wait?</span>
               <button onClick={()=>setShowPrem(true)} style={{background:"linear-gradient(135deg,#f59e0b,#ef4444)",border:"none",borderRadius:100,padding:"6px 13px",color:"#fff",fontWeight:800,fontSize:11,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>💎 Get Premium ₹249</button>
             </div>
           </div>}
@@ -1426,7 +829,7 @@ export default function App(){
           {curPlan==="free" && !timer && usage && (
             usage.remaining>0
               ?<div className="bnr-g"><div><div style={{fontWeight:700,fontSize:11,color:"#10b981"}}>✅ All Tools Unlocked — {usage.remaining} Analyses Left</div><div style={{fontSize:10,color:"#475569"}}>No login needed. Resets every 24hrs.</div></div></div>
-              :<div className="bnr-r"><div><div style={{fontWeight:700,fontSize:11,color:"#ef4444"}}>🔒 Daily Limit Reached — Tools Locked</div><div style={{fontSize:10,color:"#64748b"}}>Upgrade for 30 analyses & no lockout.</div></div><button onClick={()=>setShowPrem(true)} style={{background:"linear-gradient(135deg,#f59e0b,#ef4444)",border:"none",borderRadius:8,padding:"5px 10px",color:"#fff",fontWeight:700,fontSize:10,cursor:"pointer",whiteSpace:"nowrap",fontFamily:"Inter,sans-serif"}}>{newUserTimer?"💎 $3":"💎 $13"}</button></div>
+              :<div className="bnr-r"><div><div style={{fontWeight:700,fontSize:11,color:"#ef4444"}}>🔒 Daily Limit Reached — Tools Locked</div><div style={{fontSize:10,color:"#64748b"}}>Upgrade for 30 analyses & no lockout.</div></div><button onClick={()=>setShowPrem(true)} style={{background:"linear-gradient(135deg,#f59e0b,#ef4444)",border:"none",borderRadius:8,padding:"5px 10px",color:"#fff",fontWeight:700,fontSize:10,cursor:"pointer",whiteSpace:"nowrap",fontFamily:"Inter,sans-serif"}}>💎 ₹249</button></div>
           )}
 
           <div className="icard">
@@ -1439,18 +842,13 @@ export default function App(){
             <div style={{marginBottom:13}}>
               <label className="ilbl">Category * {pf.cat && <span style={{color:"#10b981",marginLeft:4,fontSize:10}}>✅ {pf.cat}</span>}</label>
               <button className={"pick-btn"+(pf.cat?" sel":"")} onClick={()=>{setShowCats(!showCats);setShowPlats(false);}}>
-                <span style={{display:"flex",alignItems:"center",gap:7}}>
-                  {pf.cat&&(()=>{const ct=CATS.find(c=>c.id===pf.cat);return ct?.logo?<img src={ct.logo} alt={pf.cat} style={{width:16,height:16,objectFit:"contain",borderRadius:2}} onError={(e)=>{e.target.style.display="none";}}/>:<span style={{fontSize:14}}>{ct?.e||"📂"}</span>;})()}
-                  <span>{pf.cat||"Select Category"}</span>
-                </span>
+                <span>{pf.cat?(CATS.find(c=>c.id===pf.cat)?.icon||"")+" "+pf.cat:"📂 Select Category"}</span>
                 <span style={{fontSize:10,color:"#6366f1"}}>{showCats?"▲":"▼"}</span>
               </button>
               {showCats && <div className="pick-drop">
                 {["Physical","Digital"].map(g=><div key={g}>
                   <div className="pg-lbl">{g==="Physical"?"📦 Physical Products":"💻 Digital & Virtual"}</div>
-                  <div className="chips">{CATS.filter(c=>c.g===g).map(c=><button key={c.id} className={"chip"+(pf.cat===c.id?" on":"")} style={pf.cat===c.id?{background:"linear-gradient(135deg,#6366f1,#8b5cf6)",borderColor:"#6366f1"}:{}} onClick={()=>{setPf({...pf,cat:c.id});setShowCats(false);}}>
-                              {c.logo?<img src={c.logo} alt={c.id} style={{width:14,height:14,objectFit:"contain",flexShrink:0,borderRadius:2}} onError={(e)=>{e.target.style.display="none";}}/>:<span style={{fontSize:12}}>{c.e||"•"}</span>}
-                              {c.id}</button>)}</div>
+                  <div className="chips">{CATS.filter(c=>c.g===g).map(c=><button key={c.id} className={"chip"+(pf.cat===c.id?" on":"")} style={pf.cat===c.id?{background:"linear-gradient(135deg,#6366f1,#8b5cf6)",borderColor:"#6366f1"}:{}} onClick={()=>{setPf({...pf,cat:c.id});setShowCats(false);}}><span>{c.icon}</span>{c.id}</button>)}</div>
                 </div>)}
               </div>}
             </div>
@@ -1458,21 +856,13 @@ export default function App(){
             <div style={{marginBottom:5}}>
               <label className="ilbl">Platform * {pf.plat && <span style={{color:"#10b981",marginLeft:4,fontSize:10}}>✅ {pf.plat}</span>}</label>
               <button className={"pick-btn"+(pf.plat?" sel":"")} onClick={()=>{setShowPlats(!showPlats);setShowCats(false);}}>
-                <span style={{display:"flex",alignItems:"center",gap:7}}>
-                  {pf.plat&&(()=>{const pl=PLATS.find(p=>p.id===pf.plat);return pl?.logo?<img src={pl.logo} alt={pf.plat} style={{width:16,height:16,objectFit:"contain",borderRadius:2}} onError={(e)=>{e.target.style.display="none";}}/>:<span>{pl?.e||"🌐"}</span>;})()}
-                  <span>{pf.plat||"Select Platform"}</span>
-                </span>
+                <span>{pf.plat?(PLATS.find(p=>p.id===pf.plat)?.icon||"")+" "+pf.plat:"🌐 Select Platform"}</span>
                 <span style={{fontSize:10,color:"#6366f1"}}>{showPlats?"▲":"▼"}</span>
               </button>
               {showPlats && <div className="pick-drop">
                 {platGroups.map(g=><div key={g}>
                   <div className="pg-lbl">{g==="Ecommerce"?"🛒 "+g:g==="Social Media"?"📱 "+g:g==="App Stores"?"📲 "+g:g==="Courses"?"🎓 "+g:g==="Freelance"?"💼 "+g:g==="Food"?"🍔 "+g:"🌐 "+g}</div>
-                  <div className="chips">{PLATS.filter(p=>p.g===g).map(p=>(
-                      <button key={p.id} className={"chip"+(pf.plat===p.id?" on":"")} style={pf.plat===p.id?{background:p.c,borderColor:p.c}:{}} onClick={()=>{setPf({...pf,plat:p.id});setShowPlats(false);}}>
-                        {p.logo?<img src={p.logo} alt={p.id} style={{width:13,height:13,objectFit:"contain",flexShrink:0,borderRadius:2,background:p.c==="#f5c518"?"#f5c518":"transparent",padding:p.c==="#f5c518"?"1px":"0"}} onError={(e)=>{e.target.style.display="none";}}/>:<span style={{fontSize:12}}>{p.e||"•"}</span>}
-                        {p.id}
-                      </button>
-                    ))}</div>
+                  <div className="chips">{PLATS.filter(p=>p.g===g).map(p=><button key={p.id} className={"chip"+(pf.plat===p.id?" on":"")} style={pf.plat===p.id?{background:p.c,borderColor:p.c}:{}} onClick={()=>{setPf({...pf,plat:p.id});setShowPlats(false);}}><span>{p.icon}</span>{p.id}</button>)}</div>
                 </div>)}
               </div>}
             </div>
@@ -1515,12 +905,12 @@ export default function App(){
               <div className="psh"><div className="pst">📺 Run Ads + Publish Content</div></div>
               <p className="pss">Complete ad strategy for every platform</p>
               <div className="pgrid">{ADPLATS.map(p=>(
-                <div key={p.id} className={"ppb"+(selP===p.id?" on":"")} onClick={()=>fetchPlat(p.id)} style={{borderColor:selP===p.id?p.c:undefined,background:selP===p.id?"rgba(99,102,241,.15)":"rgba(2,8,23,.7)"}}>
+                <div key={p.id} className={"ppb"+(selP===p.id?" on":"")} onClick={()=>fetchPlat(p.id)} style={{borderColor:selP===p.id?p.c:undefined}}>
                   {isLocked&&<div className="pplk">🔒</div>}
-                  <div style={{width:28,height:28,borderRadius:8,margin:"0 auto 5px",display:"flex",alignItems:"center",justifyContent:"center",background:p.id==="sc"?"#FFFC00":p.id==="tw"?"#e7e7e7":"transparent"}}>
-                    <img src={p.logo} alt={p.n} style={{width:22,height:22,objectFit:"contain"}} onError={(e)=>{e.target.style.display="none";}}/>
+                  <div style={{width:20,height:20,background:p.c,borderRadius:5,margin:"0 auto 4px",display:"flex",alignItems:"center",justifyContent:"center",color:"#fff",fontSize:10,fontWeight:800}}>
+                    {p.n[0]}
                   </div>
-                  <div style={{fontSize:8,fontWeight:700,color:selP===p.id?"#a5b4fc":"#94a3b8",lineHeight:1.2}}>{p.n}</div>
+                  <div style={{fontSize:8,fontWeight:700,color:"#94a3b8"}}>{p.n}</div>
                 </div>
               ))}</div>
               {selP && !isLocked && <div className="pdet">
@@ -1543,7 +933,7 @@ export default function App(){
             <div className="ftabs"><button className={"ftab"+(tab==="profit"?" on":"")} onClick={()=>setTab("profit")}>💰 Profit Calculator</button></div>
             <div className="fglbl" style={{color:isLocked?"#ef4444":"#10b981"}}>{isLocked?"🔒 Locked (Buy Premium to Unlock)":"✅ Premium Tools (Unlocked)"}</div>
             <div className="ftabs">
-              {[{id:"starter",l:"🎓 Starter Guide"},{id:"beginner",l:"🔰 Beginner Products"},{id:"investment",l:"🧮 Investment Calc"},{id:"description",l:"📝 Description"},{id:"trending",l:"🔥 Trending"},{id:"competitor",l:"⚔️ Competitor"},{id:"supplier",l:"📦 Supplier"},{id:"sales",l:"📊 Sales Estimator"},{id:"price",l:"🏷️ Price Optimizer"},{id:"inventory",l:"📦 Inventory"},{id:"review",l:"⭐ Reviews"},{id:"niche",l:"🎯 Niche Finder"},{id:"return",l:"📦 Return Manager"},{id:"festival",l:"🎊 Festival Planner"},{id:"roas",l:"💰 ROAS Calculator"},{id:"multi",l:"📱 Multi-Platform"},{id:"bundle",l:"🎁 Bundle Creator"},{id:"gst",l:"🧾 GST Calculator"},{id:"launch",l:"🚀 Launch Strategy"},{id:"compare",l:"⚡ Compare Products"},{id:"shipping",l:"🚚 Shipping Cost"}].map(t=>(
+              {[{id:"starter",l:"🎓 Starter Guide"},{id:"beginner",l:"🔰 Beginner Products"},{id:"investment",l:"🧮 Investment Calc"},{id:"description",l:"📝 Description"},{id:"trending",l:"🔥 Trending"},{id:"competitor",l:"⚔️ Competitor"},{id:"supplier",l:"📦 Supplier"},{id:"sales",l:"📊 Sales Estimator"},{id:"price",l:"🏷️ Price Optimizer"},{id:"inventory",l:"📦 Inventory"},{id:"review",l:"⭐ Reviews"},{id:"niche",l:"🎯 Niche Finder"}].map(t=>(
                 <button key={t.id} className={"ftab"+(tab===t.id?" on":"")} onClick={()=>{if(isLocked){setShowPrem(true);return;}setTab(t.id);}}>{t.l}{isLocked&&" 🔒"}</button>
               ))}
             </div>
@@ -1560,27 +950,7 @@ export default function App(){
           {tab==="starter" && <div className="fbox fa" style={{position:"relative"}}>{isLocked&&<LockBox/>}
             <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>🎓 Starter Guide</h3>
             <p style={{color:"#64748b",fontSize:10,marginBottom:11}}>Personalized plan for your budget</p>
-            <div style={{marginBottom:12}}>
-              <label className="ilbl">Budget (₹)</label>
-              <input className="di" type="number" placeholder="5000" value={starF.budget} onChange={e=>setStarF({...starF,budget:e.target.value})}/>
-            </div>
-            <div style={{marginBottom:12}}>
-              <label className="ilbl">Experience Level</label>
-              <div style={{display:"flex",gap:7,flexWrap:"wrap",marginTop:4}}>
-                {[{id:"beginner",label:"🌱 Beginner",sub:"Bilkul naya"},{id:"some",label:"📈 Some Exp",sub:"Thoda jaanta hoon"},{id:"intermediate",label:"🚀 Intermediate",sub:"Kuch time se kar raha hoon"}].map(opt=>(
-                  <button key={opt.id} onClick={()=>setStarF({...starF,exp:opt.id})} style={{
-                    flex:1,minWidth:90,background:starF.exp===opt.id?"linear-gradient(135deg,#6366f1,#8b5cf6)":"rgba(15,23,42,.7)",
-                    border:starF.exp===opt.id?"1px solid #6366f1":"1px solid #1e293b",
-                    borderRadius:10,padding:"10px 8px",cursor:"pointer",textAlign:"center",
-                    fontFamily:"Inter,sans-serif",transition:"all .2s"
-                  }}>
-                    <div style={{fontSize:16,marginBottom:3}}>{opt.label.split(" ")[0]}</div>
-                    <div style={{fontSize:11,fontWeight:700,color:starF.exp===opt.id?"#fff":"#94a3b8"}}>{opt.label.split(" ").slice(1).join(" ")}</div>
-                    <div style={{fontSize:9,color:starF.exp===opt.id?"rgba(255,255,255,.7)":"#475569",marginTop:2}}>{opt.sub}</div>
-                  </button>
-                ))}
-              </div>
-            </div>
+            <div className="prow"><div className="pfield"><label>Budget (₹)</label><input type="number" placeholder="5000" value={starF.budget} onChange={e=>setStarF({...starF,budget:e.target.value})}/></div><div className="pfield"><label>Experience</label><select value={starF.exp} onChange={e=>setStarF({...starF,exp:e.target.value})}><option value="beginner">Beginner</option><option value="some">Some Exp</option><option value="intermediate">Intermediate</option></select></div></div>
             <button className="gbtn2" style={{background:"linear-gradient(135deg,#6366f1,#8b5cf6)"}} onClick={async()=>{setStarL(true);try{const d=await apiCall("starter_guide",{budget:starF.budget,experience:starF.exp});setStarD(d);}catch{}setStarL(false);}} disabled={starL}>{starL?"⏳ Generating...":"🎓 Generate Guide"}</button>
             {starL&&<div className="ssp"/>}
             {starD&&!starL&&<div style={{marginTop:13}} className="fa">
@@ -1593,37 +963,7 @@ export default function App(){
           {tab==="beginner" && <div className="fbox fa" style={{position:"relative"}}>{isLocked&&<LockBox/>}
             <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>🔰 Beginner Product Finder</h3>
             <p style={{color:"#64748b",fontSize:10,marginBottom:11}}>Low risk, high profit products</p>
-            <div style={{marginBottom:12}}>
-              <label className="ilbl">Budget (₹)</label>
-              <input className="di" type="number" placeholder="5000" value={begF.budget} onChange={e=>setBegF({...begF,budget:e.target.value})} style={{marginBottom:10}}/>
-            </div>
-            <div style={{marginBottom:12}}>
-              <label className="ilbl">Category {begF.category&&<span style={{color:"#10b981",marginLeft:5,fontSize:10}}>✅ {begF.category}</span>}</label>
-              <button onClick={()=>setShowBegCats(!showBegCats)} style={{width:"100%",background:begF.category?"rgba(16,185,129,.08)":"rgba(15,23,42,.7)",border:begF.category?"1px solid rgba(16,185,129,.3)":"1px solid #1e293b",borderRadius:10,padding:"9px 13px",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"space-between",color:begF.category?"#f8fafc":"#64748b",fontSize:12,fontWeight:600,fontFamily:"Inter,sans-serif",marginBottom:4}}>
-                <span style={{display:"flex",alignItems:"center",gap:7}}>
-                  {begF.category&&(()=>{const ct=CATS.find(c=>c.id===begF.category);return ct?.logo?<img src={ct.logo} alt={begF.category} style={{width:15,height:15,objectFit:"contain"}} onError={(e)=>{e.target.style.display="none";}}/>:<span style={{fontSize:14}}>{ct?.e||"📂"}</span>;})()}
-                  {begF.category||"Select Category"}
-                </span>
-                <span style={{fontSize:10,color:"#10b981"}}>{showBegCats?"▲":"▼"}</span>
-              </button>
-              {showBegCats&&<div className="pick-drop">
-                {["Physical","Digital"].map(g=>(
-                  <div key={g}>
-                    <div className="pglbl">{g==="Physical"?"📦 Physical Products":"💻 Digital & Virtual"}</div>
-                    <div className="chips">
-                      {CATS.filter(c=>c.g===g).map(c=>(
-                        <button key={c.id} className={"chip"+(begF.category===c.id?" on":"")}
-                          style={begF.category===c.id?{background:"linear-gradient(135deg,#10b981,#059669)",borderColor:"#10b981"}:{}}
-                          onClick={()=>{setBegF({...begF,category:c.id});setShowBegCats(false);}}>
-                          {c.logo?<img src={c.logo} alt={c.id} style={{width:13,height:13,objectFit:"contain",flexShrink:0}} onError={(e)=>{e.target.style.display="none";}}/>:<span style={{fontSize:11}}>{c.e||"•"}</span>}
-                          {c.id}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>}
-            </div>
+            <div className="prow"><div className="pfield"><label>Budget (₹)</label><input type="number" placeholder="5000" value={begF.budget} onChange={e=>setBegF({...begF,budget:e.target.value})}/></div><div className="pfield"><label>Category</label><select value={begF.category} onChange={e=>setBegF({...begF,category:e.target.value})}>{["Fashion","Electronics","Beauty & Skincare","Home & Kitchen","Fitness","Digital Products","Online Courses","Any Other"].map(c=><option key={c}>{c}</option>)}</select></div></div>
             <button className="gbtn2" style={{background:"linear-gradient(135deg,#10b981,#059669)"}} onClick={async()=>{setBegL(true);try{const d=await apiCall("beginner_product",begF);setBegD(d);}catch{}setBegL(false);}} disabled={begL}>{begL?"⏳ Finding...":"🔰 Find Products"}</button>
             {begL&&<div className="ssp"/>}
             {begD&&!begL&&<div style={{marginTop:13}} className="fa">{begD.products?.map((p,i)=><div key={i} className="cc" style={{marginBottom:6}}><div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:4,flexWrap:"wrap",gap:3}}><div style={{fontWeight:700,fontSize:12,color:"#e2e8f0"}}>#{i+1} {p.name}</div><span style={{background:p.risk==="Low"?"rgba(16,185,129,.1)":"rgba(245,158,11,.1)",color:p.risk==="Low"?"#10b981":"#f59e0b",borderRadius:5,padding:"1px 6px",fontSize:10,fontWeight:600}}>Risk: {p.risk}</span></div><div style={{display:"flex",gap:5,flexWrap:"wrap",marginBottom:4}}><span style={{color:"#ef4444",fontSize:11,fontWeight:600}}>Buy: {p.buy_price}</span><span style={{color:"#94a3b8"}}>→</span><span style={{color:"#10b981",fontSize:11,fontWeight:600}}>Sell: {p.sell_price}</span><span style={{color:"#f59e0b",fontSize:11,fontWeight:700}}>💰 {p.profit_per_unit}</span></div><div style={{color:"#94a3b8",fontSize:10,marginBottom:4}}>{p.why_good}</div><div style={{display:"flex",gap:3,flexWrap:"wrap"}}><span style={{background:"rgba(99,102,241,.1)",color:"#a5b4fc",borderRadius:5,padding:"1px 6px",fontSize:10}}>📦 {p.platform}</span><span style={{background:"rgba(16,185,129,.1)",color:"#10b981",borderRadius:5,padding:"1px 6px",fontSize:10}}>🏭 {p.suppliers}</span></div></div>)}</div>}
@@ -1649,35 +989,7 @@ export default function App(){
           {tab==="trending" && <div className="fbox fa" style={{position:"relative"}}>{isLocked&&<LockBox/>}
             <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>🔥 Trending Products</h3>
             <p style={{color:"#64748b",fontSize:10,marginBottom:11}}>Top trending in India right now</p>
-            {/* Category Visual Picker */}
-            <div style={{marginBottom:14}}>
-              <label className="ilbl" style={{marginBottom:6}}>Select Category {trendCat&&<span style={{color:"#10b981",marginLeft:5,fontSize:10}}>✅ {trendCat}</span>}</label>
-              <button onClick={()=>setShowTrendCats(!showTrendCats)} style={{width:"100%",background:trendCat?"rgba(99,102,241,.1)":"rgba(15,23,42,.7)",border:trendCat?"1px solid rgba(99,102,241,.35)":"1px solid #1e293b",borderRadius:10,padding:"9px 13px",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"space-between",color:trendCat?"#f8fafc":"#64748b",fontSize:12,fontWeight:600,fontFamily:"Inter,sans-serif",marginBottom:4}}>
-                <span style={{display:"flex",alignItems:"center",gap:7}}>
-                  {trendCat&&(()=>{const ct=CATS.find(c=>c.id===trendCat);return ct?.logo?<img src={ct.logo} alt={trendCat} style={{width:15,height:15,objectFit:"contain"}} onError={(e)=>{e.target.style.display="none";}}/>:<span style={{fontSize:14}}>{ct?.e||"📂"}</span>;})()}
-                  {trendCat||"Select Category"}
-                </span>
-                <span style={{fontSize:10,color:"#6366f1"}}>{showTrendCats?"▲":"▼"}</span>
-              </button>
-              {showTrendCats&&<div className="pick-drop">
-                {["Physical","Digital"].map(g=>(
-                  <div key={g}>
-                    <div className="pglbl">{g==="Physical"?"📦 Physical Products":"💻 Digital & Virtual"}</div>
-                    <div className="chips">
-                      {CATS.filter(c=>c.g===g).map(c=>(
-                        <button key={c.id} className={"chip"+(trendCat===c.id?" on":"")}
-                          style={trendCat===c.id?{background:"linear-gradient(135deg,#f59e0b,#ef4444)",borderColor:"#f59e0b"}:{}}
-                          onClick={()=>{setTrendCat(c.id);setShowTrendCats(false);}}>
-                          {c.logo?<img src={c.logo} alt={c.id} style={{width:13,height:13,objectFit:"contain",flexShrink:0}} onError={(e)=>{e.target.style.display="none";}}/>:<span style={{fontSize:11}}>{c.e||"•"}</span>}
-                          {c.id}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>}
-            </div>
-            <button className="cbtn" style={{background:"linear-gradient(135deg,#f59e0b,#ef4444)",width:"100%"}} onClick={async()=>{setTrendL(true);try{const d=await apiCall("trending",{category:trendCat});setTrendD(d);}catch{}setTrendL(false);}} disabled={trendL}>{trendL?"⏳ Loading...":"🔥 Get Trending Products"}</button>
+            <div style={{display:"flex",gap:7,flexWrap:"wrap",marginBottom:10}}><select className="di" style={{flex:1,minWidth:120}} value={trendCat} onChange={e=>setTrendCat(e.target.value)}>{CATS.map(c=><option key={c.id} value={c.id}>{c.icon} {c.id}</option>)}</select><button className="cbtn" onClick={async()=>{setTrendL(true);try{const d=await apiCall("trending",{category:trendCat});setTrendD(d);}catch{}setTrendL(false);}} disabled={trendL}>{trendL?"⏳":"🔥 Get"}</button></div>
             {trendL&&<div className="ssp"/>}
             {trendD&&!trendL&&<div className="tgrid fa">{trendD.products?.map((p,i)=><div key={i} className="tcard"><div className="trnk">{i+1}</div><div style={{fontWeight:700,fontSize:11,color:"#e2e8f0",marginBottom:3}}>{p.name}</div><div style={{color:"#64748b",fontSize:10,marginBottom:5,lineHeight:1.5}}>{p.why_trending}</div><div style={{color:"#f59e0b",fontSize:10,fontWeight:600,marginBottom:4}}>💰 {p.price_range}</div><div style={{display:"flex",flexWrap:"wrap",gap:3}}>{p.tags?.map((t,j)=><span key={j} className="tc">{t}</span>)}</div></div>)}</div>}
           </div>}
@@ -1746,511 +1058,7 @@ export default function App(){
           </div>}
 
         </div>
-
-          {/* ── RETURN & REFUND MANAGER ── */}
-          {tab==="return" && (
-            <div className="fbox fa" style={{position:"relative"}}>
-              {isLocked&&<LockBox/>}
-              <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:4}}>
-                <span style={{fontSize:20}}>📦</span>
-                <h3 style={{fontWeight:800,fontSize:14,color:"#f8fafc"}}>Return and Refund Manager</h3>
-              </div>
-              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Return rate kam karo — AI se smart strategy lo</p>
-              {!pf.name&&<div className="errbanner">⚠️ Run product analysis first</div>}
-              <button className="gbtn2" style={{background:"linear-gradient(135deg,#ef4444,#dc2626)"}} onClick={async()=>{setReturnL(true);try{const d=await apiCall("return_manager");setReturnD(d);}catch(e){console.error(e);}setReturnL(false);}} disabled={returnL||!pf.name}>{returnL?"⏳ Analyzing...":"📦 Analyze Returns"}</button>
-              {returnL&&<div className="ssp"/>}
-              {returnD&&!returnL&&(
-                <div style={{marginTop:14}} className="fa">
-                  <div style={{background:"rgba(239,68,68,.08)",border:"1px solid rgba(239,68,68,.2)",borderRadius:12,padding:14,textAlign:"center",marginBottom:12}}>
-                    <div style={{fontSize:10,color:"#64748b",marginBottom:2}}>Expected Return Rate</div>
-                    <div style={{fontSize:28,fontWeight:900,color:"#ef4444"}}>{returnD.return_rate}</div>
-                    <div style={{fontSize:10,color:"#475569",marginTop:2}}>{returnD.industry_average}</div>
-                  </div>
-                  {returnD.main_reasons?.length>0&&(
-                    <div className="gcard" style={{marginBottom:8}}>
-                      <div className="gct" style={{marginBottom:7}}>❌ Main Return Reasons</div>
-                      {returnD.main_reasons.map((r,i)=><div key={i} style={{color:"#94a3b8",fontSize:11,padding:"3px 0",display:"flex",gap:6}}><span style={{color:"#ef4444"}}>•</span><span>{r}</span></div>)}
-                    </div>
-                  )}
-                  {returnD.prevention_tips?.length>0&&(
-                    <div className="gcard" style={{marginBottom:8}}>
-                      <div className="gct" style={{marginBottom:7}}>✅ Return Kam Karne Ke Tips</div>
-                      {returnD.prevention_tips.map((t,i)=><div key={i} style={{color:"#94a3b8",fontSize:11,padding:"3px 0",display:"flex",gap:6}}><span style={{color:"#10b981"}}>✓</span><span>{t}</span></div>)}
-                    </div>
-                  )}
-                  {returnD.packaging_tips&&(
-                    <div className="gcard" style={{marginBottom:8}}>
-                      <div className="gct" style={{marginBottom:7}}>📦 Packaging Tips</div>
-                      <p className="gctx">{returnD.packaging_tips}</p>
-                    </div>
-                  )}
-                  {returnD.description_fixes?.length>0&&(
-                    <div className="gcard">
-                      <div className="gct" style={{marginBottom:7}}>📝 Description Fix Karo</div>
-                      {returnD.description_fixes.map((d,i)=><div key={i} style={{color:"#a5b4fc",fontSize:11,padding:"3px 0",display:"flex",gap:6}}><span>→</span><span>{d}</span></div>)}
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* ── FESTIVAL SEASON PLANNER ── */}
-          {tab==="festival" && (
-            <div className="fbox fa" style={{position:"relative"}}>
-              {isLocked&&<LockBox/>}
-              <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:4}}>
-                <span style={{fontSize:20}}>🎊</span>
-                <h3 style={{fontWeight:800,fontSize:14,color:"#f8fafc"}}>Festival Season Planner</h3>
-              </div>
-              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Festivals ke liye advance stock aur pricing strategy</p>
-              <div style={{marginBottom:12}}>
-                <label className="ilbl">Festival / Season Select Karo</label>
-                <div style={{display:"flex",flexWrap:"wrap",gap:6,marginTop:6}}>
-                  {["Diwali","Holi","Eid","Christmas","New Year","Amazon Sale","Flipkart Sale","Valentine Day","Raksha Bandhan","Navratri","IPL Season","Back to School"].map(s=>(
-                    <button key={s} onClick={()=>setFestF({season:s})} style={{
-                      padding:"6px 13px",borderRadius:100,border:"1.5px solid",cursor:"pointer",fontSize:11,fontWeight:600,fontFamily:"Inter,sans-serif",
-                      background:festF.season===s?"linear-gradient(135deg,#f59e0b,#ef4444)":"rgba(15,23,42,.6)",
-                      borderColor:festF.season===s?"#f59e0b":"#1e293b",
-                      color:festF.season===s?"#fff":"#94a3b8",
-                      transition:"all .15s"
-                    }}>{s}</button>
-                  ))}
-                </div>
-              </div>
-              {!pf.name&&<div className="errbanner">⚠️ Run product analysis first</div>}
-              <button className="gbtn2" style={{background:"linear-gradient(135deg,#f59e0b,#f97316)"}} onClick={async()=>{setFestL(true);try{const d=await apiCall("festival_planner",{season:festF.season});setFestD(d);}catch(e){console.error(e);}setFestL(false);}} disabled={festL||!pf.name}>{festL?"⏳ Planning...":"🎊 Generate Festival Plan"}</button>
-              {festL&&<div className="ssp"/>}
-              {festD&&!festL&&(
-                <div style={{marginTop:14}} className="fa">
-                  <div style={{background:"linear-gradient(135deg,rgba(245,158,11,.1),rgba(239,68,68,.05))",border:"1px solid rgba(245,158,11,.25)",borderRadius:12,padding:14,marginBottom:12}}>
-                    <div style={{fontWeight:800,fontSize:13,color:"#f59e0b",marginBottom:4}}>🎊 {festF.season} Strategy</div>
-                    <p style={{color:"#94a3b8",fontSize:11,lineHeight:1.65}}>{festD.overview}</p>
-                  </div>
-                  {festD.timeline?.length>0&&(
-                    <div className="gcard" style={{marginBottom:8}}>
-                      <div className="gct" style={{marginBottom:8}}>📅 Action Timeline</div>
-                      {festD.timeline.map((t,i)=>(
-                        <div key={i} style={{display:"flex",gap:10,padding:"8px 0",borderBottom:"1px solid rgba(255,255,255,.04)"}}>
-                          <div style={{minWidth:60,fontSize:10,color:"#f59e0b",fontWeight:700,flexShrink:0}}>{t.when}</div>
-                          <div style={{color:"#94a3b8",fontSize:11,lineHeight:1.5}}>{t.action}</div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                  {festD.pricing_strategy&&(
-                    <div className="gcard" style={{marginBottom:8}}>
-                      <div className="gct" style={{marginBottom:6}}>💰 Pricing Strategy</div>
-                      <p className="gctx">{festD.pricing_strategy}</p>
-                    </div>
-                  )}
-                  {festD.stock_recommendation&&(
-                    <div className="gcard" style={{marginBottom:8}}>
-                      <div className="gct" style={{marginBottom:6}}>📦 Stock Recommendation</div>
-                      <p className="gctx">{festD.stock_recommendation}</p>
-                    </div>
-                  )}
-                  {festD.ad_strategy&&(
-                    <div className="gcard">
-                      <div className="gct" style={{marginBottom:6}}>📢 Ad Strategy</div>
-                      <p className="gctx">{festD.ad_strategy}</p>
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* ── AD ROAS CALCULATOR ── */}
-          {tab==="roas" && (
-            <div className="fbox fa" style={{position:"relative"}}>
-              {isLocked&&<LockBox/>}
-              <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:4}}>
-                <span style={{fontSize:20}}>💰</span>
-                <h3 style={{fontWeight:800,fontSize:14,color:"#f8fafc"}}>Ad ROAS Calculator</h3>
-              </div>
-              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Ads pe paise waste ho rahe hain? Sahi calculate karo</p>
-              <div className="prow">
-                <div className="pfield"><label>Ad Spend (₹)</label><input type="number" placeholder="500" value={roasF.spend} onChange={e=>setRoasF({...roasF,spend:e.target.value})}/></div>
-                <div className="pfield"><label>Total Sales (₹)</label><input type="number" placeholder="2500" value={roasF.sales} onChange={e=>setRoasF({...roasF,sales:e.target.value})}/></div>
-              </div>
-              <div style={{marginBottom:12}}>
-                <label className="ilbl">Ad Platform</label>
-                <div style={{display:"flex",flexWrap:"wrap",gap:5,marginTop:5}}>
-                  {["Instagram","Facebook","Google Ads","YouTube","TikTok","Snapchat"].map(p=>(
-                    <button key={p} onClick={()=>setRoasF({...roasF,platform:p})} style={{
-                      padding:"5px 12px",borderRadius:100,border:"1.5px solid",cursor:"pointer",fontSize:11,fontWeight:600,fontFamily:"Inter,sans-serif",
-                      background:roasF.platform===p?"linear-gradient(135deg,#6366f1,#8b5cf6)":"rgba(15,23,42,.6)",
-                      borderColor:roasF.platform===p?"#6366f1":"#1e293b",
-                      color:roasF.platform===p?"#fff":"#94a3b8",
-                      transition:"all .15s"
-                    }}>{p}</button>
-                  ))}
-                </div>
-              </div>
-              <button className="cbtn" style={{width:"100%"}} onClick={()=>{
-                const spend=parseFloat(roasF.spend)||0;
-                const sales=parseFloat(roasF.sales)||0;
-                if(!spend||!sales){return;}
-                const roas=(sales/spend).toFixed(2);
-                const acos=((spend/sales)*100).toFixed(1);
-                const profit=(sales-spend).toFixed(0);
-                const status=roas>=4?"🟢 Excellent":roas>=2?"🟡 Good":roas>=1?"🟠 Break Even":"🔴 Loss";
-                const advice=roas>=4?"Ads ache chal rahe hain! Budget badha sakte ho.":roas>=2?"Theek chal raha hai. Optimize karo aur improve karo.":roas>=1?"Break even pe ho. Targeting improve karo.":"Ads pe loss ho raha hai. Turant band karo ya change karo.";
-                setRoasR({roas,acos,profit,status,advice,spend:roasF.spend,sales:roasF.sales});
-              }}>💰 Calculate ROAS</button>
-              {roasR&&(
-                <div style={{marginTop:14}} className="fa">
-                  <div style={{background:roasR.roas>=4?"rgba(16,185,129,.1)":roasR.roas>=2?"rgba(245,158,11,.1)":"rgba(239,68,68,.1)",border:roasR.roas>=4?"1px solid rgba(16,185,129,.3)":roasR.roas>=2?"1px solid rgba(245,158,11,.3)":"1px solid rgba(239,68,68,.3)",borderRadius:12,padding:14,textAlign:"center",marginBottom:12}}>
-                    <div style={{fontSize:10,color:"#64748b",marginBottom:2}}>ROAS (Return on Ad Spend)</div>
-                    <div style={{fontSize:32,fontWeight:900,color:roasR.roas>=4?"#10b981":roasR.roas>=2?"#f59e0b":"#ef4444"}}>{roasR.roas}x</div>
-                    <div style={{fontSize:13,marginTop:4}}>{roasR.status}</div>
-                  </div>
-                  <div className="presult" style={{marginBottom:12}}>
-                    {[{l:"Ad Spend",v:"₹"+roasR.spend,c:"#ef4444"},{l:"Total Sales",v:"₹"+roasR.sales,c:"#10b981"},{l:"Net Profit",v:"₹"+roasR.profit,c:parseFloat(roasR.profit)>0?"#10b981":"#ef4444"},{l:"ACoS",v:roasR.acos+"%",c:"#f59e0b"}].map(r=>(
-                      <div key={r.l} className="prc"><div className="prl">{r.l}</div><div className="prv" style={{color:r.c,fontSize:14}}>{r.v}</div></div>
-                    ))}
-                  </div>
-                  <div style={{background:"rgba(99,102,241,.08)",border:"1px solid rgba(99,102,241,.2)",borderRadius:10,padding:12}}>
-                    <div style={{fontWeight:700,color:"#a5b4fc",fontSize:12,marginBottom:4}}>💡 AI Advice — {roasF.platform}</div>
-                    <p style={{color:"#94a3b8",fontSize:11,lineHeight:1.65}}>{roasR.advice}</p>
-                  </div>
-                  <div style={{marginTop:10,background:"rgba(15,23,42,.6)",border:"1px solid #1e293b",borderRadius:10,padding:12}}>
-                    <div style={{fontWeight:700,color:"#e2e8f0",fontSize:11,marginBottom:7}}>📊 ROAS Benchmark</div>
-                    {[{label:"4x+",desc:"Excellent — Badhao budget",c:"#10b981"},{label:"2x-4x",desc:"Good — Optimize karo",c:"#f59e0b"},{label:"1x-2x",desc:"Break Even — Fix karo",c:"#f97316"},{label:"Below 1x",desc:"Loss — Band karo",c:"#ef4444"}].map((b,i)=>(
-                      <div key={i} style={{display:"flex",alignItems:"center",gap:8,padding:"4px 0",borderBottom:i<3?"1px solid rgba(255,255,255,.04)":"none"}}>
-                        <div style={{width:36,fontSize:10,fontWeight:800,color:b.c}}>{b.label}</div>
-                        <div style={{fontSize:10,color:"#64748b"}}>{b.desc}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* ── MULTI-PLATFORM EXPANDER ── */}
-          {tab==="multi" && (
-            <div className="fbox fa" style={{position:"relative"}}>
-              {isLocked&&<LockBox/>}
-              <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:4}}>
-                <span style={{fontSize:20}}>📱</span>
-                <h3 style={{fontWeight:800,fontSize:14,color:"#f8fafc"}}>Multi-Platform Expander</h3>
-              </div>
-              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Ek platform pe dependent mat raho — expand karo</p>
-              {!pf.name&&<div className="errbanner">⚠️ Run product analysis first</div>}
-              <button className="gbtn2" style={{background:"linear-gradient(135deg,#3b82f6,#1d4ed8)"}} onClick={async()=>{setMultiL(true);try{const d=await apiCall("multi_platform");setMultiD(d);}catch(e){console.error(e);}setMultiL(false);}} disabled={multiL||!pf.name}>{multiL?"⏳ Analyzing...":"📱 Find Best Platforms"}</button>
-              {multiL&&<div className="ssp"/>}
-              {multiD&&!multiL&&(
-                <div style={{marginTop:14}} className="fa">
-                  {multiD.platforms?.map((p,i)=>(
-                    <div key={i} className="cc" style={{marginBottom:9,border:i===0?"1px solid rgba(245,158,11,.3)":"1px solid #1e293b"}}>
-                      {i===0&&<div style={{display:"inline-block",background:"linear-gradient(135deg,#f59e0b,#ef4444)",color:"#fff",fontSize:9,fontWeight:800,padding:"2px 9px",borderRadius:100,marginBottom:8}}>⭐ TOP PICK</div>}
-                      <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:6,flexWrap:"wrap",gap:5}}>
-                        <div style={{fontWeight:800,fontSize:13,color:"#e2e8f0"}}>#{i+1} {p.name}</div>
-                        <div style={{display:"flex",gap:5}}>
-                          <span style={{background:"rgba(16,185,129,.1)",color:"#10b981",borderRadius:6,padding:"2px 8px",fontSize:10,fontWeight:600}}>Potential: {p.potential}</span>
-                          <span style={{background:"rgba(99,102,241,.1)",color:"#a5b4fc",borderRadius:6,padding:"2px 8px",fontSize:10}}>Fee: {p.fee}</span>
-                        </div>
-                      </div>
-                      <p style={{color:"#94a3b8",fontSize:11,lineHeight:1.6,marginBottom:7}}>{p.why}</p>
-                      <div style={{display:"flex",flexWrap:"wrap",gap:5,marginBottom:6}}>
-                        <span style={{background:"rgba(245,158,11,.1)",color:"#f59e0b",borderRadius:6,padding:"2px 8px",fontSize:10}}>💰 Pricing: {p.pricing_tip}</span>
-                      </div>
-                      <div style={{fontSize:10,color:"#64748b"}}>📋 Setup: {p.setup_steps}</div>
-                    </div>
-                  ))}
-                  {multiD.strategy&&(
-                    <div style={{background:"rgba(59,130,246,.08)",border:"1px solid rgba(59,130,246,.2)",borderRadius:10,padding:12,marginTop:6}}>
-                      <div style={{fontWeight:700,color:"#60a5fa",fontSize:12,marginBottom:5}}>🎯 Overall Strategy</div>
-                      <p style={{color:"#94a3b8",fontSize:11,lineHeight:1.65}}>{multiD.strategy}</p>
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* ── BUNDLE PRODUCT CREATOR ── */}
-          {tab==="bundle" && (
-            <div className="fbox fa" style={{position:"relative"}}>
-              {isLocked&&<LockBox/>}
-              <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:4}}>
-                <span style={{fontSize:20}}>🎁</span>
-                <h3 style={{fontWeight:800,fontSize:14,color:"#f8fafc"}}>Bundle Product Creator</h3>
-              </div>
-              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Single product se zyada margin — smart bundles banao</p>
-              {!pf.name&&<div className="errbanner">⚠️ Run product analysis first</div>}
-              <button className="gbtn2" style={{background:"linear-gradient(135deg,#ec4899,#be185d)"}} onClick={async()=>{setBundleL(true);try{const d=await apiCall("bundle_creator");setBundleD(d);}catch(e){console.error(e);}setBundleL(false);}} disabled={bundleL||!pf.name}>{bundleL?"⏳ Creating...":"🎁 Create Bundle Ideas"}</button>
-              {bundleL&&<div className="ssp"/>}
-              {bundleD&&!bundleL&&(
-                <div style={{marginTop:14}} className="fa">
-                  {bundleD.bundles?.map((b,i)=>(
-                    <div key={i} className="cc" style={{marginBottom:9,border:i===0?"1px solid rgba(236,72,153,.3)":"1px solid #1e293b"}}>
-                      {i===0&&<div style={{display:"inline-block",background:"linear-gradient(135deg,#ec4899,#be185d)",color:"#fff",fontSize:9,fontWeight:800,padding:"2px 9px",borderRadius:100,marginBottom:8}}>🔥 BEST SELLER</div>}
-                      <div style={{fontWeight:800,fontSize:13,color:"#e2e8f0",marginBottom:5}}>{b.name}</div>
-                      <div style={{display:"flex",flexWrap:"wrap",gap:5,marginBottom:7}}>
-                        {b.items?.map((item,j)=>(
-                          <span key={j} style={{background:"rgba(236,72,153,.08)",border:"1px solid rgba(236,72,153,.2)",color:"#f9a8d4",borderRadius:7,padding:"2px 9px",fontSize:10}}>+ {item}</span>
-                        ))}
-                      </div>
-                      <div style={{display:"flex",gap:8,flexWrap:"wrap",marginBottom:6}}>
-                        <span style={{color:"#94a3b8",fontSize:11}}>Single: <span style={{color:"#ef4444",fontWeight:600}}>{b.single_price}</span></span>
-                        <span style={{color:"#94a3b8",fontSize:11}}>Bundle: <span style={{color:"#10b981",fontWeight:700}}>{b.bundle_price}</span></span>
-                        <span style={{color:"#f59e0b",fontSize:11,fontWeight:700}}>Margin: {b.margin_increase}</span>
-                      </div>
-                      <p style={{color:"#94a3b8",fontSize:10,lineHeight:1.6,marginBottom:5}}>{b.why_works}</p>
-                      <div style={{fontSize:10,color:"#a5b4fc"}}>📝 Listing tip: {b.listing_tip}</div>
-                    </div>
-                  ))}
-                  {bundleD.top_bundle&&(
-                    <div style={{background:"rgba(236,72,153,.08)",border:"1px solid rgba(236,72,153,.2)",borderRadius:10,padding:12,marginTop:4}}>
-                      <div style={{fontWeight:700,color:"#f9a8d4",fontSize:12,marginBottom:4}}>🏆 Best Bundle to Start With</div>
-                      <p style={{color:"#94a3b8",fontSize:11,lineHeight:1.65}}>{bundleD.top_bundle}</p>
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-          )}
-
-        
-          {/* ── GST CALCULATOR ── */}
-          {tab==="gst" && (
-            <div className="fbox fa">
-              <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:4}}>
-                <span style={{fontSize:20}}>🧾</span>
-                <h3 style={{fontWeight:800,fontSize:14,color:"#f8fafc"}}>GST Calculator</h3>
-              </div>
-              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Selling price ke baad actual profit calculate karo GST ke saath</p>
-              <div className="prow">
-                <div className="pfield"><label>Selling Price (Rs.)</label><input type="number" placeholder="500" value={gstF.sell} onChange={e=>setGstF({...gstF,sell:e.target.value})}/></div>
-                <div className="pfield"><label>GST Rate</label>
-                  <select value={gstF.cat} onChange={e=>setGstF({...gstF,cat:e.target.value})}>
-                    <option value="0">0% - Essentials</option>
-                    <option value="5">5% - Food/Books</option>
-                    <option value="12">12% - Fashion/Home</option>
-                    <option value="18">18% - Electronics</option>
-                    <option value="28">28% - Luxury</option>
-                  </select>
-                </div>
-              </div>
-              <button className="cbtn" style={{width:"100%"}} onClick={()=>{
-                const s=parseFloat(gstF.sell)||0;
-                const rate=parseFloat(gstF.cat)||0;
-                const basePrice=s/(1+rate/100);
-                const gstAmt=s-basePrice;
-                const cgst=gstAmt/2;const sgst=gstAmt/2;
-                const igst=gstAmt;
-                setGstR({selling:s.toFixed(2),base:basePrice.toFixed(2),gst:gstAmt.toFixed(2),cgst:cgst.toFixed(2),sgst:sgst.toFixed(2),igst:igst.toFixed(2),rate,effective:(gstAmt/s*100).toFixed(1)});
-              }}>🧾 Calculate GST</button>
-              {gstR&&(
-                <div style={{marginTop:14}} className="fa">
-                  <div style={{background:"rgba(99,102,241,.08)",border:"1px solid rgba(99,102,241,.2)",borderRadius:12,padding:14,marginBottom:10,textAlign:"center"}}>
-                    <div style={{fontSize:10,color:"#64748b",marginBottom:2}}>GST Amount</div>
-                    <div style={{fontSize:28,fontWeight:900,color:"#ef4444"}}>Rs. {gstR.gst}</div>
-                    <div style={{fontSize:11,color:"#64748b"}}>@ {gstR.rate}% GST rate</div>
-                  </div>
-                  <div className="presult">
-                    {[{l:"Selling Price",v:"Rs."+gstR.selling,c:"#f8fafc"},{l:"Base Price",v:"Rs."+gstR.base,c:"#10b981"},{l:"CGST",v:"Rs."+gstR.cgst,c:"#f59e0b"},{l:"SGST",v:"Rs."+gstR.sgst,c:"#f59e0b"},{l:"IGST (Inter-state)",v:"Rs."+gstR.igst,c:"#a5b4fc"},{l:"Effective Rate",v:gstR.effective+"%",c:"#ef4444"}].map(r=>(
-                      <div key={r.l} className="prc"><div className="prl">{r.l}</div><div className="prv" style={{color:r.c,fontSize:13}}>{r.v}</div></div>
-                    ))}
-                  </div>
-                  <div style={{background:"rgba(16,185,129,.07)",border:"1px solid rgba(16,185,129,.2)",borderRadius:10,padding:11,marginTop:10}}>
-                    <div style={{fontWeight:700,color:"#10b981",fontSize:12,marginBottom:5}}>GST Tips</div>
-                    <div style={{color:"#94a3b8",fontSize:11,lineHeight:1.65}}>
-                      • CGST + SGST = Same state delivery<br/>
-                      • IGST = Different state delivery<br/>
-                      • Base price aapki actual earning hai<br/>
-                      • Input tax credit (ITC) le sako agar registered ho
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* ── LAUNCH STRATEGY ── */}
-          {tab==="launch" && (
-            <div className="fbox fa" style={{position:"relative"}}>
-              {isLocked&&<LockBox/>}
-              <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:4}}>
-                <span style={{fontSize:20}}>🚀</span>
-                <h3 style={{fontWeight:800,fontSize:14,color:"#f8fafc"}}>Launch Strategy Generator</h3>
-              </div>
-              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Day 1 se Day 30 ka complete product launch plan</p>
-              {!pf.name&&<div className="errbanner">Run product analysis first</div>}
-              <button className="gbtn2" style={{background:"linear-gradient(135deg,#6366f1,#a855f7)"}} onClick={async()=>{setLaunchL(true);try{const d=await apiCall("launch_strategy");setLaunchD(d);}catch(e){console.error(e);}setLaunchL(false);}} disabled={launchL||!pf.name}>{launchL?"Generating...":"🚀 Generate Launch Plan"}</button>
-              {launchL&&<div className="ssp"/>}
-              {launchD&&!launchL&&(
-                <div style={{marginTop:14}} className="fa">
-                  <div style={{background:"linear-gradient(135deg,rgba(99,102,241,.12),rgba(168,85,247,.08))",border:"1px solid rgba(99,102,241,.3)",borderRadius:12,padding:14,marginBottom:12}}>
-                    <div style={{fontWeight:800,fontSize:13,color:"#a5b4fc",marginBottom:4}}>Launch Overview</div>
-                    <p style={{color:"#94a3b8",fontSize:11,lineHeight:1.65}}>{launchD.overview}</p>
-                  </div>
-                  {launchD.week_plan?.map((w,i)=>(
-                    <div key={i} className="gcard" style={{marginBottom:8}}>
-                      <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:8}}>
-                        <div style={{width:26,height:26,background:"linear-gradient(135deg,#6366f1,#8b5cf6)",borderRadius:"50%",display:"flex",alignItems:"center",justifyContent:"center",fontWeight:800,fontSize:11,color:"#fff"}}>{i+1}</div>
-                        <div style={{fontWeight:700,fontSize:12,color:"#e2e8f0"}}>{w.week}</div>
-                      </div>
-                      {w.tasks?.map((t,j)=>(
-                        <div key={j} style={{display:"flex",gap:6,padding:"4px 0",color:"#94a3b8",fontSize:11}}>
-                          <span style={{color:"#6366f1",flexShrink:0}}>•</span><span>{t}</span>
-                        </div>
-                      ))}
-                    </div>
-                  ))}
-                  {launchD.pricing_strategy&&<div className="gcard" style={{marginBottom:8}}><div className="gct" style={{marginBottom:5}}>Pricing Strategy</div><p className="gctx">{launchD.pricing_strategy}</p></div>}
-                  {launchD.ad_budget&&<div className="gcard" style={{marginBottom:8}}><div className="gct" style={{marginBottom:5}}>Ad Budget Plan</div><p className="gctx">{launchD.ad_budget}</p></div>}
-                  {launchD.review_strategy&&<div className="gcard"><div className="gct" style={{marginBottom:5}}>Review Strategy</div><p className="gctx">{launchD.review_strategy}</p></div>}
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* ── COMPARE PRODUCTS ── */}
-          {tab==="compare" && (
-            <div className="fbox fa" style={{position:"relative"}}>
-              {isLocked&&<LockBox/>}
-              <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:4}}>
-                <span style={{fontSize:20}}>⚡</span>
-                <h3 style={{fontWeight:800,fontSize:14,color:"#f8fafc"}}>Compare Products</h3>
-              </div>
-              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>2 products side by side compare karo — konsa better hai?</p>
-              <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginBottom:12}}>
-                <div style={{background:"rgba(2,8,23,.5)",border:"1px solid rgba(99,102,241,.2)",borderRadius:10,padding:11}}>
-                  <div style={{fontSize:10,fontWeight:700,color:"#a5b4fc",marginBottom:8}}>PRODUCT A</div>
-                  <input className="di" placeholder="Product name..." value={compA.name} onChange={e=>setCompA({...compA,name:e.target.value})} style={{marginBottom:6}}/>
-                  <select className="di" style={{marginBottom:6}} value={compA.cat} onChange={e=>setCompA({...compA,cat:e.target.value})}>
-                    {CATS.map(c=><option key={c.id} value={c.id}>{c.id}</option>)}
-                  </select>
-                  <select className="di" value={compA.plat} onChange={e=>setCompA({...compA,plat:e.target.value})}>
-                    {PLATS.map(p=><option key={p.id} value={p.id}>{p.id}</option>)}
-                  </select>
-                </div>
-                <div style={{background:"rgba(2,8,23,.5)",border:"1px solid rgba(239,68,68,.2)",borderRadius:10,padding:11}}>
-                  <div style={{fontSize:10,fontWeight:700,color:"#f87171",marginBottom:8}}>PRODUCT B</div>
-                  <input className="di" placeholder="Product name..." value={compB.name} onChange={e=>setCompB({...compB,name:e.target.value})} style={{marginBottom:6}}/>
-                  <select className="di" style={{marginBottom:6}} value={compB.cat} onChange={e=>setCompB({...compB,cat:e.target.value})}>
-                    {CATS.map(c=><option key={c.id} value={c.id}>{c.id}</option>)}
-                  </select>
-                  <select className="di" value={compB.plat} onChange={e=>setCompB({...compB,plat:e.target.value})}>
-                    {PLATS.map(p=><option key={p.id} value={p.id}>{p.id}</option>)}
-                  </select>
-                </div>
-              </div>
-              <button className="cbtn" style={{width:"100%",background:"linear-gradient(135deg,#6366f1,#ec4899)"}} onClick={async()=>{
-                if(!compA.name||!compB.name){showT("Dono products ka naam likho!");return;}
-                setCompRunL(true);setCompRes(null);
-                try{
-                  const [dA,dB]=await Promise.all([
-                    fetch("/api/analyze",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:compA.name,category:compA.cat||"Fashion",platform:compA.plat||"Amazon"})}).then(r=>r.json()),
-                    fetch("/api/analyze",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:compB.name,category:compB.cat||"Fashion",platform:compB.plat||"Amazon"})}).then(r=>r.json())
-                  ]);
-                  setCompRes({a:{...dA,name:compA.name},b:{...dB,name:compB.name}});
-                  showT("Comparison ready!");
-                }catch{showT("Failed. Try again.");}
-                setCompRunL(false);
-              }} disabled={compRunL}>{compRunL?"Comparing...":"⚡ Compare Now"}</button>
-              {compRunL&&<div className="ssp"/>}
-              {compRes&&!compRunL&&(
-                <div style={{marginTop:14}} className="fa">
-                  <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginBottom:12}}>
-                    {[{d:compRes.a,c:"#6366f1",label:"A"},{d:compRes.b,c:"#ef4444",label:"B"}].map((item,i)=>(
-                      <div key={i} style={{background:"rgba(2,8,23,.6)",border:"1px solid "+item.c+"33",borderRadius:12,padding:12}}>
-                        <div style={{fontWeight:800,fontSize:12,color:item.c,marginBottom:8}}>Product {item.label}: {item.d.name}</div>
-                        {[{l:"Viral Score",v:item.d.viral_score},{l:"Demand",v:item.d.demand_level},{l:"Competition",v:item.d.competition_level},{l:"Price",v:item.d.price_range}].map(m=>(
-                          <div key={m.l} style={{display:"flex",justifyContent:"space-between",padding:"4px 0",borderBottom:"1px solid rgba(255,255,255,.04)",fontSize:11}}>
-                            <span style={{color:"#64748b"}}>{m.l}</span>
-                            <span style={{color:"#f8fafc",fontWeight:600}}>{m.v}</span>
-                          </div>
-                        ))}
-                      </div>
-                    ))}
-                  </div>
-                  <div style={{background:"rgba(16,185,129,.08)",border:"1px solid rgba(16,185,129,.25)",borderRadius:12,padding:14}}>
-                    <div style={{fontWeight:800,color:"#10b981",fontSize:13,marginBottom:6}}>Verdict</div>
-                    <p style={{color:"#94a3b8",fontSize:12,lineHeight:1.65}}>
-                      {(() => {
-                        const aScore = parseInt(compRes.a.viral_score)||0;
-                        const bScore = parseInt(compRes.b.viral_score)||0;
-                        const winner = aScore>=bScore?compRes.a.name:compRes.b.name;
-                        return winner+" better choice lag raha hai higher viral potential ke saath. Dono ka profit calculator mein analysis karo final decision ke liye.";
-                      })()}
-                    </p>
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* ── SHIPPING COST ── */}
-          {tab==="shipping" && (
-            <div className="fbox fa">
-              <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:4}}>
-                <span style={{fontSize:20}}>🚚</span>
-                <h3 style={{fontWeight:800,fontSize:14,color:"#f8fafc"}}>Shipping Cost Comparator</h3>
-              </div>
-              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Major couriers compare karo — best rate dhundho</p>
-              <div className="prow">
-                <div className="pfield"><label>Weight (kg)</label><input type="number" placeholder="0.5" step="0.1" value={shipF.weight} onChange={e=>setShipF({...shipF,weight:e.target.value})}/></div>
-                <div className="pfield"><label>Zone</label>
-                  <select value={shipF.zone} onChange={e=>setShipF({...shipF,zone:e.target.value})}>
-                    <option value="local">Local (Same City)</option>
-                    <option value="zone1">Zone 1 (Nearby State)</option>
-                    <option value="zone2">Zone 2 (Far State)</option>
-                    <option value="zone3">Zone 3 (Extreme Far)</option>
-                  </select>
-                </div>
-                <div className="pfield"><label>Payment</label>
-                  <select value={shipF.cod} onChange={e=>setShipF({...shipF,cod:e.target.value})}>
-                    <option value="no">Prepaid</option>
-                    <option value="yes">COD</option>
-                  </select>
-                </div>
-              </div>
-              <button className="cbtn" style={{width:"100%"}} onClick={()=>{
-                const w=parseFloat(shipF.weight)||0.5;
-                const cod=shipF.cod==="yes";
-                const z=shipF.zone;
-                const zMult={local:1,zone1:1.3,zone2:1.6,zone3:2}[z]||1;
-                const codExtra=cod?35:0;
-                const couriers=[
-                  {name:"Delhivery",base:35,perKg:45,color:"#ef4444"},
-                  {name:"Shiprocket",base:40,perKg:50,color:"#6366f1"},
-                  {name:"Amazon FBA",base:30,perKg:40,color:"#f59e0b"},
-                  {name:"Ekart",base:28,perKg:38,color:"#10b981"},
-                  {name:"Shadowfax",base:32,perKg:42,color:"#8b5cf6"},
-                  {name:"XpressBees",base:36,perKg:46,color:"#f97316"},
-                ];
-                const results=couriers.map(c=>{
-                  const cost=Math.round((c.base+c.perKg*Math.max(0.5,w))*zMult+codExtra);
-                  return{...c,cost};
-                }).sort((a,b)=>a.cost-b.cost);
-                setShipR({couriers:results,weight:w,zone:z,cod});
-              }}>🚚 Compare Rates</button>
-              {shipR&&(
-                <div style={{marginTop:14}} className="fa">
-                  {shipR.couriers.map((c,i)=>(
-                    <div key={i} style={{display:"flex",alignItems:"center",gap:10,padding:"9px 11px",background:i===0?"rgba(16,185,129,.07)":"rgba(2,8,23,.4)",border:i===0?"1px solid rgba(16,185,129,.25)":"1px solid #1e293b",borderRadius:10,marginBottom:6}}>
-                      {i===0&&<div style={{fontSize:9,fontWeight:800,background:"linear-gradient(135deg,#10b981,#059669)",color:"#fff",padding:"2px 6px",borderRadius:100,flexShrink:0}}>BEST</div>}
-                      <div style={{width:8,height:8,borderRadius:"50%",background:c.color,flexShrink:0}}/>
-                      <div style={{flex:1,fontWeight:600,fontSize:12,color:"#e2e8f0"}}>{c.name}</div>
-                      <div style={{fontWeight:900,fontSize:14,color:i===0?"#10b981":"#f8fafc"}}>Rs.{c.cost}</div>
-                    </div>
-                  ))}
-                  {shipR.cod&&<div style={{background:"rgba(245,158,11,.07)",border:"1px solid rgba(245,158,11,.2)",borderRadius:9,padding:"8px 11px",fontSize:11,color:"#f59e0b",marginTop:6}}>COD charge (+Rs.35) already included</div>}
-                  <div style={{background:"rgba(99,102,241,.06)",border:"1px solid rgba(99,102,241,.15)",borderRadius:9,padding:"8px 11px",marginTop:8,fontSize:11,color:"#94a3b8",lineHeight:1.6}}>
-                    Note: Rates estimated — actual rates vary by courier partner. Shiprocket/Delhivery ke exact rates unki website pe check karo.
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
-
-        </div>
-        <footer>🧠 YesYouPro · AI Product Analyzer · Made in India 🇮🇳 · © 2025</footer>
+        <footer>YesYouPro · AI Product Analyzer · Made in India · © 2025</footer>
       </div>}
     </>
   );
