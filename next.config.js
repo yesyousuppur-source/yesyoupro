@@ -6,19 +6,8 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  images: {
-    domains: ['cdn.simpleicons.org', 'lh3.googleusercontent.com'],
-  },
-  async headers() {
-    return [
-      {
-        source: "/(.*)",
-        headers: [
-          { key: "X-Frame-Options", value: "SAMEORIGIN" },
-          { key: "X-Content-Type-Options", value: "nosniff" },
-        ],
-      },
-    ];
+  generateBuildId: async () => {
+    return 'build-' + Date.now();
   },
 };
 
