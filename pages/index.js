@@ -1,3 +1,4 @@
+// YesYouPro v2.0 - Clean Build
 import { useState, useEffect, useRef } from "react";
 import Head from "next/head";
 
@@ -627,7 +628,7 @@ export default function App() {
   return (
     <>
       <Head>
-        <title>YesYouPro — AI Product Analyzer for Indian Sellers</title>
+        <title>YesYouPro - AI Product Analyzer for Indian Sellers</title>
         <meta name="description" content="YesYouPro — AI product analyzer for Indian ecommerce sellers. Get viral hooks, keywords, competitor analysis & 13 premium tools. Free to try!" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </Head>
@@ -1058,7 +1059,7 @@ export default function App() {
           </div>}
 
         </div>
-        <footer>YesYouPro · AI Product Analyzer · Made in India · © 2025</footer>
+        <footer>YesYouPro &middot; AI Product Analyzer &middot; Made in India &middot; &copy; 2025</footer>
       </div>}
     </>
   );
