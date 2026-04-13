@@ -271,6 +271,35 @@ Return ONLY valid JSON:
   "top_bundle": "Recommend which bundle to launch first and exactly why"
 }`;
 
+  } else if (mode === "launch_strategy") {
+    prompt = `You are an ecommerce launch strategist for India. Create a 30-day launch plan for "${name}" (${category||"Any"}) on ${platform||"Amazon"}.
+Return ONLY valid JSON: {"overview":"2-3 sentences","week_plan":[{"week":"Week 1 (Days 1-7)","tasks":["task1","task2","task3"]},{"week":"Week 2 (Days 8-14)","tasks":["task1","task2","task3"]},{"week":"Week 3 (Days 15-21)","tasks":["task1","task2","task3"]},{"week":"Week 4 (Days 22-30)","tasks":["task1","task2","task3"]}],"pricing_strategy":"launch pricing advice","review_strategy":"how to get first reviews"}`;
+
+  } else if (mode === "festival_planner") {
+    const season = req.body.season || "Diwali";
+    prompt = `You are an Indian ecommerce festival strategist. Create ${season} plan for "${name}" (${category||"Any"}) on ${platform||"Amazon"}.
+Return ONLY valid JSON: {"overview":"opportunity in 2-3 sentences","timeline":[{"when":"4 weeks before","action":"action"},{"when":"2 weeks before","action":"action"},{"when":"1 week before","action":"action"},{"when":"Festival week","action":"action"},{"when":"After festival","action":"action"}],"pricing_strategy":"pricing advice","stock_recommendation":"stock advice","ad_strategy":"ad budget advice"}`;
+
+  } else if (mode === "bundle_creator") {
+    prompt = `You are a product bundling expert for Indian ecommerce. Create 4 bundle ideas for "${name}" (${category||"Any"}) on ${platform||"Amazon"}.
+Return ONLY valid JSON: {"bundles":[{"name":"bundle name","items":["${name}","item2","item3"],"single_price":"INR X","bundle_price":"INR Y","margin_increase":"+X%","why_works":"reason","listing_tip":"tip"},{"name":"b2","items":["${name}","item2"],"single_price":"INR X","bundle_price":"INR Y","margin_increase":"+X%","why_works":"r","listing_tip":"t"},{"name":"b3","items":["${name}","item2","item3"],"single_price":"INR X","bundle_price":"INR Y","margin_increase":"+X%","why_works":"r","listing_tip":"t"},{"name":"b4","items":["${name}","item2"],"single_price":"INR X","bundle_price":"INR Y","margin_increase":"+X%","why_works":"r","listing_tip":"t"}],"top_bundle":"best bundle recommendation"}`;
+
+  } else if (mode === "return_manager") {
+    prompt = `You are an ecommerce returns expert for India. Analyze returns for "${name}" (${category||"Any"}) on ${platform||"Amazon"}.
+Return ONLY valid JSON: {"return_rate":"X-Y%","industry_average":"Industry avg: X%","main_reasons":["r1","r2","r3","r4","r5"],"prevention_tips":["t1","t2","t3","t4","t5"],"packaging_tips":"packaging advice","description_fixes":["fix1","fix2","fix3"]}`;
+
+  } else if (mode === "whatsapp_message") {
+    prompt = `You are a WhatsApp marketing expert for Indian sellers. Create 3 WhatsApp broadcast messages for "${name}" (${category||"Any"}).
+Return ONLY valid JSON: {"messages":[{"type":"Product Launch","text":"message text in Hindi/English mix"},{"type":"Sale Offer","text":"message with price and offer"},{"type":"Customer Testimonial","text":"social proof message"}]}`;
+
+  } else if (mode === "instagram_captions") {
+    prompt = `You are an Instagram marketing expert for Indian sellers. Create 5 captions for "${name}" (${category||"Any"}).
+Return ONLY valid JSON: {"captions":[{"text":"caption text","hashtags":"#tag1 #tag2 #tag3 #tag4 #tag5"},{"text":"c2","hashtags":"#t"},{"text":"c3","hashtags":"#t"},{"text":"c4","hashtags":"#t"},{"text":"c5","hashtags":"#t"}]}`;
+
+  } else if (mode === "title_optimizer") {
+    prompt = `You are an ecommerce SEO expert. Create optimized product titles for "${name}" (${category||"Any"}) for multiple platforms.
+Return ONLY valid JSON: {"titles":[{"platform":"Amazon","title":"optimized title with keywords","keywords":"main keywords"},{"platform":"Flipkart","title":"title","keywords":"keywords"},{"platform":"Meesho","title":"title","keywords":"keywords"},{"platform":"Instagram","title":"caption style title","keywords":"hashtags"}]}`;
+
   } else {
     // DEFAULT - Universal analysis for ANYTHING
     prompt = `You are a universal market expert for India. Deeply analyze this:
