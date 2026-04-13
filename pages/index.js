@@ -13,26 +13,28 @@ const FB = {
   appId:"1:455406578867:web:fc5a2b6a00af996bc114c6"
 };
 const CATS=[
+  // Physical
   {id:"Electronics",logo:"https://cdn.simpleicons.org/samsung/1428A0",g:"Physical"},
-  {id:"Beauty & Skincare",logo:null,e:"💄",g:"Physical"},
-  {id:"Home & Kitchen",logo:null,e:"🏠",g:"Physical"},
-  {id:"Fitness",logo:null,e:"💪",g:"Physical"},
-  {id:"Fashion",logo:null,e:"👗",g:"Physical"},
+  {id:"Beauty & Skincare",logo:"https://cdn.simpleicons.org/sephora/000000",g:"Physical"},
+  {id:"Home & Kitchen",logo:"https://cdn.simpleicons.org/ikea/0058A3",g:"Physical"},
+  {id:"Fitness",logo:"https://cdn.simpleicons.org/underarmour/000000",g:"Physical"},
+  {id:"Fashion",logo:"https://cdn.simpleicons.org/vogue/000000",g:"Physical"},
   {id:"Pet Supplies",logo:null,e:"🐾",g:"Physical"},
   {id:"Toys & Games",logo:"https://cdn.simpleicons.org/lego/E3000B",g:"Physical"},
-  {id:"Health & Wellness",logo:null,e:"❤️",g:"Physical"},
-  {id:"Outdoor & Sports",logo:null,e:"⛺",g:"Physical"},
-  {id:"Food & Beverages",logo:null,e:"🍔",g:"Physical"},
-  {id:"Automotive",logo:null,e:"🚗",g:"Physical"},
-  {id:"Books & Education",logo:null,e:"📚",g:"Physical"},
+  {id:"Health & Wellness",logo:"https://cdn.simpleicons.org/practo/5C9AD3",g:"Physical"},
+  {id:"Outdoor & Sports",logo:"https://cdn.simpleicons.org/decathlon/0082C3",g:"Physical"},
+  {id:"Food & Beverages",logo:"https://cdn.simpleicons.org/swiggy/FC8019",g:"Physical"},
+  {id:"Automotive",logo:"https://cdn.simpleicons.org/uber/000000",g:"Physical"},
+  {id:"Books & Education",logo:"https://cdn.simpleicons.org/amazon/FF9900",g:"Physical"},
   {id:"Jewelry",logo:null,e:"💍",g:"Physical"},
   {id:"Baby & Kids",logo:null,e:"👶",g:"Physical"},
   {id:"Tools & Hardware",logo:null,e:"🔧",g:"Physical"},
   {id:"Garden & Plants",logo:null,e:"🌱",g:"Physical"},
   {id:"Travel & Luggage",logo:"https://cdn.simpleicons.org/airbnb/FF5A5F",g:"Physical"},
   {id:"Art & Crafts",logo:null,e:"🎨",g:"Physical"},
-  {id:"Office Supplies",logo:null,e:"🗂️",g:"Physical"},
+  {id:"Office Supplies",logo:"https://cdn.simpleicons.org/notion/000000",g:"Physical"},
   {id:"Music & Audio",logo:"https://cdn.simpleicons.org/spotify/1DB954",g:"Physical"},
+  // Digital
   {id:"Mobile Apps",logo:"https://cdn.simpleicons.org/android/3DDC84",g:"Digital"},
   {id:"PC / Console Games",logo:"https://cdn.simpleicons.org/steam/000000",g:"Digital"},
   {id:"Online Courses",logo:"https://cdn.simpleicons.org/udemy/A435F0",g:"Digital"},
@@ -40,28 +42,30 @@ const CATS=[
   {id:"Website / Blog",logo:"https://cdn.simpleicons.org/wordpress/21759B",g:"Digital"},
   {id:"YouTube Channel",logo:"https://cdn.simpleicons.org/youtube/FF0000",g:"Digital"},
   {id:"Instagram Page",logo:"https://cdn.simpleicons.org/instagram/E1306C",g:"Digital"},
-  {id:"Podcast",logo:"https://cdn.simpleicons.org/spotify/1DB954",g:"Digital"},
+  {id:"Podcast",logo:"https://cdn.simpleicons.org/applepodcasts/9933CC",g:"Digital"},
   {id:"NFT & Crypto",logo:"https://cdn.simpleicons.org/ethereum/627EEA",g:"Digital"},
-  {id:"Ebooks & Templates",logo:null,e:"📄",g:"Digital"},
+  {id:"Ebooks & Templates",logo:"https://cdn.simpleicons.org/kindle/000000",g:"Digital"},
   {id:"Freelance Services",logo:"https://cdn.simpleicons.org/fiverr/1DBF73",g:"Digital"},
   {id:"Social Media Account",logo:"https://cdn.simpleicons.org/facebook/1877F2",g:"Digital"},
   {id:"Dropshipping",logo:"https://cdn.simpleicons.org/shopify/96BF48",g:"Digital"},
   {id:"Affiliate Marketing",logo:"https://cdn.simpleicons.org/amazon/FF9900",g:"Digital"},
-  {id:"Print on Demand",logo:null,e:"🖨️",g:"Digital"},
+  {id:"Print on Demand",logo:"https://cdn.simpleicons.org/printify/000000",g:"Digital"},
   {id:"Digital Products",logo:"https://cdn.simpleicons.org/gumroad/FF90E8",g:"Digital"},
   {id:"Any Other",logo:null,e:"✨",g:"Digital"},
 ];
 const PLATS=[
+  // Ecommerce
   {id:"Amazon",logo:"https://cdn.simpleicons.org/amazon/FF9900",c:"#FF9900",g:"Ecommerce"},
-  {id:"Flipkart",logo:null,e:"⚡",c:"#2874f0",g:"Ecommerce"},
-  {id:"Meesho",logo:null,e:"🌸",c:"#e91e8c",g:"Ecommerce"},
+  {id:"Flipkart",logo:"https://cdn.simpleicons.org/flipkart/2874F0",c:"#2874f0",g:"Ecommerce"},
+  {id:"Meesho",logo:"https://cdn.simpleicons.org/meesho/F43397",c:"#e91e8c",g:"Ecommerce"},
   {id:"Shopify",logo:"https://cdn.simpleicons.org/shopify/96BF48",c:"#96bf48",g:"Ecommerce"},
   {id:"WooCommerce",logo:"https://cdn.simpleicons.org/woocommerce/7F54B3",c:"#7f54b3",g:"Ecommerce"},
   {id:"Etsy",logo:"https://cdn.simpleicons.org/etsy/F56400",c:"#f56400",g:"Ecommerce"},
-  {id:"Nykaa",logo:null,e:"💄",c:"#fc2779",g:"Ecommerce"},
+  {id:"Nykaa",logo:"https://cdn.simpleicons.org/nykaa/FC2779",c:"#fc2779",g:"Ecommerce"},
   {id:"Myntra",logo:null,e:"👗",c:"#ff3f6c",g:"Ecommerce"},
   {id:"IndiaMART",logo:null,e:"🏭",c:"#0077b5",g:"Ecommerce"},
   {id:"JioMart",logo:null,e:"🛍️",c:"#003087",g:"Ecommerce"},
+  // Social Media
   {id:"Instagram",logo:"https://cdn.simpleicons.org/instagram/E1306C",c:"#e1306c",g:"Social Media"},
   {id:"Facebook",logo:"https://cdn.simpleicons.org/facebook/1877F2",c:"#1877f2",g:"Social Media"},
   {id:"YouTube",logo:"https://cdn.simpleicons.org/youtube/FF0000",c:"#ff0000",g:"Social Media"},
@@ -74,21 +78,27 @@ const PLATS=[
   {id:"WhatsApp Business",logo:"https://cdn.simpleicons.org/whatsapp/25D366",c:"#25d366",g:"Social Media"},
   {id:"Discord",logo:"https://cdn.simpleicons.org/discord/5865F2",c:"#5865f2",g:"Social Media"},
   {id:"Reddit",logo:"https://cdn.simpleicons.org/reddit/FF4500",c:"#ff4500",g:"Social Media"},
+  // App Stores
   {id:"Google Play Store",logo:"https://cdn.simpleicons.org/googleplay/414141",c:"#01875f",g:"App Stores"},
-  {id:"Apple App Store",logo:null,e:"🍎",c:"#0071e3",g:"App Stores"},
+  {id:"Apple App Store",logo:"https://cdn.simpleicons.org/apple/000000",c:"#0071e3",g:"App Stores"},
   {id:"Steam",logo:"https://cdn.simpleicons.org/steam/000000",c:"#1b2838",g:"App Stores"},
   {id:"PlayStation Store",logo:"https://cdn.simpleicons.org/playstation/003087",c:"#003087",g:"App Stores"},
   {id:"Xbox Store",logo:"https://cdn.simpleicons.org/xbox/107C10",c:"#107c10",g:"App Stores"},
+  // Courses
   {id:"Udemy",logo:"https://cdn.simpleicons.org/udemy/A435F0",c:"#a435f0",g:"Courses"},
   {id:"Skillshare",logo:"https://cdn.simpleicons.org/skillshare/00FF84",c:"#00ccb1",g:"Courses"},
   {id:"Gumroad",logo:"https://cdn.simpleicons.org/gumroad/FF90E8",c:"#ff90e8",g:"Courses"},
   {id:"Patreon",logo:"https://cdn.simpleicons.org/patreon/FF424D",c:"#ff424d",g:"Courses"},
   {id:"Substack",logo:"https://cdn.simpleicons.org/substack/FF6719",c:"#ff6719",g:"Courses"},
+  {id:"Teachable",logo:null,e:"🎓",c:"#5cb85c",g:"Courses"},
+  // Freelance
   {id:"Fiverr",logo:"https://cdn.simpleicons.org/fiverr/1DBF73",c:"#1dbf73",g:"Freelance"},
   {id:"Upwork",logo:"https://cdn.simpleicons.org/upwork/6FDA44",c:"#14a800",g:"Freelance"},
+  // Food
   {id:"Zomato",logo:"https://cdn.simpleicons.org/zomato/E23744",c:"#e23744",g:"Food"},
-  {id:"Swiggy",logo:null,e:"🛵",c:"#fc8019",g:"Food"},
+  {id:"Swiggy",logo:"https://cdn.simpleicons.org/swiggy/FC8019",c:"#fc8019",g:"Food"},
   {id:"BigBasket",logo:null,e:"🛒",c:"#84c225",g:"Food"},
+  // Other
   {id:"Own Website",logo:"https://cdn.simpleicons.org/googlechrome/4285F4",c:"#6366f1",g:"Other"},
   {id:"Any Other",logo:null,e:"✨",c:"#94a3b8",g:"Other"},
 ];
@@ -728,7 +738,7 @@ export default function App(){
     .pg-lbl{font-size:9px;color:#64748b;font-weight:700;text-transform:uppercase;letter-spacing:.7px;margin-bottom:5px;margin-top:9px}
     .pg-lbl:first-child{margin-top:0}
     .chips{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:3px}
-    .chip{display:flex;align-items:center;gap:4px;padding:4px 9px;border-radius:7px;border:1px solid #1e293b;background:rgba(15,23,42,.6);cursor:pointer;font-size:11px;font-weight:500;color:#94a3b8;font-family:Inter,sans-serif;transition:all .15s}
+    .chip{display:flex;align-items:center;gap:5px;padding:5px 12px;border-radius:9px;border:1px solid #1e293b;background:rgba(15,23,42,.6);cursor:pointer;font-size:11px;font-weight:600;color:#94a3b8;font-family:Inter,sans-serif;transition:all .15s}
     .chip:hover{border-color:rgba(99,102,241,.4);color:#a5b4fc}
     .chip.on{color:#fff;border-color:transparent;font-weight:700}
     .errbanner{background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.25);border-radius:9px;padding:8px 11px;color:#ef4444;font-size:11px;margin-bottom:11px}
@@ -743,7 +753,7 @@ export default function App(){
     .lstp{display:flex;align-items:center;gap:7px;padding:5px 9px;border-radius:7px;border:1px solid transparent;font-size:11px;color:#475569;transition:all .3s}
     .lstp.done{color:#10b981;border-color:rgba(16,185,129,.2);background:rgba(16,185,129,.05)}
     .lstp.act{color:#a5b4fc;border-color:rgba(99,102,241,.25);background:rgba(99,102,241,.07)}
-    .gcard{background:rgba(15,23,42,.75);border:1px solid #1e293b;border-radius:13px;padding:15px;margin-bottom:8px}
+    .gcard{background:rgba(15,23,42,.82);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:16px;margin-bottom:9px}
     .gct{font-weight:800;font-size:12px;color:#e2e8f0}
     .gctx{color:#94a3b8;line-height:1.7;font-size:12px}
     .mrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:11px}
@@ -780,17 +790,17 @@ export default function App(){
     .ftabs{display:flex;gap:5px;overflow-x:auto;padding-bottom:2px}
     .ftabs::-webkit-scrollbar{height:2px}
     .ftabs::-webkit-scrollbar-thumb{background:#1e293b;border-radius:10px}
-    .ftab{flex-shrink:0;padding:6px 11px;background:rgba(15,23,42,.7);border:1px solid #1e293b;border-radius:100px;color:#64748b;font-size:11px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif;transition:all .2s;white-space:nowrap}
+    .ftab{flex-shrink:0;padding:7px 14px;background:rgba(15,23,42,.7);border:1px solid #1e293b;border-radius:100px;color:#64748b;font-size:11px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif;display:flex;align-items:center;gap:5px;transition:all .2s;white-space:nowrap}
     .ftab.on{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;border-color:transparent;box-shadow:0 3px 11px rgba(99,102,241,.3)}
     .ftab:hover:not(.on){border-color:rgba(99,102,241,.3);color:#a5b4fc}
-    .fbox{background:rgba(15,23,42,.8);border:1px solid rgba(99,102,241,.12);border-radius:16px;padding:17px 13px;margin-bottom:9px;position:relative}
+    .fbox{background:rgba(15,23,42,.88);border:1px solid rgba(99,102,241,.18);border-radius:18px;padding:20px 16px;margin-bottom:12px;position:relative;box-shadow:0 4px 24px rgba(0,0,0,.25)}
     .prow{display:grid;grid-template-columns:repeat(auto-fit,minmax(105px,1fr));gap:7px;margin-bottom:10px}
     .pfield{display:flex;flex-direction:column;gap:3px}
     .pfield label{font-size:9px;color:#64748b;font-weight:700;text-transform:uppercase}
     .pfield input,.pfield select{background:#0f172a;border:1px solid #1e293b;border-radius:8px;padding:8px 9px;color:#f8fafc;font-size:12px;font-family:Inter,sans-serif;outline:none}
     .pfield input:focus,.pfield select:focus{border-color:#6366f1}
     .presult{display:grid;grid-template-columns:repeat(auto-fit,minmax(95px,1fr));gap:7px;margin-top:9px;animation:fadeIn .4s ease}
-    .prc{background:rgba(2,8,23,.6);border:1px solid #1e293b;border-radius:9px;padding:10px;text-align:center}
+    .prc{background:rgba(2,8,23,.65);border:1px solid rgba(255,255,255,.06);border-radius:11px;padding:12px 10px;text-align:center;transition:border-color .2s}
     .prl{font-size:9px;color:#64748b;margin-bottom:3px;font-weight:600;text-transform:uppercase}
     .prv{font-size:14px;font-weight:900}
     .cbtn{background:linear-gradient(135deg,#6366f1,#8b5cf6);border:none;border-radius:9px;padding:9px 17px;color:#fff;font-weight:700;font-size:12px;cursor:pointer;font-family:Inter,sans-serif}
@@ -801,10 +811,10 @@ export default function App(){
     .ccbt{font-size:9px;color:#64748b;margin-bottom:3px;font-weight:700;text-transform:uppercase}
     .cpt{font-size:10px;color:#94a3b8;padding:2px 0;display:flex;gap:4px}
     .tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:7px;margin-top:10px}
-    .tcard{background:rgba(15,23,42,.8);border:1px solid #1e293b;border-radius:11px;padding:12px}
+    .tcard{background:rgba(15,23,42,.85);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:14px;transition:all .2s}
     .trnk{width:21px;height:21px;background:linear-gradient(135deg,#f59e0b,#ef4444);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;color:#fff;margin-bottom:5px}
     .tc{background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2);color:#10b981;border-radius:100px;padding:1px 5px;font-size:9px}
-    .sc{background:rgba(15,23,42,.8);border:1px solid rgba(16,185,129,.15);border-radius:11px;padding:12px;margin-bottom:7px}
+    .sc{background:rgba(15,23,42,.85);border:1px solid rgba(16,185,129,.18);border-radius:14px;padding:14px;margin-bottom:9px}
     .schip{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);color:#10b981;border-radius:5px;padding:2px 7px;font-size:10px;font-weight:600}
     .slink{display:inline-block;margin-top:5px;background:linear-gradient(135deg,#10b981,#059669);color:#fff;border-radius:6px;padding:4px 10px;font-size:10px;font-weight:600;text-decoration:none}
     .mov{position:fixed;inset:0;background:rgba(0,0,0,.9);display:flex;align-items:center;justify-content:center;z-index:8000;backdrop-filter:blur(8px)}
@@ -854,6 +864,12 @@ export default function App(){
     .qinp{width:100%;background:none;border:none;color:#f8fafc;font-size:12px;font-family:Inter,sans-serif;padding:9px;outline:none;resize:none;min-height:85px;line-height:1.6}
     .qinp::placeholder{color:#475569}
     footer{text-align:center;padding:15px;color:#334155;font-size:10px;border-top:1px solid rgba(255,255,255,.03)}
+    .tcard:hover{border-color:rgba(99,102,241,.25);transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.3)}
+    .gcard:hover{border-color:rgba(99,102,241,.2)}
+    .prc:hover{border-color:rgba(99,102,241,.25);background:rgba(99,102,241,.06)}
+    .sc:hover{border-color:rgba(16,185,129,.35)}
+    .cbtn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(99,102,241,.4)}
+    .gbtn2:hover{transform:translateY(-1px);filter:brightness(1.08)}
     @media(max-width:600px){.nav{padding:10px 11px}.dc{padding:18px 9px 60px}.pgrid{gap:4px}.ppb{padding:8px 2px 6px}.nc{padding:24px 14px}.icard{padding:15px 11px}}
   `;
 
