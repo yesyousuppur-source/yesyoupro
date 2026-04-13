@@ -1,4 +1,4 @@
- // YesYouPro v2.0 - Clean Build
+// YesYouPro v2.0 - Clean Build
 import { useState, useEffect, useRef } from "react";
 import Head from "next/head";
 
@@ -1952,9 +1952,7 @@ export default function App() {
                     <div key={i} style={{background:dark?"rgba(16,185,129,.06)":"#f0fdf4",border:"1px solid rgba(16,185,129,.2)",borderRadius:11,padding:12,marginBottom:9}}>
                       <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:7}}>
                         <div style={{fontWeight:700,fontSize:10,color:"#10b981"}}>{em.subject}</div>
-                        <button onClick={()=>navigator.clipboard?.writeText("Subject: "+em.subject+"
-
-"+em.body).then(()=>showT("Copied!"))} style={{background:"rgba(16,185,129,.12)",border:"1px solid rgba(16,185,129,.25)",borderRadius:6,padding:"3px 9px",color:"#10b981",fontSize:10,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>Copy</button>
+                        <button onClick={()=>navigator.clipboard?.writeText("Subject: "+em.subject+"\n\n"+em.body).then(()=>showT("Copied!"))} style={{background:"rgba(16,185,129,.12)",border:"1px solid rgba(16,185,129,.25)",borderRadius:6,padding:"3px 9px",color:"#10b981",fontSize:10,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>Copy</button>
                       </div>
                       <p style={{color:dark?"#94a3b8":"#374151",fontSize:11,lineHeight:1.8,whiteSpace:"pre-wrap"}}>{em.body}</p>
                     </div>
@@ -2019,7 +2017,6 @@ export default function App() {
           )}
 
 
-            
 
         </div>
         <footer>YesYouPro &middot; AI Product Analyzer &middot; Made in India &middot; &copy; 2025</footer>
