@@ -197,7 +197,7 @@ export default function App() {
   const [titleD,setTitleD] = useState(null);const [titleL,setTitleL] = useState(false);
   const [history,setHistory] = useState([]);
   const [showHist,setShowHist] = useState(false);
-  const [dark,setDark] = useState(()=>{ if(typeof window!=="undefined") return S.get("yyp_theme")!==false; return true; });
+  const [dark,setDark] = useState(()=>{ if(typeof window!=="undefined"){const saved=S.get("yyp_theme");if(saved===null)return false;return saved!==false;}return false; });
   const [refCopied,setRefCopied] = useState(false);
 
   // ── REFERRAL HELPERS ─────────────────────────────────────────────────────
