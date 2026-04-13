@@ -199,6 +199,16 @@ export default function App() {
   const [showHist,setShowHist] = useState(false);
   const [dark,setDark] = useState(()=>{ if(typeof window!=="undefined"){const saved=S.get("yyp_theme");if(saved===null)return false;return saved!==false;}return false; });
   const [refCopied,setRefCopied] = useState(false);
+  const [listingD,setListingD] = useState(null);const [listingL,setListingL] = useState(false);
+  const [reviewF,setReviewF] = useState({review:"",type:"negative"});
+  const [reviewD,setReviewD] = useState(null);const [reviewL,setReviewL] = useState(false);
+  const [adCopyPlat,setAdCopyPlat] = useState("Facebook");
+  const [adCopyD,setAdCopyD] = useState(null);const [adCopyL,setAdCopyL] = useState(false);
+  const [cashF,setCashF] = useState({invest:"",revenue:"",fees:"",returns:""});
+  const [cashR,setCashR] = useState(null);
+  const [supplierD,setSupplierEmailD] = useState(null);const [supplierL,setSupplierEmailL] = useState(false);
+  const [returnPolD,setReturnPolD] = useState(null);const [returnPolL,setReturnPolL] = useState(false);
+  const [compliD,setCompliD] = useState(null);const [compliL,setCompliL] = useState(false);
 
   // ── REFERRAL HELPERS ─────────────────────────────────────────────────────
   const genRefCode = (email) => {
@@ -1248,7 +1258,7 @@ export default function App() {
             <div className="ftabs"><button className={"ftab"+(tab==="profit"?" on":"")} onClick={()=>setTab("profit")}>💰 Profit Calculator</button></div>
             <div className="fglbl" style={{color:isLocked?"#ef4444":"#10b981"}}>{isLocked?"🔒 Locked (Buy Premium to Unlock)":"✅ Premium Tools (Unlocked)"}</div>
             <div className="ftabs">
-              {[{id:"starter",l:"🎓 Starter Guide"},{id:"beginner",l:"🔰 Beginner Products"},{id:"investment",l:"🧮 Investment Calc"},{id:"description",l:"📝 Description"},{id:"trending",l:"🔥 Trending"},{id:"competitor",l:"⚔️ Competitor"},{id:"supplier",l:"📦 Supplier"},{id:"sales",l:"📊 Sales Estimator"},{id:"price",l:"🏷️ Price Optimizer"},{id:"inventory",l:"📦 Inventory"},{id:"review",l:"⭐ Reviews"},{id:"niche",l:"🎯 Niche Finder"},{id:"gst",l:"🧾 GST Calc"},{id:"shipping",l:"🚚 Shipping Cost"},{id:"compare",l:"⚡ Compare"},{id:"launch",l:"🚀 Launch Strategy"},{id:"festival",l:"🎊 Festival Planner"},{id:"roas",l:"💰 ROAS Calc"},{id:"bundle",l:"🎁 Bundle Creator"},{id:"returns",l:"📦 Return Manager"},{id:"wamsg",l:"💬 WhatsApp Msg"},{id:"caption",l:"📸 Caption Gen"},{id:"titl",l:"📝 Title Optimizer"}].map(t=>(
+              {[{id:"starter",l:"🎓 Starter Guide"},{id:"beginner",l:"🔰 Beginner Products"},{id:"investment",l:"🧮 Investment Calc"},{id:"description",l:"📝 Description"},{id:"trending",l:"🔥 Trending"},{id:"competitor",l:"⚔️ Competitor"},{id:"supplier",l:"📦 Supplier"},{id:"sales",l:"📊 Sales Estimator"},{id:"price",l:"🏷️ Price Optimizer"},{id:"inventory",l:"📦 Inventory"},{id:"review",l:"⭐ Reviews"},{id:"niche",l:"🎯 Niche Finder"},{id:"gst",l:"🧾 GST Calc"},{id:"shipping",l:"🚚 Shipping Cost"},{id:"compare",l:"⚡ Compare"},{id:"launch",l:"🚀 Launch Strategy"},{id:"festival",l:"🎊 Festival Planner"},{id:"roas",l:"💰 ROAS Calc"},{id:"bundle",l:"🎁 Bundle Creator"},{id:"returns",l:"📦 Return Manager"},{id:"wamsg",l:"💬 WhatsApp Msg"},{id:"caption",l:"📸 Caption Gen"},{id:"titl",l:"📝 Title Optimizer"},{id:"listing",l:"📋 Listing Checker"},{id:"reviewrep",l:"⭐ Review Reply"},{id:"adcopy",l:"📢 Ad Copy"},{id:"cashflow",l:"💵 Cash Flow"},{id:"suppmail",l:"📧 Supplier Email"},{id:"retpol",l:"📜 Return Policy"},{id:"comply",l:"✅ Compliance"}].map(t=>(
                 <button key={t.id} className={"ftab"+(tab===t.id?" on":"")} onClick={()=>{if(isLocked){setShowPrem(true);return;}setTab(t.id);}}>{t.l}{isLocked&&" 🔒"}</button>
               ))}
             </div>
@@ -1789,6 +1799,220 @@ export default function App() {
                       {t.keywords&&<p style={{color:"#64748b",fontSize:10}}>Keywords: {t.keywords}</p>}
                     </div>
                   ))}
+                </div>
+              )}
+            </div>
+          )}
+
+
+
+          {/* LISTING CHECKER */}
+          {tab==="listing"&&(
+            <div className="fbox fa" style={{position:"relative"}}>
+              {isLocked&&<LockBox/>}
+              <h3 className="ict">Listing Quality Checker</h3>
+              <p style={{color:dark?"#64748b":"#6b7280",fontSize:10,marginBottom:12}}>Apni listing ka AI score lo — kya improve karo</p>
+              {!pf.name&&<div className="errbanner">Pehle product analyze karo</div>}
+              <button className="gbtn2" style={{background:"linear-gradient(135deg,#0ea5e9,#0284c7)"}} disabled={listingL||!pf.name} onClick={async()=>{setListingL(true);try{const d=await apiCall("listing_checker");setListingD(d);}catch{showT("Failed");}setListingL(false);}}>{listingL?"Checking...":"Check Listing Quality"}</button>
+              {listingL&&<div className="ssp"/>}
+              {listingD&&!listingL&&(
+                <div style={{marginTop:12}} className="fa">
+                  <div style={{background:"rgba(14,165,233,.08)",border:"1px solid rgba(14,165,233,.25)",borderRadius:12,padding:14,textAlign:"center",marginBottom:12}}>
+                    <div style={{fontSize:10,color:"#64748b",marginBottom:3}}>Listing Score</div>
+                    <div style={{fontSize:36,fontWeight:900,color:listingD.score>=80?"#10b981":listingD.score>=60?"#f59e0b":"#ef4444"}}>{listingD.score}/100</div>
+                    <div style={{fontSize:11,color:"#64748b"}}>{listingD.score>=80?"Excellent":"Score >= 60"?listingD.score>=60?"Good":"Needs Work":"Improve Karo"}</div>
+                  </div>
+                  {listingD.issues?.length>0&&<div className="gcard" style={{marginBottom:8}}><div className="gct" style={{marginBottom:6}}>Issues Found</div>{listingD.issues.map((iss,i)=><div key={i} style={{color:"#94a3b8",fontSize:11,padding:"3px 0",display:"flex",gap:6}}><span style={{color:"#ef4444"}}>&#8226;</span><span>{iss}</span></div>)}</div>}
+                  {listingD.improvements?.length>0&&<div className="gcard" style={{marginBottom:8}}><div className="gct" style={{marginBottom:6}}>Improvements</div>{listingD.improvements.map((imp,i)=><div key={i} style={{color:"#94a3b8",fontSize:11,padding:"3px 0",display:"flex",gap:6}}><span style={{color:"#10b981"}}>&#10003;</span><span>{imp}</span></div>)}</div>}
+                  {listingD.missing_keywords?.length>0&&<div className="gcard"><div className="gct" style={{marginBottom:6}}>Missing Keywords</div><div style={{display:"flex",flexWrap:"wrap",gap:5}}>{listingD.missing_keywords.map((k,i)=><span key={i} style={{background:"rgba(99,102,241,.1)",border:"1px solid rgba(99,102,241,.2)",color:"#a5b4fc",borderRadius:100,padding:"2px 9px",fontSize:10}}>{k}</span>)}</div></div>}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* REVIEW REPLY */}
+          {tab==="reviewrep"&&(
+            <div className="fbox fa" style={{position:"relative"}}>
+              {isLocked&&<LockBox/>}
+              <h3 className="ict">Review Reply Generator</h3>
+              <p style={{color:dark?"#64748b":"#6b7280",fontSize:10,marginBottom:12}}>Negative/Positive review ka professional reply</p>
+              <div style={{marginBottom:10}}>
+                <label className="ilbl">Review Type</label>
+                <div style={{display:"flex",gap:7,marginTop:5}}>
+                  {[{id:"negative",l:"Negative Review"},{id:"positive",l:"Positive Review"},{id:"neutral",l:"Neutral"}].map(t=>(
+                    <button key={t.id} onClick={()=>setReviewF({...reviewF,type:t.id})} style={{flex:1,padding:"7px 0",borderRadius:9,border:"1.5px solid",cursor:"pointer",fontSize:11,fontWeight:700,fontFamily:"Inter,sans-serif",background:reviewF.type===t.id?"linear-gradient(135deg,#6366f1,#8b5cf6)":"rgba(15,23,42,.6)",borderColor:reviewF.type===t.id?"#6366f1":"#1e293b",color:reviewF.type===t.id?"#fff":"#94a3b8"}}>{t.l}</button>
+                  ))}
+                </div>
+              </div>
+              <label className="ilbl">Customer Review Paste Karo</label>
+              <textarea className="di" rows={3} placeholder="e.g. Product quality bahut kharab hai, 2 din mein toot gaya..." value={reviewF.review} onChange={e=>setReviewF({...reviewF,review:e.target.value})} style={{resize:"none",marginBottom:8,lineHeight:1.6}}/>
+              <button className="gbtn2" style={{background:"linear-gradient(135deg,#f59e0b,#f97316)"}} disabled={reviewL||!reviewF.review.trim()} onClick={async()=>{setReviewL(true);try{const d=await fetch("/api/analyze",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:reviewF.review,category:reviewF.type,platform:"review_reply",mode:"review_reply"})}).then(r=>r.json());setReviewD(d);}catch{showT("Failed");}setReviewL(false);}}>{reviewL?"Generating...":"Generate Reply"}</button>
+              {reviewL&&<div className="ssp"/>}
+              {reviewD&&!reviewL&&(
+                <div style={{marginTop:12}} className="fa">
+                  {reviewD.replies?.map((r,i)=>(
+                    <div key={i} style={{background:"rgba(245,158,11,.06)",border:"1px solid rgba(245,158,11,.2)",borderRadius:11,padding:12,marginBottom:8}}>
+                      <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:7}}>
+                        <div style={{fontWeight:700,fontSize:10,color:"#f59e0b"}}>{r.tone}</div>
+                        <button onClick={()=>navigator.clipboard?.writeText(r.text).then(()=>showT("Copied!"))} style={{background:"rgba(245,158,11,.12)",border:"1px solid rgba(245,158,11,.25)",borderRadius:6,padding:"3px 9px",color:"#f59e0b",fontSize:10,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>Copy</button>
+                      </div>
+                      <p style={{color:dark?"#94a3b8":"#374151",fontSize:11,lineHeight:1.75}}>{r.text}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* AD COPY GENERATOR */}
+          {tab==="adcopy"&&(
+            <div className="fbox fa" style={{position:"relative"}}>
+              {isLocked&&<LockBox/>}
+              <h3 className="ict">Ad Copy Generator</h3>
+              <p style={{color:dark?"#64748b":"#6b7280",fontSize:10,marginBottom:12}}>7 platforms ke liye ready-made ad texts</p>
+              {!pf.name&&<div className="errbanner">Pehle product analyze karo</div>}
+              <label className="ilbl">Platform Select Karo</label>
+              <div style={{display:"flex",flexWrap:"wrap",gap:6,marginBottom:12,marginTop:5}}>
+                {[
+                  {id:"Facebook",logo:"https://cdn.simpleicons.org/facebook/1877F2",c:"#1877f2"},
+                  {id:"Instagram",logo:"https://cdn.simpleicons.org/instagram/E1306C",c:"#e1306c"},
+                  {id:"Google Ads",logo:"https://cdn.simpleicons.org/google/4285F4",c:"#4285f4"},
+                  {id:"YouTube",logo:"https://cdn.simpleicons.org/youtube/FF0000",c:"#ff0000"},
+                  {id:"WhatsApp",logo:"https://cdn.simpleicons.org/whatsapp/25D366",c:"#25d366"},
+                  {id:"Snapchat",logo:"https://cdn.simpleicons.org/snapchat/000000",c:"#f5c518"},
+                  {id:"LinkedIn",logo:"https://cdn.simpleicons.org/linkedin/0077B5",c:"#0077b5"},
+                ].map(p=>(
+                  <button key={p.id} onClick={()=>setAdCopyPlat(p.id)} style={{display:"flex",alignItems:"center",gap:6,padding:"6px 12px",borderRadius:100,border:"1.5px solid",cursor:"pointer",fontSize:11,fontWeight:700,fontFamily:"Inter,sans-serif",background:adCopyPlat===p.id?p.c:"rgba(15,23,42,.6)",borderColor:adCopyPlat===p.id?p.c:"#1e293b",color:adCopyPlat===p.id?"#fff":"#94a3b8",transition:"all .15s"}}>
+                    <img src={p.logo} alt={p.id} style={{width:14,height:14,objectFit:"contain",filter:adCopyPlat===p.id?"brightness(100)":"none"}} onError={(e)=>{e.target.style.display="none";}}/>
+                    {p.id}
+                  </button>
+                ))}
+              </div>
+              <button className="gbtn2" style={{background:"linear-gradient(135deg,#6366f1,#a855f7)"}} disabled={adCopyL||!pf.name} onClick={async()=>{setAdCopyL(true);try{const d=await apiCall("ad_copy",{adPlatform:adCopyPlat});setAdCopyD(d);}catch{showT("Failed");}setAdCopyL(false);}}>{adCopyL?"Generating...":"Generate Ad Copy"}</button>
+              {adCopyL&&<div className="ssp"/>}
+              {adCopyD&&!adCopyL&&(
+                <div style={{marginTop:12}} className="fa">
+                  <div style={{background:"rgba(99,102,241,.08)",border:"1px solid rgba(99,102,241,.2)",borderRadius:10,padding:"7px 12px",marginBottom:10,fontSize:11,color:"#a5b4fc",fontWeight:600}}>{adCopyPlat} Ad Copy Ready</div>
+                  {adCopyD.copies?.map((c,i)=>(
+                    <div key={i} style={{background:dark?"rgba(2,8,23,.5)":"#f8fafc",border:dark?"1px solid #1e293b":"1px solid #e2e8f0",borderRadius:11,padding:12,marginBottom:8}}>
+                      <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:6}}>
+                        <div style={{fontWeight:700,fontSize:10,color:"#a5b4fc"}}>{c.format}</div>
+                        <button onClick={()=>navigator.clipboard?.writeText(c.text).then(()=>showT("Copied!"))} style={{background:"rgba(99,102,241,.1)",border:"1px solid rgba(99,102,241,.2)",borderRadius:6,padding:"3px 9px",color:"#a5b4fc",fontSize:10,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>Copy</button>
+                      </div>
+                      <p style={{color:dark?"#e2e8f0":"#374151",fontSize:11,lineHeight:1.7}}>{c.text}</p>
+                      {c.cta&&<p style={{color:"#10b981",fontSize:10,marginTop:5,fontWeight:600}}>CTA: {c.cta}</p>}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* CASH FLOW */}
+          {tab==="cashflow"&&(
+            <div className="fbox fa">
+              <h3 className="ict">Cash Flow Calculator</h3>
+              <p style={{color:dark?"#64748b":"#6b7280",fontSize:10,marginBottom:12}}>Net cash in hand aur reorder capacity</p>
+              <div className="prow">
+                <div className="pfield"><label>Total Investment (Rs.)</label><input type="number" placeholder="10000" value={cashF.invest} onChange={e=>setCashF({...cashF,invest:e.target.value})}/></div>
+                <div className="pfield"><label>Total Revenue (Rs.)</label><input type="number" placeholder="15000" value={cashF.revenue} onChange={e=>setCashF({...cashF,revenue:e.target.value})}/></div>
+                <div className="pfield"><label>Platform Fees (Rs.)</label><input type="number" placeholder="1500" value={cashF.fees} onChange={e=>setCashF({...cashF,fees:e.target.value})}/></div>
+                <div className="pfield"><label>Returns Loss (Rs.)</label><input type="number" placeholder="500" value={cashF.returns} onChange={e=>setCashF({...cashF,returns:e.target.value})}/></div>
+              </div>
+              <button className="cbtn" style={{width:"100%"}} onClick={()=>{
+                const inv=parseFloat(cashF.invest)||0;const rev=parseFloat(cashF.revenue)||0;
+                const fees=parseFloat(cashF.fees)||0;const ret=parseFloat(cashF.returns)||0;
+                const net=rev-fees-ret;const profit=net-inv;const cash=profit;
+                const reorder=Math.max(0,Math.floor(cash/Math.max(1,inv/10)));
+                const margin=rev>0?((profit/rev)*100).toFixed(1):0;
+                setCashR({net:net.toFixed(0),profit:profit.toFixed(0),cash:cash.toFixed(0),reorder,margin,roi:inv>0?((profit/inv)*100).toFixed(1):0});
+              }}>Calculate Cash Flow</button>
+              {cashR&&(
+                <div className="presult fa" style={{marginTop:12}}>
+                  {[{l:"Net Revenue",v:"Rs."+cashR.net,c:"#10b981"},{l:"Net Profit",v:"Rs."+cashR.profit,c:parseFloat(cashR.profit)>0?"#10b981":"#ef4444"},{l:"Cash In Hand",v:"Rs."+cashR.cash,c:"#a5b4fc"},{l:"ROI",v:cashR.roi+"%",c:"#f59e0b"},{l:"Margin",v:cashR.margin+"%",c:"#6366f1"},{l:"Reorder Units",v:cashR.reorder+" units",c:"#94a3b8"}].map(r=>(
+                    <div key={r.l} className="prc"><div className="prl">{r.l}</div><div className="prv" style={{color:r.c,fontSize:12}}>{r.v}</div></div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* SUPPLIER EMAIL */}
+          {tab==="suppmail"&&(
+            <div className="fbox fa" style={{position:"relative"}}>
+              {isLocked&&<LockBox/>}
+              <h3 className="ict">Supplier Email Generator</h3>
+              <p style={{color:dark?"#64748b":"#6b7280",fontSize:10,marginBottom:12}}>Professional supplier email + negotiation script</p>
+              {!pf.name&&<div className="errbanner">Pehle product analyze karo</div>}
+              <button className="gbtn2" style={{background:"linear-gradient(135deg,#10b981,#059669)"}} disabled={supplierL||!pf.name} onClick={async()=>{setSupplierEmailL(true);try{const d=await apiCall("supplier_email");setSupplierEmailD(d);}catch{showT("Failed");}setSupplierEmailL(false);}}>{supplierL?"Generating...":"Generate Supplier Email"}</button>
+              {supplierL&&<div className="ssp"/>}
+              {supplierEmailD&&!supplierL&&(
+                <div style={{marginTop:12}} className="fa">
+                  {supplierEmailD.emails?.map((em,i)=>(
+                    <div key={i} style={{background:dark?"rgba(16,185,129,.06)":"#f0fdf4",border:"1px solid rgba(16,185,129,.2)",borderRadius:11,padding:12,marginBottom:9}}>
+                      <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:7}}>
+                        <div style={{fontWeight:700,fontSize:10,color:"#10b981"}}>{em.subject}</div>
+                        <button onClick={()=>navigator.clipboard?.writeText("Subject: "+em.subject+"
+
+"+em.body).then(()=>showT("Copied!"))} style={{background:"rgba(16,185,129,.12)",border:"1px solid rgba(16,185,129,.25)",borderRadius:6,padding:"3px 9px",color:"#10b981",fontSize:10,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>Copy</button>
+                      </div>
+                      <p style={{color:dark?"#94a3b8":"#374151",fontSize:11,lineHeight:1.8,whiteSpace:"pre-wrap"}}>{em.body}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* RETURN POLICY */}
+          {tab==="retpol"&&(
+            <div className="fbox fa" style={{position:"relative"}}>
+              {isLocked&&<LockBox/>}
+              <h3 className="ict">Return Policy Generator</h3>
+              <p style={{color:dark?"#64748b":"#6b7280",fontSize:10,marginBottom:12}}>Platform-specific customer-friendly return policy</p>
+              {!pf.name&&<div className="errbanner">Pehle product analyze karo</div>}
+              <button className="gbtn2" style={{background:"linear-gradient(135deg,#8b5cf6,#7c3aed)"}} disabled={returnPolL||!pf.name} onClick={async()=>{setReturnPolL(true);try{const d=await apiCall("return_policy");setReturnPolD(d);}catch{showT("Failed");}setReturnPolL(false);}}>{returnPolL?"Generating...":"Generate Return Policy"}</button>
+              {returnPolL&&<div className="ssp"/>}
+              {returnPolD&&!returnPolL&&(
+                <div style={{marginTop:12}} className="fa">
+                  {returnPolD.policies?.map((pol,i)=>(
+                    <div key={i} style={{background:dark?"rgba(2,8,23,.5)":"#f8fafc",border:dark?"1px solid rgba(139,92,246,.2)":"1px solid #e2e8f0",borderRadius:11,padding:12,marginBottom:8}}>
+                      <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:6}}>
+                        <div style={{fontWeight:700,fontSize:10,color:"#a5b4fc"}}>{pol.platform}</div>
+                        <button onClick={()=>navigator.clipboard?.writeText(pol.text).then(()=>showT("Copied!"))} style={{background:"rgba(139,92,246,.1)",border:"1px solid rgba(139,92,246,.2)",borderRadius:6,padding:"3px 9px",color:"#a5b4fc",fontSize:10,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>Copy</button>
+                      </div>
+                      <p style={{color:dark?"#94a3b8":"#374151",fontSize:11,lineHeight:1.75}}>{pol.text}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* COMPLIANCE CHECKER */}
+          {tab==="comply"&&(
+            <div className="fbox fa" style={{position:"relative"}}>
+              {isLocked&&<LockBox/>}
+              <h3 className="ict">Product Compliance Checker</h3>
+              <p style={{color:dark?"#64748b":"#6b7280",fontSize:10,marginBottom:12}}>GST slab, certifications aur legal requirements</p>
+              {!pf.name&&<div className="errbanner">Pehle product analyze karo</div>}
+              <button className="gbtn2" style={{background:"linear-gradient(135deg,#0ea5e9,#0369a1)"}} disabled={compliL||!pf.name} onClick={async()=>{setCompliL(true);try{const d=await apiCall("compliance_check");setCompliD(d);}catch{showT("Failed");}setCompliL(false);}}>{compliL?"Checking...":"Check Compliance"}</button>
+              {compliL&&<div className="ssp"/>}
+              {compliD&&!compliL&&(
+                <div style={{marginTop:12}} className="fa">
+                  <div style={{background:"rgba(14,165,233,.08)",border:"1px solid rgba(14,165,233,.25)",borderRadius:12,padding:13,marginBottom:10}}>
+                    <div style={{display:"flex",justifyContent:"space-between",marginBottom:5}}>
+                      <span style={{fontSize:11,color:"#64748b"}}>GST Slab</span>
+                      <span style={{fontWeight:800,fontSize:13,color:"#0ea5e9"}}>{compliD.gst_slab}</span>
+                    </div>
+                    <div style={{display:"flex",justifyContent:"space-between"}}>
+                      <span style={{fontSize:11,color:"#64748b"}}>HSN Code</span>
+                      <span style={{fontWeight:700,fontSize:12,color:"#f8fafc"}}>{compliD.hsn_code}</span>
+                    </div>
+                  </div>
+                  {compliD.certifications?.length>0&&<div className="gcard" style={{marginBottom:8}}><div className="gct" style={{marginBottom:6}}>Required Certifications</div>{compliD.certifications.map((c,i)=><div key={i} style={{color:"#94a3b8",fontSize:11,padding:"3px 0",display:"flex",gap:6}}><span style={{color:"#f59e0b"}}>&#8226;</span><span>{c}</span></div>)}</div>}
+                  {compliD.legal_requirements?.length>0&&<div className="gcard" style={{marginBottom:8}}><div className="gct" style={{marginBottom:6}}>Legal Requirements</div>{compliD.legal_requirements.map((r,i)=><div key={i} style={{color:"#94a3b8",fontSize:11,padding:"3px 0",display:"flex",gap:6}}><span style={{color:"#10b981"}}>&#10003;</span><span>{r}</span></div>)}</div>}
+                  {compliD.warnings?.length>0&&<div style={{background:"rgba(239,68,68,.07)",border:"1px solid rgba(239,68,68,.2)",borderRadius:10,padding:11}}><div style={{fontWeight:700,color:"#ef4444",fontSize:11,marginBottom:5}}>Warnings</div>{compliD.warnings.map((w,i)=><div key={i} style={{color:"#94a3b8",fontSize:11,padding:"2px 0",display:"flex",gap:6}}><span style={{color:"#ef4444"}}>!</span><span>{w}</span></div>)}</div>}
                 </div>
               )}
             </div>
