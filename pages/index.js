@@ -163,6 +163,7 @@ export default function App(){
   const[qLoad,setQLoad]=useState(false);
   const[qSent,setQSent]=useState(false);
   const[refCopied,setRefCopied]=useState(false);
+  const[showRef,setShowRef]=useState(false);
   const[profF,setProfF]=useState({buy:"",sell:"",units:"1",fee:"10",ship:"60",ads:"200"});
   const[profR,setProfR]=useState(null);
   const[descD,setDescD]=useState(null);const[descL,setDescL]=useState(false);
@@ -887,7 +888,7 @@ export default function App(){
     .cbtn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(99,102,241,.4)}
     .gbtn2:hover{transform:translateY(-1px);filter:brightness(1.08)}
     @media(max-width:600px){.nav{padding:10px 11px}.dc{padding:18px 9px 60px}.pgrid{gap:4px}.ppb{padding:8px 2px 6px}.nc{padding:24px 14px}.icard{padding:15px 11px}}
-  `
+
     /* ── LIGHT MODE ── */
     .light-mode .dash{background:#f0f4ff;color:#0f172a;}
     .light-mode .nav{background:rgba(255,255,255,.97);border-bottom:1px solid rgba(99,102,241,.1);box-shadow:0 2px 16px rgba(99,102,241,.08);}
