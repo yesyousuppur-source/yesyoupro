@@ -614,7 +614,7 @@ export default function App(){
       if(!loaded){showT("Payment failed");setPayStep("form");return;}
       setPayStep("form");
       const rzp=new window.Razorpay({
-        key:kd.key,amount:24900,currency:"INR",name:"YesYouPro",description:"Premium 7 Days",
+        key:kd.key,amount:newUserTimer?24900:104900,currency:"INR",name:"YesYouPro",description:"Premium 7 Days",
         handler:(r)=>{if(r.razorpay_payment_id)activatePrem();},
         prefill:{name:user?.name||"",email:isGuest?"":user?.email||""},
         theme:{color:"#6366f1"},
@@ -897,22 +897,29 @@ export default function App(){
           {!showPay && <>
             <div className="pb2">💎 PREMIUM</div>
             <h2 className="ptitle">Unlock Everything</h2>
-            <div className="ppr">₹249 <span>/ 7 days</span></div>
+            <div className="ppr">
+                  {newUserTimer?<>$3 <span>/ 7 days</span></>:<>$13 <span>/ 7 days</span></>}
+                </div>
+                <div style={{fontSize:12,color:"#94a3b8",marginBottom:4}}>
+                  {newUserTimer?<span style={{color:"#10b981",fontWeight:700}}>₹249 — Limited Time!</span>:<span>₹1,049</span>}
+                </div>
             <div className="phigh">📊 30 analyses / 7 days (Free: 2/day only)<br/>⏰ No 24hr lockout<br/>🚫 Zero ads<br/>📋 Copy any AI result<br/>🔓 All 13 tools unlocked</div>
             <div className="pflist">{["✅ 30 analyses / 7 days","✅ Zero ads","✅ No 24hr lockout","📋 Copy full reports","🎓 Starter Guide","🔰 Beginner Products","🧮 Investment Calculator","📊 Sales Estimator","🏷️ Price Optimizer","📦 Inventory Calculator","⭐ Review Analyzer","🎯 Niche Finder","📺 Ads on 8 platforms"].map(f=><div key={f} className="pfi">{f}</div>)}</div>
-            <button className="pbtn2" onClick={()=>setShowPay(true)}>🔓 Unlock Premium — ₹249</button>
+            <button className="pbtn2" onClick={()=>setShowPay(true)}>
+                  {newUserTimer?"🔓 Unlock Premium — $3 (₹249) ⚡":"🔓 Unlock Premium — $13 (₹1,049)"}
+                </button>
             <button className="mcan" onClick={()=>setShowPrem(false)}>Maybe later</button>
           </>}
           {showPay && payStep==="form" && <>
             <h2 className="ptitle">Complete Payment</h2>
             <div className="paybox">
               <div className="pr2"><span>Plan</span><span>Premium 7-day</span></div>
-              <div className="pr2"><span>Amount</span><span style={{color:"#f59e0b",fontWeight:700}}>₹249</span></div>
+              <div className="pr2"><span>Amount</span><span style={{color:"#f59e0b",fontWeight:700}}>{newUserTimer?"$3 (₹249)":"$13 (₹1,049)"}</span></div>
               <div className="pr2"><span>Analyses</span><span style={{color:"#10b981"}}>30 in 7 days</span></div>
               <div className="pr2"><span>All 13 Tools</span><span style={{color:"#10b981"}}>✅ Unlocked</span></div>
               <div className="pr2"><span>Copy Results</span><span style={{color:"#a5b4fc"}}>✅ Enabled</span></div>
             </div>
-            <button className="pbtn2" onClick={handlePay}><svg width="14" height="14" viewBox="0 0 30 30" fill="none"><path d="M14.396 0L0 19.578h9.979L7.242 30l22.758-19.56H19.5L22.25 0z" fill="#528FF0"/></svg>Pay ₹249 via Razorpay</button>
+            <button className="pbtn2" onClick={handlePay}><svg width="14" height="14" viewBox="0 0 30 30" fill="none"><path d="M14.396 0L0 19.578h9.979L7.242 30l22.758-19.56H19.5L22.25 0z" fill="#528FF0"/></svg>{newUserTimer?"Pay $3 (₹249) via Razorpay":"Pay $13 (₹1,049) via Razorpay"}</button>
             <button className="mcan" onClick={()=>setShowPay(false)}>← Back</button>
           </>}
           {showPay && payStep==="processing" && <div style={{textAlign:"center",padding:30}}><div className="sp" style={{margin:"0 auto"}}/><p style={{color:"#94a3b8",marginTop:11}}>Processing...</p></div>}
@@ -1120,7 +1127,22 @@ export default function App(){
             <span style={{color:usage.remaining>0?"#10b981":"#ef4444",fontWeight:700}}>{curPlan==="premium"?usage.remaining+" left":usage.remaining+"/2 today"}</span>
           </div>}
           <div className="navr">
-            {curPlan==="free" && <button className="upbtn" onClick={()=>setShowPrem(true)}>💎 ₹249</button>}
+            {curPlan==="free" && (
+                <button onClick={()=>setShowPrem(true)} style={{
+                  background:newUserTimer?"linear-gradient(135deg,#ef4444,#f59e0b)":"linear-gradient(135deg,#f59e0b,#ef4444)",
+                  border:"none",borderRadius:100,padding:"5px 12px",color:"#fff",cursor:"pointer",
+                  fontFamily:"Inter,sans-serif",display:"flex",flexDirection:"column",alignItems:"center",gap:0,lineHeight:1.2
+                }}>
+                  {newUserTimer?(
+                    <>
+                      <span style={{fontSize:8,fontWeight:700,color:"rgba(255,255,255,.85)"}}>⚡ {String(newUserTimer.h).padStart(2,"0")}:{String(newUserTimer.m).padStart(2,"0")}:{String(newUserTimer.s).padStart(2,"0")}</span>
+                      <span style={{fontSize:11,fontWeight:900}}>💎 $3 (₹249)</span>
+                    </>
+                  ):(
+                    <span style={{fontSize:11,fontWeight:900}}>💎 $13 (₹1,049)</span>
+                  )}
+                </button>
+              )}
             {isGuest
               ? <button onClick={()=>setScreen("auth")} style={{background:"rgba(99,102,241,.12)",border:"1px solid rgba(99,102,241,.35)",borderRadius:100,padding:"5px 11px",color:"#a5b4fc",fontWeight:700,fontSize:11,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>Login / Sign Up</button>
               : <div className="avt" onClick={()=>{setShowProf(true);setProfTab("main");}}>{user?.photo?<img src={user.photo} alt=""/>:user?.name?.[0]?.toUpperCase()||"U"}</div>
@@ -1256,45 +1278,7 @@ export default function App(){
             </div>
           </div>
 
-          {/* ── NEW USER COUNTDOWN ── */}
-          {newUserTimer&&curPlan!=="premium"&&(
-            <div style={{background:"linear-gradient(135deg,rgba(239,68,68,.12),rgba(245,158,11,.06))",border:"1px solid rgba(239,68,68,.3)",borderRadius:18,padding:20,marginBottom:20,textAlign:"center"}}>
-              <div style={{display:"inline-flex",alignItems:"center",gap:5,background:"rgba(239,68,68,.15)",border:"1px solid rgba(239,68,68,.25)",borderRadius:100,padding:"3px 13px",fontSize:10,color:"#ef4444",fontWeight:700,marginBottom:10}}>
-                ⚡ LIMITED TIME OFFER
-              </div>
-              <div style={{fontWeight:800,fontSize:15,color:"#f8fafc",marginBottom:3}}>Price Badh Rahi Hai!</div>
-              <div style={{fontSize:11,color:"#64748b",marginBottom:14}}>Pehle 3 din mein lo — discount price mein</div>
-              <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:8,marginBottom:16}}>
-                {[{v:String(newUserTimer.h).padStart(2,"0"),l:"Hours"},{sep:true},{v:String(newUserTimer.m).padStart(2,"0"),l:"Min"},{sep:true},{v:String(newUserTimer.s).padStart(2,"0"),l:"Sec"}].map((t,i)=>
-                  t.sep?<div key={i} style={{fontSize:22,fontWeight:900,color:"#ef4444",marginBottom:7}}>:</div>:
-                  <div key={i} style={{background:"rgba(2,8,23,.8)",border:"1px solid rgba(239,68,68,.2)",borderRadius:10,padding:"10px 14px",minWidth:58}}>
-                    <div style={{fontSize:26,fontWeight:900,color:"#ef4444",fontVariantNumeric:"tabular-nums",lineHeight:1}}>{t.v}</div>
-                    <div style={{fontSize:9,color:"#64748b",fontWeight:600,marginTop:2,textTransform:"uppercase"}}>{t.l}</div>
-                  </div>
-                )}
-              </div>
-              <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:16,marginBottom:14}}>
-                <div style={{textAlign:"center"}}>
-                  <div style={{fontSize:28,fontWeight:900,background:"linear-gradient(135deg,#10b981,#059669)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",backgroundClip:"text"}}>$3</div>
-                  <div style={{fontSize:10,color:"#94a3b8"}}>₹249 — Abhi ka price</div>
-                </div>
-                <div style={{fontSize:20,color:"#f59e0b"}}>→</div>
-                <div style={{textAlign:"center",opacity:.6}}>
-                  <div style={{fontSize:22,fontWeight:900,color:"#94a3b8",textDecoration:"line-through"}}>$13</div>
-                  <div style={{fontSize:10,color:"#64748b"}}>₹1,049 — 3 din baad</div>
-                </div>
-              </div>
-              <div style={{display:"inline-block",background:"rgba(239,68,68,.1)",border:"1px solid rgba(239,68,68,.2)",borderRadius:100,padding:"3px 13px",fontSize:10,color:"#ef4444",fontWeight:700,marginBottom:14}}>
-                🔥 Aaj lo — ₹800 bachao!
-              </div>
-              <button onClick={()=>setShowPrem(true)} style={{width:"100%",background:"linear-gradient(135deg,#ef4444,#f59e0b)",border:"none",borderRadius:11,padding:"12px 0",color:"#fff",fontWeight:800,fontSize:14,cursor:"pointer",fontFamily:"Inter,sans-serif",display:"block",boxShadow:"0 6px 20px rgba(239,68,68,.3)"}}>
-                Get Premium Now — $3 (₹249)
-              </button>
-              <div style={{height:4,background:"#1e293b",borderRadius:100,overflow:"hidden",marginTop:12}}>
-                <div style={{height:"100%",width:newUserTimer.pct+"%",background:"linear-gradient(90deg,#ef4444,#f59e0b)",borderRadius:100,transition:"width 1s linear"}}/>
-              </div>
-            </div>
-          )}
+
 
           {timer && curPlan==="free" && <div className="tbox">
             <div className="ttitle">⏳ Daily Limit Reached</div>
@@ -1314,7 +1298,7 @@ export default function App(){
           {curPlan==="free" && !timer && usage && (
             usage.remaining>0
               ?<div className="bnr-g"><div><div style={{fontWeight:700,fontSize:11,color:"#10b981"}}>✅ All Tools Unlocked — {usage.remaining} Analyses Left</div><div style={{fontSize:10,color:"#475569"}}>No login needed. Resets every 24hrs.</div></div></div>
-              :<div className="bnr-r"><div><div style={{fontWeight:700,fontSize:11,color:"#ef4444"}}>🔒 Daily Limit Reached — Tools Locked</div><div style={{fontSize:10,color:"#64748b"}}>Upgrade for 30 analyses & no lockout.</div></div><button onClick={()=>setShowPrem(true)} style={{background:"linear-gradient(135deg,#f59e0b,#ef4444)",border:"none",borderRadius:8,padding:"5px 10px",color:"#fff",fontWeight:700,fontSize:10,cursor:"pointer",whiteSpace:"nowrap",fontFamily:"Inter,sans-serif"}}>💎 ₹249</button></div>
+              :<div className="bnr-r"><div><div style={{fontWeight:700,fontSize:11,color:"#ef4444"}}>🔒 Daily Limit Reached — Tools Locked</div><div style={{fontSize:10,color:"#64748b"}}>Upgrade for 30 analyses & no lockout.</div></div><button onClick={()=>setShowPrem(true)} style={{background:"linear-gradient(135deg,#f59e0b,#ef4444)",border:"none",borderRadius:8,padding:"5px 10px",color:"#fff",fontWeight:700,fontSize:10,cursor:"pointer",whiteSpace:"nowrap",fontFamily:"Inter,sans-serif"}}>{newUserTimer?"💎 $3":"💎 $13"}</button></div>
           )}
 
           <div className="icard">
