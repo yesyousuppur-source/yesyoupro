@@ -877,58 +877,55 @@ export default function App(){
     @media(max-width:600px){.nav{padding:10px 11px}.dc{padding:18px 9px 60px}.pgrid{gap:4px}.ppb{padding:8px 2px 6px}.nc{padding:24px 14px}.icard{padding:15px 11px}}
   `
     /* ── LIGHT MODE ── */
-    .light-mode{--bg:#f1f5f9;--bg2:#ffffff;--bg3:#f8fafc;--card:rgba(255,255,255,.95);--border:rgba(0,0,0,.07);--text:#0f172a;--text2:#334155;--muted:#94a3b8;--input:#f8fafc;--inputborder:#e2e8f0;}
-    .light-mode body,.light-mode{background:#f1f5f9;color:#0f172a;}
-    .light-mode .dash{background:#f1f5f9;color:#0f172a;}
-    .light-mode .nav{background:rgba(255,255,255,.95);border-bottom:1px solid rgba(0,0,0,.07);box-shadow:0 2px 12px rgba(0,0,0,.06);}
-    .light-mode .logo{background:linear-gradient(135deg,#6366f1,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-    .light-mode .icard{background:rgba(255,255,255,.95);border:1px solid rgba(99,102,241,.15);box-shadow:0 2px 16px rgba(0,0,0,.07);}
+    .light-mode .dash{background:#f0f4ff;color:#0f172a;}
+    .light-mode .nav{background:rgba(255,255,255,.97);border-bottom:1px solid rgba(99,102,241,.1);box-shadow:0 2px 16px rgba(99,102,241,.08);}
+    .light-mode .icard{background:#ffffff;border:1px solid rgba(99,102,241,.2);box-shadow:0 4px 20px rgba(99,102,241,.08);}
     .light-mode .di{background:#f8fafc;border:1px solid #e2e8f0;color:#0f172a;}
-    .light-mode .di::placeholder{color:#adb5bd;}
+    .light-mode .di::placeholder{color:#94a3b8;}
     .light-mode .di:focus{border-color:#6366f1;}
     .light-mode .pick-btn{background:#f8fafc;border:1px solid #e2e8f0;color:#475569;}
-    .light-mode .pick-btn.sel{background:rgba(99,102,241,.06);border-color:rgba(99,102,241,.3);color:#0f172a;}
-    .light-mode .pick-drop{background:#ffffff;border:1px solid #e2e8f0;box-shadow:0 8px 24px rgba(0,0,0,.1);}
+    .light-mode .pick-btn.sel{background:rgba(99,102,241,.08);border-color:rgba(99,102,241,.35);color:#0f172a;}
+    .light-mode .pick-drop{background:#ffffff;border:1px solid rgba(99,102,241,.15);box-shadow:0 12px 32px rgba(99,102,241,.12);}
     .light-mode .chip{background:#f1f5f9;border:1px solid #e2e8f0;color:#475569;}
-    .light-mode .chip:hover{background:#e0e7ff;border-color:#6366f1;color:#6366f1;}
+    .light-mode .chip:hover{background:#ede9fe;border-color:#6366f1;color:#6366f1;}
     .light-mode .chip.on{color:#fff;}
-    .light-mode .gcard{background:#ffffff;border:1px solid rgba(0,0,0,.07);box-shadow:0 2px 8px rgba(0,0,0,.04);}
+    .light-mode .gcard{background:#ffffff;border:1px solid rgba(99,102,241,.1);box-shadow:0 2px 12px rgba(99,102,241,.06);}
     .light-mode .gct{color:#0f172a;}
     .light-mode .gctx{color:#475569;}
-    .light-mode .mc{background:#ffffff;border:1px solid rgba(0,0,0,.07);}
+    .light-mode .mc{background:#ffffff;border:1px solid rgba(99,102,241,.12);}
     .light-mode .ml{color:#64748b;}
-    .light-mode .fbox{background:#ffffff;border:1px solid rgba(99,102,241,.12);box-shadow:0 2px 16px rgba(0,0,0,.06);}
+    .light-mode .fbox{background:#ffffff;border:1px solid rgba(99,102,241,.15);box-shadow:0 4px 20px rgba(99,102,241,.06);}
+    .light-mode .fbox h3{color:#0f172a;}
+    .light-mode .pfield label{color:#475569;}
     .light-mode .pfield input,.light-mode .pfield select{background:#f8fafc;border:1px solid #e2e8f0;color:#0f172a;}
-    .light-mode .prc{background:#f8fafc;border:1px solid #e2e8f0;}
+    .light-mode .prc{background:#f8fafc;border:1px solid rgba(99,102,241,.12);}
     .light-mode .prl{color:#64748b;}
-    .light-mode .prv{filter:none;}
     .light-mode .ftab{background:#f1f5f9;border:1px solid #e2e8f0;color:#64748b;}
     .light-mode .ftab.on{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;border-color:transparent;}
     .light-mode .fglbl{color:#64748b;}
-    .light-mode .tcard{background:#ffffff;border:1px solid rgba(0,0,0,.07);}
-    .light-mode .trnk{background:linear-gradient(135deg,#f59e0b,#ef4444);}
+    .light-mode .tcard{background:#ffffff;border:1px solid rgba(99,102,241,.1);}
     .light-mode .sc{background:#ffffff;border:1px solid rgba(16,185,129,.2);}
     .light-mode .cc{background:#f8fafc;border:1px solid #e2e8f0;}
     .light-mode .ccbox{background:#f1f5f9;}
-    .light-mode .prov{background:rgba(0,0,0,.6);}
-    .light-mode .prm{background:linear-gradient(180deg,#ffffff,#f8fafc);border:1px solid rgba(0,0,0,.1);}
-    .light-mode .pmbtn{background:rgba(0,0,0,.02);border:1px solid rgba(0,0,0,.07);color:#334155;}
-    .light-mode .pmbtn:hover{background:rgba(99,102,241,.05);border-color:rgba(99,102,241,.2);}
+    .light-mode .prov{background:rgba(0,0,0,.5);}
+    .light-mode .prm{background:linear-gradient(180deg,#ffffff,#f8fafc);border:1px solid rgba(0,0,0,.08);}
+    .light-mode .pmbtn{background:rgba(99,102,241,.03);border:1px solid rgba(99,102,241,.1);color:#334155;}
+    .light-mode .pmbtn:hover{background:rgba(99,102,241,.07);border-color:rgba(99,102,241,.25);}
     .light-mode .tbox2{background:#f8fafc;border:1px solid #e2e8f0;}
     .light-mode .th{color:#334155;}
     .light-mode .tp{color:#64748b;}
     .light-mode .qbox{background:#f8fafc;border:1px solid #e2e8f0;}
     .light-mode .qinp{color:#0f172a;}
-    .light-mode .ssp{border-color:rgba(99,102,241,.2);border-top-color:#6366f1;}
-    .light-mode footer{color:#94a3b8;border-top:1px solid rgba(0,0,0,.06);}
-    .light-mode .upill{background:rgba(255,255,255,.9);border:1px solid #e2e8f0;}
+    .light-mode footer{color:#94a3b8;border-top:1px solid rgba(99,102,241,.08);}
+    .light-mode .upill{background:rgba(255,255,255,.95);border:1px solid rgba(99,102,241,.15);color:#334155;}
     .light-mode .htitle{color:#0f172a;}
-    .light-mode .hsub{color:#64748b;}
-    .light-mode .bnr-g{background:rgba(16,185,129,.07);border:1px solid rgba(16,185,129,.2);}
-    .light-mode .bnr-r{background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.2);}
-    .light-mode .errbanner{background:rgba(239,68,68,.05);}
-    .light-mode .pg-lbl,.light-mode .pglbl{color:#94a3b8;}
-    .light-mode .dc{background:#f1f5f9;}
+    .light-mode .hsub{color:#475569;}
+    .light-mode .bnr-g{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);}
+    .light-mode .bnr-r{background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.2);}
+    .light-mode .errbanner{background:rgba(239,68,68,.06);}
+    .light-mode .pglbl{color:#94a3b8;}
+    .light-mode .dc{background:#f0f4ff;}
+    .light-mode .icard h3,.light-mode .fbox p{color:#475569;}
   `
 
   if(screen==="loading") return (
