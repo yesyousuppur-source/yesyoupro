@@ -146,6 +146,16 @@ export default function App() {
   const [cmpA,setCmpA] = useState({name:"",cat:"",plat:""});
   const [cmpB,setCmpB] = useState({name:"",cat:"",plat:""});
   const [cmpRes,setCmpRes] = useState(null);const [cmpL,setCmpL] = useState(false);
+  const [launchD,setLaunchD] = useState(null);const [launchL,setLaunchL] = useState(false);
+  const [festSeason,setFestSeason] = useState("Diwali");
+  const [festD,setFestD] = useState(null);const [festL,setFestL] = useState(false);
+  const [roasF,setRoasF] = useState({spend:"",sales:"",platform:"Instagram"});
+  const [roasR,setRoasR] = useState(null);
+  const [bundleD,setBundleD] = useState(null);const [bundleL,setBundleL] = useState(false);
+  const [returnD,setReturnD] = useState(null);const [returnL,setReturnL] = useState(false);
+  const [waMsgD,setWaMsgD] = useState(null);const [waMsgL,setWaMsgL] = useState(false);
+  const [captionD,setCaptionD] = useState(null);const [captionL,setCaptionL] = useState(false);
+  const [titleD,setTitleD] = useState(null);const [titleL,setTitleL] = useState(false);
   const [history,setHistory] = useState([]);
   const [showHist,setShowHist] = useState(false);
 
@@ -970,7 +980,7 @@ export default function App() {
             <div className="ftabs"><button className={"ftab"+(tab==="profit"?" on":"")} onClick={()=>setTab("profit")}>💰 Profit Calculator</button></div>
             <div className="fglbl" style={{color:isLocked?"#ef4444":"#10b981"}}>{isLocked?"🔒 Locked (Buy Premium to Unlock)":"✅ Premium Tools (Unlocked)"}</div>
             <div className="ftabs">
-              {[{id:"starter",l:"🎓 Starter Guide"},{id:"beginner",l:"🔰 Beginner Products"},{id:"investment",l:"🧮 Investment Calc"},{id:"description",l:"📝 Description"},{id:"trending",l:"🔥 Trending"},{id:"competitor",l:"⚔️ Competitor"},{id:"supplier",l:"📦 Supplier"},{id:"sales",l:"📊 Sales Estimator"},{id:"price",l:"🏷️ Price Optimizer"},{id:"inventory",l:"📦 Inventory"},{id:"review",l:"⭐ Reviews"},{id:"niche",l:"🎯 Niche Finder"},{id:"gst",l:"🧾 GST Calc"},{id:"shipping",l:"🚚 Shipping Cost"},{id:"compare",l:"⚡ Compare"}].map(t=>(
+              {[{id:"starter",l:"🎓 Starter Guide"},{id:"beginner",l:"🔰 Beginner Products"},{id:"investment",l:"🧮 Investment Calc"},{id:"description",l:"📝 Description"},{id:"trending",l:"🔥 Trending"},{id:"competitor",l:"⚔️ Competitor"},{id:"supplier",l:"📦 Supplier"},{id:"sales",l:"📊 Sales Estimator"},{id:"price",l:"🏷️ Price Optimizer"},{id:"inventory",l:"📦 Inventory"},{id:"review",l:"⭐ Reviews"},{id:"niche",l:"🎯 Niche Finder"},{id:"gst",l:"🧾 GST Calc"},{id:"shipping",l:"🚚 Shipping Cost"},{id:"compare",l:"⚡ Compare"},{id:"launch",l:"🚀 Launch Strategy"},{id:"festival",l:"🎊 Festival Planner"},{id:"roas",l:"💰 ROAS Calc"},{id:"bundle",l:"🎁 Bundle Creator"},{id:"returns",l:"📦 Return Manager"},{id:"wamsg",l:"💬 WhatsApp Msg"},{id:"caption",l:"📸 Caption Gen"},{id:"titl",l:"📝 Title Optimizer"}].map(t=>(
                 <button key={t.id} className={"ftab"+(tab===t.id?" on":"")} onClick={()=>{if(isLocked){setShowPrem(true);return;}setTab(t.id);}}>{t.l}{isLocked&&" 🔒"}</button>
               ))}
             </div>
@@ -1250,6 +1260,267 @@ export default function App() {
                       {(()=>{const aScore=parseInt(cmpRes.a.viral_score)||0;const bScore=parseInt(cmpRes.b.viral_score)||0;return (aScore>=bScore?cmpRes.a.name:cmpRes.b.name)+" better choice hai higher viral potential ke saath.";})()} Dono ka profit calculator mein check karo.
                     </p>
                   </div>
+                </div>
+              )}
+            </div>
+          )}
+
+
+
+          {/* LAUNCH STRATEGY */}
+          {tab==="launch"&&(
+            <div className="fbox fa" style={{position:"relative"}}>
+              {isLocked&&<LockBox/>}
+              <h3 className="ict">Launch Strategy Generator</h3>
+              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Day 1 se Day 30 ka complete product launch plan</p>
+              {!pf.name&&<div className="errbanner">Pehle product analyze karo</div>}
+              <button className="gbtn2" style={{background:"linear-gradient(135deg,#6366f1,#8b5cf6)"}} disabled={launchL||!pf.name} onClick={async()=>{setLaunchL(true);try{const d=await apiCall("launch_strategy");setLaunchD(d);}catch(e){showT("Failed");}setLaunchL(false);}}>{launchL?"Generating...":"Generate Launch Plan"}</button>
+              {launchL&&<div className="ssp"/>}
+              {launchD&&!launchL&&(
+                <div style={{marginTop:12}} className="fa">
+                  <div style={{background:"rgba(99,102,241,.08)",border:"1px solid rgba(99,102,241,.2)",borderRadius:12,padding:13,marginBottom:10}}>
+                    <div style={{fontWeight:800,fontSize:12,color:"#a5b4fc",marginBottom:4}}>Overview</div>
+                    <p style={{color:"#94a3b8",fontSize:11,lineHeight:1.65}}>{launchD.overview}</p>
+                  </div>
+                  {launchD.week_plan?.map((w,i)=>(
+                    <div key={i} className="gcard" style={{marginBottom:8}}>
+                      <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:7}}>
+                        <div style={{width:24,height:24,background:"linear-gradient(135deg,#6366f1,#8b5cf6)",borderRadius:"50%",display:"flex",alignItems:"center",justifyContent:"center",fontWeight:800,fontSize:11,color:"#fff"}}>{i+1}</div>
+                        <div style={{fontWeight:700,fontSize:12,color:"#e2e8f0"}}>{w.week}</div>
+                      </div>
+                      {w.tasks?.map((t,j)=><div key={j} style={{color:"#94a3b8",fontSize:11,padding:"2px 0",display:"flex",gap:6}}><span style={{color:"#6366f1"}}>&#8226;</span><span>{t}</span></div>)}
+                    </div>
+                  ))}
+                  {launchD.pricing_strategy&&<div className="gcard" style={{marginBottom:8}}><div className="gct" style={{marginBottom:5}}>Pricing Strategy</div><p className="gctx">{launchD.pricing_strategy}</p></div>}
+                  {launchD.review_strategy&&<div className="gcard"><div className="gct" style={{marginBottom:5}}>Review Strategy</div><p className="gctx">{launchD.review_strategy}</p></div>}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* FESTIVAL PLANNER */}
+          {tab==="festival"&&(
+            <div className="fbox fa" style={{position:"relative"}}>
+              {isLocked&&<LockBox/>}
+              <h3 className="ict">Festival Season Planner</h3>
+              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Festivals ke liye advance stock aur pricing strategy</p>
+              <div style={{marginBottom:12}}>
+                <label className="ilbl">Festival Select Karo</label>
+                <div style={{display:"flex",flexWrap:"wrap",gap:6,marginTop:6}}>
+                  {["Diwali","Holi","Eid","Christmas","New Year","Amazon Sale","Flipkart Sale","Valentine Day","Navratri","Raksha Bandhan","IPL Season","Back to School"].map(s=>(
+                    <button key={s} onClick={()=>setFestSeason(s)} style={{padding:"5px 12px",borderRadius:100,border:"1.5px solid",cursor:"pointer",fontSize:11,fontWeight:600,fontFamily:"Inter,sans-serif",background:festSeason===s?"linear-gradient(135deg,#f59e0b,#ef4444)":"rgba(15,23,42,.6)",borderColor:festSeason===s?"#f59e0b":"#1e293b",color:festSeason===s?"#fff":"#94a3b8"}}>{s}</button>
+                  ))}
+                </div>
+              </div>
+              {!pf.name&&<div className="errbanner">Pehle product analyze karo</div>}
+              <button className="gbtn2" style={{background:"linear-gradient(135deg,#f59e0b,#ef4444)"}} disabled={festL||!pf.name} onClick={async()=>{setFestL(true);try{const d=await apiCall("festival_planner",{season:festSeason});setFestD(d);}catch{showT("Failed");}setFestL(false);}}>{festL?"Planning...":"Generate Festival Plan"}</button>
+              {festL&&<div className="ssp"/>}
+              {festD&&!festL&&(
+                <div style={{marginTop:12}} className="fa">
+                  <div style={{background:"rgba(245,158,11,.08)",border:"1px solid rgba(245,158,11,.2)",borderRadius:12,padding:13,marginBottom:10}}>
+                    <div style={{fontWeight:800,fontSize:12,color:"#f59e0b",marginBottom:4}}>{festSeason} Strategy</div>
+                    <p style={{color:"#94a3b8",fontSize:11,lineHeight:1.65}}>{festD.overview}</p>
+                  </div>
+                  {festD.timeline?.map((t,i)=>(
+                    <div key={i} style={{display:"flex",gap:10,padding:"8px 0",borderBottom:"1px solid rgba(255,255,255,.04)"}}>
+                      <div style={{minWidth:65,fontSize:10,color:"#f59e0b",fontWeight:700,flexShrink:0}}>{t.when}</div>
+                      <div style={{color:"#94a3b8",fontSize:11,lineHeight:1.5}}>{t.action}</div>
+                    </div>
+                  ))}
+                  {festD.pricing_strategy&&<div className="gcard" style={{marginTop:10,marginBottom:8}}><div className="gct" style={{marginBottom:5}}>Pricing Strategy</div><p className="gctx">{festD.pricing_strategy}</p></div>}
+                  {festD.stock_recommendation&&<div className="gcard" style={{marginBottom:8}}><div className="gct" style={{marginBottom:5}}>Stock Recommendation</div><p className="gctx">{festD.stock_recommendation}</p></div>}
+                  {festD.ad_strategy&&<div className="gcard"><div className="gct" style={{marginBottom:5}}>Ad Strategy</div><p className="gctx">{festD.ad_strategy}</p></div>}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* ROAS CALCULATOR */}
+          {tab==="roas"&&(
+            <div className="fbox fa">
+              <h3 className="ict">Ad ROAS Calculator</h3>
+              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Ads pe paise waste ho rahe hain? Sahi calculate karo</p>
+              <div className="prow">
+                <div className="pfield"><label>Ad Spend (Rs.)</label><input type="number" placeholder="500" value={roasF.spend} onChange={e=>setRoasF({...roasF,spend:e.target.value})}/></div>
+                <div className="pfield"><label>Total Sales (Rs.)</label><input type="number" placeholder="2500" value={roasF.sales} onChange={e=>setRoasF({...roasF,sales:e.target.value})}/></div>
+              </div>
+              <div style={{marginBottom:12}}>
+                <label className="ilbl">Platform</label>
+                <div style={{display:"flex",flexWrap:"wrap",gap:6,marginTop:5}}>
+                  {["Instagram","Facebook","Google Ads","YouTube","Snapchat"].map(p=>(
+                    <button key={p} onClick={()=>setRoasF({...roasF,platform:p})} style={{padding:"5px 12px",borderRadius:100,border:"1.5px solid",cursor:"pointer",fontSize:11,fontWeight:600,fontFamily:"Inter,sans-serif",background:roasF.platform===p?"linear-gradient(135deg,#6366f1,#8b5cf6)":"rgba(15,23,42,.6)",borderColor:roasF.platform===p?"#6366f1":"#1e293b",color:roasF.platform===p?"#fff":"#94a3b8"}}>{p}</button>
+                  ))}
+                </div>
+              </div>
+              <button className="cbtn" style={{width:"100%"}} onClick={()=>{
+                const spend=parseFloat(roasF.spend)||0;const sales=parseFloat(roasF.sales)||0;
+                if(!spend||!sales){showT("Spend aur Sales daalo!");return;}
+                const roas=(sales/spend).toFixed(2);
+                const acos=((spend/sales)*100).toFixed(1);
+                const profit=(sales-spend).toFixed(0);
+                const status=roas>=4?"Excellent":roas>=2?"Good":roas>=1?"Break Even":"Loss";
+                const advice=roas>=4?"Ads ache chal rahe hain! Budget badha sakte ho.":roas>=2?"Theek hai. Targeting optimize karo aur improve karo.":roas>=1?"Break even pe ho. Targeting fix karo urgently.":"Ads pe loss ho raha hai. Turant band karo ya change karo.";
+                setRoasR({roas,acos,profit,status,advice});
+              }}>Calculate ROAS</button>
+              {roasR&&(
+                <div style={{marginTop:12}} className="fa">
+                  <div style={{background:parseFloat(roasR.roas)>=4?"rgba(16,185,129,.1)":parseFloat(roasR.roas)>=2?"rgba(245,158,11,.1)":"rgba(239,68,68,.1)",border:"1px solid rgba(99,102,241,.2)",borderRadius:12,padding:14,textAlign:"center",marginBottom:10}}>
+                    <div style={{fontSize:10,color:"#64748b",marginBottom:2}}>ROAS</div>
+                    <div style={{fontSize:30,fontWeight:900,color:parseFloat(roasR.roas)>=4?"#10b981":parseFloat(roasR.roas)>=2?"#f59e0b":"#ef4444"}}>{roasR.roas}x</div>
+                    <div style={{fontSize:12,color:"#94a3b8"}}>{roasR.status}</div>
+                  </div>
+                  <div className="presult" style={{marginBottom:10}}>
+                    {[{l:"Ad Spend",v:"Rs."+roasF.spend,c:"#ef4444"},{l:"Sales",v:"Rs."+roasF.sales,c:"#10b981"},{l:"Profit",v:"Rs."+roasR.profit,c:parseFloat(roasR.profit)>0?"#10b981":"#ef4444"},{l:"ACoS",v:roasR.acos+"%",c:"#f59e0b"}].map(r=>(
+                      <div key={r.l} className="prc"><div className="prl">{r.l}</div><div className="prv" style={{color:r.c,fontSize:13}}>{r.v}</div></div>
+                    ))}
+                  </div>
+                  <div style={{background:"rgba(99,102,241,.07)",border:"1px solid rgba(99,102,241,.2)",borderRadius:10,padding:11}}>
+                    <div style={{fontWeight:700,color:"#a5b4fc",fontSize:12,marginBottom:4}}>AI Advice ({roasF.platform})</div>
+                    <p style={{color:"#94a3b8",fontSize:11,lineHeight:1.65}}>{roasR.advice}</p>
+                  </div>
+                  <div style={{background:"rgba(15,23,42,.6)",border:"1px solid #1e293b",borderRadius:10,padding:11,marginTop:10}}>
+                    <div style={{fontWeight:700,color:"#e2e8f0",fontSize:11,marginBottom:7}}>ROAS Benchmark</div>
+                    {[{l:"4x+",d:"Excellent — Budget badhao",c:"#10b981"},{l:"2x-4x",d:"Good — Optimize karo",c:"#f59e0b"},{l:"1x-2x",d:"Break Even — Fix karo",c:"#f97316"},{l:"Below 1x",d:"Loss — Band karo",c:"#ef4444"}].map((b,i)=>(
+                      <div key={i} style={{display:"flex",alignItems:"center",gap:8,padding:"4px 0",borderBottom:i<3?"1px solid rgba(255,255,255,.04)":"none"}}>
+                        <div style={{width:50,fontSize:10,fontWeight:800,color:b.c}}>{b.l}</div>
+                        <div style={{fontSize:10,color:"#64748b"}}>{b.d}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* BUNDLE CREATOR */}
+          {tab==="bundle"&&(
+            <div className="fbox fa" style={{position:"relative"}}>
+              {isLocked&&<LockBox/>}
+              <h3 className="ict">Bundle Product Creator</h3>
+              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Single product se zyada margin — smart bundles banao</p>
+              {!pf.name&&<div className="errbanner">Pehle product analyze karo</div>}
+              <button className="gbtn2" style={{background:"linear-gradient(135deg,#ec4899,#be185d)"}} disabled={bundleL||!pf.name} onClick={async()=>{setBundleL(true);try{const d=await apiCall("bundle_creator");setBundleD(d);}catch{showT("Failed");}setBundleL(false);}}>{bundleL?"Creating...":"Create Bundle Ideas"}</button>
+              {bundleL&&<div className="ssp"/>}
+              {bundleD&&!bundleL&&(
+                <div style={{marginTop:12}} className="fa">
+                  {bundleD.bundles?.map((b,i)=>(
+                    <div key={i} className="cc" style={{marginBottom:9,border:i===0?"1px solid rgba(236,72,153,.3)":"1px solid #1e293b"}}>
+                      {i===0&&<div style={{display:"inline-block",background:"linear-gradient(135deg,#ec4899,#be185d)",color:"#fff",fontSize:9,fontWeight:800,padding:"2px 8px",borderRadius:100,marginBottom:7}}>BEST SELLER</div>}
+                      <div style={{fontWeight:800,fontSize:13,color:"#e2e8f0",marginBottom:5}}>{b.name}</div>
+                      <div style={{display:"flex",flexWrap:"wrap",gap:4,marginBottom:6}}>
+                        {b.items?.map((item,j)=><span key={j} style={{background:"rgba(236,72,153,.08)",border:"1px solid rgba(236,72,153,.2)",color:"#f9a8d4",borderRadius:6,padding:"2px 8px",fontSize:10}}>+ {item}</span>)}
+                      </div>
+                      <div style={{display:"flex",gap:10,flexWrap:"wrap",marginBottom:5}}>
+                        <span style={{color:"#94a3b8",fontSize:11}}>Single: <span style={{color:"#ef4444",fontWeight:600}}>{b.single_price}</span></span>
+                        <span style={{color:"#94a3b8",fontSize:11}}>Bundle: <span style={{color:"#10b981",fontWeight:700}}>{b.bundle_price}</span></span>
+                        <span style={{color:"#f59e0b",fontSize:11,fontWeight:700}}>{b.margin_increase}</span>
+                      </div>
+                      <p style={{color:"#94a3b8",fontSize:10,lineHeight:1.6}}>{b.why_works}</p>
+                    </div>
+                  ))}
+                  {bundleD.top_bundle&&<div style={{background:"rgba(236,72,153,.07)",border:"1px solid rgba(236,72,153,.2)",borderRadius:10,padding:11}}><div style={{fontWeight:700,color:"#f9a8d4",fontSize:11,marginBottom:4}}>Best Bundle to Start</div><p style={{color:"#94a3b8",fontSize:11,lineHeight:1.65}}>{bundleD.top_bundle}</p></div>}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* RETURN MANAGER */}
+          {tab==="returns"&&(
+            <div className="fbox fa" style={{position:"relative"}}>
+              {isLocked&&<LockBox/>}
+              <h3 className="ict">Return and Refund Manager</h3>
+              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Return rate kam karo — AI se smart strategy lo</p>
+              {!pf.name&&<div className="errbanner">Pehle product analyze karo</div>}
+              <button className="gbtn2" style={{background:"linear-gradient(135deg,#ef4444,#dc2626)"}} disabled={returnL||!pf.name} onClick={async()=>{setReturnL(true);try{const d=await apiCall("return_manager");setReturnD(d);}catch{showT("Failed");}setReturnL(false);}}>{returnL?"Analyzing...":"Analyze Returns"}</button>
+              {returnL&&<div className="ssp"/>}
+              {returnD&&!returnL&&(
+                <div style={{marginTop:12}} className="fa">
+                  <div style={{background:"rgba(239,68,68,.08)",border:"1px solid rgba(239,68,68,.2)",borderRadius:12,padding:14,textAlign:"center",marginBottom:10}}>
+                    <div style={{fontSize:10,color:"#64748b",marginBottom:2}}>Expected Return Rate</div>
+                    <div style={{fontSize:28,fontWeight:900,color:"#ef4444"}}>{returnD.return_rate}</div>
+                    <div style={{fontSize:10,color:"#64748b"}}>{returnD.industry_average}</div>
+                  </div>
+                  {returnD.main_reasons?.length>0&&<div className="gcard" style={{marginBottom:8}}><div className="gct" style={{marginBottom:6}}>Main Return Reasons</div>{returnD.main_reasons.map((r,i)=><div key={i} style={{color:"#94a3b8",fontSize:11,padding:"2px 0",display:"flex",gap:6}}><span style={{color:"#ef4444"}}>&#8226;</span><span>{r}</span></div>)}</div>}
+                  {returnD.prevention_tips?.length>0&&<div className="gcard" style={{marginBottom:8}}><div className="gct" style={{marginBottom:6}}>Prevention Tips</div>{returnD.prevention_tips.map((t,i)=><div key={i} style={{color:"#94a3b8",fontSize:11,padding:"2px 0",display:"flex",gap:6}}><span style={{color:"#10b981"}}>&#10003;</span><span>{t}</span></div>)}</div>}
+                  {returnD.packaging_tips&&<div className="gcard" style={{marginBottom:8}}><div className="gct" style={{marginBottom:5}}>Packaging Tips</div><p className="gctx">{returnD.packaging_tips}</p></div>}
+                  {returnD.description_fixes?.length>0&&<div className="gcard"><div className="gct" style={{marginBottom:6}}>Description Fixes</div>{returnD.description_fixes.map((d,i)=><div key={i} style={{color:"#a5b4fc",fontSize:11,padding:"2px 0",display:"flex",gap:6}}><span>&#8594;</span><span>{d}</span></div>)}</div>}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* WHATSAPP MSG */}
+          {tab==="wamsg"&&(
+            <div className="fbox fa" style={{position:"relative"}}>
+              {isLocked&&<LockBox/>}
+              <h3 className="ict">WhatsApp Message Generator</h3>
+              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Customer ko forward karne wala ready-made message</p>
+              {!pf.name&&<div className="errbanner">Pehle product analyze karo</div>}
+              <button className="gbtn2" style={{background:"linear-gradient(135deg,#25d366,#128c7e)"}} disabled={waMsgL||!pf.name} onClick={async()=>{setWaMsgL(true);try{const d=await apiCall("whatsapp_message");setWaMsgD(d);}catch{showT("Failed");}setWaMsgL(false);}}>{waMsgL?"Generating...":"Generate Message"}</button>
+              {waMsgL&&<div className="ssp"/>}
+              {waMsgD&&!waMsgL&&(
+                <div style={{marginTop:12}} className="fa">
+                  {waMsgD.messages?.map((msg,i)=>(
+                    <div key={i} style={{background:"rgba(37,211,102,.06)",border:"1px solid rgba(37,211,102,.2)",borderRadius:12,padding:13,marginBottom:9}}>
+                      <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:8}}>
+                        <div style={{fontWeight:700,fontSize:11,color:"#25d366"}}>{msg.type}</div>
+                        <button onClick={()=>{navigator.clipboard?.writeText(msg.text).then(()=>showT("Copied!"));}} style={{background:"rgba(37,211,102,.15)",border:"1px solid rgba(37,211,102,.3)",borderRadius:6,padding:"3px 9px",color:"#25d366",fontSize:10,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>Copy</button>
+                      </div>
+                      <p style={{color:"#94a3b8",fontSize:11,lineHeight:1.75,whiteSpace:"pre-wrap"}}>{msg.text}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* INSTAGRAM CAPTION */}
+          {tab==="caption"&&(
+            <div className="fbox fa" style={{position:"relative"}}>
+              {isLocked&&<LockBox/>}
+              <h3 className="ict">Instagram Caption Generator</h3>
+              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>5 captions + hashtags — Instagram ke liye ready</p>
+              {!pf.name&&<div className="errbanner">Pehle product analyze karo</div>}
+              <button className="gbtn2" style={{background:"linear-gradient(135deg,#e1306c,#c13584)"}} disabled={captionL||!pf.name} onClick={async()=>{setCaptionL(true);try{const d=await apiCall("instagram_captions");setCaptionD(d);}catch{showT("Failed");}setCaptionL(false);}}>{captionL?"Generating...":"Generate Captions"}</button>
+              {captionL&&<div className="ssp"/>}
+              {captionD&&!captionL&&(
+                <div style={{marginTop:12}} className="fa">
+                  {captionD.captions?.map((c,i)=>(
+                    <div key={i} style={{background:"rgba(2,8,23,.5)",border:"1px solid #1e293b",borderRadius:11,padding:12,marginBottom:8}}>
+                      <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:6}}>
+                        <div style={{fontWeight:700,fontSize:10,color:"#e1306c"}}>Caption {i+1}</div>
+                        <button onClick={()=>navigator.clipboard?.writeText(c.text+" "+c.hashtags).then(()=>showT("Copied!"))} style={{background:"rgba(225,48,108,.1)",border:"1px solid rgba(225,48,108,.2)",borderRadius:6,padding:"3px 9px",color:"#e1306c",fontSize:10,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>Copy</button>
+                      </div>
+                      <p style={{color:"#e2e8f0",fontSize:11,lineHeight:1.7,marginBottom:6}}>{c.text}</p>
+                      <p style={{color:"#6366f1",fontSize:10,lineHeight:1.6}}>{c.hashtags}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* TITLE OPTIMIZER */}
+          {tab==="titl"&&(
+            <div className="fbox fa" style={{position:"relative"}}>
+              {isLocked&&<LockBox/>}
+              <h3 className="ict">Product Title Optimizer</h3>
+              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>SEO-optimized title — platform ke hisab se</p>
+              {!pf.name&&<div className="errbanner">Pehle product analyze karo</div>}
+              <button className="gbtn2" style={{background:"linear-gradient(135deg,#8b5cf6,#7c3aed)"}} disabled={titleL||!pf.name} onClick={async()=>{setTitleL(true);try{const d=await apiCall("title_optimizer");setTitleD(d);}catch{showT("Failed");}setTitleL(false);}}>{titleL?"Optimizing...":"Optimize Title"}</button>
+              {titleL&&<div className="ssp"/>}
+              {titleD&&!titleL&&(
+                <div style={{marginTop:12}} className="fa">
+                  {titleD.titles?.map((t,i)=>(
+                    <div key={i} style={{background:"rgba(2,8,23,.5)",border:"1px solid rgba(139,92,246,.2)",borderRadius:11,padding:12,marginBottom:8}}>
+                      <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:6}}>
+                        <div style={{fontWeight:700,fontSize:10,color:"#a5b4fc"}}>{t.platform}</div>
+                        <button onClick={()=>navigator.clipboard?.writeText(t.title).then(()=>showT("Copied!"))} style={{background:"rgba(99,102,241,.1)",border:"1px solid rgba(99,102,241,.2)",borderRadius:6,padding:"3px 9px",color:"#a5b4fc",fontSize:10,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>Copy</button>
+                      </div>
+                      <p style={{color:"#e2e8f0",fontSize:12,fontWeight:600,lineHeight:1.5,marginBottom:5}}>{t.title}</p>
+                      {t.keywords&&<p style={{color:"#64748b",fontSize:10}}>Keywords: {t.keywords}</p>}
+                    </div>
+                  ))}
                 </div>
               )}
             </div>
