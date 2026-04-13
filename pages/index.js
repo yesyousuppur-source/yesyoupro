@@ -191,10 +191,6 @@ export default function App(){
   const[shipF,setShipF]=useState({weight:"1",zone:"local",cod:"no"});
   const[shipR,setShipR]=useState(null);
   const[showHist,setShowHist]=useState(false);
-  const[darkMode,setDarkMode]=useState(()=>{
-    if(typeof window!=="undefined") return S.get("yyp_dark_mode")!==false;
-    return true;
-  });
   const[darkMode,setDarkMode]=useState(false);
   const[newUserTimer,setNewUserTimer]=useState(null);
   const newUserTimerRef=useRef(null);
@@ -341,9 +337,6 @@ export default function App(){
   useEffect(()=>{
     setSaved(S.get("yyp_accounts")||[]);
     setHistory(S.get("yyp_history")||[]);
-    const savedMode=S.get("yyp_dark_mode");
-    if(savedMode===true)setDarkMode(true);
-    else setDarkMode(false);
     // New user 3-day countdown
     if(!S.get("yyp_first_visit")){
       S.set("yyp_first_visit", Date.now());
@@ -351,15 +344,22 @@ export default function App(){
     const fv = S.get("yyp_first_visit");
     if(fv){
       const expiry = fv + 3*86400000;
-      const startNewUserTimer = () => {
+      const calcT = () => {
+        const rem = expiry - Date.now();
+        if(rem <= 0) return null;
+        return {h:Math.floor(rem/3600000),m:Math.floor((rem%3600000)/60000),s:Math.floor((rem%60000)/1000),pct:Math.max(0,(1-rem/(3*86400000))*100)};
+      };
+      // Set immediately - no 1 second delay
+      const initialT = calcT();
+      if(initialT) {
+        setNewUserTimer(initialT);
         clearInterval(newUserTimerRef.current);
         newUserTimerRef.current = setInterval(()=>{
-          const rem = expiry - Date.now();
-          if(rem <= 0){ clearInterval(newUserTimerRef.current); setNewUserTimer(null); }
-          else setNewUserTimer({h:Math.floor(rem/3600000),m:Math.floor((rem%3600000)/60000),s:Math.floor((rem%60000)/1000),pct:Math.max(0,(1-rem/(3*86400000))*100)});
+          const t = calcT();
+          if(!t){ clearInterval(newUserTimerRef.current); setNewUserTimer(null); }
+          else setNewUserTimer(t);
         },1000);
-      };
-      startNewUserTimer();
+      }
     }
     const sv=S.get("yyp_current");
     if(sv?.email){
@@ -981,26 +981,38 @@ export default function App(){
                   {newUserTimer?<span style={{color:"#10b981",fontWeight:700}}>₹249 — Limited Time!</span>:<span>₹1,049</span>}
                 </div>
                 {newUserTimer&&(
-                  <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:8,background:"rgba(239,68,68,.08)",border:"1px solid rgba(239,68,68,.2)",borderRadius:10,padding:"8px 14px",marginBottom:8}}>
-                    <div style={{textAlign:"center"}}>
-                      <div style={{fontSize:11,color:"#64748b",marginBottom:1}}>Timer khatam hone ke baad</div>
-                      <div style={{fontSize:17,fontWeight:900,color:"#ef4444",textDecoration:"line-through",opacity:.6}}>$13 (₹1,049)</div>
+                  <>
+                    {/* Live countdown timer */}
+                    <div style={{background:"rgba(2,8,23,.6)",border:"1px solid rgba(239,68,68,.25)",borderRadius:13,padding:"14px 12px",marginBottom:10}}>
+                      <div style={{fontSize:10,color:"#64748b",fontWeight:700,textAlign:"center",marginBottom:8,textTransform:"uppercase",letterSpacing:.5}}>⏳ Offer Khatam Hone Mein</div>
+                      <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:7,marginBottom:10}}>
+                        {[{v:String(newUserTimer.h).padStart(2,"0"),l:"Hours"},{sep:true},{v:String(newUserTimer.m).padStart(2,"0"),l:"Min"},{sep:true},{v:String(newUserTimer.s).padStart(2,"0"),l:"Sec"}].map((t,i)=>
+                          t.sep?<span key={i} style={{fontSize:20,fontWeight:900,color:"#ef4444",marginBottom:8}}>:</span>:
+                          <div key={i} style={{background:"rgba(239,68,68,.1)",border:"1px solid rgba(239,68,68,.2)",borderRadius:8,padding:"7px 12px",minWidth:50,textAlign:"center"}}>
+                            <div style={{fontSize:22,fontWeight:900,color:"#ef4444",lineHeight:1,fontVariantNumeric:"tabular-nums"}}>{t.v}</div>
+                            <div style={{fontSize:8,color:"#64748b",fontWeight:600,marginTop:2,textTransform:"uppercase"}}>{t.l}</div>
+                          </div>
+                        )}
+                      </div>
+                      {/* Both prices */}
+                      <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:10}}>
+                        <div style={{textAlign:"center",background:"rgba(16,185,129,.08)",border:"1px solid rgba(16,185,129,.2)",borderRadius:10,padding:"8px 14px",flex:1}}>
+                          <div style={{fontSize:9,color:"#10b981",fontWeight:700,marginBottom:2}}>ABHI KA PRICE</div>
+                          <div style={{fontSize:20,fontWeight:900,color:"#10b981"}}>$3</div>
+                          <div style={{fontSize:10,color:"#94a3b8"}}>₹249</div>
+                        </div>
+                        <div style={{fontSize:18,color:"#f59e0b"}}>→</div>
+                        <div style={{textAlign:"center",background:"rgba(239,68,68,.06)",border:"1px solid rgba(239,68,68,.15)",borderRadius:10,padding:"8px 14px",flex:1,opacity:.7}}>
+                          <div style={{fontSize:9,color:"#ef4444",fontWeight:700,marginBottom:2}}>TIMER BAAD</div>
+                          <div style={{fontSize:20,fontWeight:900,color:"#94a3b8",textDecoration:"line-through"}}>$13</div>
+                          <div style={{fontSize:10,color:"#64748b"}}>₹1,049</div>
+                        </div>
+                      </div>
+                      <div style={{height:4,background:"#1e293b",borderRadius:100,overflow:"hidden",marginTop:10}}>
+                        <div style={{height:"100%",width:newUserTimer.pct+"%",background:"linear-gradient(90deg,#10b981,#f59e0b,#ef4444)",borderRadius:100,transition:"width 1s linear"}}/>
+                      </div>
                     </div>
-                    <div style={{fontSize:16,color:"#f59e0b"}}>→</div>
-                    <div style={{textAlign:"center"}}>
-                      <div style={{fontSize:11,color:"#10b981",fontWeight:700,marginBottom:1}}>Abhi ka price</div>
-                      <div style={{fontSize:17,fontWeight:900,color:"#10b981"}}>$3 (₹249)</div>
-                    </div>
-                  </div>
-                )}
-                {newUserTimer&&(
-                  <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:5,marginBottom:4}}>
-                    <span style={{fontSize:10,color:"#64748b"}}>Timer:</span>
-                    <span style={{fontSize:11,fontWeight:800,color:"#ef4444",fontVariantNumeric:"tabular-nums"}}>
-                      {String(newUserTimer.h).padStart(2,"0")}:{String(newUserTimer.m).padStart(2,"0")}:{String(newUserTimer.s).padStart(2,"0")}
-                    </span>
-                    <span style={{fontSize:10,color:"#64748b"}}>bacha hai</span>
-                  </div>
+                  </>
                 )}
             <div className="phigh">📊 30 analyses / 7 days (Free: 2/day only)<br/>⏰ No 24hr lockout<br/>🚫 Zero ads<br/>📋 Copy any AI result<br/>🔓 All 13 tools unlocked</div>
             <div className="pflist">{["✅ 30 analyses / 7 days","✅ Zero ads","✅ No 24hr lockout","📋 Copy full reports","🎓 Starter Guide","🔰 Beginner Products","🧮 Investment Calculator","📊 Sales Estimator","🏷️ Price Optimizer","📦 Inventory Calculator","⭐ Review Analyzer","🎯 Niche Finder","📺 Ads on 8 platforms"].map(f=><div key={f} className="pfi">{f}</div>)}</div>
