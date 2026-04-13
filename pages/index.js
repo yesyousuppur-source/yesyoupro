@@ -15,60 +15,99 @@ const FB = {
 };
 
 const CATS = [
-  {id:"Electronics",icon:"💻",g:"Physical"},{id:"Beauty & Skincare",icon:"💄",g:"Physical"},
-  {id:"Home & Kitchen",icon:"🏠",g:"Physical"},{id:"Fitness",icon:"💪",g:"Physical"},
-  {id:"Fashion",icon:"👗",g:"Physical"},{id:"Pet Supplies",icon:"🐾",g:"Physical"},
-  {id:"Toys & Games",icon:"🎮",g:"Physical"},{id:"Health & Wellness",icon:"❤️",g:"Physical"},
-  {id:"Outdoor & Sports",icon:"⛺",g:"Physical"},{id:"Food & Beverages",icon:"🍔",g:"Physical"},
-  {id:"Automotive",icon:"🚗",g:"Physical"},{id:"Books & Education",icon:"📚",g:"Physical"},
-  {id:"Jewelry",icon:"💍",g:"Physical"},{id:"Baby & Kids",icon:"👶",g:"Physical"},
-  {id:"Tools & Hardware",icon:"🔧",g:"Physical"},{id:"Garden & Plants",icon:"🌱",g:"Physical"},
-  {id:"Travel & Luggage",icon:"✈️",g:"Physical"},{id:"Art & Crafts",icon:"🎨",g:"Physical"},
-  {id:"Office Supplies",icon:"🗂️",g:"Physical"},{id:"Music & Audio",icon:"🎵",g:"Physical"},
-  {id:"Mobile Apps",icon:"📱",g:"Digital"},{id:"PC / Console Games",icon:"🕹️",g:"Digital"},
-  {id:"Online Courses",icon:"🎓",g:"Digital"},{id:"Software & SaaS",icon:"💿",g:"Digital"},
-  {id:"Website / Blog",icon:"🌐",g:"Digital"},{id:"YouTube Channel",icon:"📺",g:"Digital"},
-  {id:"Instagram Page",icon:"📸",g:"Digital"},{id:"Podcast",icon:"🎙️",g:"Digital"},
-  {id:"NFT & Crypto",icon:"🖼️",g:"Digital"},{id:"Ebooks & Templates",icon:"📄",g:"Digital"},
-  {id:"Freelance Services",icon:"🛠️",g:"Digital"},{id:"Social Media Account",icon:"👥",g:"Digital"},
-  {id:"Dropshipping",icon:"🚚",g:"Digital"},{id:"Affiliate Marketing",icon:"🔗",g:"Digital"},
-  {id:"Print on Demand",icon:"🖨️",g:"Digital"},{id:"Digital Products",icon:"📦",g:"Digital"},
-  {id:"Any Other",icon:"✨",g:"Digital"},
+  {id:"Electronics",logo:"https://cdn.simpleicons.org/samsung/1428A0",e:"💻",g:"Physical"},
+  {id:"Beauty & Skincare",logo:"https://cdn.simpleicons.org/sephora/000000",e:"💄",g:"Physical"},
+  {id:"Home & Kitchen",logo:"https://cdn.simpleicons.org/ikea/0058A3",e:"🏠",g:"Physical"},
+  {id:"Fitness",logo:"https://cdn.simpleicons.org/peloton/000000",e:"💪",g:"Physical"},
+  {id:"Fashion",logo:"https://cdn.simpleicons.org/uniqlo/FF0000",e:"👗",g:"Physical"},
+  {id:"Pet Supplies",logo:null,e:"🐾",g:"Physical"},
+  {id:"Toys & Games",logo:"https://cdn.simpleicons.org/lego/E3000B",e:"🎮",g:"Physical"},
+  {id:"Health & Wellness",logo:"https://cdn.simpleicons.org/headspace/F47D31",e:"❤️",g:"Physical"},
+  {id:"Outdoor & Sports",logo:"https://cdn.simpleicons.org/decathlon/0082C3",e:"⛺",g:"Physical"},
+  {id:"Food & Beverages",logo:"https://cdn.simpleicons.org/zomato/E23744",e:"🍔",g:"Physical"},
+  {id:"Automotive",logo:"https://cdn.simpleicons.org/tesla/CC0000",e:"🚗",g:"Physical"},
+  {id:"Books & Education",logo:"https://cdn.simpleicons.org/audible/F8991C",e:"📚",g:"Physical"},
+  {id:"Jewelry",logo:null,e:"💍",g:"Physical"},
+  {id:"Baby & Kids",logo:null,e:"👶",g:"Physical"},
+  {id:"Tools & Hardware",logo:null,e:"🔧",g:"Physical"},
+  {id:"Garden & Plants",logo:null,e:"🌱",g:"Physical"},
+  {id:"Travel & Luggage",logo:"https://cdn.simpleicons.org/airbnb/FF5A5F",e:"✈️",g:"Physical"},
+  {id:"Art & Crafts",logo:"https://cdn.simpleicons.org/etsy/F56400",e:"🎨",g:"Physical"},
+  {id:"Office Supplies",logo:"https://cdn.simpleicons.org/notion/000000",e:"🗂️",g:"Physical"},
+  {id:"Music & Audio",logo:"https://cdn.simpleicons.org/spotify/1DB954",e:"🎵",g:"Physical"},
+  {id:"Mobile Apps",logo:"https://cdn.simpleicons.org/android/3DDC84",e:"📱",g:"Digital"},
+  {id:"PC / Console Games",logo:"https://cdn.simpleicons.org/steam/000000",e:"🕹️",g:"Digital"},
+  {id:"Online Courses",logo:"https://cdn.simpleicons.org/udemy/A435F0",e:"🎓",g:"Digital"},
+  {id:"Software & SaaS",logo:"https://cdn.simpleicons.org/microsoftazure/0078D4",e:"💿",g:"Digital"},
+  {id:"Website / Blog",logo:"https://cdn.simpleicons.org/wordpress/21759B",e:"🌐",g:"Digital"},
+  {id:"YouTube Channel",logo:"https://cdn.simpleicons.org/youtube/FF0000",e:"📺",g:"Digital"},
+  {id:"Instagram Page",logo:"https://cdn.simpleicons.org/instagram/E1306C",e:"📸",g:"Digital"},
+  {id:"Podcast",logo:"https://cdn.simpleicons.org/spotify/1DB954",e:"🎙️",g:"Digital"},
+  {id:"NFT & Crypto",logo:"https://cdn.simpleicons.org/ethereum/627EEA",e:"🖼️",g:"Digital"},
+  {id:"Ebooks & Templates",logo:"https://cdn.simpleicons.org/amazon/FF9900",e:"📄",g:"Digital"},
+  {id:"Freelance Services",logo:"https://cdn.simpleicons.org/fiverr/1DBF73",e:"🛠️",g:"Digital"},
+  {id:"Social Media Account",logo:"https://cdn.simpleicons.org/instagram/E1306C",e:"👥",g:"Digital"},
+  {id:"Dropshipping",logo:"https://cdn.simpleicons.org/shopify/96BF48",e:"🚚",g:"Digital"},
+  {id:"Affiliate Marketing",logo:"https://cdn.simpleicons.org/amazon/FF9900",e:"🔗",g:"Digital"},
+  {id:"Print on Demand",logo:"https://cdn.simpleicons.org/redbubble/E41321",e:"🖨️",g:"Digital"},
+  {id:"Digital Products",logo:"https://cdn.simpleicons.org/gumroad/FF90E8",e:"📦",g:"Digital"},
+  {id:"Any Other",logo:null,e:"✨",g:"Digital"},
 ];
 
 const PLATS = [
-  {id:"Amazon",icon:"📦",c:"#f59e0b",g:"Ecommerce"},{id:"Flipkart",icon:"⚡",c:"#2874f0",g:"Ecommerce"},
-  {id:"Meesho",icon:"🌸",c:"#e91e8c",g:"Ecommerce"},{id:"Shopify",icon:"🛒",c:"#96bf48",g:"Ecommerce"},
-  {id:"WooCommerce",icon:"🌐",c:"#7f54b3",g:"Ecommerce"},{id:"Etsy",icon:"🎨",c:"#f56400",g:"Ecommerce"},
-  {id:"Nykaa",icon:"💄",c:"#fc2779",g:"Ecommerce"},{id:"Myntra",icon:"👗",c:"#ff3f6c",g:"Ecommerce"},
-  {id:"Ajio",icon:"👠",c:"#ed1c24",g:"Ecommerce"},{id:"Snapdeal",icon:"🏷️",c:"#e40000",g:"Ecommerce"},
-  {id:"JioMart",icon:"🛍️",c:"#003087",g:"Ecommerce"},{id:"IndiaMART",icon:"🏭",c:"#0077b5",g:"Ecommerce"},
-  {id:"Paytm Mall",icon:"💙",c:"#002970",g:"Ecommerce"},{id:"TradeIndia",icon:"🏪",c:"#ff6600",g:"Ecommerce"},
-  {id:"Instagram",icon:"📸",c:"#e1306c",g:"Social Media"},{id:"Facebook",icon:"👤",c:"#1877f2",g:"Social Media"},
-  {id:"YouTube",icon:"📺",c:"#ff0000",g:"Social Media"},{id:"TikTok",icon:"🎵",c:"#010101",g:"Social Media"},
-  {id:"Pinterest",icon:"📌",c:"#e60023",g:"Social Media"},{id:"Snapchat",icon:"👻",c:"#f5c518",g:"Social Media"},
-  {id:"X (Twitter)",icon:"🐦",c:"#14171a",g:"Social Media"},{id:"LinkedIn",icon:"💼",c:"#0077b5",g:"Social Media"},
-  {id:"Telegram",icon:"✈️",c:"#0088cc",g:"Social Media"},{id:"WhatsApp Business",icon:"💬",c:"#25d366",g:"Social Media"},
-  {id:"Discord",icon:"🎮",c:"#5865f2",g:"Social Media"},{id:"Reddit",icon:"🔴",c:"#ff4500",g:"Social Media"},
-  {id:"Quora",icon:"❓",c:"#a82400",g:"Social Media"},{id:"Moj",icon:"🎬",c:"#ff4081",g:"Social Media"},
-  {id:"ShareChat",icon:"💬",c:"#00bcd4",g:"Social Media"},{id:"Josh",icon:"🎭",c:"#ff6d00",g:"Social Media"},
-  {id:"Google Play Store",icon:"▶️",c:"#01875f",g:"App Stores"},{id:"Apple App Store",icon:"🍎",c:"#0071e3",g:"App Stores"},
-  {id:"Steam",icon:"🎮",c:"#1b2838",g:"App Stores"},{id:"PlayStation Store",icon:"🎯",c:"#003087",g:"App Stores"},
-  {id:"Xbox Store",icon:"🟢",c:"#107c10",g:"App Stores"},
-  {id:"Udemy",icon:"📖",c:"#a435f0",g:"Courses"},{id:"Skillshare",icon:"✏️",c:"#00ccb1",g:"Courses"},
-  {id:"Gumroad",icon:"💰",c:"#ff90e8",g:"Courses"},{id:"Patreon",icon:"🎁",c:"#ff424d",g:"Courses"},
-  {id:"Substack",icon:"📧",c:"#ff6719",g:"Courses"},{id:"Teachable",icon:"🎓",c:"#5cb85c",g:"Courses"},
-  {id:"Fiverr",icon:"💚",c:"#1dbf73",g:"Freelance"},{id:"Upwork",icon:"🔵",c:"#14a800",g:"Freelance"},
-  {id:"Zomato",icon:"🍕",c:"#e23744",g:"Food"},{id:"Swiggy",icon:"🛵",c:"#fc8019",g:"Food"},
-  {id:"BigBasket",icon:"🛒",c:"#84c225",g:"Food"},{id:"Blinkit",icon:"⚡",c:"#f8c700",g:"Food"},
-  {id:"Own Website",icon:"🌐",c:"#6366f1",g:"Other"},{id:"Any Other",icon:"✨",c:"#94a3b8",g:"Other"},
+  {id:"Amazon",logo:"https://cdn.simpleicons.org/amazon/FF9900",c:"#FF9900",g:"Ecommerce"},
+  {id:"Flipkart",logo:"https://cdn.simpleicons.org/flipkart/2874F0",c:"#2874f0",g:"Ecommerce"},
+  {id:"Meesho",logo:"https://cdn.simpleicons.org/meesho/F43397",c:"#e91e8c",g:"Ecommerce"},
+  {id:"Shopify",logo:"https://cdn.simpleicons.org/shopify/96BF48",c:"#96bf48",g:"Ecommerce"},
+  {id:"WooCommerce",logo:"https://cdn.simpleicons.org/woocommerce/7F54B3",c:"#7f54b3",g:"Ecommerce"},
+  {id:"Etsy",logo:"https://cdn.simpleicons.org/etsy/F56400",c:"#f56400",g:"Ecommerce"},
+  {id:"Nykaa",logo:"https://cdn.simpleicons.org/nykaa/FC2779",c:"#fc2779",g:"Ecommerce"},
+  {id:"Myntra",logo:null,e:"👗",c:"#ff3f6c",g:"Ecommerce"},
+  {id:"IndiaMART",logo:null,e:"🏭",c:"#0077b5",g:"Ecommerce"},
+  {id:"JioMart",logo:null,e:"🛍️",c:"#003087",g:"Ecommerce"},
+  {id:"Snapdeal",logo:null,e:"🏷️",c:"#e40000",g:"Ecommerce"},
+  {id:"Instagram",logo:"https://cdn.simpleicons.org/instagram/E1306C",c:"#e1306c",g:"Social Media"},
+  {id:"Facebook",logo:"https://cdn.simpleicons.org/facebook/1877F2",c:"#1877f2",g:"Social Media"},
+  {id:"YouTube",logo:"https://cdn.simpleicons.org/youtube/FF0000",c:"#ff0000",g:"Social Media"},
+  {id:"TikTok",logo:"https://cdn.simpleicons.org/tiktok/000000",c:"#010101",g:"Social Media"},
+  {id:"Pinterest",logo:"https://cdn.simpleicons.org/pinterest/E60023",c:"#e60023",g:"Social Media"},
+  {id:"Snapchat",logo:"https://cdn.simpleicons.org/snapchat/FFFC00",c:"#f5c518",g:"Social Media"},
+  {id:"X (Twitter)",logo:"https://cdn.simpleicons.org/x/000000",c:"#14171a",g:"Social Media"},
+  {id:"LinkedIn",logo:"https://cdn.simpleicons.org/linkedin/0077B5",c:"#0077b5",g:"Social Media"},
+  {id:"Telegram",logo:"https://cdn.simpleicons.org/telegram/26A5E4",c:"#0088cc",g:"Social Media"},
+  {id:"WhatsApp Business",logo:"https://cdn.simpleicons.org/whatsapp/25D366",c:"#25d366",g:"Social Media"},
+  {id:"Discord",logo:"https://cdn.simpleicons.org/discord/5865F2",c:"#5865f2",g:"Social Media"},
+  {id:"Reddit",logo:"https://cdn.simpleicons.org/reddit/FF4500",c:"#ff4500",g:"Social Media"},
+  {id:"Moj",logo:null,e:"🎬",c:"#ff4081",g:"Social Media"},
+  {id:"ShareChat",logo:null,e:"💬",c:"#00bcd4",g:"Social Media"},
+  {id:"Google Play Store",logo:"https://cdn.simpleicons.org/googleplay/414141",c:"#01875f",g:"App Stores"},
+  {id:"Apple App Store",logo:"https://cdn.simpleicons.org/apple/000000",c:"#0071e3",g:"App Stores"},
+  {id:"Steam",logo:"https://cdn.simpleicons.org/steam/000000",c:"#1b2838",g:"App Stores"},
+  {id:"PlayStation Store",logo:"https://cdn.simpleicons.org/playstation/003087",c:"#003087",g:"App Stores"},
+  {id:"Xbox Store",logo:"https://cdn.simpleicons.org/xbox/107C10",c:"#107c10",g:"App Stores"},
+  {id:"Udemy",logo:"https://cdn.simpleicons.org/udemy/A435F0",c:"#a435f0",g:"Courses"},
+  {id:"Skillshare",logo:"https://cdn.simpleicons.org/skillshare/00FF84",c:"#00ccb1",g:"Courses"},
+  {id:"Gumroad",logo:"https://cdn.simpleicons.org/gumroad/FF90E8",c:"#ff90e8",g:"Courses"},
+  {id:"Patreon",logo:"https://cdn.simpleicons.org/patreon/FF424D",c:"#ff424d",g:"Courses"},
+  {id:"Substack",logo:"https://cdn.simpleicons.org/substack/FF6719",c:"#ff6719",g:"Courses"},
+  {id:"Fiverr",logo:"https://cdn.simpleicons.org/fiverr/1DBF73",c:"#1dbf73",g:"Freelance"},
+  {id:"Upwork",logo:"https://cdn.simpleicons.org/upwork/6FDA44",c:"#14a800",g:"Freelance"},
+  {id:"Zomato",logo:"https://cdn.simpleicons.org/zomato/E23744",c:"#e23744",g:"Food"},
+  {id:"Swiggy",logo:null,e:"🛵",c:"#fc8019",g:"Food"},
+  {id:"BigBasket",logo:null,e:"🛒",c:"#84c225",g:"Food"},
+  {id:"Own Website",logo:"https://cdn.simpleicons.org/googlechrome/4285F4",c:"#6366f1",g:"Other"},
+  {id:"Any Other",logo:null,e:"✨",c:"#94a3b8",g:"Other"},
 ];
 
 const ADPLATS = [
-  {id:"g",n:"Google Ads",c:"#4285f4"},{id:"fb",n:"Facebook",c:"#1877f2"},
-  {id:"ig",n:"Instagram",c:"#e1306c"},{id:"yt",n:"YouTube",c:"#ff0000"},
-  {id:"tt",n:"TikTok",c:"#010101"},{id:"pin",n:"Pinterest",c:"#e60023"},
-  {id:"sc",n:"Snapchat",c:"#f5c518"},{id:"tw",n:"X/Twitter",c:"#14171a"},
+  {id:"g",n:"Google Ads",c:"#4285f4",logo:"https://cdn.simpleicons.org/google/4285F4"},
+  {id:"fb",n:"Facebook",c:"#1877f2",logo:"https://cdn.simpleicons.org/facebook/1877F2"},
+  {id:"ig",n:"Instagram",c:"#e1306c",logo:"https://cdn.simpleicons.org/instagram/E1306C"},
+  {id:"yt",n:"YouTube",c:"#ff0000",logo:"https://cdn.simpleicons.org/youtube/FF0000"},
+  {id:"tt",n:"TikTok",c:"#010101",logo:"https://cdn.simpleicons.org/tiktok/000000"},
+  {id:"pin",n:"Pinterest",c:"#e60023",logo:"https://cdn.simpleicons.org/pinterest/E60023"},
+  {id:"sc",n:"Snapchat",c:"#f5c518",logo:"https://cdn.simpleicons.org/snapchat/000000"},
+  {id:"tw",n:"X/Twitter",c:"#14171a",logo:"https://cdn.simpleicons.org/x/000000"},
 ];
 
 const S = {
@@ -158,6 +197,66 @@ export default function App() {
   const [titleD,setTitleD] = useState(null);const [titleL,setTitleL] = useState(false);
   const [history,setHistory] = useState([]);
   const [showHist,setShowHist] = useState(false);
+  const [refCopied,setRefCopied] = useState(false);
+
+  // ── REFERRAL HELPERS ─────────────────────────────────────────────────────
+  const genRefCode = (email) => {
+    if(!email) return "";
+    const base = email.split("@")[0].replace(/[^a-zA-Z0-9]/g,"").toLowerCase().substring(0,8);
+    const hash = Math.abs(email.split("").reduce((a,c)=>((a<<5)-a)+c.charCodeAt(0),0)).toString(36).substring(0,4);
+    return base+hash;
+  };
+  const getRefData = (email) => {
+    if(!email) return {code:"",referrals:[],rewarded:false};
+    const code = genRefCode(email);
+    const data = S.get("yyp_ref_"+email)||{code,referrals:[],rewarded:false};
+    if(!data.code) data.code = code;
+    return data;
+  };
+  const getRefLink = (email) => "https://yesyoupro.com/?ref="+genRefCode(email);
+  const copyRefLink = (email) => {
+    const link = getRefLink(email);
+    try { navigator.clipboard.writeText(link).then(()=>{setRefCopied(true);setTimeout(()=>setRefCopied(false),2500);}); }
+    catch { const el=document.createElement("textarea");el.value=link;document.body.appendChild(el);el.select();document.execCommand("copy");document.body.removeChild(el);setRefCopied(true);setTimeout(()=>setRefCopied(false),2500); }
+  };
+  const checkIncomingRef = async (newEmail, newName) => {
+    if(!newEmail) return;
+    const savedRef = S.get("yyp_pending_ref");
+    const refCode = savedRef || (typeof window!=="undefined" ? new URLSearchParams(window.location.search).get("ref") : "");
+    if(!refCode) return;
+    S.set("yyp_pending_ref", null);
+    // Anti-fraud: find referrer
+    const allAccounts = S.get("yyp_accounts")||[];
+    let referrerEmail = null;
+    for(const acc of allAccounts) {
+      if(genRefCode(acc.email)===refCode) { referrerEmail=acc.email; break; }
+    }
+    // Try API if not found locally (cross-device)
+    if(!referrerEmail) {
+      try {
+        const r = await fetch("/api/referral",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"find_referrer",refCode})});
+        const d = await r.json();
+        if(d.referrerEmail) referrerEmail = d.referrerEmail;
+      } catch {}
+    }
+    if(!referrerEmail || referrerEmail===newEmail) return; // self-referral blocked
+    // Update referrer's count
+    const refData = getRefData(referrerEmail);
+    if(refData.referrals.some(r=>r.email===newEmail)) return; // already counted
+    refData.referrals.push({email:newEmail,name:newName,time:Date.now()});
+    S.set("yyp_ref_"+referrerEmail, refData);
+    // Auto premium at 10
+    if(refData.referrals.length>=10 && !refData.rewarded) {
+      refData.rewarded = true;
+      S.set("yyp_ref_"+referrerEmail, refData);
+      const exp = new Date(Date.now()+7*86400000).toISOString();
+      S.set("yyp_prem_"+referrerEmail,{expiry:exp,used:0});
+      S.set("yyp_plan_"+referrerEmail,"premium");
+    }
+    // Save ref code to API for cross-device
+    try { await fetch("/api/referral",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"register",referrerEmail,newUserEmail:newEmail,newUserName:newName,refCode})}); } catch {}
+    if(typeof window!=="undefined") window.history.replaceState({},"","/");
+  };
 
   const showT = (m) => { setToast(m); setTimeout(()=>setToast(null),3500); };
   const todayK = () => { const d=new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); };
@@ -212,6 +311,11 @@ export default function App() {
   useEffect(()=>{
     setSaved(S.get("yyp_accounts")||[]);
     setHistory(S.get("yyp_history")||[]);
+    if(typeof window!=="undefined"){
+      const urlParams = new URLSearchParams(window.location.search);
+      const refCode = urlParams.get("ref");
+      if(refCode){ S.set("yyp_pending_ref",refCode); window.history.replaceState({},"","/"); }
+    }
     const sv = S.get("yyp_current");
     if(sv?.email){const u={...sv,plan:S.get("yyp_plan_"+sv.email)||"free"};setUser(u);setUsage(calcUsage(u));startTimer(u);}
     else makeGuest();
@@ -734,6 +838,12 @@ export default function App() {
               <div style={{fontSize:11,color:"#94a3b8"}}>{usage.remaining} analyses left</div>
             </div>}
             <div className="pmenu">
+              <button className="pmbtn" onClick={()=>setProfTab("referral")} style={{borderColor:"rgba(16,185,129,.2)"}}>
+                <span className="pmico">🎁</span>
+                <span style={{flex:1}}>Refer and Earn Premium <span style={{background:"linear-gradient(135deg,#10b981,#059669)",color:"#fff",fontSize:8,fontWeight:800,padding:"2px 6px",borderRadius:100,marginLeft:4}}>FREE</span></span>
+                {!isGuest&&user?.email&&<span style={{fontSize:10,color:"#10b981",fontWeight:700,marginRight:4}}>{((S.get("yyp_ref_"+user.email)||{referrals:[]}).referrals||[]).length}/10</span>}
+                <span className="pmarr">›</span>
+              </button>
               <button className="pmbtn" onClick={()=>setProfTab("terms")}><span className="pmico">📋</span><span>Terms & Conditions</span><span className="pmarr">›</span></button>
               <button className="pmbtn" onClick={()=>setProfTab("question")}><span className="pmico">❓</span><span>Any Questions?</span><span className="pmarr">›</span></button>
               {curPlan==="free" && <button className="pmbtn" onClick={()=>{setShowProf(false);setShowPrem(true);}}><span className="pmico">💎</span><span>Upgrade Premium — ₹249</span><span className="pmarr">›</span></button>}
@@ -758,6 +868,96 @@ export default function App() {
             </div>
             <button className="pmbtn" onClick={()=>setProfTab("main")} style={{justifyContent:"center"}}>← Back</button>
           </>}
+
+          {profTab==="referral"&&!isGuest&&(()=>{
+            const rd = user?.email ? getRefData(user.email) : {code:"",referrals:[],rewarded:false};
+            const count = (rd.referrals||[]).length;
+            const pct = Math.min(100,(count/10)*100);
+            const refCodeStr = user?.email ? genRefCode(user.email) : "";
+            const refLink = "https://yesyoupro.com/?ref="+refCodeStr;
+            const waMsg = encodeURIComponent("Bhai YesYouPro try karo - AI se 30 sec mein winning product dhundho FREE: "+refLink);
+            return(<>
+              <div className="prh">
+                <button className="prcl" style={{background:"none",fontSize:19}} onClick={()=>setProfTab("main")}>&#8592;</button>
+                <div style={{fontWeight:800,fontSize:14,color:"#f8fafc"}}>Refer and Earn</div>
+                <div style={{width:30}}/>
+              </div>
+              {rd.rewarded?(
+                <div style={{background:"linear-gradient(135deg,rgba(245,158,11,.15),rgba(239,68,68,.08))",border:"1px solid rgba(245,158,11,.3)",borderRadius:13,padding:15,textAlign:"center",marginBottom:13}}>
+                  <div style={{fontSize:32,marginBottom:6}}>&#127942;</div>
+                  <div style={{fontWeight:800,fontSize:14,color:"#f59e0b"}}>Reward Claim Ho Gaya!</div>
+                  <div style={{fontSize:11,color:"#94a3b8",marginTop:4}}>7 days Premium aapko mil gaya!</div>
+                </div>
+              ):(
+                <div style={{background:"rgba(16,185,129,.07)",border:"1px solid rgba(16,185,129,.2)",borderRadius:13,padding:13,marginBottom:13}}>
+                  <div style={{fontWeight:800,fontSize:12,color:"#10b981",marginBottom:3}}>10 Referrals = Premium FREE (7 days)</div>
+                  <div style={{fontSize:11,color:"#94a3b8",lineHeight:1.6}}>Link share karo &#8594; 10 log sign up karein &#8594; Premium auto!</div>
+                </div>
+              )}
+              <div style={{background:"rgba(2,8,23,.5)",border:"1px solid #1e293b",borderRadius:11,padding:12,marginBottom:11}}>
+                <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:8}}>
+                  <span style={{fontSize:11,color:"#94a3b8",fontWeight:600}}>Progress</span>
+                  <span style={{fontSize:14,fontWeight:900,color:"#a5b4fc"}}>{count}/10</span>
+                </div>
+                <div style={{background:"#1e293b",borderRadius:100,height:9,overflow:"hidden",marginBottom:7}}>
+                  <div style={{height:"100%",width:pct+"%",background:"linear-gradient(90deg,#6366f1,#a855f7,#10b981)",borderRadius:100,transition:"width .6s ease"}}/>
+                </div>
+                <div style={{display:"flex",justifyContent:"space-between",fontSize:9,color:"#475569"}}>
+                  <span>0</span>
+                  <span style={{color:"#6366f1",fontWeight:700}}>{count} joined</span>
+                  <span style={{color:"#f59e0b",fontWeight:700}}>10 = FREE</span>
+                </div>
+              </div>
+              <div style={{marginBottom:11}}>
+                <div style={{fontSize:10,color:"#64748b",fontWeight:700,marginBottom:5,textTransform:"uppercase"}}>Aapka Referral Link</div>
+                <div style={{background:"rgba(2,8,23,.7)",border:"1px solid rgba(99,102,241,.25)",borderRadius:10,padding:"9px 11px",display:"flex",alignItems:"center",gap:7}}>
+                  <div style={{fontSize:11,color:"#a5b4fc",fontWeight:600,flex:1,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{"yesyoupro.com/?ref="+refCodeStr}</div>
+                  <button onClick={()=>copyRefLink(user?.email)} style={{background:refCopied?"linear-gradient(135deg,#10b981,#059669)":"linear-gradient(135deg,#6366f1,#8b5cf6)",border:"none",borderRadius:7,padding:"5px 11px",color:"#fff",fontSize:10,fontWeight:700,cursor:"pointer",fontFamily:"Inter,sans-serif",whiteSpace:"nowrap"}}>{refCopied?"Copied!":"Copy"}</button>
+                </div>
+              </div>
+              <div style={{display:"flex",gap:6,marginBottom:12,flexWrap:"wrap"}}>
+                <a href={"https://wa.me/?text="+waMsg} target="_blank" rel="noreferrer" style={{flex:1,minWidth:48,background:"#25d366",borderRadius:10,padding:"9px 6px",textDecoration:"none",display:"flex",flexDirection:"column",alignItems:"center",gap:3}}>
+                  <img src="https://cdn.simpleicons.org/whatsapp/ffffff" alt="WA" style={{width:20,height:20}}/>
+                  <span style={{fontSize:9,color:"#fff",fontWeight:700}}>WhatsApp</span>
+                </a>
+                <a href={"https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(refLink)} target="_blank" rel="noreferrer" style={{flex:1,minWidth:48,background:"#1877f2",borderRadius:10,padding:"9px 6px",textDecoration:"none",display:"flex",flexDirection:"column",alignItems:"center",gap:3}}>
+                  <img src="https://cdn.simpleicons.org/facebook/ffffff" alt="FB" style={{width:20,height:20}}/>
+                  <span style={{fontSize:9,color:"#fff",fontWeight:700}}>Facebook</span>
+                </a>
+                <a href={"https://twitter.com/intent/tweet?text="+encodeURIComponent("YesYouPro try karo: "+refLink)} target="_blank" rel="noreferrer" style={{flex:1,minWidth:48,background:"#000",border:"1px solid #333",borderRadius:10,padding:"9px 6px",textDecoration:"none",display:"flex",flexDirection:"column",alignItems:"center",gap:3}}>
+                  <img src="https://cdn.simpleicons.org/x/ffffff" alt="X" style={{width:20,height:20}}/>
+                  <span style={{fontSize:9,color:"#fff",fontWeight:700}}>Twitter</span>
+                </a>
+                <a href={"https://www.linkedin.com/sharing/share-offsite/?url="+encodeURIComponent(refLink)} target="_blank" rel="noreferrer" style={{flex:1,minWidth:48,background:"#0077b5",borderRadius:10,padding:"9px 6px",textDecoration:"none",display:"flex",flexDirection:"column",alignItems:"center",gap:3}}>
+                  <img src="https://cdn.simpleicons.org/linkedin/ffffff" alt="LI" style={{width:20,height:20}}/>
+                  <span style={{fontSize:9,color:"#fff",fontWeight:700}}>LinkedIn</span>
+                </a>
+              </div>
+              {rd.referrals.length>0&&(
+                <div style={{marginBottom:11}}>
+                  <div style={{fontSize:10,color:"#64748b",fontWeight:700,textTransform:"uppercase",marginBottom:6}}>Joined ({rd.referrals.length}/10)</div>
+                  <div style={{background:"rgba(2,8,23,.4)",border:"1px solid #1e293b",borderRadius:10,padding:"5px 9px",maxHeight:150,overflowY:"auto"}}>
+                    {(rd.referrals||[]).map((r,i)=>(
+                      <div key={i} style={{display:"flex",alignItems:"center",gap:7,padding:"5px 0",borderBottom:i<rd.referrals.length-1?"1px solid rgba(255,255,255,.04)":"none"}}>
+                        <div style={{width:24,height:24,background:"linear-gradient(135deg,#6366f1,#8b5cf6)",borderRadius:"50%",display:"flex",alignItems:"center",justifyContent:"center",fontSize:10,fontWeight:800,color:"#fff",flexShrink:0}}>{r.name?.[0]?.toUpperCase()||"U"}</div>
+                        <div style={{flex:1,minWidth:0}}>
+                          <div style={{fontSize:11,fontWeight:700,color:"#e2e8f0",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{r.name}</div>
+                          <div style={{fontSize:9,color:"#475569"}}>{new Date(r.time).toLocaleDateString("en-IN")}</div>
+                        </div>
+                        <span style={{background:"rgba(16,185,129,.1)",color:"#10b981",fontSize:9,fontWeight:700,padding:"2px 6px",borderRadius:100}}>&#10003;</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+              <div style={{background:"rgba(99,102,241,.05)",border:"1px solid rgba(99,102,241,.1)",borderRadius:10,padding:10}}>
+                <div style={{fontWeight:700,color:"#a5b4fc",fontSize:11,marginBottom:5}}>Rules</div>
+                {["Real sign up hona chahiye","Ek user sirf ek baar count hoga","Khud ko refer nahi kar sakte","10 referrals = Auto premium 7 days","Reward sirf ek baar milega"].map((r,i)=>(
+                  <div key={i} style={{fontSize:10,color:"#64748b",padding:"2px 0",display:"flex",gap:5}}><span style={{color:"#6366f1"}}>&#8226;</span><span>{r}</span></div>
+                ))}
+              </div>
+            </>);
+          })()}
 
           {profTab==="question" && <>
             <div className="prh"><button className="prcl" style={{background:"none",fontSize:18}} onClick={()=>setProfTab("main")}>←</button><div style={{fontWeight:800,fontSize:14,color:"#f8fafc"}}>Any Questions?</div><div style={{width:29}}/></div>
@@ -889,13 +1089,16 @@ export default function App() {
             <div style={{marginBottom:13}}>
               <label className="ilbl">Category * {pf.cat && <span style={{color:"#10b981",marginLeft:4,fontSize:10}}>✅ {pf.cat}</span>}</label>
               <button className={"pick-btn"+(pf.cat?" sel":"")} onClick={()=>{setShowCats(!showCats);setShowPlats(false);}}>
-                <span>{pf.cat?(CATS.find(c=>c.id===pf.cat)?.icon||"")+" "+pf.cat:"📂 Select Category"}</span>
+                <span style={{display:"flex",alignItems:"center",gap:6}}>
+                  {pf.cat&&(()=>{const ct=CATS.find(c=>c.id===pf.cat);return ct?.logo?<img src={ct.logo} alt={pf.cat} style={{width:15,height:15,objectFit:"contain",borderRadius:2}} onError={(e)=>{e.target.style.display="none";}}/>:<span style={{fontSize:13}}>{ct?.e||"📂"}</span>;})()}
+                  <span>{pf.cat||"Select Category"}</span>
+                </span>
                 <span style={{fontSize:10,color:"#6366f1"}}>{showCats?"▲":"▼"}</span>
               </button>
               {showCats && <div className="pick-drop">
                 {["Physical","Digital"].map(g=><div key={g}>
                   <div className="pg-lbl">{g==="Physical"?"📦 Physical Products":"💻 Digital & Virtual"}</div>
-                  <div className="chips">{CATS.filter(c=>c.g===g).map(c=><button key={c.id} className={"chip"+(pf.cat===c.id?" on":"")} style={pf.cat===c.id?{background:"linear-gradient(135deg,#6366f1,#8b5cf6)",borderColor:"#6366f1"}:{}} onClick={()=>{setPf({...pf,cat:c.id});setShowCats(false);}}><span>{c.icon}</span>{c.id}</button>)}</div>
+                  <div className="chips">{CATS.filter(c=>c.g===g).map(c=><button key={c.id} className={"chip"+(pf.cat===c.id?" on":"")} style={pf.cat===c.id?{background:"linear-gradient(135deg,#6366f1,#8b5cf6)",borderColor:"#6366f1"}:{}} onClick={()=>{setPf({...pf,cat:c.id});setShowCats(false);}}>{c.logo?<img src={c.logo} alt={c.id} style={{width:14,height:14,objectFit:"contain",flexShrink:0,borderRadius:2}} onError={(e)=>{e.target.style.display="none";}}/>:<span style={{fontSize:12}}>{c.e||"•"}</span>}{c.id}</button>)}</div>
                 </div>)}
               </div>}
             </div>
@@ -909,7 +1112,7 @@ export default function App() {
               {showPlats && <div className="pick-drop">
                 {platGroups.map(g=><div key={g}>
                   <div className="pg-lbl">{g==="Ecommerce"?"🛒 "+g:g==="Social Media"?"📱 "+g:g==="App Stores"?"📲 "+g:g==="Courses"?"🎓 "+g:g==="Freelance"?"💼 "+g:g==="Food"?"🍔 "+g:"🌐 "+g}</div>
-                  <div className="chips">{PLATS.filter(p=>p.g===g).map(p=><button key={p.id} className={"chip"+(pf.plat===p.id?" on":"")} style={pf.plat===p.id?{background:p.c,borderColor:p.c}:{}} onClick={()=>{setPf({...pf,plat:p.id});setShowPlats(false);}}><span>{p.icon}</span>{p.id}</button>)}</div>
+                  <div className="chips">{PLATS.filter(p=>p.g===g).map(p=><button key={p.id} className={"chip"+(pf.plat===p.id?" on":"")} style={pf.plat===p.id?{background:p.c,borderColor:p.c}:{}} onClick={()=>{setPf({...pf,plat:p.id});setShowPlats(false);}}>{p.logo?<img src={p.logo} alt={p.id} style={{width:13,height:13,objectFit:"contain",flexShrink:0,borderRadius:2,background:p.id==="Snapchat"?"#f5c518":"transparent",padding:p.id==="Snapchat"?"1px":"0"}} onError={(e)=>{e.target.style.display="none";}}/>:<span style={{fontSize:12}}>{p.e||"•"}</span>}{p.id}</button>)}</div>
                 </div>)}
               </div>}
             </div>
@@ -954,8 +1157,8 @@ export default function App() {
               <div className="pgrid">{ADPLATS.map(p=>(
                 <div key={p.id} className={"ppb"+(selP===p.id?" on":"")} onClick={()=>fetchPlat(p.id)} style={{borderColor:selP===p.id?p.c:undefined}}>
                   {isLocked&&<div className="pplk">🔒</div>}
-                  <div style={{width:20,height:20,background:p.c,borderRadius:5,margin:"0 auto 4px",display:"flex",alignItems:"center",justifyContent:"center",color:"#fff",fontSize:10,fontWeight:800}}>
-                    {p.n[0]}
+                  <div style={{width:26,height:26,borderRadius:8,margin:"0 auto 4px",display:"flex",alignItems:"center",justifyContent:"center",background:p.id==="sc"?"#f5c518":p.id==="tt"?"#000":"transparent"}}>
+                    <img src={p.logo} alt={p.n} style={{width:20,height:20,objectFit:"contain"}} onError={(e)=>{e.target.style.display="none";}}/>
                   </div>
                   <div style={{fontSize:8,fontWeight:700,color:"#94a3b8"}}>{p.n}</div>
                 </div>
