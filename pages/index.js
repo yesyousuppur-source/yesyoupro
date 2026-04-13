@@ -903,6 +903,28 @@ export default function App(){
                 <div style={{fontSize:12,color:"#94a3b8",marginBottom:4}}>
                   {newUserTimer?<span style={{color:"#10b981",fontWeight:700}}>₹249 — Limited Time!</span>:<span>₹1,049</span>}
                 </div>
+                {newUserTimer&&(
+                  <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:8,background:"rgba(239,68,68,.08)",border:"1px solid rgba(239,68,68,.2)",borderRadius:10,padding:"8px 14px",marginBottom:8}}>
+                    <div style={{textAlign:"center"}}>
+                      <div style={{fontSize:11,color:"#64748b",marginBottom:1}}>Timer khatam hone ke baad</div>
+                      <div style={{fontSize:17,fontWeight:900,color:"#ef4444",textDecoration:"line-through",opacity:.6}}>$13 (₹1,049)</div>
+                    </div>
+                    <div style={{fontSize:16,color:"#f59e0b"}}>→</div>
+                    <div style={{textAlign:"center"}}>
+                      <div style={{fontSize:11,color:"#10b981",fontWeight:700,marginBottom:1}}>Abhi ka price</div>
+                      <div style={{fontSize:17,fontWeight:900,color:"#10b981"}}>$3 (₹249)</div>
+                    </div>
+                  </div>
+                )}
+                {newUserTimer&&(
+                  <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:5,marginBottom:4}}>
+                    <span style={{fontSize:10,color:"#64748b"}}>Timer:</span>
+                    <span style={{fontSize:11,fontWeight:800,color:"#ef4444",fontVariantNumeric:"tabular-nums"}}>
+                      {String(newUserTimer.h).padStart(2,"0")}:{String(newUserTimer.m).padStart(2,"0")}:{String(newUserTimer.s).padStart(2,"0")}
+                    </span>
+                    <span style={{fontSize:10,color:"#64748b"}}>bacha hai</span>
+                  </div>
+                )}
             <div className="phigh">📊 30 analyses / 7 days (Free: 2/day only)<br/>⏰ No 24hr lockout<br/>🚫 Zero ads<br/>📋 Copy any AI result<br/>🔓 All 13 tools unlocked</div>
             <div className="pflist">{["✅ 30 analyses / 7 days","✅ Zero ads","✅ No 24hr lockout","📋 Copy full reports","🎓 Starter Guide","🔰 Beginner Products","🧮 Investment Calculator","📊 Sales Estimator","🏷️ Price Optimizer","📦 Inventory Calculator","⭐ Review Analyzer","🎯 Niche Finder","📺 Ads on 8 platforms"].map(f=><div key={f} className="pfi">{f}</div>)}</div>
             <button className="pbtn2" onClick={()=>setShowPay(true)}>
@@ -1136,7 +1158,8 @@ export default function App(){
                   {newUserTimer?(
                     <>
                       <span style={{fontSize:8,fontWeight:700,color:"rgba(255,255,255,.85)"}}>⚡ {String(newUserTimer.h).padStart(2,"0")}:{String(newUserTimer.m).padStart(2,"0")}:{String(newUserTimer.s).padStart(2,"0")}</span>
-                      <span style={{fontSize:11,fontWeight:900}}>💎 $3 (₹249)</span>
+                      <span style={{fontSize:11,fontWeight:900,lineHeight:1.1}}>💎 $3 <span style={{fontSize:8,opacity:.7,textDecoration:"line-through"}}>$13</span></span>
+                      <span style={{fontSize:8,color:"rgba(255,255,255,.7)"}}>₹249 → ₹1,049</span>
                     </>
                   ):(
                     <span style={{fontSize:11,fontWeight:900}}>💎 $13 (₹1,049)</span>
