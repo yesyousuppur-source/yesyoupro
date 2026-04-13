@@ -206,7 +206,7 @@ export default function App() {
   const [adCopyD,setAdCopyD] = useState(null);const [adCopyL,setAdCopyL] = useState(false);
   const [cashF,setCashF] = useState({invest:"",revenue:"",fees:"",returns:""});
   const [cashR,setCashR] = useState(null);
-  const [supplierD,setSupplierEmailD] = useState(null);const [supplierL,setSupplierEmailL] = useState(false);
+  const [supplierEmailD,setSupplierEmailD] = useState(null);const [supplierEmailL,setSupplierEmailL] = useState(false);
   const [returnPolD,setReturnPolD] = useState(null);const [returnPolL,setReturnPolL] = useState(false);
   const [compliD,setCompliD] = useState(null);const [compliL,setCompliL] = useState(false);
 
@@ -1944,9 +1944,9 @@ export default function App() {
               <h3 className="ict">Supplier Email Generator</h3>
               <p style={{color:dark?"#64748b":"#6b7280",fontSize:10,marginBottom:12}}>Professional supplier email + negotiation script</p>
               {!pf.name&&<div className="errbanner">Pehle product analyze karo</div>}
-              <button className="gbtn2" style={{background:"linear-gradient(135deg,#10b981,#059669)"}} disabled={supplierL||!pf.name} onClick={async()=>{setSupplierEmailL(true);try{const d=await apiCall("supplier_email");setSupplierEmailD(d);}catch{showT("Failed");}setSupplierEmailL(false);}}>{supplierL?"Generating...":"Generate Supplier Email"}</button>
-              {supplierL&&<div className="ssp"/>}
-              {supplierEmailD&&!supplierL&&(
+              <button className="gbtn2" style={{background:"linear-gradient(135deg,#10b981,#059669)"}} disabled={supplierEmailL||!pf.name} onClick={async()=>{setSupplierEmailL(true);try{const d=await apiCall("supplier_email");setSupplierEmailD(d);}catch{showT("Failed");}setSupplierEmailL(false);}}>{supplierEmailL?"Generating...":"Generate Supplier Email"}</button>
+              {supplierEmailL&&<div className="ssp"/>}
+              {supplierEmailD&&!supplierEmailL&&(
                 <div style={{marginTop:12}} className="fa">
                   {supplierEmailD.emails?.map((em,i)=>(
                     <div key={i} style={{background:dark?"rgba(16,185,129,.06)":"#f0fdf4",border:"1px solid rgba(16,185,129,.2)",borderRadius:11,padding:12,marginBottom:9}}>
