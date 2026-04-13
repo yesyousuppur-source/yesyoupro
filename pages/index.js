@@ -13,28 +13,26 @@ const FB = {
   appId:"1:455406578867:web:fc5a2b6a00af996bc114c6"
 };
 const CATS=[
-  // Physical
   {id:"Electronics",logo:"https://cdn.simpleicons.org/samsung/1428A0",g:"Physical"},
   {id:"Beauty & Skincare",logo:"https://cdn.simpleicons.org/sephora/000000",g:"Physical"},
   {id:"Home & Kitchen",logo:"https://cdn.simpleicons.org/ikea/0058A3",g:"Physical"},
-  {id:"Fitness",logo:"https://cdn.simpleicons.org/underarmour/000000",g:"Physical"},
-  {id:"Fashion",logo:"https://cdn.simpleicons.org/vogue/000000",g:"Physical"},
+  {id:"Fitness",logo:"https://cdn.simpleicons.org/peloton/000000",g:"Physical"},
+  {id:"Fashion",logo:"https://cdn.simpleicons.org/uniqlo/FF0000",g:"Physical"},
   {id:"Pet Supplies",logo:null,e:"🐾",g:"Physical"},
   {id:"Toys & Games",logo:"https://cdn.simpleicons.org/lego/E3000B",g:"Physical"},
-  {id:"Health & Wellness",logo:"https://cdn.simpleicons.org/practo/5C9AD3",g:"Physical"},
+  {id:"Health & Wellness",logo:"https://cdn.simpleicons.org/headspace/F47D31",g:"Physical"},
   {id:"Outdoor & Sports",logo:"https://cdn.simpleicons.org/decathlon/0082C3",g:"Physical"},
-  {id:"Food & Beverages",logo:"https://cdn.simpleicons.org/swiggy/FC8019",g:"Physical"},
+  {id:"Food & Beverages",logo:"https://cdn.simpleicons.org/zomato/E23744",g:"Physical"},
   {id:"Automotive",logo:"https://cdn.simpleicons.org/uber/000000",g:"Physical"},
-  {id:"Books & Education",logo:"https://cdn.simpleicons.org/amazon/FF9900",g:"Physical"},
+  {id:"Books & Education",logo:"https://cdn.simpleicons.org/audible/F8991C",g:"Physical"},
   {id:"Jewelry",logo:null,e:"💍",g:"Physical"},
   {id:"Baby & Kids",logo:null,e:"👶",g:"Physical"},
-  {id:"Tools & Hardware",logo:null,e:"🔧",g:"Physical"},
+  {id:"Tools & Hardware",logo:"https://cdn.simpleicons.org/instructables/F7971C",g:"Physical"},
   {id:"Garden & Plants",logo:null,e:"🌱",g:"Physical"},
   {id:"Travel & Luggage",logo:"https://cdn.simpleicons.org/airbnb/FF5A5F",g:"Physical"},
-  {id:"Art & Crafts",logo:null,e:"🎨",g:"Physical"},
+  {id:"Art & Crafts",logo:"https://cdn.simpleicons.org/etsy/F56400",g:"Physical"},
   {id:"Office Supplies",logo:"https://cdn.simpleicons.org/notion/000000",g:"Physical"},
   {id:"Music & Audio",logo:"https://cdn.simpleicons.org/spotify/1DB954",g:"Physical"},
-  // Digital
   {id:"Mobile Apps",logo:"https://cdn.simpleicons.org/android/3DDC84",g:"Digital"},
   {id:"PC / Console Games",logo:"https://cdn.simpleicons.org/steam/000000",g:"Digital"},
   {id:"Online Courses",logo:"https://cdn.simpleicons.org/udemy/A435F0",g:"Digital"},
@@ -42,19 +40,18 @@ const CATS=[
   {id:"Website / Blog",logo:"https://cdn.simpleicons.org/wordpress/21759B",g:"Digital"},
   {id:"YouTube Channel",logo:"https://cdn.simpleicons.org/youtube/FF0000",g:"Digital"},
   {id:"Instagram Page",logo:"https://cdn.simpleicons.org/instagram/E1306C",g:"Digital"},
-  {id:"Podcast",logo:"https://cdn.simpleicons.org/applepodcasts/9933CC",g:"Digital"},
+  {id:"Podcast",logo:"https://cdn.simpleicons.org/spotify/1DB954",g:"Digital"},
   {id:"NFT & Crypto",logo:"https://cdn.simpleicons.org/ethereum/627EEA",g:"Digital"},
-  {id:"Ebooks & Templates",logo:"https://cdn.simpleicons.org/kindle/000000",g:"Digital"},
+  {id:"Ebooks & Templates",logo:"https://cdn.simpleicons.org/amazon/FF9900",g:"Digital"},
   {id:"Freelance Services",logo:"https://cdn.simpleicons.org/fiverr/1DBF73",g:"Digital"},
-  {id:"Social Media Account",logo:"https://cdn.simpleicons.org/facebook/1877F2",g:"Digital"},
+  {id:"Social Media Account",logo:"https://cdn.simpleicons.org/instagram/E1306C",g:"Digital"},
   {id:"Dropshipping",logo:"https://cdn.simpleicons.org/shopify/96BF48",g:"Digital"},
   {id:"Affiliate Marketing",logo:"https://cdn.simpleicons.org/amazon/FF9900",g:"Digital"},
-  {id:"Print on Demand",logo:"https://cdn.simpleicons.org/printify/000000",g:"Digital"},
+  {id:"Print on Demand",logo:"https://cdn.simpleicons.org/redbubble/E41321",g:"Digital"},
   {id:"Digital Products",logo:"https://cdn.simpleicons.org/gumroad/FF90E8",g:"Digital"},
   {id:"Any Other",logo:null,e:"✨",g:"Digital"},
 ];
 const PLATS=[
-  // Ecommerce
   {id:"Amazon",logo:"https://cdn.simpleicons.org/amazon/FF9900",c:"#FF9900",g:"Ecommerce"},
   {id:"Flipkart",logo:"https://cdn.simpleicons.org/flipkart/2874F0",c:"#2874f0",g:"Ecommerce"},
   {id:"Meesho",logo:"https://cdn.simpleicons.org/meesho/F43397",c:"#e91e8c",g:"Ecommerce"},
@@ -65,7 +62,6 @@ const PLATS=[
   {id:"Myntra",logo:null,e:"👗",c:"#ff3f6c",g:"Ecommerce"},
   {id:"IndiaMART",logo:null,e:"🏭",c:"#0077b5",g:"Ecommerce"},
   {id:"JioMart",logo:null,e:"🛍️",c:"#003087",g:"Ecommerce"},
-  // Social Media
   {id:"Instagram",logo:"https://cdn.simpleicons.org/instagram/E1306C",c:"#e1306c",g:"Social Media"},
   {id:"Facebook",logo:"https://cdn.simpleicons.org/facebook/1877F2",c:"#1877f2",g:"Social Media"},
   {id:"YouTube",logo:"https://cdn.simpleicons.org/youtube/FF0000",c:"#ff0000",g:"Social Media"},
@@ -78,27 +74,22 @@ const PLATS=[
   {id:"WhatsApp Business",logo:"https://cdn.simpleicons.org/whatsapp/25D366",c:"#25d366",g:"Social Media"},
   {id:"Discord",logo:"https://cdn.simpleicons.org/discord/5865F2",c:"#5865f2",g:"Social Media"},
   {id:"Reddit",logo:"https://cdn.simpleicons.org/reddit/FF4500",c:"#ff4500",g:"Social Media"},
-  // App Stores
   {id:"Google Play Store",logo:"https://cdn.simpleicons.org/googleplay/414141",c:"#01875f",g:"App Stores"},
   {id:"Apple App Store",logo:"https://cdn.simpleicons.org/apple/000000",c:"#0071e3",g:"App Stores"},
   {id:"Steam",logo:"https://cdn.simpleicons.org/steam/000000",c:"#1b2838",g:"App Stores"},
   {id:"PlayStation Store",logo:"https://cdn.simpleicons.org/playstation/003087",c:"#003087",g:"App Stores"},
   {id:"Xbox Store",logo:"https://cdn.simpleicons.org/xbox/107C10",c:"#107c10",g:"App Stores"},
-  // Courses
   {id:"Udemy",logo:"https://cdn.simpleicons.org/udemy/A435F0",c:"#a435f0",g:"Courses"},
   {id:"Skillshare",logo:"https://cdn.simpleicons.org/skillshare/00FF84",c:"#00ccb1",g:"Courses"},
   {id:"Gumroad",logo:"https://cdn.simpleicons.org/gumroad/FF90E8",c:"#ff90e8",g:"Courses"},
   {id:"Patreon",logo:"https://cdn.simpleicons.org/patreon/FF424D",c:"#ff424d",g:"Courses"},
   {id:"Substack",logo:"https://cdn.simpleicons.org/substack/FF6719",c:"#ff6719",g:"Courses"},
   {id:"Teachable",logo:null,e:"🎓",c:"#5cb85c",g:"Courses"},
-  // Freelance
   {id:"Fiverr",logo:"https://cdn.simpleicons.org/fiverr/1DBF73",c:"#1dbf73",g:"Freelance"},
   {id:"Upwork",logo:"https://cdn.simpleicons.org/upwork/6FDA44",c:"#14a800",g:"Freelance"},
-  // Food
   {id:"Zomato",logo:"https://cdn.simpleicons.org/zomato/E23744",c:"#e23744",g:"Food"},
-  {id:"Swiggy",logo:"https://cdn.simpleicons.org/swiggy/FC8019",c:"#fc8019",g:"Food"},
+  {id:"Swiggy",logo:null,e:"🛵",c:"#fc8019",g:"Food"},
   {id:"BigBasket",logo:null,e:"🛒",c:"#84c225",g:"Food"},
-  // Other
   {id:"Own Website",logo:"https://cdn.simpleicons.org/googlechrome/4285F4",c:"#6366f1",g:"Other"},
   {id:"Any Other",logo:null,e:"✨",c:"#94a3b8",g:"Other"},
 ];
@@ -804,12 +795,14 @@ export default function App(){
     .pdchip{background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.2);color:#a5b4fc;border-radius:5px;padding:2px 6px;font-size:10px}
     .ftw{margin-bottom:16px}
     .fglbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;margin-bottom:5px;margin-top:11px}
-    .ftabs{display:flex;gap:5px;overflow-x:auto;padding-bottom:2px}
+    .ftabs{display:flex;gap:5px;overflow-x:auto;padding-bottom:4px;padding-top:2px}
+    .ftabs::-webkit-scrollbar{height:3px}
+    .ftabs::-webkit-scrollbar-thumb{background:rgba(99,102,241,.3);border-radius:10px}
     .ftabs::-webkit-scrollbar{height:2px}
     .ftabs::-webkit-scrollbar-thumb{background:#1e293b;border-radius:10px}
     .ftab{flex-shrink:0;padding:7px 14px;background:rgba(15,23,42,.7);border:1px solid #1e293b;border-radius:100px;color:#64748b;font-size:11px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif;display:flex;align-items:center;gap:5px;transition:all .2s;white-space:nowrap}
     .ftab.on{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;border-color:transparent;box-shadow:0 3px 11px rgba(99,102,241,.3)}
-    .ftab:hover:not(.on){border-color:rgba(99,102,241,.3);color:#a5b4fc}
+    .ftab:hover:not(.on){border-color:rgba(99,102,241,.25);color:#a5b4fc;background:rgba(99,102,241,.06)}
     .fbox{background:${D?'rgba(15,23,42,.88)':'#ffffff'};border:1px solid ${D?'rgba(99,102,241,.18)':'#e2e8f0'};border-radius:18px;padding:20px 16px;margin-bottom:12px;position:relative;box-shadow:${D?'0 4px 24px rgba(0,0,0,.25)':'0 4px 20px rgba(0,0,0,.06)'}}
     .prow{display:grid;grid-template-columns:repeat(auto-fit,minmax(105px,1fr));gap:7px;margin-bottom:10px}
     .pfield{display:flex;flex-direction:column;gap:3px}
@@ -1747,7 +1740,10 @@ export default function App(){
           {tab==="return" && (
             <div className="fbox fa" style={{position:"relative"}}>
               {isLocked&&<LockBox/>}
-              <h3 style={{fontWeight:800,fontSize:14,marginBottom:3,color:"#f8fafc"}}>📦 Return and Refund Manager</h3>
+              <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:4}}>
+                <span style={{fontSize:20}}>📦</span>
+                <h3 style={{fontWeight:800,fontSize:14,color:"#f8fafc"}}>Return and Refund Manager</h3>
+              </div>
               <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Return rate kam karo — AI se smart strategy lo</p>
               {!pf.name&&<div className="errbanner">⚠️ Run product analysis first</div>}
               <button className="gbtn2" style={{background:"linear-gradient(135deg,#ef4444,#dc2626)"}} onClick={async()=>{setReturnL(true);try{const d=await apiCall("return_manager");setReturnD(d);}catch(e){console.error(e);}setReturnL(false);}} disabled={returnL||!pf.name}>{returnL?"⏳ Analyzing...":"📦 Analyze Returns"}</button>
@@ -1792,7 +1788,10 @@ export default function App(){
           {tab==="festival" && (
             <div className="fbox fa" style={{position:"relative"}}>
               {isLocked&&<LockBox/>}
-              <h3 style={{fontWeight:800,fontSize:14,marginBottom:3,color:"#f8fafc"}}>🎊 Festival Season Planner</h3>
+              <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:4}}>
+                <span style={{fontSize:20}}>🎊</span>
+                <h3 style={{fontWeight:800,fontSize:14,color:"#f8fafc"}}>Festival Season Planner</h3>
+              </div>
               <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Festivals ke liye advance stock aur pricing strategy</p>
               <div style={{marginBottom:12}}>
                 <label className="ilbl">Festival / Season Select Karo</label>
@@ -1855,7 +1854,10 @@ export default function App(){
           {tab==="roas" && (
             <div className="fbox fa" style={{position:"relative"}}>
               {isLocked&&<LockBox/>}
-              <h3 style={{fontWeight:800,fontSize:14,marginBottom:3,color:"#f8fafc"}}>💰 Ad ROAS Calculator</h3>
+              <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:4}}>
+                <span style={{fontSize:20}}>💰</span>
+                <h3 style={{fontWeight:800,fontSize:14,color:"#f8fafc"}}>Ad ROAS Calculator</h3>
+              </div>
               <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Ads pe paise waste ho rahe hain? Sahi calculate karo</p>
               <div className="prow">
                 <div className="pfield"><label>Ad Spend (₹)</label><input type="number" placeholder="500" value={roasF.spend} onChange={e=>setRoasF({...roasF,spend:e.target.value})}/></div>
@@ -1920,7 +1922,10 @@ export default function App(){
           {tab==="multi" && (
             <div className="fbox fa" style={{position:"relative"}}>
               {isLocked&&<LockBox/>}
-              <h3 style={{fontWeight:800,fontSize:14,marginBottom:3,color:"#f8fafc"}}>📱 Multi-Platform Expander</h3>
+              <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:4}}>
+                <span style={{fontSize:20}}>📱</span>
+                <h3 style={{fontWeight:800,fontSize:14,color:"#f8fafc"}}>Multi-Platform Expander</h3>
+              </div>
               <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Ek platform pe dependent mat raho — expand karo</p>
               {!pf.name&&<div className="errbanner">⚠️ Run product analysis first</div>}
               <button className="gbtn2" style={{background:"linear-gradient(135deg,#3b82f6,#1d4ed8)"}} onClick={async()=>{setMultiL(true);try{const d=await apiCall("multi_platform");setMultiD(d);}catch(e){console.error(e);}setMultiL(false);}} disabled={multiL||!pf.name}>{multiL?"⏳ Analyzing...":"📱 Find Best Platforms"}</button>
@@ -1959,7 +1964,10 @@ export default function App(){
           {tab==="bundle" && (
             <div className="fbox fa" style={{position:"relative"}}>
               {isLocked&&<LockBox/>}
-              <h3 style={{fontWeight:800,fontSize:14,marginBottom:3,color:"#f8fafc"}}>🎁 Bundle Product Creator</h3>
+              <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:4}}>
+                <span style={{fontSize:20}}>🎁</span>
+                <h3 style={{fontWeight:800,fontSize:14,color:"#f8fafc"}}>Bundle Product Creator</h3>
+              </div>
               <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Single product se zyada margin — smart bundles banao</p>
               {!pf.name&&<div className="errbanner">⚠️ Run product analysis first</div>}
               <button className="gbtn2" style={{background:"linear-gradient(135deg,#ec4899,#be185d)"}} onClick={async()=>{setBundleL(true);try{const d=await apiCall("bundle_creator");setBundleD(d);}catch(e){console.error(e);}setBundleL(false);}} disabled={bundleL||!pf.name}>{bundleL?"⏳ Creating...":"🎁 Create Bundle Ideas"}</button>
@@ -1999,7 +2007,10 @@ export default function App(){
           {/* ── GST CALCULATOR ── */}
           {tab==="gst" && (
             <div className="fbox fa">
-              <h3 style={{fontWeight:800,fontSize:14,marginBottom:3,color:"#f8fafc"}}>🧾 GST Calculator</h3>
+              <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:4}}>
+                <span style={{fontSize:20}}>🧾</span>
+                <h3 style={{fontWeight:800,fontSize:14,color:"#f8fafc"}}>GST Calculator</h3>
+              </div>
               <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Selling price ke baad actual profit calculate karo GST ke saath</p>
               <div className="prow">
                 <div className="pfield"><label>Selling Price (Rs.)</label><input type="number" placeholder="500" value={gstF.sell} onChange={e=>setGstF({...gstF,sell:e.target.value})}/></div>
@@ -2052,7 +2063,10 @@ export default function App(){
           {tab==="launch" && (
             <div className="fbox fa" style={{position:"relative"}}>
               {isLocked&&<LockBox/>}
-              <h3 style={{fontWeight:800,fontSize:14,marginBottom:3,color:"#f8fafc"}}>🚀 Launch Strategy Generator</h3>
+              <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:4}}>
+                <span style={{fontSize:20}}>🚀</span>
+                <h3 style={{fontWeight:800,fontSize:14,color:"#f8fafc"}}>Launch Strategy Generator</h3>
+              </div>
               <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Day 1 se Day 30 ka complete product launch plan</p>
               {!pf.name&&<div className="errbanner">Run product analysis first</div>}
               <button className="gbtn2" style={{background:"linear-gradient(135deg,#6366f1,#a855f7)"}} onClick={async()=>{setLaunchL(true);try{const d=await apiCall("launch_strategy");setLaunchD(d);}catch(e){console.error(e);}setLaunchL(false);}} disabled={launchL||!pf.name}>{launchL?"Generating...":"🚀 Generate Launch Plan"}</button>
@@ -2088,7 +2102,10 @@ export default function App(){
           {tab==="compare" && (
             <div className="fbox fa" style={{position:"relative"}}>
               {isLocked&&<LockBox/>}
-              <h3 style={{fontWeight:800,fontSize:14,marginBottom:3,color:"#f8fafc"}}>⚡ Compare Products</h3>
+              <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:4}}>
+                <span style={{fontSize:20}}>⚡</span>
+                <h3 style={{fontWeight:800,fontSize:14,color:"#f8fafc"}}>Compare Products</h3>
+              </div>
               <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>2 products side by side compare karo — konsa better hai?</p>
               <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginBottom:12}}>
                 <div style={{background:"rgba(2,8,23,.5)",border:"1px solid rgba(99,102,241,.2)",borderRadius:10,padding:11}}>
@@ -2160,7 +2177,10 @@ export default function App(){
           {/* ── SHIPPING COST ── */}
           {tab==="shipping" && (
             <div className="fbox fa">
-              <h3 style={{fontWeight:800,fontSize:14,marginBottom:3,color:"#f8fafc"}}>🚚 Shipping Cost Comparator</h3>
+              <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:4}}>
+                <span style={{fontSize:20}}>🚚</span>
+                <h3 style={{fontWeight:800,fontSize:14,color:"#f8fafc"}}>Shipping Cost Comparator</h3>
+              </div>
               <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Major couriers compare karo — best rate dhundho</p>
               <div className="prow">
                 <div className="pfield"><label>Weight (kg)</label><input type="number" placeholder="0.5" step="0.1" value={shipF.weight} onChange={e=>setShipF({...shipF,weight:e.target.value})}/></div>
