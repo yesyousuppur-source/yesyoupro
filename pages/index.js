@@ -199,6 +199,7 @@ export default function App(){
   const[shipF,setShipF]=useState({weight:"1",zone:"local",cod:"no"});
   const[shipR,setShipR]=useState(null);
   const[showHist,setShowHist]=useState(false);
+  const[darkMode,setDarkMode]=useState(false);
   const[newUserTimer,setNewUserTimer]=useState(null);
   const newUserTimerRef=useRef(null);
 
@@ -344,6 +345,9 @@ export default function App(){
   useEffect(()=>{
     setSaved(S.get("yyp_accounts")||[]);
     setHistory(S.get("yyp_history")||[]);
+    const savedMode=S.get("yyp_dark_mode");
+    if(savedMode===true)setDarkMode(true);
+    else setDarkMode(false);
     // New user 3-day countdown
     if(!S.get("yyp_first_visit")){
       S.set("yyp_first_visit", Date.now());
@@ -871,7 +875,61 @@ export default function App(){
     .cbtn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(99,102,241,.4)}
     .gbtn2:hover{transform:translateY(-1px);filter:brightness(1.08)}
     @media(max-width:600px){.nav{padding:10px 11px}.dc{padding:18px 9px 60px}.pgrid{gap:4px}.ppb{padding:8px 2px 6px}.nc{padding:24px 14px}.icard{padding:15px 11px}}
-  `;
+  `
+    /* ── LIGHT MODE ── */
+    .light-mode{--bg:#f1f5f9;--bg2:#ffffff;--bg3:#f8fafc;--card:rgba(255,255,255,.95);--border:rgba(0,0,0,.07);--text:#0f172a;--text2:#334155;--muted:#94a3b8;--input:#f8fafc;--inputborder:#e2e8f0;}
+    .light-mode body,.light-mode{background:#f1f5f9;color:#0f172a;}
+    .light-mode .dash{background:#f1f5f9;color:#0f172a;}
+    .light-mode .nav{background:rgba(255,255,255,.95);border-bottom:1px solid rgba(0,0,0,.07);box-shadow:0 2px 12px rgba(0,0,0,.06);}
+    .light-mode .logo{background:linear-gradient(135deg,#6366f1,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .light-mode .icard{background:rgba(255,255,255,.95);border:1px solid rgba(99,102,241,.15);box-shadow:0 2px 16px rgba(0,0,0,.07);}
+    .light-mode .di{background:#f8fafc;border:1px solid #e2e8f0;color:#0f172a;}
+    .light-mode .di::placeholder{color:#adb5bd;}
+    .light-mode .di:focus{border-color:#6366f1;}
+    .light-mode .pick-btn{background:#f8fafc;border:1px solid #e2e8f0;color:#475569;}
+    .light-mode .pick-btn.sel{background:rgba(99,102,241,.06);border-color:rgba(99,102,241,.3);color:#0f172a;}
+    .light-mode .pick-drop{background:#ffffff;border:1px solid #e2e8f0;box-shadow:0 8px 24px rgba(0,0,0,.1);}
+    .light-mode .chip{background:#f1f5f9;border:1px solid #e2e8f0;color:#475569;}
+    .light-mode .chip:hover{background:#e0e7ff;border-color:#6366f1;color:#6366f1;}
+    .light-mode .chip.on{color:#fff;}
+    .light-mode .gcard{background:#ffffff;border:1px solid rgba(0,0,0,.07);box-shadow:0 2px 8px rgba(0,0,0,.04);}
+    .light-mode .gct{color:#0f172a;}
+    .light-mode .gctx{color:#475569;}
+    .light-mode .mc{background:#ffffff;border:1px solid rgba(0,0,0,.07);}
+    .light-mode .ml{color:#64748b;}
+    .light-mode .fbox{background:#ffffff;border:1px solid rgba(99,102,241,.12);box-shadow:0 2px 16px rgba(0,0,0,.06);}
+    .light-mode .pfield input,.light-mode .pfield select{background:#f8fafc;border:1px solid #e2e8f0;color:#0f172a;}
+    .light-mode .prc{background:#f8fafc;border:1px solid #e2e8f0;}
+    .light-mode .prl{color:#64748b;}
+    .light-mode .prv{filter:none;}
+    .light-mode .ftab{background:#f1f5f9;border:1px solid #e2e8f0;color:#64748b;}
+    .light-mode .ftab.on{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;border-color:transparent;}
+    .light-mode .fglbl{color:#64748b;}
+    .light-mode .tcard{background:#ffffff;border:1px solid rgba(0,0,0,.07);}
+    .light-mode .trnk{background:linear-gradient(135deg,#f59e0b,#ef4444);}
+    .light-mode .sc{background:#ffffff;border:1px solid rgba(16,185,129,.2);}
+    .light-mode .cc{background:#f8fafc;border:1px solid #e2e8f0;}
+    .light-mode .ccbox{background:#f1f5f9;}
+    .light-mode .prov{background:rgba(0,0,0,.6);}
+    .light-mode .prm{background:linear-gradient(180deg,#ffffff,#f8fafc);border:1px solid rgba(0,0,0,.1);}
+    .light-mode .pmbtn{background:rgba(0,0,0,.02);border:1px solid rgba(0,0,0,.07);color:#334155;}
+    .light-mode .pmbtn:hover{background:rgba(99,102,241,.05);border-color:rgba(99,102,241,.2);}
+    .light-mode .tbox2{background:#f8fafc;border:1px solid #e2e8f0;}
+    .light-mode .th{color:#334155;}
+    .light-mode .tp{color:#64748b;}
+    .light-mode .qbox{background:#f8fafc;border:1px solid #e2e8f0;}
+    .light-mode .qinp{color:#0f172a;}
+    .light-mode .ssp{border-color:rgba(99,102,241,.2);border-top-color:#6366f1;}
+    .light-mode footer{color:#94a3b8;border-top:1px solid rgba(0,0,0,.06);}
+    .light-mode .upill{background:rgba(255,255,255,.9);border:1px solid #e2e8f0;}
+    .light-mode .htitle{color:#0f172a;}
+    .light-mode .hsub{color:#64748b;}
+    .light-mode .bnr-g{background:rgba(16,185,129,.07);border:1px solid rgba(16,185,129,.2);}
+    .light-mode .bnr-r{background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.2);}
+    .light-mode .errbanner{background:rgba(239,68,68,.05);}
+    .light-mode .pg-lbl,.light-mode .pglbl{color:#94a3b8;}
+    .light-mode .dc{background:#f1f5f9;}
+  `
 
   if(screen==="loading") return (
     <><style>{css}</style>
@@ -1006,6 +1064,16 @@ export default function App(){
                 {!isGuest&&user?.email&&<span style={{fontSize:10,color:"#10b981",fontWeight:700,marginRight:4}}>{((S.get("yyp_ref_"+user.email)||{referrals:[]}).referrals||[]).length}/10</span>}
                 <span className="pmarr">›</span>
               </button>
+              <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",background:darkMode?"rgba(255,255,255,.03)":"rgba(0,0,0,.02)",border:darkMode?"1px solid rgba(255,255,255,.06)":"1px solid rgba(0,0,0,.07)",borderRadius:11,padding:"11px 14px",marginBottom:7}}>
+                <div style={{display:"flex",alignItems:"center",gap:10}}>
+                  <span style={{fontSize:18,width:24,textAlign:"center"}}>{darkMode?"🌙":"☀️"}</span>
+                  <span style={{fontSize:13,fontWeight:600,color:darkMode?"#e2e8f0":"#334155"}}>{darkMode?"Dark Mode":"Light Mode"}</span>
+                  <span style={{fontSize:9,fontWeight:800,padding:"2px 7px",borderRadius:100,background:darkMode?"rgba(99,102,241,.2)":"rgba(245,158,11,.15)",color:darkMode?"#a5b4fc":"#f59e0b"}}>ON</span>
+                </div>
+                <div onClick={()=>{const newMode=!darkMode;setDarkMode(newMode);S.set("yyp_dark_mode",newMode);}} style={{width:44,height:24,borderRadius:100,background:darkMode?"#1e293b":"linear-gradient(135deg,#6366f1,#8b5cf6)",position:"relative",cursor:"pointer",transition:"all .35s",flexShrink:0}}>
+                  <div style={{position:"absolute",top:3,left:darkMode?3:21,width:18,height:18,borderRadius:"50%",background:darkMode?"#475569":"#fff",transition:"all .35s ease",boxShadow:"0 2px 6px rgba(0,0,0,.3)"}}/>
+                </div>
+              </div>
               <button className="pmbtn" onClick={()=>setProfTab("terms")}><span className="pmico">📋</span><span>Terms and Conditions</span><span className="pmarr">›</span></button>
               {!isGuest&&(()=>{const waMsg=encodeURIComponent("Hello, I'm "+(user?.name||"User")+" (Plan: "+(curPlan==="premium"?"Premium":"Free")+"). I need help with YesYouPro.");return(<a href={"https://wa.me/919958540498?text="+waMsg} target="_blank" rel="noreferrer" style={{display:"flex",alignItems:"center",gap:10,background:"rgba(37,211,102,.08)",border:"1px solid rgba(37,211,102,.25)",borderRadius:11,padding:"11px 14px",textDecoration:"none",transition:"all .2s"}}><img src="https://cdn.simpleicons.org/whatsapp/25D366" alt="WhatsApp" style={{width:22,height:22,objectFit:"contain",flexShrink:0}}/><span style={{flex:1}}><div style={{fontSize:13,fontWeight:700,color:"#25d366"}}>WhatsApp Support</div><div style={{fontSize:10,color:"#64748b"}}>Click karo — message auto-fill hoga</div></span><span style={{color:"#25d366",fontSize:13}}>›</span></a>);})()} 
               <button className="pmbtn" onClick={()=>setProfTab("question")}><span className="pmico">❓</span><span>Any Questions?</span><span className="pmarr">›</span></button>
@@ -1156,7 +1224,7 @@ export default function App(){
         </div>
       </div>}
 
-      {screen==="dashboard" && <div className="dash">
+      {screen==="dashboard" && <div className={"dash"+(darkMode?"":" light-mode")}>
         <nav className="nav">
           <div className="logo">🧠 YesYouPro</div>
           {usage && <div className="upill">
