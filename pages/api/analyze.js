@@ -395,7 +395,6 @@ Return ONLY valid JSON with real, specific data:
       }),
     });
 
-    
     const data = await response.json();
     if (!response.ok) return res.status(500).json({ error: data.error?.message || "OpenAI error" });
     const text = data.choices?.[0]?.message?.content || "{}";
