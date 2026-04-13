@@ -139,6 +139,15 @@ export default function App() {
   const [invtD,setInvtD] = useState(null);const [invtL,setInvtL] = useState(false);
   const [revD,setRevD] = useState(null);const [revL,setRevL] = useState(false);
   const [nicheD,setNicheD] = useState(null);const [nicheL,setNicheL] = useState(false);
+  const [gstF,setGstF] = useState({sell:"",rate:"12"});
+  const [gstR,setGstR] = useState(null);
+  const [shipF,setShipF] = useState({weight:"0.5",zone:"zone1",cod:"no"});
+  const [shipR,setShipR] = useState(null);
+  const [cmpA,setCmpA] = useState({name:"",cat:"",plat:""});
+  const [cmpB,setCmpB] = useState({name:"",cat:"",plat:""});
+  const [cmpRes,setCmpRes] = useState(null);const [cmpL,setCmpL] = useState(false);
+  const [history,setHistory] = useState([]);
+  const [showHist,setShowHist] = useState(false);
 
   const showT = (m) => { setToast(m); setTimeout(()=>setToast(null),3500); };
   const todayK = () => { const d=new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); };
@@ -192,6 +201,7 @@ export default function App() {
 
   useEffect(()=>{
     setSaved(S.get("yyp_accounts")||[]);
+    setHistory(S.get("yyp_history")||[]);
     const sv = S.get("yyp_current");
     if(sv?.email){const u={...sv,plan:S.get("yyp_plan_"+sv.email)||"free"};setUser(u);setUsage(calcUsage(u));startTimer(u);}
     else makeGuest();
@@ -833,6 +843,32 @@ export default function App() {
               :<div className="bnr-r"><div><div style={{fontWeight:700,fontSize:11,color:"#ef4444"}}>🔒 Daily Limit Reached — Tools Locked</div><div style={{fontSize:10,color:"#64748b"}}>Upgrade for 30 analyses & no lockout.</div></div><button onClick={()=>setShowPrem(true)} style={{background:"linear-gradient(135deg,#f59e0b,#ef4444)",border:"none",borderRadius:8,padding:"5px 10px",color:"#fff",fontWeight:700,fontSize:10,cursor:"pointer",whiteSpace:"nowrap",fontFamily:"Inter,sans-serif"}}>💎 ₹249</button></div>
           )}
 
+          {history.length>0&&(
+            <div style={{display:"flex",justifyContent:"flex-end",marginBottom:8}}>
+              <button onClick={()=>setShowHist(!showHist)} style={{background:"rgba(15,23,42,.7)",border:"1px solid rgba(99,102,241,.2)",borderRadius:100,padding:"5px 14px",color:"#a5b4fc",fontSize:11,fontWeight:700,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>
+                {showHist?"Hide History":"History ("+history.length+")"}
+              </button>
+            </div>
+          )}
+          {showHist&&history.length>0&&(
+            <div style={{background:"rgba(15,23,42,.85)",border:"1px solid rgba(99,102,241,.2)",borderRadius:14,padding:14,marginBottom:14}}>
+              <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:10}}>
+                <div style={{fontWeight:800,fontSize:13,color:"#f8fafc"}}>Recent Analyses</div>
+                <button onClick={()=>{S.set("yyp_history",[]);setHistory([]);setShowHist(false);showT("Cleared!");}} style={{background:"rgba(239,68,68,.1)",border:"1px solid rgba(239,68,68,.2)",borderRadius:7,padding:"3px 9px",color:"#ef4444",fontSize:10,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>Clear</button>
+              </div>
+              <div style={{display:"flex",flexDirection:"column",gap:6,maxHeight:200,overflowY:"auto"}}>
+                {history.map((h,i)=>(
+                  <div key={i} onClick={()=>{setPf({name:h.name,cat:h.cat,plat:h.plat});setResult(h.result);setShowHist(false);showT("Loaded: "+h.name);}} style={{background:"rgba(2,8,23,.6)",border:"1px solid #1e293b",borderRadius:9,padding:"9px 12px",cursor:"pointer",display:"flex",alignItems:"center",gap:8}}>
+                    <div style={{flex:1,minWidth:0}}>
+                      <div style={{fontWeight:700,fontSize:12,color:"#e2e8f0",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}>{h.name}</div>
+                      <div style={{fontSize:10,color:"#64748b"}}>{h.cat} &middot; {h.plat} &middot; {h.time}</div>
+                    </div>
+                    <div style={{fontSize:10,color:"#6366f1",fontWeight:600}}>Load</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
           <div className="icard">
             <h3 className="ict">🎯 Analyze Anything</h3>
             <div style={{marginBottom:13}}>
@@ -934,7 +970,7 @@ export default function App() {
             <div className="ftabs"><button className={"ftab"+(tab==="profit"?" on":"")} onClick={()=>setTab("profit")}>💰 Profit Calculator</button></div>
             <div className="fglbl" style={{color:isLocked?"#ef4444":"#10b981"}}>{isLocked?"🔒 Locked (Buy Premium to Unlock)":"✅ Premium Tools (Unlocked)"}</div>
             <div className="ftabs">
-              {[{id:"starter",l:"🎓 Starter Guide"},{id:"beginner",l:"🔰 Beginner Products"},{id:"investment",l:"🧮 Investment Calc"},{id:"description",l:"📝 Description"},{id:"trending",l:"🔥 Trending"},{id:"competitor",l:"⚔️ Competitor"},{id:"supplier",l:"📦 Supplier"},{id:"sales",l:"📊 Sales Estimator"},{id:"price",l:"🏷️ Price Optimizer"},{id:"inventory",l:"📦 Inventory"},{id:"review",l:"⭐ Reviews"},{id:"niche",l:"🎯 Niche Finder"}].map(t=>(
+              {[{id:"starter",l:"🎓 Starter Guide"},{id:"beginner",l:"🔰 Beginner Products"},{id:"investment",l:"🧮 Investment Calc"},{id:"description",l:"📝 Description"},{id:"trending",l:"🔥 Trending"},{id:"competitor",l:"⚔️ Competitor"},{id:"supplier",l:"📦 Supplier"},{id:"sales",l:"📊 Sales Estimator"},{id:"price",l:"🏷️ Price Optimizer"},{id:"inventory",l:"📦 Inventory"},{id:"review",l:"⭐ Reviews"},{id:"niche",l:"🎯 Niche Finder"},{id:"gst",l:"🧾 GST Calc"},{id:"shipping",l:"🚚 Shipping Cost"},{id:"compare",l:"⚡ Compare"}].map(t=>(
                 <button key={t.id} className={"ftab"+(tab===t.id?" on":"")} onClick={()=>{if(isLocked){setShowPrem(true);return;}setTab(t.id);}}>{t.l}{isLocked&&" 🔒"}</button>
               ))}
             </div>
@@ -1057,6 +1093,169 @@ export default function App() {
             {nicheL&&<div className="ssp"/>}
             {nicheD&&!nicheL&&<div className="tgrid fa" style={{marginTop:13}}>{nicheD.niches?.map((n,i)=><div key={i} className="tcard"><div style={{display:"flex",alignItems:"center",gap:5,marginBottom:5}}><div className="trnk">{i+1}</div><div style={{fontWeight:700,fontSize:11,color:"#e2e8f0"}}>{n.name}</div></div><div style={{display:"flex",gap:3,flexWrap:"wrap",marginBottom:4}}><span style={{background:"rgba(16,185,129,.1)",color:"#10b981",borderRadius:5,padding:"1px 5px",fontSize:9,fontWeight:600}}>Comp: {n.competition}</span><span style={{background:"rgba(245,158,11,.1)",color:"#f59e0b",borderRadius:5,padding:"1px 5px",fontSize:9,fontWeight:600}}>Margin: {n.profit_margin}</span></div><div style={{color:"#64748b",fontSize:10,marginBottom:4,lineHeight:1.5}}>{n.why_untapped}</div><div style={{color:"#a5b4fc",fontSize:9,marginBottom:3}}>💰 {n.investment}</div><div style={{display:"flex",gap:3,flexWrap:"wrap"}}>{n.example_products?.map((p,j)=><span key={j} className="tc">{p}</span>)}</div><div style={{marginTop:4,fontSize:9,color:n.trend==="Growing"?"#10b981":"#f59e0b",fontWeight:600}}>📈 {n.trend}</div></div>)}</div>}
           </div>}
+
+          {/* GST CALCULATOR */}
+          {tab==="gst"&&(
+            <div className="fbox fa">
+              <h3 className="ict">GST Calculator</h3>
+              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Selling price ke baad actual profit GST ke saath</p>
+              <div className="prow">
+                <div className="pfield"><label>Selling Price (Rs.)</label><input type="number" placeholder="500" value={gstF.sell} onChange={e=>setGstF({...gstF,sell:e.target.value})}/></div>
+                <div className="pfield"><label>GST Rate</label>
+                  <select value={gstF.rate} onChange={e=>setGstF({...gstF,rate:e.target.value})} style={{background:"#0f172a",border:"1px solid #1e293b",borderRadius:8,padding:"8px 10px",color:"#f8fafc",fontFamily:"Inter,sans-serif",outline:"none"}}>
+                    <option value="0">0% - Essentials</option>
+                    <option value="5">5% - Food/Books</option>
+                    <option value="12">12% - Fashion/Home</option>
+                    <option value="18">18% - Electronics</option>
+                    <option value="28">28% - Luxury</option>
+                  </select>
+                </div>
+              </div>
+              <button className="cbtn" style={{width:"100%"}} onClick={()=>{
+                const s=parseFloat(gstF.sell)||0;const rate=parseFloat(gstF.rate)||0;
+                const base=s/(1+rate/100);const gstAmt=s-base;
+                setGstR({sell:s.toFixed(2),base:base.toFixed(2),gst:gstAmt.toFixed(2),cgst:(gstAmt/2).toFixed(2),sgst:(gstAmt/2).toFixed(2),igst:gstAmt.toFixed(2),rate});
+              }}>Calculate GST</button>
+              {gstR&&(
+                <div style={{marginTop:12}} className="fa">
+                  <div style={{background:"rgba(99,102,241,.08)",border:"1px solid rgba(99,102,241,.2)",borderRadius:12,padding:12,textAlign:"center",marginBottom:10}}>
+                    <div style={{fontSize:10,color:"#64748b",marginBottom:2}}>GST Amount</div>
+                    <div style={{fontSize:26,fontWeight:900,color:"#ef4444"}}>Rs. {gstR.gst}</div>
+                    <div style={{fontSize:10,color:"#64748b"}}>@ {gstR.rate}% rate</div>
+                  </div>
+                  <div className="presult">
+                    {[{l:"Sell Price",v:"Rs."+gstR.sell,c:"#f8fafc"},{l:"Base Price",v:"Rs."+gstR.base,c:"#10b981"},{l:"CGST",v:"Rs."+gstR.cgst,c:"#f59e0b"},{l:"SGST",v:"Rs."+gstR.sgst,c:"#f59e0b"},{l:"IGST",v:"Rs."+gstR.igst,c:"#a5b4fc"}].map(r=>(
+                      <div key={r.l} className="prc"><div className="prl">{r.l}</div><div className="prv" style={{color:r.c,fontSize:12}}>{r.v}</div></div>
+                    ))}
+                  </div>
+                  <div style={{background:"rgba(16,185,129,.07)",border:"1px solid rgba(16,185,129,.2)",borderRadius:9,padding:10,marginTop:10,fontSize:11,color:"#94a3b8",lineHeight:1.65}}>
+                    CGST+SGST = Same state &middot; IGST = Different state &middot; Base price = Aapki actual earning
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* SHIPPING COST */}
+          {tab==="shipping"&&(
+            <div className="fbox fa">
+              <h3 className="ict">Shipping Cost Comparator</h3>
+              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Major couriers compare karo — best rate dhundho</p>
+              <div className="prow">
+                <div className="pfield"><label>Weight (kg)</label><input type="number" placeholder="0.5" step="0.1" value={shipF.weight} onChange={e=>setShipF({...shipF,weight:e.target.value})}/></div>
+                <div className="pfield"><label>Zone</label>
+                  <select value={shipF.zone} onChange={e=>setShipF({...shipF,zone:e.target.value})} style={{background:"#0f172a",border:"1px solid #1e293b",borderRadius:8,padding:"8px 10px",color:"#f8fafc",fontFamily:"Inter,sans-serif",outline:"none"}}>
+                    <option value="local">Local (Same City)</option>
+                    <option value="zone1">Zone 1 (Nearby State)</option>
+                    <option value="zone2">Zone 2 (Far State)</option>
+                    <option value="zone3">Zone 3 (Extreme Far)</option>
+                  </select>
+                </div>
+                <div className="pfield"><label>Payment</label>
+                  <select value={shipF.cod} onChange={e=>setShipF({...shipF,cod:e.target.value})} style={{background:"#0f172a",border:"1px solid #1e293b",borderRadius:8,padding:"8px 10px",color:"#f8fafc",fontFamily:"Inter,sans-serif",outline:"none"}}>
+                    <option value="no">Prepaid</option>
+                    <option value="yes">COD</option>
+                  </select>
+                </div>
+              </div>
+              <button className="cbtn" style={{width:"100%"}} onClick={()=>{
+                const w=parseFloat(shipF.weight)||0.5;const cod=shipF.cod==="yes";
+                const zm={local:1,zone1:1.3,zone2:1.6,zone3:2}[shipF.zone]||1;
+                const codExtra=cod?35:0;
+                const couriers=[
+                  {name:"Delhivery",base:35,perKg:45,c:"#ef4444"},
+                  {name:"Shiprocket",base:40,perKg:50,c:"#6366f1"},
+                  {name:"Amazon FBA",base:30,perKg:40,c:"#f59e0b"},
+                  {name:"Ekart",base:28,perKg:38,c:"#10b981"},
+                  {name:"Shadowfax",base:32,perKg:42,c:"#8b5cf6"},
+                  {name:"XpressBees",base:36,perKg:46,c:"#f97316"},
+                ].map(c=>({...c,cost:Math.round((c.base+c.perKg*Math.max(0.5,w))*zm+codExtra)})).sort((a,b)=>a.cost-b.cost);
+                setShipR({couriers,cod});
+              }}>Compare Rates</button>
+              {shipR&&(
+                <div style={{marginTop:12}} className="fa">
+                  {shipR.couriers.map((c,i)=>(
+                    <div key={i} style={{display:"flex",alignItems:"center",gap:10,padding:"9px 11px",background:i===0?"rgba(16,185,129,.07)":"rgba(2,8,23,.4)",border:i===0?"1px solid rgba(16,185,129,.25)":"1px solid #1e293b",borderRadius:10,marginBottom:6}}>
+                      {i===0&&<div style={{fontSize:9,fontWeight:800,background:"linear-gradient(135deg,#10b981,#059669)",color:"#fff",padding:"2px 6px",borderRadius:100,flexShrink:0}}>BEST</div>}
+                      <div style={{width:8,height:8,borderRadius:"50%",background:c.c,flexShrink:0}}/>
+                      <div style={{flex:1,fontWeight:600,fontSize:12,color:"#e2e8f0"}}>{c.name}</div>
+                      <div style={{fontWeight:900,fontSize:14,color:i===0?"#10b981":"#f8fafc"}}>Rs.{c.cost}</div>
+                    </div>
+                  ))}
+                  {shipR.cod&&<div style={{background:"rgba(245,158,11,.07)",border:"1px solid rgba(245,158,11,.2)",borderRadius:9,padding:"8px 11px",fontSize:11,color:"#f59e0b",marginTop:4}}>COD charge (+Rs.35) included</div>}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* COMPARE PRODUCTS */}
+          {tab==="compare"&&(
+            <div className="fbox fa" style={{position:"relative"}}>
+              {isLocked&&<LockBox/>}
+              <h3 className="ict">Compare Products</h3>
+              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>2 products side by side — konsa better hai?</p>
+              <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginBottom:12}}>
+                <div style={{background:"rgba(2,8,23,.5)",border:"1px solid rgba(99,102,241,.2)",borderRadius:10,padding:10}}>
+                  <div style={{fontSize:10,fontWeight:800,color:"#a5b4fc",marginBottom:7}}>PRODUCT A</div>
+                  <input className="di" placeholder="Name..." value={cmpA.name} onChange={e=>setCmpA({...cmpA,name:e.target.value})} style={{marginBottom:5}}/>
+                  <select className="di" value={cmpA.cat} onChange={e=>setCmpA({...cmpA,cat:e.target.value})} style={{marginBottom:5}}>
+                    {CATS.map(c=><option key={c.id} value={c.id}>{c.id}</option>)}
+                  </select>
+                  <select className="di" value={cmpA.plat} onChange={e=>setCmpA({...cmpA,plat:e.target.value})}>
+                    {PLATS.map(p=><option key={p.id} value={p.id}>{p.id}</option>)}
+                  </select>
+                </div>
+                <div style={{background:"rgba(2,8,23,.5)",border:"1px solid rgba(239,68,68,.2)",borderRadius:10,padding:10}}>
+                  <div style={{fontSize:10,fontWeight:800,color:"#f87171",marginBottom:7}}>PRODUCT B</div>
+                  <input className="di" placeholder="Name..." value={cmpB.name} onChange={e=>setCmpB({...cmpB,name:e.target.value})} style={{marginBottom:5}}/>
+                  <select className="di" value={cmpB.cat} onChange={e=>setCmpB({...cmpB,cat:e.target.value})} style={{marginBottom:5}}>
+                    {CATS.map(c=><option key={c.id} value={c.id}>{c.id}</option>)}
+                  </select>
+                  <select className="di" value={cmpB.plat} onChange={e=>setCmpB({...cmpB,plat:e.target.value})}>
+                    {PLATS.map(p=><option key={p.id} value={p.id}>{p.id}</option>)}
+                  </select>
+                </div>
+              </div>
+              <button className="cbtn" style={{width:"100%",background:"linear-gradient(135deg,#6366f1,#ec4899)"}} disabled={cmpL} onClick={async()=>{
+                if(!cmpA.name||!cmpB.name){showT("Dono products ka naam likho!");return;}
+                setCmpL(true);setCmpRes(null);
+                try{
+                  const [dA,dB]=await Promise.all([
+                    fetch("/api/analyze",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:cmpA.name,category:cmpA.cat||"Fashion",platform:cmpA.plat||"Amazon"})}).then(r=>r.json()),
+                    fetch("/api/analyze",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:cmpB.name,category:cmpB.cat||"Fashion",platform:cmpB.plat||"Amazon"})}).then(r=>r.json())
+                  ]);
+                  setCmpRes({a:{...dA,name:cmpA.name},b:{...dB,name:cmpB.name}});
+                  showT("Comparison ready!");
+                }catch{showT("Failed. Try again.");}
+                setCmpL(false);
+              }}>{cmpL?"Comparing...":"Compare Now"}</button>
+              {cmpL&&<div className="ssp"/>}
+              {cmpRes&&!cmpL&&(
+                <div style={{marginTop:12}} className="fa">
+                  <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginBottom:10}}>
+                    {[{d:cmpRes.a,c:"#6366f1"},{d:cmpRes.b,c:"#ef4444"}].map((item,i)=>(
+                      <div key={i} style={{background:"rgba(2,8,23,.6)",border:"1px solid rgba(255,255,255,.07)",borderRadius:12,padding:12}}>
+                        <div style={{fontWeight:800,fontSize:11,color:item.c,marginBottom:7}}>Product {i===0?"A":"B"}: {item.d.name}</div>
+                        {[{l:"Viral",v:item.d.viral_score},{l:"Demand",v:item.d.demand_level},{l:"Competition",v:item.d.competition_level},{l:"Price",v:item.d.price_range}].map(m=>(
+                          <div key={m.l} style={{display:"flex",justifyContent:"space-between",padding:"3px 0",borderBottom:"1px solid rgba(255,255,255,.04)",fontSize:10}}>
+                            <span style={{color:"#64748b"}}>{m.l}</span><span style={{color:"#f8fafc",fontWeight:600}}>{m.v}</span>
+                          </div>
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                  <div style={{background:"rgba(16,185,129,.07)",border:"1px solid rgba(16,185,129,.2)",borderRadius:10,padding:11}}>
+                    <div style={{fontWeight:700,color:"#10b981",fontSize:12,marginBottom:4}}>Verdict</div>
+                    <p style={{color:"#94a3b8",fontSize:11,lineHeight:1.65}}>
+                      {(()=>{const aScore=parseInt(cmpRes.a.viral_score)||0;const bScore=parseInt(cmpRes.b.viral_score)||0;return (aScore>=bScore?cmpRes.a.name:cmpRes.b.name)+" better choice hai higher viral potential ke saath.";})()} Dono ka profit calculator mein check karo.
+                    </p>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+
 
         </div>
         <footer>YesYouPro &middot; AI Product Analyzer &middot; Made in India &middot; &copy; 2025</footer>
