@@ -189,6 +189,8 @@ export default function App(){
   const[shipF,setShipF]=useState({weight:"1",zone:"local",cod:"no"});
   const[shipR,setShipR]=useState(null);
   const[showHist,setShowHist]=useState(false);
+  const[newUserTimer,setNewUserTimer]=useState(null);
+  const newUserTimerRef=useRef(null);
 
   const showT=(m)=>{setToast(m);setTimeout(()=>setToast(null),3000);};
   const todayK=()=>{const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");};
@@ -332,6 +334,23 @@ export default function App(){
   useEffect(()=>{
     setSaved(S.get("yyp_accounts")||[]);
     setHistory(S.get("yyp_history")||[]);
+    // New user 3-day countdown
+    if(!S.get("yyp_first_visit")){
+      S.set("yyp_first_visit", Date.now());
+    }
+    const fv = S.get("yyp_first_visit");
+    if(fv){
+      const expiry = fv + 3*86400000;
+      const startNewUserTimer = () => {
+        clearInterval(newUserTimerRef.current);
+        newUserTimerRef.current = setInterval(()=>{
+          const rem = expiry - Date.now();
+          if(rem <= 0){ clearInterval(newUserTimerRef.current); setNewUserTimer(null); }
+          else setNewUserTimer({h:Math.floor(rem/3600000),m:Math.floor((rem%3600000)/60000),s:Math.floor((rem%60000)/1000),pct:Math.max(0,(1-rem/(3*86400000))*100)});
+        },1000);
+      };
+      startNewUserTimer();
+    }
     const sv=S.get("yyp_current");
     if(sv?.email){
       const u={...sv,plan:S.get("yyp_plan_"+sv.email)||"free"};
@@ -357,7 +376,7 @@ export default function App(){
       const refCode=urlParams.get("ref");
       if(refCode)S.set("yyp_pending_ref",refCode);
     }
-    return()=>clearInterval(timerRef.current);
+    return()=>{clearInterval(timerRef.current);clearInterval(newUserTimerRef.current);};
   },[]);
 
   useEffect(()=>{if(!user||isGuest)return;startTimer(user);return()=>clearInterval(timerRef.current);},[user?.email]);
@@ -939,7 +958,7 @@ export default function App(){
 <button className="pmbtn" onClick={()=>setProfTab("referral")} style={{borderColor:"rgba(16,185,129,.2)"}}>
                 <span className="pmico">🎁</span>
                 <span style={{flex:1}}>Refer and Earn Premium <span style={{background:"linear-gradient(135deg,#10b981,#059669)",color:"#fff",fontSize:8,fontWeight:800,padding:"2px 6px",borderRadius:100,marginLeft:4}}>FREE</span></span>
-                {!isGuest&&user?.email&&<span style={{fontSize:10,color:"#10b981",fontWeight:700,marginRight:4}}>{(S.get("yyp_ref_"+user.email)||{referrals:[]}).referrals.length}/10</span>}
+                {!isGuest&&user?.email&&<span style={{fontSize:10,color:"#10b981",fontWeight:700,marginRight:4}}>{((S.get("yyp_ref_"+user.email)||{referrals:[]}).referrals||[]).length}/10</span>}
                 <span className="pmarr">›</span>
               </button>
               <button className="pmbtn" onClick={()=>setProfTab("terms")}><span className="pmico">📋</span><span>Terms and Conditions</span><span className="pmarr">›</span></button>
@@ -1014,11 +1033,11 @@ export default function App(){
                   </a>
                   {/* LinkedIn */}
                   <a href={"https://www.linkedin.com/sharing/share-offsite/?url="+encodeURIComponent(refLink)} target="_blank" rel="noreferrer" style={{flex:1,minWidth:48,background:"#0077b5",borderRadius:10,padding:"9px 6px",textDecoration:"none",display:"flex",flexDirection:"column",alignItems:"center",gap:3}}>
-                    <img src="https://cdn.simpleicons.org/linkedin/ffffff" alt="LinkedIn" style={{width:20,height:20}}/>
+                    <img src="https://cdn.simpleicons.org/linkedin/FFFFFF" alt="LinkedIn" style={{width:20,height:20}}/>
                     <span style={{fontSize:9,color:"#fff",fontWeight:700}}>LinkedIn</span>
                   </a>
                 </div>
-                {rd.referrals.length>0&&(<div style={{marginBottom:11}}><div style={{fontSize:10,color:"#64748b",fontWeight:700,textTransform:"uppercase",marginBottom:6}}>Joined ({rd.referrals.length}/10)</div><div style={{background:"rgba(2,8,23,.4)",border:"1px solid #1e293b",borderRadius:10,padding:"5px 9px",maxHeight:150,overflowY:"auto"}}>{rd.referrals.map((r,i)=>(<div key={i} style={{display:"flex",alignItems:"center",gap:7,padding:"5px 0",borderBottom:i<rd.referrals.length-1?"1px solid rgba(255,255,255,.04)":"none"}}><div style={{width:24,height:24,background:"linear-gradient(135deg,#6366f1,#8b5cf6)",borderRadius:"50%",display:"flex",alignItems:"center",justifyContent:"center",fontSize:10,fontWeight:800,color:"#fff",flexShrink:0}}>{r.name?.[0]?.toUpperCase()||"U"}</div><div style={{flex:1,minWidth:0}}><div style={{fontSize:11,fontWeight:700,color:"#e2e8f0",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{r.name}</div><div style={{fontSize:9,color:"#475569"}}>{new Date(r.time).toLocaleDateString("en-IN")}</div></div><span style={{background:"rgba(16,185,129,.1)",color:"#10b981",fontSize:9,fontWeight:700,padding:"2px 6px",borderRadius:100,flexShrink:0}}>✅</span></div>))}</div></div>)}
+                {(rd.referrals||[]).length>0&&(<div style={{marginBottom:11}}><div style={{fontSize:10,color:"#64748b",fontWeight:700,textTransform:"uppercase",marginBottom:6}}>Joined ({rd.referrals.length}/10)</div><div style={{background:"rgba(2,8,23,.4)",border:"1px solid #1e293b",borderRadius:10,padding:"5px 9px",maxHeight:150,overflowY:"auto"}}>{(rd.referrals||[]).map((r,i)=>(<div key={i} style={{display:"flex",alignItems:"center",gap:7,padding:"5px 0",borderBottom:i<rd.referrals.length-1?"1px solid rgba(255,255,255,.04)":"none"}}><div style={{width:24,height:24,background:"linear-gradient(135deg,#6366f1,#8b5cf6)",borderRadius:"50%",display:"flex",alignItems:"center",justifyContent:"center",fontSize:10,fontWeight:800,color:"#fff",flexShrink:0}}>{r.name?.[0]?.toUpperCase()||"U"}</div><div style={{flex:1,minWidth:0}}><div style={{fontSize:11,fontWeight:700,color:"#e2e8f0",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{r.name}</div><div style={{fontSize:9,color:"#475569"}}>{new Date(r.time).toLocaleDateString("en-IN")}</div></div><span style={{background:"rgba(16,185,129,.1)",color:"#10b981",fontSize:9,fontWeight:700,padding:"2px 6px",borderRadius:100,flexShrink:0}}>✅</span></div>))}</div></div>)}
                 <div style={{background:"rgba(99,102,241,.05)",border:"1px solid rgba(99,102,241,.12)",borderRadius:10,padding:10}}>
                   <div style={{fontWeight:700,color:"#a5b4fc",fontSize:11,marginBottom:5}}>📋 Anti-Fraud Rules</div>
                   {["Real sign up hona chahiye — fake nahi","Ek user sirf ek baar count hoga","Khud ko refer nahi kar sakte","10 referrals = Auto premium 7 days","Reward sirf ek baar milega"].map((r,i)=>(<div key={i} style={{fontSize:10,color:"#64748b",padding:"2px 0",display:"flex",gap:5}}><span style={{color:"#6366f1"}}>•</span><span>{r}</span></div>))}
@@ -1202,7 +1221,80 @@ export default function App(){
             <div style={{color:"#334155",fontSize:11,marginTop:10,display:"flex",alignItems:"center",justifyContent:"center",gap:5}}>
               <span>👇</span> Neeche product analyze karo — bilkul free
             </div>
+
+            {/* Rating row */}
+            <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:10,marginTop:14,flexWrap:"wrap"}}>
+              <div style={{display:"flex"}}>
+                {["🧑","👩","👨","🧑‍💼","👩‍💼"].map((e,i)=>(
+                  <div key={i} style={{width:28,height:28,borderRadius:"50%",background:`linear-gradient(135deg,${["#f59e0b,#ef4444","#6366f1,#8b5cf6","#10b981,#059669","#ec4899,#be185d","#f97316,#ea580c"][i]})`,border:"2px solid #020817",display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,marginLeft:i>0?-8:0,zIndex:5-i}}>{e}</div>
+                ))}
+                <div style={{width:28,height:28,borderRadius:"50%",background:"rgba(99,102,241,.2)",border:"2px solid #020817",display:"flex",alignItems:"center",justifyContent:"center",fontSize:8,color:"#a5b4fc",fontWeight:800,marginLeft:-8}}>1L+</div>
+              </div>
+              <div style={{display:"flex",alignItems:"center",gap:6}}>
+                <span style={{fontWeight:900,fontSize:16,color:"#f8fafc"}}>4.5</span>
+                <div style={{display:"flex",gap:1}}>
+                  {[1,2,3,4].map(s=><span key={s} style={{color:"#f59e0b",fontSize:14}}>★</span>)}
+                  <span style={{color:"#f59e0b",fontSize:14,opacity:.5}}>★</span>
+                </div>
+                <span style={{color:"#64748b",fontSize:11}}>1 Lac+ sellers</span>
+              </div>
+            </div>
+
+            {/* User reviews */}
+            <div style={{display:"flex",gap:8,marginTop:12,flexWrap:"wrap",justifyContent:"center"}}>
+              {[{e:"👩",n:"Priya Sharma",l:"Delhi • Meesho",t:"30 sec mein product research! Amazing!",c:"#f59e0b,#ef4444"},{e:"👨",n:"Rahul Kumar",l:"Mumbai • Amazon",t:"Competitor analysis bahut useful hai!",c:"#6366f1,#8b5cf6"},{e:"🧑",n:"Anjali Gupta",l:"Jaipur • Flipkart",t:"Paise aur time dono bachata hai!",c:"#10b981,#059669"}].map((r,i)=>(
+                <div key={i} style={{background:"rgba(15,23,42,.7)",border:"1px solid #1e293b",borderRadius:12,padding:"10px 12px",display:"flex",gap:8,maxWidth:260,textAlign:"left"}}>
+                  <div style={{width:30,height:30,borderRadius:"50%",background:`linear-gradient(135deg,${r.c})`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:14,flexShrink:0}}>{r.e}</div>
+                  <div>
+                    <div style={{fontSize:11,fontWeight:700,color:"#e2e8f0"}}>{r.n}</div>
+                    <div style={{fontSize:9,color:"#475569",marginBottom:3}}>{r.l}</div>
+                    <div style={{display:"flex",gap:1,marginBottom:3}}>{[1,2,3,4,5].map(s=><span key={s} style={{color:"#f59e0b",fontSize:9}}>★</span>)}</div>
+                    <div style={{fontSize:10,color:"#94a3b8",lineHeight:1.5}}>{r.t}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
+
+          {/* ── NEW USER COUNTDOWN ── */}
+          {newUserTimer&&curPlan!=="premium"&&(
+            <div style={{background:"linear-gradient(135deg,rgba(239,68,68,.12),rgba(245,158,11,.06))",border:"1px solid rgba(239,68,68,.3)",borderRadius:18,padding:20,marginBottom:20,textAlign:"center"}}>
+              <div style={{display:"inline-flex",alignItems:"center",gap:5,background:"rgba(239,68,68,.15)",border:"1px solid rgba(239,68,68,.25)",borderRadius:100,padding:"3px 13px",fontSize:10,color:"#ef4444",fontWeight:700,marginBottom:10}}>
+                ⚡ LIMITED TIME OFFER
+              </div>
+              <div style={{fontWeight:800,fontSize:15,color:"#f8fafc",marginBottom:3}}>Price Badh Rahi Hai!</div>
+              <div style={{fontSize:11,color:"#64748b",marginBottom:14}}>Pehle 3 din mein lo — discount price mein</div>
+              <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:8,marginBottom:16}}>
+                {[{v:String(newUserTimer.h).padStart(2,"0"),l:"Hours"},{sep:true},{v:String(newUserTimer.m).padStart(2,"0"),l:"Min"},{sep:true},{v:String(newUserTimer.s).padStart(2,"0"),l:"Sec"}].map((t,i)=>
+                  t.sep?<div key={i} style={{fontSize:22,fontWeight:900,color:"#ef4444",marginBottom:7}}>:</div>:
+                  <div key={i} style={{background:"rgba(2,8,23,.8)",border:"1px solid rgba(239,68,68,.2)",borderRadius:10,padding:"10px 14px",minWidth:58}}>
+                    <div style={{fontSize:26,fontWeight:900,color:"#ef4444",fontVariantNumeric:"tabular-nums",lineHeight:1}}>{t.v}</div>
+                    <div style={{fontSize:9,color:"#64748b",fontWeight:600,marginTop:2,textTransform:"uppercase"}}>{t.l}</div>
+                  </div>
+                )}
+              </div>
+              <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:16,marginBottom:14}}>
+                <div style={{textAlign:"center"}}>
+                  <div style={{fontSize:28,fontWeight:900,background:"linear-gradient(135deg,#10b981,#059669)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",backgroundClip:"text"}}>$3</div>
+                  <div style={{fontSize:10,color:"#94a3b8"}}>₹249 — Abhi ka price</div>
+                </div>
+                <div style={{fontSize:20,color:"#f59e0b"}}>→</div>
+                <div style={{textAlign:"center",opacity:.6}}>
+                  <div style={{fontSize:22,fontWeight:900,color:"#94a3b8",textDecoration:"line-through"}}>$13</div>
+                  <div style={{fontSize:10,color:"#64748b"}}>₹1,049 — 3 din baad</div>
+                </div>
+              </div>
+              <div style={{display:"inline-block",background:"rgba(239,68,68,.1)",border:"1px solid rgba(239,68,68,.2)",borderRadius:100,padding:"3px 13px",fontSize:10,color:"#ef4444",fontWeight:700,marginBottom:14}}>
+                🔥 Aaj lo — ₹800 bachao!
+              </div>
+              <button onClick={()=>setShowPrem(true)} style={{width:"100%",background:"linear-gradient(135deg,#ef4444,#f59e0b)",border:"none",borderRadius:11,padding:"12px 0",color:"#fff",fontWeight:800,fontSize:14,cursor:"pointer",fontFamily:"Inter,sans-serif",display:"block",boxShadow:"0 6px 20px rgba(239,68,68,.3)"}}>
+                Get Premium Now — $3 (₹249)
+              </button>
+              <div style={{height:4,background:"#1e293b",borderRadius:100,overflow:"hidden",marginTop:12}}>
+                <div style={{height:"100%",width:newUserTimer.pct+"%",background:"linear-gradient(90deg,#ef4444,#f59e0b)",borderRadius:100,transition:"width 1s linear"}}/>
+              </div>
+            </div>
+          )}
 
           {timer && curPlan==="free" && <div className="tbox">
             <div className="ttitle">⏳ Daily Limit Reached</div>
@@ -2018,10 +2110,8 @@ export default function App(){
             </div>
           )}
 
-            
                 <footer>🧠 YesYouPro · AI Product Analyzer · Made in India 🇮🇳 · © 2025</footer>
       </div>}
     </>
   );
 }
-
