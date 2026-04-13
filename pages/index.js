@@ -1158,8 +1158,7 @@ export default function App(){
                   {newUserTimer?(
                     <>
                       <span style={{fontSize:8,fontWeight:700,color:"rgba(255,255,255,.85)"}}>⚡ {String(newUserTimer.h).padStart(2,"0")}:{String(newUserTimer.m).padStart(2,"0")}:{String(newUserTimer.s).padStart(2,"0")}</span>
-                      <span style={{fontSize:11,fontWeight:900,lineHeight:1.1}}>💎 $3 <span style={{fontSize:8,opacity:.7,textDecoration:"line-through"}}>$13</span></span>
-                      <span style={{fontSize:8,color:"rgba(255,255,255,.7)"}}>₹249 → ₹1,049</span>
+                      <span style={{fontSize:11,fontWeight:900}}>💎 $3 (₹249)</span>
                     </>
                   ):(
                     <span style={{fontSize:11,fontWeight:900}}>💎 $13 (₹1,049)</span>
