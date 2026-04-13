@@ -1376,7 +1376,7 @@ export default function App(){
             <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:10,marginTop:14,flexWrap:"wrap"}}>
               <div style={{display:"flex"}}>
                 {["🧑","👩","👨","🧑‍💼","👩‍💼"].map((e,i)=>(
-                  <div key={i} style={{width:28,height:28,borderRadius:"50%",background:`linear-gradient(135deg,${["#f59e0b,#ef4444","#6366f1,#8b5cf6","#10b981,#059669","#ec4899,#be185d","#f97316,#ea580c"][i]})`,border:"2px solid #020817",display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,marginLeft:i>0?-8:0,zIndex:5-i}}>{e}</div>
+                  <div key={i} style={{width:28,height:28,borderRadius:"50%",background:["linear-gradient(135deg,#f59e0b,#ef4444)","linear-gradient(135deg,#6366f1,#8b5cf6)","linear-gradient(135deg,#10b981,#059669)","linear-gradient(135deg,#ec4899,#be185d)","linear-gradient(135deg,#f97316,#ea580c)"][i],border:"2px solid #020817",display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,marginLeft:i>0?-8:0,zIndex:5-i}}>{e}</div>
                 ))}
                 <div style={{width:28,height:28,borderRadius:"50%",background:"rgba(99,102,241,.2)",border:"2px solid #020817",display:"flex",alignItems:"center",justifyContent:"center",fontSize:8,color:"#a5b4fc",fontWeight:800,marginLeft:-8}}>1L+</div>
               </div>
@@ -1394,7 +1394,7 @@ export default function App(){
             <div style={{display:"flex",gap:8,marginTop:12,flexWrap:"wrap",justifyContent:"center"}}>
               {[{e:"👩",n:"Priya Sharma",l:"Delhi • Meesho",t:"30 sec mein product research! Amazing!",c:"#f59e0b,#ef4444"},{e:"👨",n:"Rahul Kumar",l:"Mumbai • Amazon",t:"Competitor analysis bahut useful hai!",c:"#6366f1,#8b5cf6"},{e:"🧑",n:"Anjali Gupta",l:"Jaipur • Flipkart",t:"Paise aur time dono bachata hai!",c:"#10b981,#059669"}].map((r,i)=>(
                 <div key={i} style={{background:"rgba(15,23,42,.7)",border:"1px solid #1e293b",borderRadius:12,padding:"10px 12px",display:"flex",gap:8,maxWidth:260,textAlign:"left"}}>
-                  <div style={{width:30,height:30,borderRadius:"50%",background:`linear-gradient(135deg,${r.c})`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:14,flexShrink:0}}>{r.e}</div>
+                  <div style={{width:30,height:30,borderRadius:"50%",background:"linear-gradient(135deg,"+r.c+")",display:"flex",alignItems:"center",justifyContent:"center",fontSize:14,flexShrink:0}}>{r.e}</div>
                   <div>
                     <div style={{fontSize:11,fontWeight:700,color:"#e2e8f0"}}>{r.n}</div>
                     <div style={{fontSize:9,color:"#475569",marginBottom:3}}>{r.l}</div>
@@ -1901,7 +1901,7 @@ export default function App(){
               }}>💰 Calculate ROAS</button>
               {roasR&&(
                 <div style={{marginTop:14}} className="fa">
-                  <div style={{background:roasR.roas>=4?"rgba(16,185,129,.1)":roasR.roas>=2?"rgba(245,158,11,.1)":"rgba(239,68,68,.1)",border:`1px solid ${roasR.roas>=4?"rgba(16,185,129,.3)":roasR.roas>=2?"rgba(245,158,11,.3)":"rgba(239,68,68,.3)"}`,borderRadius:12,padding:14,textAlign:"center",marginBottom:12}}>
+                  <div style={{background:roasR.roas>=4?"rgba(16,185,129,.1)":roasR.roas>=2?"rgba(245,158,11,.1)":"rgba(239,68,68,.1)",border:roasR.roas>=4?"1px solid rgba(16,185,129,.3)":roasR.roas>=2?"1px solid rgba(245,158,11,.3)":"1px solid rgba(239,68,68,.3)",borderRadius:12,padding:14,textAlign:"center",marginBottom:12}}>
                     <div style={{fontSize:10,color:"#64748b",marginBottom:2}}>ROAS (Return on Ad Spend)</div>
                     <div style={{fontSize:32,fontWeight:900,color:roasR.roas>=4?"#10b981":roasR.roas>=2?"#f59e0b":"#ef4444"}}>{roasR.roas}x</div>
                     <div style={{fontSize:13,marginTop:4}}>{roasR.status}</div>
@@ -1944,7 +1944,7 @@ export default function App(){
               {multiD&&!multiL&&(
                 <div style={{marginTop:14}} className="fa">
                   {multiD.platforms?.map((p,i)=>(
-                    <div key={i} className="cc" style={{marginBottom:9,border:`1px solid ${i===0?"rgba(245,158,11,.3)":"#1e293b"}`}}>
+                    <div key={i} className="cc" style={{marginBottom:9,border:i===0?"1px solid rgba(245,158,11,.3)":"1px solid #1e293b"}}>
                       {i===0&&<div style={{display:"inline-block",background:"linear-gradient(135deg,#f59e0b,#ef4444)",color:"#fff",fontSize:9,fontWeight:800,padding:"2px 9px",borderRadius:100,marginBottom:8}}>⭐ TOP PICK</div>}
                       <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:6,flexWrap:"wrap",gap:5}}>
                         <div style={{fontWeight:800,fontSize:13,color:"#e2e8f0"}}>#{i+1} {p.name}</div>
@@ -2158,7 +2158,7 @@ export default function App(){
                 <div style={{marginTop:14}} className="fa">
                   <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginBottom:12}}>
                     {[{d:compRes.a,c:"#6366f1",label:"A"},{d:compRes.b,c:"#ef4444",label:"B"}].map((item,i)=>(
-                      <div key={i} style={{background:"rgba(2,8,23,.6)",border:`1px solid ${item.c}33`,borderRadius:12,padding:12}}>
+                      <div key={i} style={{background:"rgba(2,8,23,.6)",border:"1px solid "+item.c+"33",borderRadius:12,padding:12}}>
                         <div style={{fontWeight:800,fontSize:12,color:item.c,marginBottom:8}}>Product {item.label}: {item.d.name}</div>
                         {[{l:"Viral Score",v:item.d.viral_score},{l:"Demand",v:item.d.demand_level},{l:"Competition",v:item.d.competition_level},{l:"Price",v:item.d.price_range}].map(m=>(
                           <div key={m.l} style={{display:"flex",justifyContent:"space-between",padding:"4px 0",borderBottom:"1px solid rgba(255,255,255,.04)",fontSize:11}}>
@@ -2233,7 +2233,7 @@ export default function App(){
               {shipR&&(
                 <div style={{marginTop:14}} className="fa">
                   {shipR.couriers.map((c,i)=>(
-                    <div key={i} style={{display:"flex",alignItems:"center",gap:10,padding:"9px 11px",background:i===0?"rgba(16,185,129,.07)":"rgba(2,8,23,.4)",border:`1px solid ${i===0?"rgba(16,185,129,.25)":"#1e293b"}`,borderRadius:10,marginBottom:6}}>
+                    <div key={i} style={{display:"flex",alignItems:"center",gap:10,padding:"9px 11px",background:i===0?"rgba(16,185,129,.07)":"rgba(2,8,23,.4)",border:i===0?"1px solid rgba(16,185,129,.25)":"1px solid #1e293b",borderRadius:10,marginBottom:6}}>
                       {i===0&&<div style={{fontSize:9,fontWeight:800,background:"linear-gradient(135deg,#10b981,#059669)",color:"#fff",padding:"2px 6px",borderRadius:100,flexShrink:0}}>BEST</div>}
                       <div style={{width:8,height:8,borderRadius:"50%",background:c.color,flexShrink:0}}/>
                       <div style={{flex:1,fontWeight:600,fontSize:12,color:"#e2e8f0"}}>{c.name}</div>
@@ -2249,7 +2249,8 @@ export default function App(){
             </div>
           )}
 
-                <footer>🧠 YesYouPro · AI Product Analyzer · Made in India 🇮🇳 · © 2025</footer>
+        </div>
+        <footer>🧠 YesYouPro · AI Product Analyzer · Made in India 🇮🇳 · © 2025</footer>
       </div>}
     </>
   );
