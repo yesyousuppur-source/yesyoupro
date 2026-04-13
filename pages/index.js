@@ -2019,6 +2019,7 @@ export default function App() {
           )}
 
 
+            
 
         </div>
         <footer>YesYouPro &middot; AI Product Analyzer &middot; Made in India &middot; &copy; 2025</footer>
