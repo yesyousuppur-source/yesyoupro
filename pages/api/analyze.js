@@ -300,6 +300,32 @@ Return ONLY valid JSON: {"captions":[{"text":"caption text","hashtags":"#tag1 #t
     prompt = `You are an ecommerce SEO expert. Create optimized product titles for "${name}" (${category||"Any"}) for multiple platforms.
 Return ONLY valid JSON: {"titles":[{"platform":"Amazon","title":"optimized title with keywords","keywords":"main keywords"},{"platform":"Flipkart","title":"title","keywords":"keywords"},{"platform":"Meesho","title":"title","keywords":"keywords"},{"platform":"Instagram","title":"caption style title","keywords":"hashtags"}]}`;
 
+  } else if (mode === "listing_checker") {
+    prompt = `You are an ecommerce listing expert for India. Score and improve the listing for "${name}" (${category||"Any"}) on ${platform||"Amazon"}.
+Return ONLY valid JSON: {"score":75,"issues":["issue1","issue2","issue3"],"improvements":["improvement1","improvement2","improvement3","improvement4"],"missing_keywords":["keyword1","keyword2","keyword3","keyword4","keyword5"]}`;
+
+  } else if (mode === "review_reply") {
+    const reviewType = category || "negative";
+    prompt = `You are a customer service expert for Indian ecommerce. Generate 2 professional ${reviewType} review replies for: "${name}".
+Return ONLY valid JSON: {"replies":[{"tone":"Professional","text":"reply text in Hinglish/English"},{"tone":"Empathetic","text":"reply text"}]}`;
+
+  } else if (mode === "ad_copy") {
+    const adPlatform = req.body.adPlatform || "Facebook";
+    prompt = `You are an ad copy expert for Indian ecommerce. Create 3 ${adPlatform} ad copies for "${name}" (${category||"Any"}).
+Return ONLY valid JSON: {"copies":[{"format":"Short Ad","text":"ad text (50-80 words)","cta":"Call to action"},{"format":"Story Ad","text":"story format text"},{"format":"Offer Ad","text":"discount/offer focused text","cta":"cta"}]}`;
+
+  } else if (mode === "supplier_email") {
+    prompt = `You are a procurement expert for Indian sellers. Create 2 supplier emails for "${name}" (${category||"Any"}).
+Return ONLY valid JSON: {"emails":[{"subject":"Initial Inquiry - ${name}","body":"formal email body with quantity, quality requirements, price negotiation"},{"subject":"Follow Up - ${name} Order","body":"follow-up email with better negotiation"}]}`;
+
+  } else if (mode === "return_policy") {
+    prompt = `You are an ecommerce policy expert for India. Create return policies for "${name}" (${category||"Any"}) for 3 platforms.
+Return ONLY valid JSON: {"policies":[{"platform":"Amazon","text":"complete return policy text"},{"platform":"Flipkart","text":"policy text"},{"platform":"Meesho","text":"policy text"}]}`;
+
+  } else if (mode === "compliance_check") {
+    prompt = `You are an Indian ecommerce compliance expert. Check requirements for "${name}" (${category||"Any"}).
+Return ONLY valid JSON: {"gst_slab":"X%","hsn_code":"XXXXXXXX","certifications":["cert1","cert2"],"legal_requirements":["req1","req2","req3"],"warnings":["warning if any"]}`;
+
   } else {
     // DEFAULT - Universal analysis for ANYTHING
     prompt = `You are a universal market expert for India. Deeply analyze this:
