@@ -394,6 +394,7 @@ Return ONLY valid JSON with real, specific data:
         max_tokens: 2000,
       }),
     });
+    
 
     const data = await response.json();
     if (!response.ok) return res.status(500).json({ error: data.error?.message || "OpenAI error" });
@@ -405,3 +406,4 @@ Return ONLY valid JSON with real, specific data:
     return res.status(500).json({ error: "Analysis failed: " + err.message });
   }
 }
+
