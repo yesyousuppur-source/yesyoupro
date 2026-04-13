@@ -197,6 +197,7 @@ export default function App() {
   const [titleD,setTitleD] = useState(null);const [titleL,setTitleL] = useState(false);
   const [history,setHistory] = useState([]);
   const [showHist,setShowHist] = useState(false);
+  const [dark,setDark] = useState(()=>{ if(typeof window!=="undefined") return S.get("yyp_theme")!==false; return true; });
   const [refCopied,setRefCopied] = useState(false);
 
   // ── REFERRAL HELPERS ─────────────────────────────────────────────────────
@@ -259,6 +260,7 @@ export default function App() {
   };
 
   const showT = (m) => { setToast(m); setTimeout(()=>setToast(null),3500); };
+  const toggleTheme = () => { const nd=!dark; setDark(nd); S.set("yyp_theme",nd); };
   const todayK = () => { const d=new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); };
   const curPlan = user ? (S.get("yyp_plan_"+user.email)||"free") : "free";
   const isGuest = !!user?.isGuest;
@@ -740,6 +742,56 @@ export default function App() {
     .qinp::placeholder{color:#475569}
     footer{text-align:center;padding:15px;color:#334155;font-size:10px;border-top:1px solid rgba(255,255,255,.03)}
     @media(max-width:600px){.nav{padding:10px 11px}.dc{padding:18px 9px 60px}.pgrid{gap:4px}.ppb{padding:8px 2px 6px}.nc{padding:24px 14px}.icard{padding:15px 11px}}
+    /* ── LIGHT THEME ── */
+    .light{background:#f1f5f9!important;color:#1a1a2e!important}
+    .light .nav{background:#fff!important;border-bottom:1px solid #e2e8f0!important;box-shadow:0 1px 8px rgba(0,0,0,.06)!important}
+    .light .logo span{background:linear-gradient(135deg,#6366f1,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .light .dc{background:#f1f5f9}
+    .light .icard{background:#fff!important;border-color:#e2e8f0!important}
+    .light .fbox{background:#fff!important;border-color:#e2e8f0!important}
+    .light .gcard{background:#fff!important;border-color:#e2e8f0!important}
+    .light .mc{background:#f8fafc!important;border-color:#e2e8f0!important}
+    .light .gct{color:#1a1a2e!important}
+    .light .gctx{color:#4b5563!important}
+    .light .di{background:#f8fafc!important;border-color:#d1d5db!important;color:#1a1a2e!important}
+    .light .di:focus{border-color:#6366f1!important}
+    .light .ict{color:#1a1a2e!important}
+    .light .ilbl{color:#4b5563!important}
+    .light .pfield label{color:#4b5563!important}
+    .light .pfield input,.light .pfield select{background:#f8fafc!important;border-color:#d1d5db!important;color:#1a1a2e!important}
+    .light .prc{background:#f8fafc!important;border-color:#e2e8f0!important}
+    .light .prl{color:#6b7280!important}
+    .light .prv{color:#1a1a2e}
+    .light .ftab{background:#f8fafc!important;border-color:#e2e8f0!important;color:#6b7280!important}
+    .light .ftab.on{background:linear-gradient(135deg,#6366f1,#8b5cf6)!important;color:#fff!important;border-color:transparent!important}
+    .light .cc{background:#f8fafc!important;border-color:#e2e8f0!important}
+    .light .ccbox{background:#f1f5f9!important}
+    .light .ccbt{color:#4b5563!important}
+    .light .cpt{color:#374151!important}
+    .light .tcard{background:#fff!important;border-color:#e2e8f0!important}
+    .light .sc{background:#f0fdf4!important;border-color:#bbf7d0!important}
+    .light .kwc{background:rgba(99,102,241,.08)!important;border-color:rgba(99,102,241,.2)!important;color:#6366f1!important}
+    .light .hi{color:#374151!important}
+    .light .errbanner{background:rgba(239,68,68,.06)!important;color:#dc2626!important}
+    .light .lcard,.light .pm,.light .adbox,.light .prm{background:#fff!important;border-color:#e2e8f0!important}
+    .light .tbox2{background:#f8fafc!important;border-color:#e2e8f0!important}
+    .light .th{color:#6366f1!important}
+    .light .tp{color:#4b5563!important}
+    .light .pmbtn{background:#f8fafc!important;border-color:#e2e8f0!important;color:#1a1a2e!important}
+    .light .pmbtn:hover{background:#f1f5f9!important;border-color:rgba(99,102,241,.25)!important}
+    .light .upill{background:#f8fafc!important;border-color:#e2e8f0!important}
+    .light .pick-drop{background:#fff!important;border-color:#e2e8f0!important}
+    .light .chip{background:rgba(99,102,241,.05)!important;border-color:#d1d5db!important;color:#374151!important}
+    .light .chip.on{color:#fff!important}
+    .light .pick-btn{background:#f8fafc!important;border-color:#d1d5db!important;color:#374151!important}
+    .light .pick-btn.sel{background:rgba(99,102,241,.08)!important;border-color:rgba(99,102,241,.3)!important;color:#1a1a2e!important}
+    .light footer{color:#9ca3af!important;border-top-color:#e2e8f0!important}
+    .light .fglbl{color:#6b7280!important}
+    .light .htitle{color:#1a1a2e!important}
+    .light .hsub{color:#6b7280!important}
+    .light .hbadge{background:rgba(99,102,241,.08)!important;border-color:rgba(99,102,241,.25)!important;color:#6366f1!important}
+    .light .grad{background:linear-gradient(135deg,#6366f1,#a855f7,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  
   `;
 
   if(screen==="loading") return (
@@ -851,6 +903,19 @@ export default function App() {
                 ? <button className="pmbtn" onClick={()=>{setShowProf(false);setScreen("auth");}} style={{borderColor:"rgba(99,102,241,.25)",color:"#a5b4fc"}}><span className="pmico">🔐</span><span>Login / Sign Up</span><span className="pmarr">›</span></button>
                 : <button className="pmbtn lo" onClick={()=>{setShowProf(false);handleLogout();}}><span className="pmico">🚪</span><span>Logout</span></button>
               }
+            </div>
+            {/* Theme Toggle */}
+            <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",background:dark?"rgba(15,23,42,.6)":"#f8fafc",border:dark?"1px solid #1e293b":"1px solid #e2e8f0",borderRadius:11,padding:"10px 14px",marginBottom:10}}>
+              <div style={{display:"flex",alignItems:"center",gap:8}}>
+                <span style={{fontSize:16}}>{dark?"🌙":"☀️"}</span>
+                <div>
+                  <div style={{fontSize:12,fontWeight:700,color:dark?"#e2e8f0":"#1a1a2e"}}>{dark?"Dark Mode":"Light Mode"}</div>
+                  <div style={{fontSize:10,color:dark?"#64748b":"#6b7280"}}>Click to switch</div>
+                </div>
+              </div>
+              <div onClick={toggleTheme} style={{width:48,height:26,borderRadius:100,background:dark?"rgba(99,102,241,.2)":"#d1d5db",padding:3,cursor:"pointer",position:"relative",transition:"all .3s"}}>
+                <div style={{width:20,height:20,borderRadius:"50%",background:dark?"linear-gradient(135deg,#6366f1,#8b5cf6)":"linear-gradient(135deg,#f59e0b,#f97316)",position:"absolute",top:3,left:dark?3:25,transition:"left .25s ease",display:"flex",alignItems:"center",justifyContent:"center",fontSize:10}}>{dark?"🌙":"☀️"}</div>
+              </div>
             </div>
             <div style={{textAlign:"center",fontSize:10,color:"#334155"}}>YesYouPro · yesyoupro.com</div>
           </>}
@@ -1008,7 +1073,7 @@ export default function App() {
         </div>
       </div>}
 
-      {screen==="dashboard" && <div className="dash">
+      {screen==="dashboard" && <div className={"dash"+(dark?"":" light")}>
         <nav className="nav">
           <div className="logo">YesYouPro</div>
           {usage && <div className="upill">
