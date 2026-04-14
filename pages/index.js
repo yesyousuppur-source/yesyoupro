@@ -2,9 +2,9 @@
 import { useState, useEffect, useRef } from "react";
 import Head from "next/head";
 
-const FREE_LIMIT = 2;
-const PREM_LIMIT = 30;
-const PREM_DAYS = 7;
+const FREE_LIMIT = 5;
+const PREM_LIMIT = 50;
+const PREM_DAYS = 30;
 const FB = {
   apiKey:"AIzaSyDww7gi4QRRNm4t3PFQ9ny8a2WLV-V9OFU",
   authDomain:"mood2meet-85866.firebaseapp.com",
@@ -516,7 +516,7 @@ export default function App() {
       const loaded = await new Promise(resolve=>{if(window.Razorpay){resolve(true);return;}const s=document.createElement("script");s.src="https://checkout.razorpay.com/v1/checkout.js";s.onload=()=>resolve(true);s.onerror=()=>resolve(false);document.body.appendChild(s);});
       if(!loaded){showT("Payment failed to load");setPayStep("form");return;}
       setPayStep("form");
-      const rzp = new window.Razorpay({key:kd.key,amount:24900,currency:"INR",name:"YesYouPro",description:"Premium 7 Days",handler:(r)=>{if(r.razorpay_payment_id)activatePrem();},prefill:{name:isGuest?"":user?.name||"",email:isGuest?"":user?.email||""},theme:{color:"#6366f1"},modal:{ondismiss:()=>{setPayStep("form");showT("Payment cancelled.");}}});
+      const rzp = new window.Razorpay({key:kd.key,amount:94900,currency:"INR",name:"YesYouPro",description:"Premium 30 Days",handler:(r)=>{if(r.razorpay_payment_id)activatePrem();},prefill:{name:isGuest?"":user?.name||"",email:isGuest?"":user?.email||""},theme:{color:"#6366f1"},modal:{ondismiss:()=>{setPayStep("form");showT("Payment cancelled.");}}});
       rzp.on("payment.failed",()=>{setPayStep("form");showT("Payment failed.");});rzp.open();
     }catch{await new Promise(r=>setTimeout(r,1000));activatePrem();}
   };
@@ -535,7 +535,7 @@ export default function App() {
     <div onClick={()=>setShowPrem(true)} style={{position:"absolute",inset:0,background:"rgba(2,8,23,.9)",borderRadius:16,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",cursor:"pointer",zIndex:10,backdropFilter:"blur(4px)"}}>
       <div style={{fontSize:36,marginBottom:8}}>🔒</div>
       <div style={{fontWeight:800,fontSize:14,color:"#f8fafc",marginBottom:12}}>Premium Feature</div>
-      <button onClick={(e)=>{e.stopPropagation();setShowPrem(true);}} style={{background:"linear-gradient(135deg,#f59e0b,#ef4444)",border:"none",borderRadius:10,padding:"9px 22px",color:"#fff",fontWeight:800,fontSize:13,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>💎 Unlock ₹249</button>
+      <button onClick={(e)=>{e.stopPropagation();setShowPrem(true);}} style={{background:"linear-gradient(135deg,#f59e0b,#ef4444)",border:"none",borderRadius:10,padding:"9px 22px",color:"#fff",fontWeight:800,fontSize:13,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>💎 Unlock ₹949</button>
     </div>
   );
 
@@ -842,22 +842,22 @@ export default function App() {
           {!showPay && <>
             <div className="pb2">💎 PREMIUM</div>
             <h2 className="ptitle">Unlock Everything</h2>
-            <div className="ppr">₹249 <span>/ 7 days</span></div>
-            <div className="phigh">📊 30 analyses / 7 days (Free: 2/day only)<br/>⏰ No 24hr lockout<br/>🚫 Zero ads<br/>📋 Copy any AI result<br/>🔓 All 13 tools unlocked</div>
-            <div className="pflist">{["✅ 30 analyses / 7 days","✅ Zero ads","✅ No 24hr lockout","📋 Copy full reports","🎓 Starter Guide","🔰 Beginner Products","🧮 Investment Calculator","📊 Sales Estimator","🏷️ Price Optimizer","📦 Inventory Calculator","⭐ Review Analyzer","🎯 Niche Finder","📺 Ads on 8 platforms"].map(f=><div key={f} className="pfi">{f}</div>)}</div>
-            <button className="pbtn2" onClick={()=>setShowPay(true)}>🔓 Unlock Premium — ₹249</button>
+            <div className="ppr">$10 <span style={{WebkitTextFillColor:"#94a3b8",fontSize:13}}>/ 30 days</span></div><div style={{fontSize:12,color:"#94a3b8",marginBottom:6}}>₹949 — 50 analyses</div>
+            <div className="phigh">📊 50 analyses / 30 days<br/>⏰ Valid 30 days<br/>🚫 Zero ads<br/>📋 Copy any AI result<br/>🔓 All 13 tools unlocked</div>
+            <div className="pflist">{["✅ 50 analyses / 30 days","✅ Zero ads","✅ Valid 30 days","📋 Copy full reports","🎓 Starter Guide","🔰 Beginner Products","🧮 Investment Calculator","📊 Sales Estimator","🏷️ Price Optimizer","📦 Inventory Calculator","⭐ Review Analyzer","🎯 Niche Finder","📺 Ads on 8 platforms"].map(f=><div key={f} className="pfi">{f}</div>)}</div>
+            <button className="pbtn2" onClick={()=>setShowPay(true)}>🔓 Unlock Premium — $10 (₹949)</button>
             <button className="mcan" onClick={()=>setShowPrem(false)}>Maybe later</button>
           </>}
           {showPay && payStep==="form" && <>
             <h2 className="ptitle">Complete Payment</h2>
             <div className="paybox">
               <div className="pr2"><span>Plan</span><span>Premium 7-day</span></div>
-              <div className="pr2"><span>Amount</span><span style={{color:"#f59e0b",fontWeight:700}}>₹249</span></div>
-              <div className="pr2"><span>Analyses</span><span style={{color:"#10b981"}}>30 in 7 days</span></div>
+              <div className="pr2"><span>Amount</span><span style={{color:"#f59e0b",fontWeight:700}}>₹949</span></div>
+              <div className="pr2"><span>Analyses</span><span style={{color:"#10b981"}}>50 in 30 days</span></div>
               <div className="pr2"><span>All 13 Tools</span><span style={{color:"#10b981"}}>✅ Unlocked</span></div>
               <div className="pr2"><span>Copy Results</span><span style={{color:"#a5b4fc"}}>✅ Enabled</span></div>
             </div>
-            <button className="pbtn2" onClick={handlePay}><svg width="14" height="14" viewBox="0 0 30 30" fill="none"><path d="M14.396 0L0 19.578h9.979L7.242 30l22.758-19.56H19.5L22.25 0z" fill="#528FF0"/></svg>Pay ₹249 via Razorpay</button>
+            <button className="pbtn2" onClick={handlePay}><svg width="14" height="14" viewBox="0 0 30 30" fill="none"><path d="M14.396 0L0 19.578h9.979L7.242 30l22.758-19.56H19.5L22.25 0z" fill="#528FF0"/></svg>Pay $10 (₹949) via Razorpay</button>
             <button className="mcan" onClick={()=>setShowPay(false)}>← Back</button>
           </>}
           {showPay && payStep==="processing" && <div style={{textAlign:"center",padding:30}}><div className="sp" style={{margin:"0 auto"}}/><p style={{color:"#94a3b8",marginTop:11}}>Processing...</p></div>}
@@ -871,7 +871,7 @@ export default function App() {
             <div style={{fontSize:50,marginBottom:8}}>🎉</div>
             <h2 className="ptitle">Premium Activated!</h2>
             <div className="sfeat">
-              <div className="sfi2">✅ 30 analyses / 7 days</div>
+              <div className="sfi2">✅ 50 analyses / 30 days</div>
               <div className="sfi2">✅ Zero ads</div>
               <div className="sfi2">✅ Copy results enabled</div>
               <div className="sfi2">✅ All 13 tools unlocked</div>
@@ -908,7 +908,7 @@ export default function App() {
               </button>
               <button className="pmbtn" onClick={()=>setProfTab("terms")}><span className="pmico">📋</span><span>Terms & Conditions</span><span className="pmarr">›</span></button>
               <button className="pmbtn" onClick={()=>setProfTab("question")}><span className="pmico">❓</span><span>Any Questions?</span><span className="pmarr">›</span></button>
-              {curPlan==="free" && <button className="pmbtn" onClick={()=>{setShowProf(false);setShowPrem(true);}}><span className="pmico">💎</span><span>Upgrade Premium — ₹249</span><span className="pmarr">›</span></button>}
+              {curPlan==="free" && <button className="pmbtn" onClick={()=>{setShowProf(false);setShowPrem(true);}}><span className="pmico">💎</span><span>Upgrade Premium — ₹949</span><span className="pmarr">›</span></button>}
               {isGuest
                 ? <button className="pmbtn" onClick={()=>{setShowProf(false);setScreen("auth");}} style={{borderColor:"rgba(99,102,241,.25)",color:"#a5b4fc"}}><span className="pmico">🔐</span><span>Login / Sign Up</span><span className="pmarr">›</span></button>
                 : <button className="pmbtn lo" onClick={()=>{setShowProf(false);handleLogout();}}><span className="pmico">🚪</span><span>Logout</span></button>
@@ -934,8 +934,8 @@ export default function App() {
             <div className="prh"><button className="prcl" style={{background:"none",fontSize:18}} onClick={()=>setProfTab("main")}>←</button><div style={{fontWeight:800,fontSize:14,color:"#f8fafc"}}>Terms & Conditions</div><div style={{width:29}}/></div>
             <div className="tbox2">
               <div className="th">1. Acceptance</div><p className="tp">By using YesYouPro, you agree to these terms.</p>
-              <div className="th">2. Free Plan</div><p className="tp">2 analyses/day. 24hr lockout after limit. All tools available during active analyses.</p>
-              <div className="th">3. Premium Plan</div><p className="tp">₹249 for 7 days / 30 analyses. Expires after 7 days OR 30 analyses. No auto-renewal.</p>
+              <div className="th">2. Free Plan</div><p className="tp">5 analyses/day. 24hr lockout after limit. All tools available during active analyses.</p>
+              <div className="th">3. Premium Plan</div><p className="tp">₹949 for 7 days / 30 analyses. Expires after 7 days OR 30 analyses. No auto-renewal.</p>
               <div className="th">4. Refund Policy</div><p className="tp">No refunds once Premium is activated. Technical issues: support@yesyoupro.com within 24 hours.</p>
               <div className="th">5. AI Accuracy</div><p className="tp">AI results are suggestions only — not guaranteed business advice. Do your own research.</p>
               <div className="th">6. Privacy</div><p className="tp">We store email and usage data securely. We never sell personal data. Payments via Razorpay.</p>
@@ -1089,10 +1089,10 @@ export default function App() {
           {usage && <div className="upill">
             <span style={{color:curPlan==="premium"?"#f59e0b":"#94a3b8",fontWeight:700}}>{curPlan==="premium"?"💎":"🆓"}</span>
             <span style={{color:"#334155"}}>|</span>
-            <span style={{color:usage.remaining>0?"#10b981":"#ef4444",fontWeight:700}}>{curPlan==="premium"?usage.remaining+" left":usage.remaining+"/2 today"}</span>
+            <span style={{color:usage.remaining>0?"#10b981":"#ef4444",fontWeight:700}}>{curPlan==="premium"?usage.remaining+" left":usage.remaining+"/5 today"}</span>
           </div>}
           <div className="navr">
-            {curPlan==="free" && <button className="upbtn" onClick={()=>setShowPrem(true)}>💎 ₹249</button>}
+            {curPlan==="free" && <button className="upbtn" onClick={()=>setShowPrem(true)}>💎 ₹949</button>}
             {isGuest
               ? <button onClick={()=>setScreen("auth")} style={{background:"rgba(99,102,241,.12)",border:"1px solid rgba(99,102,241,.35)",borderRadius:100,padding:"5px 11px",color:"#a5b4fc",fontWeight:700,fontSize:11,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>Login / Sign Up</button>
               : <div className="avt" onClick={()=>{setShowProf(true);setProfTab("main");}}>{user?.photo?<img src={user.photo} alt=""/>:user?.name?.[0]?.toUpperCase()||"U"}</div>
@@ -1118,14 +1118,14 @@ export default function App() {
             <div className="tprog"><div className="tpf" style={{width:Math.max(0,100-(timer.total/86400000)*100)+"%"}}/></div>
             <div style={{marginTop:9,display:"flex",alignItems:"center",justifyContent:"center",gap:7,flexWrap:"wrap"}}>
               <span style={{color:"#64748b",fontSize:11}}>Don&apos;t want to wait?</span>
-              <button onClick={()=>setShowPrem(true)} style={{background:"linear-gradient(135deg,#f59e0b,#ef4444)",border:"none",borderRadius:100,padding:"6px 13px",color:"#fff",fontWeight:800,fontSize:11,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>💎 Get Premium ₹249</button>
+              <button onClick={()=>setShowPrem(true)} style={{background:"linear-gradient(135deg,#f59e0b,#ef4444)",border:"none",borderRadius:100,padding:"6px 13px",color:"#fff",fontWeight:800,fontSize:11,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>💎 Get Premium ₹949</button>
             </div>
           </div>}
 
           {curPlan==="free" && !timer && usage && (
             usage.remaining>0
               ?<div className="bnr-g"><div><div style={{fontWeight:700,fontSize:11,color:"#10b981"}}>✅ All Tools Unlocked — {usage.remaining} Analyses Left</div><div style={{fontSize:10,color:"#475569"}}>No login needed. Resets every 24hrs.</div></div></div>
-              :<div className="bnr-r"><div><div style={{fontWeight:700,fontSize:11,color:"#ef4444"}}>🔒 Daily Limit Reached — Tools Locked</div><div style={{fontSize:10,color:"#64748b"}}>Upgrade for 30 analyses & no lockout.</div></div><button onClick={()=>setShowPrem(true)} style={{background:"linear-gradient(135deg,#f59e0b,#ef4444)",border:"none",borderRadius:8,padding:"5px 10px",color:"#fff",fontWeight:700,fontSize:10,cursor:"pointer",whiteSpace:"nowrap",fontFamily:"Inter,sans-serif"}}>💎 ₹249</button></div>
+              :<div className="bnr-r"><div><div style={{fontWeight:700,fontSize:11,color:"#ef4444"}}>🔒 Daily Limit Reached — Tools Locked</div><div style={{fontSize:10,color:"#64748b"}}>Upgrade for 30 analyses & no lockout.</div></div><button onClick={()=>setShowPrem(true)} style={{background:"linear-gradient(135deg,#f59e0b,#ef4444)",border:"none",borderRadius:8,padding:"5px 10px",color:"#fff",fontWeight:700,fontSize:10,cursor:"pointer",whiteSpace:"nowrap",fontFamily:"Inter,sans-serif"}}>💎 ₹949</button></div>
           )}
 
           {history.length>0&&(
@@ -1225,7 +1225,7 @@ export default function App() {
               {isLocked && <div onClick={()=>setShowPrem(true)} style={{position:"absolute",inset:0,background:"rgba(2,8,23,.9)",borderRadius:16,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",cursor:"pointer",zIndex:10,backdropFilter:"blur(4px)"}}>
                 <div style={{fontSize:34,marginBottom:7}}>🔒</div>
                 <div style={{fontWeight:800,fontSize:13,color:"#f8fafc",marginBottom:11}}>Run Ads + Publish Content</div>
-                <button onClick={(e)=>{e.stopPropagation();setShowPrem(true);}} style={{background:"linear-gradient(135deg,#f59e0b,#ef4444)",border:"none",borderRadius:10,padding:"8px 20px",color:"#fff",fontWeight:800,fontSize:12,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>💎 Unlock ₹249</button>
+                <button onClick={(e)=>{e.stopPropagation();setShowPrem(true);}} style={{background:"linear-gradient(135deg,#f59e0b,#ef4444)",border:"none",borderRadius:10,padding:"8px 20px",color:"#fff",fontWeight:800,fontSize:12,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>💎 Unlock ₹949</button>
               </div>}
               <div className="psh"><div className="pst">📺 Run Ads + Publish Content</div></div>
               <p className="pss">Complete ad strategy for every platform</p>
