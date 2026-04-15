@@ -15,43 +15,43 @@ const FB = {
 };
 
 const CATS = [
-  {id:"Electronics",logo:"https://cdn.simpleicons.org/samsung/1428A0",e:"ðŸ’»",g:"Physical"},
-  {id:"Beauty & Skincare",logo:"https://cdn.simpleicons.org/sephora/000000",e:"ðŸ’„",g:"Physical"},
-  {id:"Home & Kitchen",logo:"https://cdn.simpleicons.org/ikea/0058A3",e:"ðŸ ",g:"Physical"},
-  {id:"Fitness",logo:"https://cdn.simpleicons.org/peloton/000000",e:"ðŸ’ª",g:"Physical"},
-  {id:"Fashion",logo:"https://cdn.simpleicons.org/uniqlo/FF0000",e:"ðŸ‘—",g:"Physical"},
-  {id:"Pet Supplies",logo:null,e:"ðŸ¾",g:"Physical"},
-  {id:"Toys & Games",logo:"https://cdn.simpleicons.org/lego/E3000B",e:"ðŸŽ®",g:"Physical"},
-  {id:"Health & Wellness",logo:"https://cdn.simpleicons.org/headspace/F47D31",e:"â¤ï¸",g:"Physical"},
-  {id:"Outdoor & Sports",logo:"https://cdn.simpleicons.org/decathlon/0082C3",e:"â›º",g:"Physical"},
-  {id:"Food & Beverages",logo:"https://cdn.simpleicons.org/zomato/E23744",e:"ðŸ”",g:"Physical"},
-  {id:"Automotive",logo:"https://cdn.simpleicons.org/tesla/CC0000",e:"ðŸš—",g:"Physical"},
-  {id:"Books & Education",logo:"https://cdn.simpleicons.org/audible/F8991C",e:"ðŸ“š",g:"Physical"},
-  {id:"Jewelry",logo:null,e:"ðŸ’",g:"Physical"},
-  {id:"Baby & Kids",logo:null,e:"ðŸ‘¶",g:"Physical"},
-  {id:"Tools & Hardware",logo:null,e:"ðŸ”§",g:"Physical"},
-  {id:"Garden & Plants",logo:null,e:"ðŸŒ±",g:"Physical"},
-  {id:"Travel & Luggage",logo:"https://cdn.simpleicons.org/airbnb/FF5A5F",e:"âœˆï¸",g:"Physical"},
-  {id:"Art & Crafts",logo:"https://cdn.simpleicons.org/etsy/F56400",e:"ðŸŽ¨",g:"Physical"},
-  {id:"Office Supplies",logo:"https://cdn.simpleicons.org/notion/000000",e:"ðŸ—‚ï¸",g:"Physical"},
-  {id:"Music & Audio",logo:"https://cdn.simpleicons.org/spotify/1DB954",e:"ðŸŽµ",g:"Physical"},
-  {id:"Mobile Apps",logo:"https://cdn.simpleicons.org/android/3DDC84",e:"ðŸ“±",g:"Digital"},
-  {id:"PC / Console Games",logo:"https://cdn.simpleicons.org/steam/000000",e:"ðŸ•¹ï¸",g:"Digital"},
-  {id:"Online Courses",logo:"https://cdn.simpleicons.org/udemy/A435F0",e:"ðŸŽ“",g:"Digital"},
-  {id:"Software & SaaS",logo:"https://cdn.simpleicons.org/microsoftazure/0078D4",e:"ðŸ’¿",g:"Digital"},
-  {id:"Website / Blog",logo:"https://cdn.simpleicons.org/wordpress/21759B",e:"ðŸŒ",g:"Digital"},
-  {id:"YouTube Channel",logo:"https://cdn.simpleicons.org/youtube/FF0000",e:"ðŸ“º",g:"Digital"},
-  {id:"Instagram Page",logo:"https://cdn.simpleicons.org/instagram/E1306C",e:"ðŸ“¸",g:"Digital"},
-  {id:"Podcast",logo:"https://cdn.simpleicons.org/spotify/1DB954",e:"ðŸŽ™ï¸",g:"Digital"},
-  {id:"NFT & Crypto",logo:"https://cdn.simpleicons.org/ethereum/627EEA",e:"ðŸ–¼ï¸",g:"Digital"},
-  {id:"Ebooks & Templates",logo:"https://cdn.simpleicons.org/amazon/FF9900",e:"ðŸ“„",g:"Digital"},
-  {id:"Freelance Services",logo:"https://cdn.simpleicons.org/fiverr/1DBF73",e:"ðŸ› ï¸",g:"Digital"},
-  {id:"Social Media Account",logo:"https://cdn.simpleicons.org/instagram/E1306C",e:"ðŸ‘¥",g:"Digital"},
-  {id:"Dropshipping",logo:"https://cdn.simpleicons.org/shopify/96BF48",e:"ðŸšš",g:"Digital"},
-  {id:"Affiliate Marketing",logo:"https://cdn.simpleicons.org/amazon/FF9900",e:"ðŸ”—",g:"Digital"},
-  {id:"Print on Demand",logo:"https://cdn.simpleicons.org/redbubble/E41321",e:"ðŸ–¨ï¸",g:"Digital"},
-  {id:"Digital Products",logo:"https://cdn.simpleicons.org/gumroad/FF90E8",e:"ðŸ“¦",g:"Digital"},
-  {id:"Any Other",logo:null,e:"âœ¨",g:"Digital"},
+  {id:"Electronics",logo:"https://cdn.simpleicons.org/samsung/1428A0",e:"💻",g:"Physical"},
+  {id:"Beauty & Skincare",logo:"https://cdn.simpleicons.org/sephora/000000",e:"„",g:"Physical"},
+  {id:"Home & Kitchen",logo:"https://cdn.simpleicons.org/ikea/0058A3",e:" ",g:"Physical"},
+  {id:"Fitness",logo:"https://cdn.simpleicons.org/peloton/000000",e:"💪",g:"Physical"},
+  {id:"Fashion",logo:"https://cdn.simpleicons.org/uniqlo/FF0000",e:"👗",g:"Physical"},
+  {id:"Pet Supplies",logo:null,e:"🐾",g:"Physical"},
+  {id:"Toys & Games",logo:"https://cdn.simpleicons.org/lego/E3000B",e:"Ž",g:"Physical"},
+  {id:"Health & Wellness",logo:"https://cdn.simpleicons.org/headspace/F47D31",e:"❤️",g:"Physical"},
+  {id:"Outdoor & Sports",logo:"https://cdn.simpleicons.org/decathlon/0082C3",e:"›",g:"Physical"},
+  {id:"Food & Beverages",logo:"https://cdn.simpleicons.org/zomato/E23744",e:"🍔",g:"Physical"},
+  {id:"Automotive",logo:"https://cdn.simpleicons.org/tesla/CC0000",e:"🚗",g:"Physical"},
+  {id:"Books & Education",logo:"https://cdn.simpleicons.org/audible/F8991C",e:"📚",g:"Physical"},
+  {id:"Jewelry",logo:null,e:"💍",g:"Physical"},
+  {id:"Baby & Kids",logo:null,e:"👶",g:"Physical"},
+  {id:"Tools & Hardware",logo:null,e:"🔧",g:"Physical"},
+  {id:"Garden & Plants",logo:null,e:"Œ",g:"Physical"},
+  {id:"Travel & Luggage",logo:"https://cdn.simpleicons.org/airbnb/FF5A5F",e:"ˆ️",g:"Physical"},
+  {id:"Art & Crafts",logo:"https://cdn.simpleicons.org/etsy/F56400",e:"Ž",g:"Physical"},
+  {id:"Office Supplies",logo:"https://cdn.simpleicons.org/notion/000000",e:"‚️",g:"Physical"},
+  {id:"Music & Audio",logo:"https://cdn.simpleicons.org/spotify/1DB954",e:"Ž",g:"Physical"},
+  {id:"Mobile Apps",logo:"https://cdn.simpleicons.org/android/3DDC84",e:"📱",g:"Digital"},
+  {id:"PC / Console Games",logo:"https://cdn.simpleicons.org/steam/000000",e:"🕹️",g:"Digital"},
+  {id:"Online Courses",logo:"https://cdn.simpleicons.org/udemy/A435F0",e:"Ž",g:"Digital"},
+  {id:"Software & SaaS",logo:"https://cdn.simpleicons.org/microsoftazure/0078D4",e:"💿",g:"Digital"},
+  {id:"Website / Blog",logo:"https://cdn.simpleicons.org/wordpress/21759B",e:"Œ",g:"Digital"},
+  {id:"YouTube Channel",logo:"https://cdn.simpleicons.org/youtube/FF0000",e:"📺",g:"Digital"},
+  {id:"Instagram Page",logo:"https://cdn.simpleicons.org/instagram/E1306C",e:"📸",g:"Digital"},
+  {id:"Podcast",logo:"https://cdn.simpleicons.org/spotify/1DB954",e:"Ž️",g:"Digital"},
+  {id:"NFT & Crypto",logo:"https://cdn.simpleicons.org/ethereum/627EEA",e:"🖼️",g:"Digital"},
+  {id:"Ebooks & Templates",logo:"https://cdn.simpleicons.org/amazon/FF9900",e:"„",g:"Digital"},
+  {id:"Freelance Services",logo:"https://cdn.simpleicons.org/fiverr/1DBF73",e:"› ️",g:"Digital"},
+  {id:"Social Media Account",logo:"https://cdn.simpleicons.org/instagram/E1306C",e:"👥",g:"Digital"},
+  {id:"Dropshipping",logo:"https://cdn.simpleicons.org/shopify/96BF48",e:"🚚",g:"Digital"},
+  {id:"Affiliate Marketing",logo:"https://cdn.simpleicons.org/amazon/FF9900",e:"🔗",g:"Digital"},
+  {id:"Print on Demand",logo:"https://cdn.simpleicons.org/redbubble/E41321",e:"🖨️",g:"Digital"},
+  {id:"Digital Products",logo:"https://cdn.simpleicons.org/gumroad/FF90E8",e:"📦",g:"Digital"},
+  {id:"Any Other",logo:null,e:"✨",g:"Digital"},
 ];
 
 const PLATS = [
@@ -62,10 +62,10 @@ const PLATS = [
   {id:"WooCommerce",logo:"https://cdn.simpleicons.org/woocommerce/7F54B3",c:"#7f54b3",g:"Ecommerce"},
   {id:"Etsy",logo:"https://cdn.simpleicons.org/etsy/F56400",c:"#f56400",g:"Ecommerce"},
   {id:"Nykaa",logo:"https://cdn.simpleicons.org/nykaa/FC2779",c:"#fc2779",g:"Ecommerce"},
-  {id:"Myntra",logo:null,e:"ðŸ‘—",c:"#ff3f6c",g:"Ecommerce"},
-  {id:"IndiaMART",logo:null,e:"ðŸ­",c:"#0077b5",g:"Ecommerce"},
-  {id:"JioMart",logo:null,e:"ðŸ›ï¸",c:"#003087",g:"Ecommerce"},
-  {id:"Snapdeal",logo:null,e:"ðŸ·ï¸",c:"#e40000",g:"Ecommerce"},
+  {id:"Myntra",logo:null,e:"👗",c:"#ff3f6c",g:"Ecommerce"},
+  {id:"IndiaMART",logo:null,e:"🏭",c:"#0077b5",g:"Ecommerce"},
+  {id:"JioMart",logo:null,e:"›️",c:"#003087",g:"Ecommerce"},
+  {id:"Snapdeal",logo:null,e:"🏷️",c:"#e40000",g:"Ecommerce"},
   {id:"Instagram",logo:"https://cdn.simpleicons.org/instagram/E1306C",c:"#e1306c",g:"Social Media"},
   {id:"Facebook",logo:"https://cdn.simpleicons.org/facebook/1877F2",c:"#1877f2",g:"Social Media"},
   {id:"YouTube",logo:"https://cdn.simpleicons.org/youtube/FF0000",c:"#ff0000",g:"Social Media"},
@@ -78,8 +78,8 @@ const PLATS = [
   {id:"WhatsApp Business",logo:"https://cdn.simpleicons.org/whatsapp/25D366",c:"#25d366",g:"Social Media"},
   {id:"Discord",logo:"https://cdn.simpleicons.org/discord/5865F2",c:"#5865f2",g:"Social Media"},
   {id:"Reddit",logo:"https://cdn.simpleicons.org/reddit/FF4500",c:"#ff4500",g:"Social Media"},
-  {id:"Moj",logo:null,e:"ðŸŽ¬",c:"#ff4081",g:"Social Media"},
-  {id:"ShareChat",logo:null,e:"ðŸ’¬",c:"#00bcd4",g:"Social Media"},
+  {id:"Moj",logo:null,e:"Ž",c:"#ff4081",g:"Social Media"},
+  {id:"ShareChat",logo:null,e:"💬",c:"#00bcd4",g:"Social Media"},
   {id:"Google Play Store",logo:"https://cdn.simpleicons.org/googleplay/414141",c:"#01875f",g:"App Stores"},
   {id:"Apple App Store",logo:"https://cdn.simpleicons.org/apple/000000",c:"#0071e3",g:"App Stores"},
   {id:"Steam",logo:"https://cdn.simpleicons.org/steam/000000",c:"#1b2838",g:"App Stores"},
@@ -93,10 +93,10 @@ const PLATS = [
   {id:"Fiverr",logo:"https://cdn.simpleicons.org/fiverr/1DBF73",c:"#1dbf73",g:"Freelance"},
   {id:"Upwork",logo:"https://cdn.simpleicons.org/upwork/6FDA44",c:"#14a800",g:"Freelance"},
   {id:"Zomato",logo:"https://cdn.simpleicons.org/zomato/E23744",c:"#e23744",g:"Food"},
-  {id:"Swiggy",logo:null,e:"ðŸ›µ",c:"#fc8019",g:"Food"},
-  {id:"BigBasket",logo:null,e:"ðŸ›’",c:"#84c225",g:"Food"},
+  {id:"Swiggy",logo:null,e:"›",c:"#fc8019",g:"Food"},
+  {id:"BigBasket",logo:null,e:"›",c:"#84c225",g:"Food"},
   {id:"Own Website",logo:"https://cdn.simpleicons.org/googlechrome/4285F4",c:"#6366f1",g:"Other"},
-  {id:"Any Other",logo:null,e:"âœ¨",c:"#94a3b8",g:"Other"},
+  {id:"Any Other",logo:null,e:"✨",c:"#94a3b8",g:"Other"},
 ];
 
 const ADPLATS = [
@@ -210,7 +210,7 @@ export default function App() {
   const [returnPolD,setReturnPolD] = useState(null);const [returnPolL,setReturnPolL] = useState(false);
   const [compliD,setCompliD] = useState(null);const [compliL,setCompliL] = useState(false);
 
-  // â”€â”€ REFERRAL HELPERS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── REFERRAL HELPERS ─────────────────────────────────────────────────────
   const genRefCode = (email) => {
     if(!email) return "";
     const base = email.split("@")[0].replace(/[^a-zA-Z0-9]/g,"").toLowerCase().substring(0,8);
@@ -308,7 +308,7 @@ export default function App() {
     clearInterval(timerRef.current);
     timerRef.current = setInterval(()=>{
       const rem = hit+86400000-Date.now();
-      if(rem<=0){clearInterval(timerRef.current);S.set("yyp_daily_"+u.email+"_"+todayK(),"0");S.set("yyp_hit_"+u.email,null);setTimer(null);showT("âœ… 2 free analyses reset!");}
+      if(rem<=0){clearInterval(timerRef.current);S.set("yyp_daily_"+u.email+"_"+todayK(),"0");S.set("yyp_hit_"+u.email,null);setTimer(null);showT("✅ 2 free analyses reset!");}
       else setTimer({h:Math.floor(rem/3600000),m:Math.floor((rem%3600000)/60000),s:Math.floor((rem%60000)/1000),total:rem});
     },1000);
   };
@@ -356,7 +356,7 @@ export default function App() {
       const u = {email:r.user.email,name:r.user.displayName,photo:r.user.photoURL,plan:S.get("yyp_plan_"+r.user.email)||"free"};
       if(S.get("yyp_pending_prem")){S.set("yyp_pending_prem",null);const exp=new Date(Date.now()+PREM_DAYS*86400000).toISOString();S.set("yyp_prem_"+u.email,{expiry:exp,used:0});S.set("yyp_plan_"+u.email,"premium");u.plan="premium";}
       S.set("yyp_current",u);S.set("yyp_guest",null);saveAcc(r.user.email,r.user.displayName,"",r.user.photoURL);
-      setUser(u);setUsage(calcUsage(u));startTimer(u);setScreen("dashboard");showT("âœ… Signed in!");
+      setUser(u);setUsage(calcUsage(u));startTimer(u);setScreen("dashboard");showT("✅ Signed in!");
     }catch(e){setAuthErr(e.code==="auth/popup-closed-by-user"?"Cancelled.":"Google sign-in failed.");}
     setGLoad(false);
   };
@@ -380,14 +380,14 @@ export default function App() {
         const plan = applyPending(form.email);
         const u = {email:form.email,name:form.name,photo:null,plan};
         S.set("yyp_current",u);S.set("yyp_guest",null);saveAcc(form.email,form.name,form.password,null);
-        setUser(u);setUsage(calcUsage(u));setScreen("dashboard");showT(plan==="premium"?"ðŸŽ‰ Premium activated!":"âœ… Welcome!");
+        setUser(u);setUsage(calcUsage(u));setScreen("dashboard");showT(plan==="premium"?"Ž‰ Premium activated!":"✅ Welcome!");
       } else {
         const {signInWithEmailAndPassword} = await import("firebase/auth");
         const r = await signInWithEmailAndPassword(auth,form.email,form.password);
         const plan = applyPending(form.email);
         const u = {email:r.user.email,name:r.user.displayName||form.email.split("@")[0],photo:null,plan};
         S.set("yyp_current",u);S.set("yyp_guest",null);saveAcc(form.email,u.name,form.password,null);
-        setUser(u);setUsage(calcUsage(u));startTimer(u);setScreen("dashboard");showT(plan==="premium"?"ðŸŽ‰ Premium activated!":"âœ… Welcome back!");
+        setUser(u);setUsage(calcUsage(u));startTimer(u);setScreen("dashboard");showT(plan==="premium"?"Ž‰ Premium activated!":"✅ Welcome back!");
       }
     }catch(e){
       const allU = S.get("yyp_users")||{};
@@ -397,7 +397,7 @@ export default function App() {
         const plan = applyPending(form.email);
         const u = {email:form.email,name:form.name,photo:null,plan};
         S.set("yyp_current",u);S.set("yyp_guest",null);saveAcc(form.email,form.name,form.password,null);
-        setUser(u);setUsage(calcUsage(u));setScreen("dashboard");showT("âœ… Account created!");
+        setUser(u);setUsage(calcUsage(u));setScreen("dashboard");showT("✅ Account created!");
       } else {
         const found = allU[form.email];
         if(!found){setAuthErr("No account found. Sign Up first.");return;}
@@ -405,7 +405,7 @@ export default function App() {
         const plan = applyPending(form.email);
         const u = {email:found.email,name:found.name,photo:null,plan};
         S.set("yyp_current",u);S.set("yyp_guest",null);saveAcc(form.email,found.name,form.password,null);
-        setUser(u);setUsage(calcUsage(u));startTimer(u);setScreen("dashboard");showT("âœ… Welcome back!");
+        setUser(u);setUsage(calcUsage(u));startTimer(u);setScreen("dashboard");showT("✅ Welcome back!");
       }
     }
   };
@@ -420,12 +420,12 @@ export default function App() {
     setAuthErr("");
     if(!acc.password){handleGoogle();return;}
     try{const auth=await getFA();const{signInWithEmailAndPassword}=await import("firebase/auth");await signInWithEmailAndPassword(auth,acc.email,acc.password);}
-    catch{const allU=S.get("yyp_users")||{};const f=allU[acc.email];if(f&&f.password===acc.password){const plan=S.get("yyp_plan_"+f.email)||"free";const u={email:f.email,name:f.name,photo:null,plan};S.set("yyp_current",u);S.set("yyp_guest",null);setUser(u);setUsage(calcUsage(u));startTimer(u);setScreen("dashboard");showT("âœ… Welcome back!");}else setAuthErr("Login failed.");}
+    catch{const allU=S.get("yyp_users")||{};const f=allU[acc.email];if(f&&f.password===acc.password){const plan=S.get("yyp_plan_"+f.email)||"free";const u={email:f.email,name:f.name,photo:null,plan};S.set("yyp_current",u);S.set("yyp_guest",null);setUser(u);setUsage(calcUsage(u));startTimer(u);setScreen("dashboard");showT("✅ Welcome back!");}else setAuthErr("Login failed.");}
   };
 
   const handleForgotPw = async () => {
     if(!form.email){setAuthErr("Enter email first");return;}
-    try{const auth=await getFA();const{sendPasswordResetEmail}=await import("firebase/auth");await sendPasswordResetEmail(auth,form.email);showT("âœ… Reset email sent!");setAuthErr("");}
+    try{const auth=await getFA();const{sendPasswordResetEmail}=await import("firebase/auth");await sendPasswordResetEmail(auth,form.email);showT("✅ Reset email sent!");setAuthErr("");}
     catch{setAuthErr("Could not send reset email.");}
   };
 
@@ -453,7 +453,7 @@ export default function App() {
       addUsage(user);
       const ni = calcUsage(user);setUsage(ni);
       if(ni.remaining<=0&&curPlan==="free"&&!S.get("yyp_hit_"+user.email)){S.set("yyp_hit_"+user.email,Date.now());setTimeout(()=>startTimer(user),300);}
-      setResult(data);showT("âœ… Analysis complete!");
+      setResult(data);showT("✅ Analysis complete!");
     }catch(e){setErr("Analysis failed: "+e.message);}
     setLoading(false);
   };
@@ -495,8 +495,8 @@ export default function App() {
 
   const copyTxt = (text,lbl) => {
     if(curPlan!=="premium"){setShowPrem(true);return;}
-    try{navigator.clipboard.writeText(text).then(()=>showT("ðŸ“‹ Copied: "+lbl));}
-    catch{const el=document.createElement("textarea");el.value=text;document.body.appendChild(el);el.select();document.execCommand("copy");document.body.removeChild(el);showT("ðŸ“‹ Copied: "+lbl);}
+    try{navigator.clipboard.writeText(text).then(()=>showT("‹ Copied: "+lbl));}
+    catch{const el=document.createElement("textarea");el.value=text;document.body.appendChild(el);el.select();document.execCommand("copy");document.body.removeChild(el);showT("‹ Copied: "+lbl);}
   };
 
   const activatePrem = () => {
@@ -505,7 +505,7 @@ export default function App() {
     S.set("yyp_prem_"+user.email,{expiry:exp,used:0});S.set("yyp_plan_"+user.email,"premium");
     S.set("yyp_hit_"+user.email,null);clearInterval(timerRef.current);setTimer(null);
     const u = {...user,plan:"premium"};setUser(u);setUsage(calcUsage(u));
-    setPayStep("success");showT("ðŸŽ‰ Premium activated!");
+    setPayStep("success");showT("Ž‰ Premium activated!");
   };
 
   const handlePay = async () => {
@@ -524,7 +524,7 @@ export default function App() {
   const sendQ = async () => {
     if(!q.trim()){showT("Please type your question");return;}
     setQLoad(true);
-    try{await fetch("/api/contact",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:user?.email,name:user?.name,message:q,plan:curPlan})});setQSent(true);setQ("");showT("âœ… Question sent!");}
+    try{await fetch("/api/contact",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:user?.email,name:user?.name,message:q,plan:curPlan})});setQSent(true);setQ("");showT("✅ Question sent!");}
     catch{showT("Failed. Try again.");}
     setQLoad(false);
   };
@@ -533,9 +533,9 @@ export default function App() {
 
   const LockBox = () => (
     <div onClick={()=>setShowPrem(true)} style={{position:"absolute",inset:0,background:"rgba(2,8,23,.9)",borderRadius:16,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",cursor:"pointer",zIndex:10,backdropFilter:"blur(4px)"}}>
-      <div style={{fontSize:36,marginBottom:8}}>ðŸ”’</div>
+      <div style={{fontSize:36,marginBottom:8}}>🔒</div>
       <div style={{fontWeight:800,fontSize:14,color:"#f8fafc",marginBottom:12}}>Premium Feature</div>
-      <button onClick={(e)=>{e.stopPropagation();setShowPrem(true);}} style={{background:"linear-gradient(135deg,#f59e0b,#ef4444)",border:"none",borderRadius:10,padding:"9px 22px",color:"#fff",fontWeight:800,fontSize:13,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>ðŸ’Ž Unlock â‚¹949</button>
+      <button onClick={(e)=>{e.stopPropagation();setShowPrem(true);}} style={{background:"linear-gradient(135deg,#f59e0b,#ef4444)",border:"none",borderRadius:10,padding:"9px 22px",color:"#fff",fontWeight:800,fontSize:13,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>Ž Unlock ‚949</button>
     </div>
   );
 
@@ -752,7 +752,7 @@ export default function App() {
     .qinp::placeholder{color:#475569}
     footer{text-align:center;padding:15px;color:#334155;font-size:10px;border-top:1px solid rgba(255,255,255,.03)}
     @media(max-width:600px){.nav{padding:10px 11px}.dc{padding:18px 9px 60px}.pgrid{gap:4px}.ppb{padding:8px 2px 6px}.nc{padding:24px 14px}.icard{padding:15px 11px}}
-    /* â”€â”€ LIGHT THEME â”€â”€ */
+    /* ── LIGHT THEME ── */
     .light{background:#f1f5f9!important;color:#1a1a2e!important}
     .light .nav{background:#fff!important;border-bottom:1px solid #e2e8f0!important;box-shadow:0 1px 8px rgba(0,0,0,.06)!important}
     .light .logo span{background:linear-gradient(135deg,#6366f1,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
@@ -815,68 +815,68 @@ export default function App() {
     <>
       <Head>
         <title>YesYouPro - AI Product Analyzer for Indian Sellers</title>
-        <meta name="description" content="YesYouPro â€” AI product analyzer for Indian ecommerce sellers. Get viral hooks, keywords, competitor analysis & 13 premium tools. Free to try!" />
+        <meta name="description" content="YesYouPro — AI product analyzer for Indian ecommerce sellers. Get viral hooks, keywords, competitor analysis & 13 premium tools. Free to try!" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </Head>
       <style>{css}</style>
       {toast && <div className="toast">{toast}</div>}
 
       {loading && <div className="loverlay"><div className="lcard">
-        <div className="lbrain">ðŸ§ </div>
+        <div className="lbrain"> </div>
         <h2 className="lt1">Analyzing...</h2>
         <p className="lt2">YYP AI is processing</p>
-        <div className="lstps">{STEPS.map((s,i)=><div key={i} className={"lstp"+(loadStep>i?" done":loadStep===i?" act":"")}><span>{loadStep>i?"âœ…":loadStep===i?"âš™ï¸":"â—‹"}</span><span>{s}</span></div>)}</div>
+        <div className="lstps">{STEPS.map((s,i)=><div key={i} className={"lstp"+(loadStep>i?" done":loadStep===i?" act":"")}><span>{loadStep>i?"✅":loadStep===i?"⚙️":"‹"}</span><span>{s}</span></div>)}</div>
       </div></div>}
 
       {showAd && <div className="adov"><div className="adbox">
         <div style={{position:"absolute",top:"-10px",left:"50%",transform:"translateX(-50%)",background:"#f59e0b",padding:"3px 12px",borderRadius:"100px",fontSize:"9px",fontWeight:800,color:"#fff",letterSpacing:"1.5px"}}>ADVERTISEMENT</div>
-        <div style={{fontSize:36,marginTop:5}}>ðŸ“¢</div>
+        <div style={{fontSize:36,marginTop:5}}>📢</div>
         <h2 style={{fontWeight:900,fontSize:16,margin:"9px 0 5px",color:"#f8fafc"}}>Scale Your Ecommerce Business</h2>
         <p style={{color:"#94a3b8",marginBottom:13,fontSize:11}}>Find winning products 10x faster with AI</p>
         <div className="adprog"><div className="adpf" style={{width:((5-adT)/5*100)+"%"}}/></div>
-        <button onClick={closeAd} className="adcl" style={{opacity:adT>0?.3:1,cursor:adT>0?"not-allowed":"pointer"}}>{adT>0?"â³ Skip in "+adT+"s":"âœ• Close"}</button>
+        <button onClick={closeAd} className="adcl" style={{opacity:adT>0?.3:1,cursor:adT>0?"not-allowed":"pointer"}}>{adT>0?"⏳ Skip in "+adT+"s":"✕ Close"}</button>
       </div></div>}
 
       {showPrem && <div className="mov" onClick={()=>{if(payStep==="form"||payStep==="success"){setShowPrem(false);setShowPay(false);setPayStep("form");}}}>
         <div className="pm" onClick={e=>e.stopPropagation()}>
           {!showPay && <>
-            <div className="pb2">ðŸ’Ž PREMIUM</div>
+            <div className="pb2">Ž PREMIUM</div>
             <h2 className="ptitle">Unlock Everything</h2>
-            <div className="ppr">$10 <span style={{WebkitTextFillColor:"#94a3b8",fontSize:13}}>/ 30 days</span></div><div style={{fontSize:12,color:"#94a3b8",marginBottom:6}}>â‚¹949 â€” 50 analyses</div>
-            <div className="phigh">ðŸ“Š 50 analyses / 30 days<br/>â° Valid 30 days<br/>ðŸš« Zero ads<br/>ðŸ“‹ Copy any AI result<br/>ðŸ”“ All 13 tools unlocked</div>
-            <div className="pflist">{["âœ… 50 analyses / 30 days","âœ… Zero ads","âœ… Valid 30 days","ðŸ“‹ Copy full reports","ðŸŽ“ Starter Guide","ðŸ”° Beginner Products","ðŸ§® Investment Calculator","ðŸ“Š Sales Estimator","ðŸ·ï¸ Price Optimizer","ðŸ“¦ Inventory Calculator","â­ Review Analyzer","ðŸŽ¯ Niche Finder","ðŸ“º Ads on 8 platforms"].map(f=><div key={f} className="pfi">{f}</div>)}</div>
-            <button className="pbtn2" onClick={()=>setShowPay(true)}>ðŸ”“ Unlock Premium â€” $10 (â‚¹949)</button>
+            <div className="ppr">$10 <span style={{WebkitTextFillColor:"#94a3b8",fontSize:13}}>/ 30 days</span></div><div style={{fontSize:12,color:"#94a3b8",marginBottom:6}}>‚949 — 50 analyses</div>
+            <div className="phigh">Š 50 analyses / 30 days<br/>⏰ Valid 30 days<br/>🚫 Zero ads<br/>‹ Copy any AI result<br/>🔓 All 13 tools unlocked</div>
+            <div className="pflist">{["✅ 50 analyses / 30 days","✅ Zero ads","✅ Valid 30 days","‹ Copy full reports","Ž Starter Guide","🔰 Beginner Products","🧮 Investment Calculator","Š Sales Estimator","🏷️ Price Optimizer","📦 Inventory Calculator","⭐ Review Analyzer","Ž Niche Finder","📺 Ads on 8 platforms"].map(f=><div key={f} className="pfi">{f}</div>)}</div>
+            <button className="pbtn2" onClick={()=>setShowPay(true)}>🔓 Unlock Premium — $10 (‚949)</button>
             <button className="mcan" onClick={()=>setShowPrem(false)}>Maybe later</button>
           </>}
           {showPay && payStep==="form" && <>
             <h2 className="ptitle">Complete Payment</h2>
             <div className="paybox">
               <div className="pr2"><span>Plan</span><span>Premium 7-day</span></div>
-              <div className="pr2"><span>Amount</span><span style={{color:"#f59e0b",fontWeight:700}}>â‚¹949</span></div>
+              <div className="pr2"><span>Amount</span><span style={{color:"#f59e0b",fontWeight:700}}>‚949</span></div>
               <div className="pr2"><span>Analyses</span><span style={{color:"#10b981"}}>50 in 30 days</span></div>
-              <div className="pr2"><span>All 13 Tools</span><span style={{color:"#10b981"}}>âœ… Unlocked</span></div>
-              <div className="pr2"><span>Copy Results</span><span style={{color:"#a5b4fc"}}>âœ… Enabled</span></div>
+              <div className="pr2"><span>All 13 Tools</span><span style={{color:"#10b981"}}>✅ Unlocked</span></div>
+              <div className="pr2"><span>Copy Results</span><span style={{color:"#a5b4fc"}}>✅ Enabled</span></div>
             </div>
-            <button className="pbtn2" onClick={handlePay}><svg width="14" height="14" viewBox="0 0 30 30" fill="none"><path d="M14.396 0L0 19.578h9.979L7.242 30l22.758-19.56H19.5L22.25 0z" fill="#528FF0"/></svg>Pay $10 (â‚¹949) via Razorpay</button>
-            <button className="mcan" onClick={()=>setShowPay(false)}>â† Back</button>
+            <button className="pbtn2" onClick={handlePay}><svg width="14" height="14" viewBox="0 0 30 30" fill="none"><path d="M14.396 0L0 19.578h9.979L7.242 30l22.758-19.56H19.5L22.25 0z" fill="#528FF0"/></svg>Pay $10 (‚949) via Razorpay</button>
+            <button className="mcan" onClick={()=>setShowPay(false)}>† Back</button>
           </>}
           {showPay && payStep==="processing" && <div style={{textAlign:"center",padding:30}}><div className="sp" style={{margin:"0 auto"}}/><p style={{color:"#94a3b8",marginTop:11}}>Processing...</p></div>}
           {showPay && payStep==="make_account" && <div style={{textAlign:"center"}}>
-            <div style={{fontSize:50,marginBottom:8}}>ðŸŽ‰</div>
+            <div style={{fontSize:50,marginBottom:8}}>Ž‰</div>
             <h2 className="ptitle">Payment Successful!</h2>
             <p style={{color:"#94a3b8",fontSize:12,marginBottom:15,lineHeight:1.6}}>Create your account to activate Premium!</p>
-            <button className="pbtn2" onClick={()=>{setShowPrem(false);setShowPay(false);setPayStep("form");S.set("yyp_pending_prem",true);setScreen("auth");}}>ðŸ” Create Account to Activate</button>
+            <button className="pbtn2" onClick={()=>{setShowPrem(false);setShowPay(false);setPayStep("form");S.set("yyp_pending_prem",true);setScreen("auth");}}>🔐 Create Account to Activate</button>
           </div>}
           {showPay && payStep==="success" && <div style={{textAlign:"center"}}>
-            <div style={{fontSize:50,marginBottom:8}}>ðŸŽ‰</div>
+            <div style={{fontSize:50,marginBottom:8}}>Ž‰</div>
             <h2 className="ptitle">Premium Activated!</h2>
             <div className="sfeat">
-              <div className="sfi2">âœ… 50 analyses / 30 days</div>
-              <div className="sfi2">âœ… Zero ads</div>
-              <div className="sfi2">âœ… Copy results enabled</div>
-              <div className="sfi2">âœ… All 13 tools unlocked</div>
+              <div className="sfi2">✅ 50 analyses / 30 days</div>
+              <div className="sfi2">✅ Zero ads</div>
+              <div className="sfi2">✅ Copy results enabled</div>
+              <div className="sfi2">✅ All 13 tools unlocked</div>
             </div>
-            <button className="pbtn2" onClick={()=>{setShowPrem(false);setShowPay(false);setPayStep("form");}}>ðŸš€ Start Analyzing â†’</button>
+            <button className="pbtn2" onClick={()=>{setShowPrem(false);setShowPay(false);setPayStep("form");}}>🚀 Start Analyzing †</button>
           </div>}
         </div>
       </div>}
@@ -886,62 +886,62 @@ export default function App() {
           {profTab==="main" && <>
             <div className="prh">
               <div className="pru">
-                <div className="pra">{user?.photo?<img src={user.photo} alt=""/>:(isGuest?"ðŸ‘¤":user?.name?.[0]?.toUpperCase()||"U")}</div>
+                <div className="pra">{user?.photo?<img src={user.photo} alt=""/>:(isGuest?"👤":user?.name?.[0]?.toUpperCase()||"U")}</div>
                 <div>
                   <div className="prn">{isGuest?"Guest User":user?.name}</div>
                   <div className="pre">{isGuest?"Not logged in":user?.email}</div>
-                  <div className="prpl" style={{background:curPlan==="premium"?"rgba(245,158,11,.12)":"rgba(99,102,241,.1)",color:curPlan==="premium"?"#f59e0b":"#a5b4fc",border:curPlan==="premium"?"1px solid rgba(245,158,11,.25)":"1px solid rgba(99,102,241,.2)"}}>{curPlan==="premium"?"ðŸ’Ž Premium":"ðŸ†“ Free"}</div>
+                  <div className="prpl" style={{background:curPlan==="premium"?"rgba(245,158,11,.12)":"rgba(99,102,241,.1)",color:curPlan==="premium"?"#f59e0b":"#a5b4fc",border:curPlan==="premium"?"1px solid rgba(245,158,11,.25)":"1px solid rgba(99,102,241,.2)"}}>{curPlan==="premium"?"Ž Premium":"† Free"}</div>
                 </div>
               </div>
-              <button className="prcl" onClick={()=>setShowProf(false)}>âœ•</button>
+              <button className="prcl" onClick={()=>setShowProf(false)}>✕</button>
             </div>
             {curPlan==="premium" && usage && <div style={{background:"rgba(245,158,11,.06)",border:"1px solid rgba(245,158,11,.2)",borderRadius:9,padding:"8px 12px",marginBottom:11,display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-              <div style={{fontSize:11,color:"#f59e0b",fontWeight:600}}>ðŸ’Ž Premium Active</div>
+              <div style={{fontSize:11,color:"#f59e0b",fontWeight:600}}>Ž Premium Active</div>
               <div style={{fontSize:11,color:"#94a3b8"}}>{usage.remaining} analyses left</div>
             </div>}
             <div className="pmenu">
               <button className="pmbtn" onClick={()=>setProfTab("referral")} style={{borderColor:"rgba(16,185,129,.2)"}}>
-                <span className="pmico">ðŸŽ</span>
+                <span className="pmico">Ž</span>
                 <span style={{flex:1}}>Refer and Earn Premium <span style={{background:"linear-gradient(135deg,#10b981,#059669)",color:"#fff",fontSize:8,fontWeight:800,padding:"2px 6px",borderRadius:100,marginLeft:4}}>FREE</span></span>
                 {!isGuest&&user?.email&&<span style={{fontSize:10,color:"#10b981",fontWeight:700,marginRight:4}}>{((S.get("yyp_ref_"+user.email)||{referrals:[]}).referrals||[]).length}/10</span>}
-                <span className="pmarr">â€º</span>
+                <span className="pmarr">›</span>
               </button>
-              <button className="pmbtn" onClick={()=>setProfTab("terms")}><span className="pmico">ðŸ“‹</span><span>Terms & Conditions</span><span className="pmarr">â€º</span></button>
-              <button className="pmbtn" onClick={()=>setProfTab("question")}><span className="pmico">â“</span><span>Any Questions?</span><span className="pmarr">â€º</span></button>
-              {curPlan==="free" && <button className="pmbtn" onClick={()=>{setShowProf(false);setShowPrem(true);}}><span className="pmico">ðŸ’Ž</span><span>Upgrade Premium â€” â‚¹949</span><span className="pmarr">â€º</span></button>}
+              <button className="pmbtn" onClick={()=>setProfTab("terms")}><span className="pmico">‹</span><span>Terms & Conditions</span><span className="pmarr">›</span></button>
+              <button className="pmbtn" onClick={()=>setProfTab("question")}><span className="pmico">❓</span><span>Any Questions?</span><span className="pmarr">›</span></button>
+              {curPlan==="free" && <button className="pmbtn" onClick={()=>{setShowProf(false);setShowPrem(true);}}><span className="pmico">Ž</span><span>Upgrade Premium — ‚949</span><span className="pmarr">›</span></button>}
               {isGuest
-                ? <button className="pmbtn" onClick={()=>{setShowProf(false);setScreen("auth");}} style={{borderColor:"rgba(99,102,241,.25)",color:"#a5b4fc"}}><span className="pmico">ðŸ”</span><span>Login / Sign Up</span><span className="pmarr">â€º</span></button>
-                : <button className="pmbtn lo" onClick={()=>{setShowProf(false);handleLogout();}}><span className="pmico">ðŸšª</span><span>Logout</span></button>
+                ? <button className="pmbtn" onClick={()=>{setShowProf(false);setScreen("auth");}} style={{borderColor:"rgba(99,102,241,.25)",color:"#a5b4fc"}}><span className="pmico">🔐</span><span>Login / Sign Up</span><span className="pmarr">›</span></button>
+                : <button className="pmbtn lo" onClick={()=>{setShowProf(false);handleLogout();}}><span className="pmico">🚪</span><span>Logout</span></button>
               }
             </div>
             {/* Theme Toggle */}
             <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",background:dark?"rgba(15,23,42,.6)":"#f8fafc",border:dark?"1px solid #1e293b":"1px solid #e2e8f0",borderRadius:11,padding:"10px 14px",marginBottom:10}}>
               <div style={{display:"flex",alignItems:"center",gap:8}}>
-                <span style={{fontSize:16}}>{dark?"ðŸŒ™":"â˜€ï¸"}</span>
+                <span style={{fontSize:16}}>{dark?"Œ":"˜️"}</span>
                 <div>
                   <div style={{fontSize:12,fontWeight:700,color:dark?"#e2e8f0":"#1a1a2e"}}>{dark?"Dark Mode":"Light Mode"}</div>
                   <div style={{fontSize:10,color:dark?"#64748b":"#6b7280"}}>Click to switch</div>
                 </div>
               </div>
               <div onClick={toggleTheme} style={{width:48,height:26,borderRadius:100,background:dark?"rgba(99,102,241,.2)":"#d1d5db",padding:3,cursor:"pointer",position:"relative",transition:"all .3s"}}>
-                <div style={{width:20,height:20,borderRadius:"50%",background:dark?"linear-gradient(135deg,#6366f1,#8b5cf6)":"linear-gradient(135deg,#f59e0b,#f97316)",position:"absolute",top:3,left:dark?3:25,transition:"left .25s ease",display:"flex",alignItems:"center",justifyContent:"center",fontSize:10}}>{dark?"ðŸŒ™":"â˜€ï¸"}</div>
+                <div style={{width:20,height:20,borderRadius:"50%",background:dark?"linear-gradient(135deg,#6366f1,#8b5cf6)":"linear-gradient(135deg,#f59e0b,#f97316)",position:"absolute",top:3,left:dark?3:25,transition:"left .25s ease",display:"flex",alignItems:"center",justifyContent:"center",fontSize:10}}>{dark?"Œ":"˜️"}</div>
               </div>
             </div>
-            <div style={{textAlign:"center",fontSize:10,color:"#334155"}}>YesYouPro Â· yesyoupro.com</div>
+            <div style={{textAlign:"center",fontSize:10,color:"#334155"}}>YesYouPro · yesyoupro.com</div>
           </>}
 
           {profTab==="terms" && <>
-            <div className="prh"><button className="prcl" style={{background:"none",fontSize:18}} onClick={()=>setProfTab("main")}>â†</button><div style={{fontWeight:800,fontSize:14,color:"#f8fafc"}}>Terms & Conditions</div><div style={{width:29}}/></div>
+            <div className="prh"><button className="prcl" style={{background:"none",fontSize:18}} onClick={()=>setProfTab("main")}>†</button><div style={{fontWeight:800,fontSize:14,color:"#f8fafc"}}>Terms & Conditions</div><div style={{width:29}}/></div>
             <div className="tbox2">
               <div className="th">1. Acceptance</div><p className="tp">By using YesYouPro, you agree to these terms.</p>
               <div className="th">2. Free Plan</div><p className="tp">5 analyses/day. 24hr lockout after limit. All tools available during active analyses.</p>
-              <div className="th">3. Premium Plan</div><p className="tp">â‚¹949 for 7 days / 30 analyses. Expires after 7 days OR 30 analyses. No auto-renewal.</p>
+              <div className="th">3. Premium Plan</div><p className="tp">‚949 for 7 days / 30 analyses. Expires after 7 days OR 30 analyses. No auto-renewal.</p>
               <div className="th">4. Refund Policy</div><p className="tp">No refunds once Premium is activated. Technical issues: support@yesyoupro.com within 24 hours.</p>
-              <div className="th">5. AI Accuracy</div><p className="tp">AI results are suggestions only â€” not guaranteed business advice. Do your own research.</p>
+              <div className="th">5. AI Accuracy</div><p className="tp">AI results are suggestions only — not guaranteed business advice. Do your own research.</p>
               <div className="th">6. Privacy</div><p className="tp">We store email and usage data securely. We never sell personal data. Payments via Razorpay.</p>
               <div className="th">7. Contact</div><p className="tp">support@yesyoupro.com</p>
             </div>
-            <button className="pmbtn" onClick={()=>setProfTab("main")} style={{justifyContent:"center"}}>â† Back</button>
+            <button className="pmbtn" onClick={()=>setProfTab("main")} style={{justifyContent:"center"}}>† Back</button>
           </>}
 
           {profTab==="referral"&&!isGuest&&(()=>{
@@ -1035,14 +1035,14 @@ export default function App() {
           })()}
 
           {profTab==="question" && <>
-            <div className="prh"><button className="prcl" style={{background:"none",fontSize:18}} onClick={()=>setProfTab("main")}>â†</button><div style={{fontWeight:800,fontSize:14,color:"#f8fafc"}}>Any Questions?</div><div style={{width:29}}/></div>
+            <div className="prh"><button className="prcl" style={{background:"none",fontSize:18}} onClick={()=>setProfTab("main")}>†</button><div style={{fontWeight:800,fontSize:14,color:"#f8fafc"}}>Any Questions?</div><div style={{width:29}}/></div>
             {qSent
-              ? <div style={{background:"rgba(16,185,129,.1)",border:"1px solid rgba(16,185,129,.3)",borderRadius:10,padding:17,textAlign:"center"}}><div style={{fontSize:30,marginBottom:6}}>âœ…</div><div style={{fontWeight:700,color:"#10b981",fontSize:13,marginBottom:3}}>Sent!</div><div style={{color:"#64748b",fontSize:11}}>24 ghante mein reply karenge.</div></div>
+              ? <div style={{background:"rgba(16,185,129,.1)",border:"1px solid rgba(16,185,129,.3)",borderRadius:10,padding:17,textAlign:"center"}}><div style={{fontSize:30,marginBottom:6}}>✅</div><div style={{fontWeight:700,color:"#10b981",fontSize:13,marginBottom:3}}>Sent!</div><div style={{color:"#64748b",fontSize:11}}>24 ghante mein reply karenge.</div></div>
               : <>
-                <div style={{fontSize:11,color:"#64748b",marginBottom:9,lineHeight:1.6}}>Koi bhi problem? Hume likho! ðŸ“©</div>
+                <div style={{fontSize:11,color:"#64748b",marginBottom:9,lineHeight:1.6}}>Koi bhi problem? Hume likho! 📩</div>
                 <div className="qbox" style={{marginBottom:7}}><textarea className="qinp" placeholder="Apna question yahan likho..." value={q} onChange={e=>setQ(e.target.value)} rows={4}/></div>
-                <div style={{fontSize:10,color:"#475569",marginBottom:9}}>ðŸ“§ {isGuest?"Guest":user?.email} Â· {curPlan}</div>
-                <button onClick={sendQ} disabled={qLoad||!q.trim()} style={{width:"100%",background:q.trim()?"linear-gradient(135deg,#6366f1,#8b5cf6)":"rgba(30,41,59,.5)",border:"none",borderRadius:10,padding:"10px 0",color:q.trim()?"#fff":"#475569",fontWeight:800,fontSize:13,cursor:q.trim()?"pointer":"not-allowed",fontFamily:"Inter,sans-serif"}}>{qLoad?"ðŸ“¤ Sending...":"ðŸ“¤ Send Message"}</button>
+                <div style={{fontSize:10,color:"#475569",marginBottom:9}}>📧 {isGuest?"Guest":user?.email} · {curPlan}</div>
+                <button onClick={sendQ} disabled={qLoad||!q.trim()} style={{width:"100%",background:q.trim()?"linear-gradient(135deg,#6366f1,#8b5cf6)":"rgba(30,41,59,.5)",border:"none",borderRadius:10,padding:"10px 0",color:q.trim()?"#fff":"#475569",fontWeight:800,fontSize:13,cursor:q.trim()?"pointer":"not-allowed",fontFamily:"Inter,sans-serif"}}>{qLoad?"📤 Sending...":"📤 Send Message"}</button>
               </>
             }
             <div style={{textAlign:"center",fontSize:10,color:"#334155",marginTop:7}}>or: support@yesyoupro.com</div>
@@ -1055,7 +1055,7 @@ export default function App() {
           <div className="navt"><svg viewBox="0 0 24 24" fill="none" stroke="#8b8fa8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" width="34" height="34"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
           <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:2}}>
             <h1 className="ntitle">{authMode==="login"?"Welcome back":"Create account"}</h1>
-            <button onClick={()=>setScreen("dashboard")} style={{background:"none",border:"1px solid #c8cdd5",borderRadius:100,padding:"4px 10px",color:"#8b8fa8",fontSize:10,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>â† Back</button>
+            <button onClick={()=>setScreen("dashboard")} style={{background:"none",border:"1px solid #c8cdd5",borderRadius:100,padding:"4px 10px",color:"#8b8fa8",fontSize:10,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>† Back</button>
           </div>
           <p className="nsub">{authMode==="login"?"Sign in to continue":"Join YesYouPro for free"}</p>
           {authMode==="login" && saved.length>0 && <div className="sw-r">
@@ -1063,7 +1063,7 @@ export default function App() {
             {saved.map(a=><button key={a.email} className="sacc" onClick={()=>quickLogin(a)}>
               <div className="savt">{a.photo?<img src={a.photo} alt=""/>:a.name?.[0]?.toUpperCase()||"U"}</div>
               <div className="si"><div className="sn">{a.name}</div><div className="se">{a.email}</div></div>
-              <div style={{color:"#6366f1",fontSize:14,fontWeight:700}}>â†’</div>
+              <div style={{color:"#6366f1",fontSize:14,fontWeight:700}}>†</div>
             </button>)}
             <div className="dvl"><div className="dl"/><div className="dt">OR MANUALLY</div><div className="dl"/></div>
           </div>}
@@ -1073,12 +1073,12 @@ export default function App() {
             {gLoad?"Signing in...":"Continue with Google"}
           </button>
           <div className="dvl"><div className="dl"/><div className="dt">OR WITH EMAIL</div><div className="dl"/></div>
-          {authMode==="signup" && <div className="niw"><span className="nii">ðŸ‘¤</span><input className="ni" placeholder="Full Name" value={form.name} onChange={e=>setForm({...form,name:e.target.value})}/></div>}
-          <div className="niw"><span className="nii">âœ‰ï¸</span><input className="ni" placeholder="Email address" type="email" autoComplete="off" value={form.email} onChange={e=>setForm({...form,email:e.target.value})}/></div>
-          <div className="niw"><span className="nii">ðŸ”’</span><input className="ni" placeholder="Password" type={showPw?"text":"password"} autoComplete="new-password" value={form.password} onChange={e=>setForm({...form,password:e.target.value})}/><button className="eye" onClick={()=>setShowPw(!showPw)}>{showPw?"ðŸ™ˆ":"ðŸ‘ï¸"}</button></div>
-          {authErr && <p className="nerr">âš ï¸ {authErr}</p>}
+          {authMode==="signup" && <div className="niw"><span className="nii">👤</span><input className="ni" placeholder="Full Name" value={form.name} onChange={e=>setForm({...form,name:e.target.value})}/></div>}
+          <div className="niw"><span className="nii">‰️</span><input className="ni" placeholder="Email address" type="email" autoComplete="off" value={form.email} onChange={e=>setForm({...form,email:e.target.value})}/></div>
+          <div className="niw"><span className="nii">🔒</span><input className="ni" placeholder="Password" type={showPw?"text":"password"} autoComplete="new-password" value={form.password} onChange={e=>setForm({...form,password:e.target.value})}/><button className="eye" onClick={()=>setShowPw(!showPw)}>{showPw?"ˆ":"👁️"}</button></div>
+          {authErr && <p className="nerr"> ️ {authErr}</p>}
           {authMode==="login" && <div className="rem"><input type="checkbox" id="rem" defaultChecked/><label htmlFor="rem">Remember me</label><span className="fgot" onClick={handleForgotPw}>Forgot password?</span></div>}
-          <button className="nbtn" onClick={handleAuth}>{authMode==="login"?"Sign In â†’":"Create Account â†’"}</button>
+          <button className="nbtn" onClick={handleAuth}>{authMode==="login"?"Sign In †":"Create Account †"}</button>
           <p className="swtxt">{authMode==="login"?"Don't have an account? ":"Already have an account? "}<span className="swlnk" onClick={()=>{setAuthMode(authMode==="login"?"signup":"login");setAuthErr("");setForm({email:"",password:"",name:""}); }}>{authMode==="login"?"Sign Up Free":"Sign In"}</span></p>
         </div>
       </div>}
@@ -1087,12 +1087,12 @@ export default function App() {
         <nav className="nav">
           <div className="logo">YesYouPro</div>
           {usage && <div className="upill">
-            <span style={{color:curPlan==="premium"?"#f59e0b":"#94a3b8",fontWeight:700}}>{curPlan==="premium"?"ðŸ’Ž":"ðŸ†“"}</span>
+            <span style={{color:curPlan==="premium"?"#f59e0b":"#94a3b8",fontWeight:700}}>{curPlan==="premium"?"Ž":"†"}</span>
             <span style={{color:"#334155"}}>|</span>
             <span style={{color:usage.remaining>0?"#10b981":"#ef4444",fontWeight:700}}>{curPlan==="premium"?usage.remaining+" left":usage.remaining+"/5 today"}</span>
           </div>}
           <div className="navr">
-            {curPlan==="free" && <button className="upbtn" onClick={()=>setShowPrem(true)}>ðŸ’Ž â‚¹949</button>}
+            {curPlan==="free" && <button className="upbtn" onClick={()=>setShowPrem(true)}>Ž ‚949</button>}
             {isGuest
               ? <button onClick={()=>setScreen("auth")} style={{background:"rgba(99,102,241,.12)",border:"1px solid rgba(99,102,241,.35)",borderRadius:100,padding:"5px 11px",color:"#a5b4fc",fontWeight:700,fontSize:11,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>Login / Sign Up</button>
               : <div className="avt" onClick={()=>{setShowProf(true);setProfTab("main");}}>{user?.photo?<img src={user.photo} alt=""/>:user?.name?.[0]?.toUpperCase()||"U"}</div>
@@ -1102,13 +1102,13 @@ export default function App() {
 
         <div className="dc">
           <div className="hero">
-            <div className="hbadge">âœ¨ Universal AI Analyzer</div>
+            <div className="hbadge">✨ Universal AI Analyzer</div>
             <h1 className="htitle">Analyze Anything<br/><span className="grad">Powered by YesYouPro</span></h1>
-            <p className="hsub">Products, apps, games, websites, channels â€” AI insights for anything! No login needed.</p>
+            <p className="hsub">Products, apps, games, websites, channels — AI insights for anything! No login needed.</p>
           </div>
 
           {timer && curPlan==="free" && <div className="tbox">
-            <div className="ttitle">â³ Daily Limit Reached</div>
+            <div className="ttitle">⏳ Daily Limit Reached</div>
             <div className="tsub">2 free analyses used. Reset in:</div>
             <div className="trow">
               {[{v:String(timer.h).padStart(2,"0"),l:"Hours"},{sep:true},{v:String(timer.m).padStart(2,"0"),l:"Min"},{sep:true},{v:String(timer.s).padStart(2,"0"),l:"Sec"}].map((t,i)=>
@@ -1118,14 +1118,14 @@ export default function App() {
             <div className="tprog"><div className="tpf" style={{width:Math.max(0,100-(timer.total/86400000)*100)+"%"}}/></div>
             <div style={{marginTop:9,display:"flex",alignItems:"center",justifyContent:"center",gap:7,flexWrap:"wrap"}}>
               <span style={{color:"#64748b",fontSize:11}}>Don&apos;t want to wait?</span>
-              <button onClick={()=>setShowPrem(true)} style={{background:"linear-gradient(135deg,#f59e0b,#ef4444)",border:"none",borderRadius:100,padding:"6px 13px",color:"#fff",fontWeight:800,fontSize:11,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>ðŸ’Ž Get Premium â‚¹949</button>
+              <button onClick={()=>setShowPrem(true)} style={{background:"linear-gradient(135deg,#f59e0b,#ef4444)",border:"none",borderRadius:100,padding:"6px 13px",color:"#fff",fontWeight:800,fontSize:11,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>Ž Get Premium ‚949</button>
             </div>
           </div>}
 
           {curPlan==="free" && !timer && usage && (
             usage.remaining>0
-              ?<div className="bnr-g"><div><div style={{fontWeight:700,fontSize:11,color:"#10b981"}}>âœ… All Tools Unlocked â€” {usage.remaining} Analyses Left</div><div style={{fontSize:10,color:"#475569"}}>No login needed. Resets every 24hrs.</div></div></div>
-              :<div className="bnr-r"><div><div style={{fontWeight:700,fontSize:11,color:"#ef4444"}}>ðŸ”’ Daily Limit Reached â€” Tools Locked</div><div style={{fontSize:10,color:"#64748b"}}>Upgrade for 30 analyses & no lockout.</div></div><button onClick={()=>setShowPrem(true)} style={{background:"linear-gradient(135deg,#f59e0b,#ef4444)",border:"none",borderRadius:8,padding:"5px 10px",color:"#fff",fontWeight:700,fontSize:10,cursor:"pointer",whiteSpace:"nowrap",fontFamily:"Inter,sans-serif"}}>ðŸ’Ž â‚¹949</button></div>
+              ?<div className="bnr-g"><div><div style={{fontWeight:700,fontSize:11,color:"#10b981"}}>✅ All Tools Unlocked — {usage.remaining} Analyses Left</div><div style={{fontSize:10,color:"#475569"}}>No login needed. Resets every 24hrs.</div></div></div>
+              :<div className="bnr-r"><div><div style={{fontWeight:700,fontSize:11,color:"#ef4444"}}>🔒 Daily Limit Reached — Tools Locked</div><div style={{fontSize:10,color:"#64748b"}}>Upgrade for 30 analyses & no lockout.</div></div><button onClick={()=>setShowPrem(true)} style={{background:"linear-gradient(135deg,#f59e0b,#ef4444)",border:"none",borderRadius:8,padding:"5px 10px",color:"#fff",fontWeight:700,fontSize:10,cursor:"pointer",whiteSpace:"nowrap",fontFamily:"Inter,sans-serif"}}>Ž ‚949</button></div>
           )}
 
           {history.length>0&&(
@@ -1155,83 +1155,83 @@ export default function App() {
             </div>
           )}
           <div className="icard">
-            <h3 className="ict">ðŸŽ¯ Analyze Anything</h3>
+            <h3 className="ict">Ž Analyze Anything</h3>
             <div style={{marginBottom:13}}>
               <label className="ilbl">Name *</label>
               <input className="di" placeholder="e.g. Portable Blender, BGMI, YouTube Channel, SaaS..." value={pf.name} onChange={e=>setPf({...pf,name:e.target.value})}/>
             </div>
 
             <div style={{marginBottom:13}}>
-              <label className="ilbl">Category * {pf.cat && <span style={{color:"#10b981",marginLeft:4,fontSize:10}}>âœ… {pf.cat}</span>}</label>
+              <label className="ilbl">Category * {pf.cat && <span style={{color:"#10b981",marginLeft:4,fontSize:10}}>✅ {pf.cat}</span>}</label>
               <button className={"pick-btn"+(pf.cat?" sel":"")} onClick={()=>{setShowCats(!showCats);setShowPlats(false);}}>
                 <span style={{display:"flex",alignItems:"center",gap:6}}>
-                  {pf.cat&&(()=>{const ct=CATS.find(c=>c.id===pf.cat);return ct?.logo?<img src={ct.logo} alt={pf.cat} style={{width:15,height:15,objectFit:"contain",borderRadius:2}} onError={(e)=>{e.target.style.display="none";}}/>:<span style={{fontSize:13}}>{ct?.e||"ðŸ“‚"}</span>;})()}
+                  {pf.cat&&(()=>{const ct=CATS.find(c=>c.id===pf.cat);return ct?.logo?<img src={ct.logo} alt={pf.cat} style={{width:15,height:15,objectFit:"contain",borderRadius:2}} onError={(e)=>{e.target.style.display="none";}}/>:<span style={{fontSize:13}}>{ct?.e||"‚"}</span>;})()}
                   <span>{pf.cat||"Select Category"}</span>
                 </span>
-                <span style={{fontSize:10,color:"#6366f1"}}>{showCats?"â–²":"â–¼"}</span>
+                <span style={{fontSize:10,color:"#6366f1"}}>{showCats?"▲":"▼"}</span>
               </button>
               {showCats && <div className="pick-drop">
                 {["Physical","Digital"].map(g=><div key={g}>
-                  <div className="pg-lbl">{g==="Physical"?"ðŸ“¦ Physical Products":"ðŸ’» Digital & Virtual"}</div>
-                  <div className="chips">{CATS.filter(c=>c.g===g).map(c=><button key={c.id} className={"chip"+(pf.cat===c.id?" on":"")} style={pf.cat===c.id?{background:"linear-gradient(135deg,#6366f1,#8b5cf6)",borderColor:"#6366f1"}:{}} onClick={()=>{setPf({...pf,cat:c.id});setShowCats(false);}}>{c.logo?<img src={c.logo} alt={c.id} style={{width:14,height:14,objectFit:"contain",flexShrink:0,borderRadius:2}} onError={(e)=>{e.target.style.display="none";}}/>:<span style={{fontSize:12}}>{c.e||"â€¢"}</span>}{c.id}</button>)}</div>
+                  <div className="pg-lbl">{g==="Physical"?"📦 Physical Products":"💻 Digital & Virtual"}</div>
+                  <div className="chips">{CATS.filter(c=>c.g===g).map(c=><button key={c.id} className={"chip"+(pf.cat===c.id?" on":"")} style={pf.cat===c.id?{background:"linear-gradient(135deg,#6366f1,#8b5cf6)",borderColor:"#6366f1"}:{}} onClick={()=>{setPf({...pf,cat:c.id});setShowCats(false);}}>{c.logo?<img src={c.logo} alt={c.id} style={{width:14,height:14,objectFit:"contain",flexShrink:0,borderRadius:2}} onError={(e)=>{e.target.style.display="none";}}/>:<span style={{fontSize:12}}>{c.e||"•"}</span>}{c.id}</button>)}</div>
                 </div>)}
               </div>}
             </div>
 
             <div style={{marginBottom:5}}>
-              <label className="ilbl">Platform * {pf.plat && <span style={{color:"#10b981",marginLeft:4,fontSize:10}}>âœ… {pf.plat}</span>}</label>
+              <label className="ilbl">Platform * {pf.plat && <span style={{color:"#10b981",marginLeft:4,fontSize:10}}>✅ {pf.plat}</span>}</label>
               <button className={"pick-btn"+(pf.plat?" sel":"")} onClick={()=>{setShowPlats(!showPlats);setShowCats(false);}}>
-                <span>{pf.plat?(PLATS.find(p=>p.id===pf.plat)?.icon||"")+" "+pf.plat:"ðŸŒ Select Platform"}</span>
-                <span style={{fontSize:10,color:"#6366f1"}}>{showPlats?"â–²":"â–¼"}</span>
+                <span>{pf.plat?(PLATS.find(p=>p.id===pf.plat)?.icon||"")+" "+pf.plat:"Œ Select Platform"}</span>
+                <span style={{fontSize:10,color:"#6366f1"}}>{showPlats?"▲":"▼"}</span>
               </button>
               {showPlats && <div className="pick-drop">
                 {platGroups.map(g=><div key={g}>
-                  <div className="pg-lbl">{g==="Ecommerce"?"ðŸ›’ "+g:g==="Social Media"?"ðŸ“± "+g:g==="App Stores"?"ðŸ“² "+g:g==="Courses"?"ðŸŽ“ "+g:g==="Freelance"?"ðŸ’¼ "+g:g==="Food"?"ðŸ” "+g:"ðŸŒ "+g}</div>
-                  <div className="chips">{PLATS.filter(p=>p.g===g).map(p=><button key={p.id} className={"chip"+(pf.plat===p.id?" on":"")} style={pf.plat===p.id?{background:p.c,borderColor:p.c}:{}} onClick={()=>{setPf({...pf,plat:p.id});setShowPlats(false);}}>{p.logo?<img src={p.logo} alt={p.id} style={{width:13,height:13,objectFit:"contain",flexShrink:0,borderRadius:2,background:p.id==="Snapchat"?"#f5c518":"transparent",padding:p.id==="Snapchat"?"1px":"0"}} onError={(e)=>{e.target.style.display="none";}}/>:<span style={{fontSize:12}}>{p.e||"â€¢"}</span>}{p.id}</button>)}</div>
+                  <div className="pg-lbl">{g==="Ecommerce"?"› "+g:g==="Social Media"?"📱 "+g:g==="App Stores"?"📲 "+g:g==="Courses"?"Ž "+g:g==="Freelance"?"💼 "+g:g==="Food"?"🍔 "+g:"Œ "+g}</div>
+                  <div className="chips">{PLATS.filter(p=>p.g===g).map(p=><button key={p.id} className={"chip"+(pf.plat===p.id?" on":"")} style={pf.plat===p.id?{background:p.c,borderColor:p.c}:{}} onClick={()=>{setPf({...pf,plat:p.id});setShowPlats(false);}}>{p.logo?<img src={p.logo} alt={p.id} style={{width:13,height:13,objectFit:"contain",flexShrink:0,borderRadius:2,background:p.id==="Snapchat"?"#f5c518":"transparent",padding:p.id==="Snapchat"?"1px":"0"}} onError={(e)=>{e.target.style.display="none";}}/>:<span style={{fontSize:12}}>{p.e||"•"}</span>}{p.id}</button>)}</div>
                 </div>)}
               </div>}
             </div>
 
             {err && <div className="errbanner">{err}</div>}
             <button className="abtn" onClick={runAnalysis} disabled={loading||(!!timer&&curPlan==="free")}>
-              ðŸš€ Get AI Analysis {curPlan==="free" && !timer && <span className="anote">Â· Ad plays first</span>}
+              🚀 Get AI Analysis {curPlan==="free" && !timer && <span className="anote">· Ad plays first</span>}
             </button>
           </div>
 
           {result && <div className="fa" style={{marginBottom:10}}>
             <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:13,flexWrap:"wrap",gap:7}}>
-              <h2 style={{fontWeight:900,fontSize:16,color:"#f8fafc",margin:0}}>ðŸ“Š <span className="grad">{pf.name}</span></h2>
+              <h2 style={{fontWeight:900,fontSize:16,color:"#f8fafc",margin:0}}>Š <span className="grad">{pf.name}</span></h2>
               {curPlan==="premium"
-                ?<button className="cpybtn" onClick={()=>{const r=["=== YESYOUPRO ANALYSIS ===","Product: "+pf.name,"Category: "+pf.cat,"Platform: "+pf.plat,"","Viral Score: "+result.viral_score,"Demand: "+result.demand_level,"Competition: "+result.competition_level,"Price: "+result.price_range,"","Description:",result.description||"","","Hooks:",...(result.hooks||[]).map((h,i)=>(i+1)+". "+h),"","Keywords:",(result.keywords||[]).join(", "),"=== yesyoupro.com ==="].join("\n");copyTxt(r,"Full Report");}}>ðŸ“‹ Copy Report</button>
-                :<div style={{background:"rgba(245,158,11,.08)",border:"1px solid rgba(245,158,11,.2)",borderRadius:7,padding:"3px 9px",fontSize:10,color:"#f59e0b",cursor:"pointer"}} onClick={()=>setShowPrem(true)}>ðŸ”’ Copy (Premium)</div>
+                ?<button className="cpybtn" onClick={()=>{const r=["=== YESYOUPRO ANALYSIS ===","Product: "+pf.name,"Category: "+pf.cat,"Platform: "+pf.plat,"","Viral Score: "+result.viral_score,"Demand: "+result.demand_level,"Competition: "+result.competition_level,"Price: "+result.price_range,"","Description:",result.description||"","","Hooks:",...(result.hooks||[]).map((h,i)=>(i+1)+". "+h),"","Keywords:",(result.keywords||[]).join(", "),"=== yesyoupro.com ==="].join("\n");copyTxt(r,"Full Report");}}>‹ Copy Report</button>
+                :<div style={{background:"rgba(245,158,11,.08)",border:"1px solid rgba(245,158,11,.2)",borderRadius:7,padding:"3px 9px",fontSize:10,color:"#f59e0b",cursor:"pointer"}} onClick={()=>setShowPrem(true)}>🔒 Copy (Premium)</div>
               }
             </div>
-            {result.item_type && <div style={{display:"inline-flex",alignItems:"center",gap:4,background:"rgba(99,102,241,.1)",border:"1px solid rgba(99,102,241,.3)",borderRadius:100,padding:"2px 10px",fontSize:10,color:"#a5b4fc",fontWeight:600,marginBottom:9}}>ðŸ·ï¸ {result.item_type}</div>}
-            <div className="mrow">{[{l:"ðŸ”¥ Viral Score",v:result.viral_score,c:"#f59e0b"},{l:"ðŸ“ˆ Demand",v:result.demand_level,c:"#10b981"},{l:"âš”ï¸ Competition",v:result.competition_level,c:"#ef4444"},{l:"ðŸ’° Price",v:result.price_range,c:"#6366f1"}].map(m=><div key={m.l} className="mc"><div className="ml">{m.l}</div><div className="mv" style={{color:m.c,fontSize:m.v?.length>8?11:15}}>{m.v}</div></div>)}</div>
+            {result.item_type && <div style={{display:"inline-flex",alignItems:"center",gap:4,background:"rgba(99,102,241,.1)",border:"1px solid rgba(99,102,241,.3)",borderRadius:100,padding:"2px 10px",fontSize:10,color:"#a5b4fc",fontWeight:600,marginBottom:9}}>🏷️ {result.item_type}</div>}
+            <div className="mrow">{[{l:"🔥 Viral Score",v:result.viral_score,c:"#f59e0b"},{l:"ˆ Demand",v:result.demand_level,c:"#10b981"},{l:"⚔️ Competition",v:result.competition_level,c:"#ef4444"},{l:"💰 Price",v:result.price_range,c:"#6366f1"}].map(m=><div key={m.l} className="mc"><div className="ml">{m.l}</div><div className="mv" style={{color:m.c,fontSize:m.v?.length>8?11:15}}>{m.v}</div></div>)}</div>
             <div className="tcol">
-              <div className="gcard"><div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:7}}><h4 className="gct">ðŸ“ Description</h4>{curPlan==="premium"&&<button className="cpybtn" onClick={()=>copyTxt(result.description||"","Desc")}>ðŸ“‹</button>}</div><p className="gctx">{result.description}</p></div>
-              <div className="gcard"><h4 className="gct" style={{marginBottom:7}}>ðŸŽ¯ Target Audience</h4>{Array.isArray(result.target_audience)?result.target_audience.map((a,i)=><div key={i} className="hi"><span className="hn">{i+1}</span><span style={{color:"#94a3b8",fontSize:11,lineHeight:1.6}}>{a}</span></div>):<p className="gctx">{result.target_audience}</p>}</div>
+              <div className="gcard"><div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:7}}><h4 className="gct">📝 Description</h4>{curPlan==="premium"&&<button className="cpybtn" onClick={()=>copyTxt(result.description||"","Desc")}>‹</button>}</div><p className="gctx">{result.description}</p></div>
+              <div className="gcard"><h4 className="gct" style={{marginBottom:7}}>Ž Target Audience</h4>{Array.isArray(result.target_audience)?result.target_audience.map((a,i)=><div key={i} className="hi"><span className="hn">{i+1}</span><span style={{color:"#94a3b8",fontSize:11,lineHeight:1.6}}>{a}</span></div>):<p className="gctx">{result.target_audience}</p>}</div>
             </div>
-            <div className="gcard"><div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:7}}><h4 className="gct">ðŸª Viral Hooks</h4>{curPlan==="premium"&&<button className="cpybtn" onClick={()=>copyTxt((result.hooks||[]).join("\n"),"Hooks")}>ðŸ“‹ All</button>}</div>
-              {result.hooks?.map((h,i)=><div key={i} className="hi" style={{justifyContent:"space-between"}}><div style={{display:"flex",alignItems:"flex-start",gap:7,flex:1}}><span className="hn">{i+1}</span><span>{h}</span></div>{curPlan==="premium"&&<button className="cpybtn" onClick={()=>copyTxt(h,"Hook "+(i+1))}>ðŸ“‹</button>}</div>)}
+            <div className="gcard"><div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:7}}><h4 className="gct">🪝 Viral Hooks</h4>{curPlan==="premium"&&<button className="cpybtn" onClick={()=>copyTxt((result.hooks||[]).join("\n"),"Hooks")}>‹ All</button>}</div>
+              {result.hooks?.map((h,i)=><div key={i} className="hi" style={{justifyContent:"space-between"}}><div style={{display:"flex",alignItems:"flex-start",gap:7,flex:1}}><span className="hn">{i+1}</span><span>{h}</span></div>{curPlan==="premium"&&<button className="cpybtn" onClick={()=>copyTxt(h,"Hook "+(i+1))}>‹</button>}</div>)}
             </div>
-            <div className="gcard"><div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:7}}><h4 className="gct">ðŸ”‘ Keywords</h4>{curPlan==="premium"&&<button className="cpybtn" onClick={()=>copyTxt((result.keywords||[]).join(", "),"Keywords")}>ðŸ“‹ All</button>}</div>
-              <div className="kwg">{result.keywords?.map((k,i)=><div key={i} className="kwc" onClick={()=>curPlan==="premium"&&copyTxt(k,k)} style={{cursor:curPlan==="premium"?"pointer":"default"}}>{k}{curPlan==="premium"&&<span style={{fontSize:9,opacity:.5,marginLeft:2}}>ðŸ“‹</span>}</div>)}</div>
+            <div className="gcard"><div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:7}}><h4 className="gct">🔑 Keywords</h4>{curPlan==="premium"&&<button className="cpybtn" onClick={()=>copyTxt((result.keywords||[]).join(", "),"Keywords")}>‹ All</button>}</div>
+              <div className="kwg">{result.keywords?.map((k,i)=><div key={i} className="kwc" onClick={()=>curPlan==="premium"&&copyTxt(k,k)} style={{cursor:curPlan==="premium"?"pointer":"default"}}>{k}{curPlan==="premium"&&<span style={{fontSize:9,opacity:.5,marginLeft:2}}>‹</span>}</div>)}</div>
             </div>
-            {result.best_platforms?.length>0&&<div className="gcard"><h4 className="gct" style={{marginBottom:7}}>ðŸš€ Best Platforms</h4><div style={{display:"flex",flexWrap:"wrap",gap:5}}>{result.best_platforms.map((p,i)=><div key={i} style={{background:"rgba(16,185,129,.08)",border:"1px solid rgba(16,185,129,.2)",color:"#10b981",borderRadius:7,padding:"3px 10px",fontSize:11,fontWeight:600}}>âœ… {p}</div>)}</div></div>}
-            {result.monetization&&<div className="gcard"><div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:7}}><h4 className="gct">ðŸ’° Monetization</h4>{curPlan==="premium"&&<button className="cpybtn" onClick={()=>copyTxt(result.monetization,"Monetization")}>ðŸ“‹</button>}</div><p className="gctx">{result.monetization}</p></div>}
+            {result.best_platforms?.length>0&&<div className="gcard"><h4 className="gct" style={{marginBottom:7}}>🚀 Best Platforms</h4><div style={{display:"flex",flexWrap:"wrap",gap:5}}>{result.best_platforms.map((p,i)=><div key={i} style={{background:"rgba(16,185,129,.08)",border:"1px solid rgba(16,185,129,.2)",color:"#10b981",borderRadius:7,padding:"3px 10px",fontSize:11,fontWeight:600}}>✅ {p}</div>)}</div></div>}
+            {result.monetization&&<div className="gcard"><div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:7}}><h4 className="gct">💰 Monetization</h4>{curPlan==="premium"&&<button className="cpybtn" onClick={()=>copyTxt(result.monetization,"Monetization")}>‹</button>}</div><p className="gctx">{result.monetization}</p></div>}
 
             <div className="psec">
               {isLocked && <div onClick={()=>setShowPrem(true)} style={{position:"absolute",inset:0,background:"rgba(2,8,23,.9)",borderRadius:16,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",cursor:"pointer",zIndex:10,backdropFilter:"blur(4px)"}}>
-                <div style={{fontSize:34,marginBottom:7}}>ðŸ”’</div>
+                <div style={{fontSize:34,marginBottom:7}}>🔒</div>
                 <div style={{fontWeight:800,fontSize:13,color:"#f8fafc",marginBottom:11}}>Run Ads + Publish Content</div>
-                <button onClick={(e)=>{e.stopPropagation();setShowPrem(true);}} style={{background:"linear-gradient(135deg,#f59e0b,#ef4444)",border:"none",borderRadius:10,padding:"8px 20px",color:"#fff",fontWeight:800,fontSize:12,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>ðŸ’Ž Unlock â‚¹949</button>
+                <button onClick={(e)=>{e.stopPropagation();setShowPrem(true);}} style={{background:"linear-gradient(135deg,#f59e0b,#ef4444)",border:"none",borderRadius:10,padding:"8px 20px",color:"#fff",fontWeight:800,fontSize:12,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>Ž Unlock ‚949</button>
               </div>}
-              <div className="psh"><div className="pst">ðŸ“º Run Ads + Publish Content</div></div>
+              <div className="psh"><div className="pst">📺 Run Ads + Publish Content</div></div>
               <p className="pss">Complete ad strategy for every platform</p>
               <div className="pgrid">{ADPLATS.map(p=>(
                 <div key={p.id} className={"ppb"+(selP===p.id?" on":"")} onClick={()=>fetchPlat(p.id)} style={{borderColor:selP===p.id?p.c:undefined}}>
-                  {isLocked&&<div className="pplk">ðŸ”’</div>}
+                  {isLocked&&<div className="pplk">🔒</div>}
                   <div style={{width:26,height:26,borderRadius:8,margin:"0 auto 4px",display:"flex",alignItems:"center",justifyContent:"center",background:p.id==="sc"?"#f5c518":p.id==="tt"?"#000":"transparent"}}>
                     <img src={p.logo} alt={p.n} style={{width:20,height:20,objectFit:"contain"}} onError={(e)=>{e.target.style.display="none";}}/>
                   </div>
@@ -1241,145 +1241,145 @@ export default function App() {
               {selP && !isLocked && <div className="pdet">
                 {platLoad?<div style={{textAlign:"center",padding:14}}><div className="sp" style={{margin:"0 auto 7px"}}/><p style={{color:"#64748b",fontSize:11}}>Generating...</p></div>
                 :platD[selP]?(()=>{try{const d=platD[selP];return(<>
-                  {d.account_setup&&<div className="pdb"><div className="pdt">ðŸ—ï¸ Account Setup</div><div className="pdstps">{String(d.account_setup).split("\n").filter(s=>s.trim()).map((s,i)=><div key={i} className="pdstep"><span className="pdsn">{i+1}</span><span style={{flex:1}}>{s.replace(/^Step\s*\d+[:\s]*/i,"").trim()}</span></div>)}</div></div>}
-                  {d.targeting&&<div className="pdb"><div className="pdt">ðŸŽ¯ Targeting</div><div className="pdtx">{d.targeting}</div></div>}
-                  {Array.isArray(d.ad_keywords)&&d.ad_keywords.length>0&&<div className="pdb"><div className="pdt">ðŸ”‘ Keywords</div><div className="pdch">{d.ad_keywords.map((k,i)=><div key={i} className="pdchip">{k}</div>)}</div></div>}
-                  {d.script&&<div className="pdb"><div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:4}}><div className="pdt" style={{margin:0}}>ðŸ“ Script</div>{curPlan==="premium"&&<button className="cpybtn" onClick={()=>copyTxt(d.script,"Script")}>ðŸ“‹</button>}</div><div className="pdtx" style={{background:"rgba(99,102,241,.05)",padding:9,borderRadius:7,border:"1px solid rgba(99,102,241,.12)",lineHeight:1.7}}>{d.script}</div></div>}
-                  {d.video_steps&&<div className="pdb"><div className="pdt">ðŸŽ¬ Video Steps</div><div className="pdstps">{String(d.video_steps).split("\n").filter(s=>s.trim()).map((s,i)=><div key={i} className="pdstep"><span className="pdsn">{i+1}</span><span style={{flex:1}}>{s.replace(/^Step\s*\d+[:\s]*/i,"").trim()}</span></div>)}</div></div>}
-                  {(Array.isArray(d.titles)?d.titles:d.title?[d.title]:[]).length>0&&<div className="pdb"><div className="pdt">ðŸ“Œ Titles</div>{(Array.isArray(d.titles)?d.titles:[d.title]).map((t,i)=><div key={i} style={{background:"rgba(99,102,241,.05)",border:"1px solid rgba(99,102,241,.12)",borderRadius:7,padding:"6px 9px",marginBottom:4,color:"#e2e8f0",fontSize:11,fontWeight:600}}><span style={{color:"#6366f1",marginRight:5}}>#{i+1}</span>{t}</div>)}</div>}
-                  {d.budget&&<div className="pdb"><div className="pdt">ðŸ’° Budget</div><div className="pdtx">{d.budget}</div></div>}
+                  {d.account_setup&&<div className="pdb"><div className="pdt">🏗️ Account Setup</div><div className="pdstps">{String(d.account_setup).split("\n").filter(s=>s.trim()).map((s,i)=><div key={i} className="pdstep"><span className="pdsn">{i+1}</span><span style={{flex:1}}>{s.replace(/^Step\s*\d+[:\s]*/i,"").trim()}</span></div>)}</div></div>}
+                  {d.targeting&&<div className="pdb"><div className="pdt">Ž Targeting</div><div className="pdtx">{d.targeting}</div></div>}
+                  {Array.isArray(d.ad_keywords)&&d.ad_keywords.length>0&&<div className="pdb"><div className="pdt">🔑 Keywords</div><div className="pdch">{d.ad_keywords.map((k,i)=><div key={i} className="pdchip">{k}</div>)}</div></div>}
+                  {d.script&&<div className="pdb"><div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:4}}><div className="pdt" style={{margin:0}}>📝 Script</div>{curPlan==="premium"&&<button className="cpybtn" onClick={()=>copyTxt(d.script,"Script")}>‹</button>}</div><div className="pdtx" style={{background:"rgba(99,102,241,.05)",padding:9,borderRadius:7,border:"1px solid rgba(99,102,241,.12)",lineHeight:1.7}}>{d.script}</div></div>}
+                  {d.video_steps&&<div className="pdb"><div className="pdt">Ž Video Steps</div><div className="pdstps">{String(d.video_steps).split("\n").filter(s=>s.trim()).map((s,i)=><div key={i} className="pdstep"><span className="pdsn">{i+1}</span><span style={{flex:1}}>{s.replace(/^Step\s*\d+[:\s]*/i,"").trim()}</span></div>)}</div></div>}
+                  {(Array.isArray(d.titles)?d.titles:d.title?[d.title]:[]).length>0&&<div className="pdb"><div className="pdt">Œ Titles</div>{(Array.isArray(d.titles)?d.titles:[d.title]).map((t,i)=><div key={i} style={{background:"rgba(99,102,241,.05)",border:"1px solid rgba(99,102,241,.12)",borderRadius:7,padding:"6px 9px",marginBottom:4,color:"#e2e8f0",fontSize:11,fontWeight:600}}><span style={{color:"#6366f1",marginRight:5}}>#{i+1}</span>{t}</div>)}</div>}
+                  {d.budget&&<div className="pdb"><div className="pdt">💰 Budget</div><div className="pdtx">{d.budget}</div></div>}
                 </>);}catch{return<div style={{color:"#ef4444",textAlign:"center",padding:11,fontSize:11}}>Error. Try again.</div>;}})():null}
               </div>}
             </div>
           </div>}
 
           <div className="ftw">
-            <div className="fglbl" style={{color:"#64748b"}}>ðŸ†“ Free Tools</div>
-            <div className="ftabs"><button className={"ftab"+(tab==="profit"?" on":"")} onClick={()=>setTab("profit")}>ðŸ’° Profit Calculator</button></div>
-            <div className="fglbl" style={{color:isLocked?"#ef4444":"#10b981"}}>{isLocked?"ðŸ”’ Locked (Buy Premium to Unlock)":"âœ… Premium Tools (Unlocked)"}</div>
+            <div className="fglbl" style={{color:"#64748b"}}>† Free Tools</div>
+            <div className="ftabs"><button className={"ftab"+(tab==="profit"?" on":"")} onClick={()=>setTab("profit")}>💰 Profit Calculator</button></div>
+            <div className="fglbl" style={{color:isLocked?"#ef4444":"#10b981"}}>{isLocked?"🔒 Locked (Buy Premium to Unlock)":"✅ Premium Tools (Unlocked)"}</div>
             <div className="ftabs">
-              {[{id:"starter",l:"ðŸŽ“ Starter Guide"},{id:"beginner",l:"ðŸ”° Beginner Products"},{id:"investment",l:"ðŸ§® Investment Calc"},{id:"description",l:"ðŸ“ Description"},{id:"trending",l:"ðŸ”¥ Trending"},{id:"competitor",l:"âš”ï¸ Competitor"},{id:"supplier",l:"ðŸ“¦ Supplier"},{id:"sales",l:"ðŸ“Š Sales Estimator"},{id:"price",l:"ðŸ·ï¸ Price Optimizer"},{id:"inventory",l:"ðŸ“¦ Inventory"},{id:"review",l:"â­ Reviews"},{id:"niche",l:"ðŸŽ¯ Niche Finder"},{id:"gst",l:"ðŸ§¾ GST Calc"},{id:"shipping",l:"ðŸšš Shipping Cost"},{id:"compare",l:"âš¡ Compare"},{id:"launch",l:"ðŸš€ Launch Strategy"},{id:"festival",l:"ðŸŽŠ Festival Planner"},{id:"roas",l:"ðŸ’° ROAS Calc"},{id:"bundle",l:"ðŸŽ Bundle Creator"},{id:"returns",l:"ðŸ“¦ Return Manager"},{id:"wamsg",l:"ðŸ’¬ WhatsApp Msg"},{id:"caption",l:"ðŸ“¸ Caption Gen"},{id:"titl",l:"ðŸ“ Title Optimizer"},{id:"listing",l:"ðŸ“‹ Listing Checker"},{id:"reviewrep",l:"â­ Review Reply"},{id:"adcopy",l:"ðŸ“¢ Ad Copy"},{id:"cashflow",l:"ðŸ’µ Cash Flow"},{id:"suppmail",l:"ðŸ“§ Supplier Email"},{id:"retpol",l:"ðŸ“œ Return Policy"},{id:"comply",l:"âœ… Compliance"}].map(t=>(
-                <button key={t.id} className={"ftab"+(tab===t.id?" on":"")} onClick={()=>{if(isLocked){setShowPrem(true);return;}setTab(t.id);}}>{t.l}{isLocked&&" ðŸ”’"}</button>
+              {[{id:"starter",l:"Ž Starter Guide"},{id:"beginner",l:"🔰 Beginner Products"},{id:"investment",l:"🧮 Investment Calc"},{id:"description",l:"📝 Description"},{id:"trending",l:"🔥 Trending"},{id:"competitor",l:"⚔️ Competitor"},{id:"supplier",l:"📦 Supplier"},{id:"sales",l:"Š Sales Estimator"},{id:"price",l:"🏷️ Price Optimizer"},{id:"inventory",l:"📦 Inventory"},{id:"review",l:"⭐ Reviews"},{id:"niche",l:"Ž Niche Finder"},{id:"gst",l:"🧾 GST Calc"},{id:"shipping",l:"🚚 Shipping Cost"},{id:"compare",l:"⚡ Compare"},{id:"launch",l:"🚀 Launch Strategy"},{id:"festival",l:"ŽŠ Festival Planner"},{id:"roas",l:"💰 ROAS Calc"},{id:"bundle",l:"Ž Bundle Creator"},{id:"returns",l:"📦 Return Manager"},{id:"wamsg",l:"💬 WhatsApp Msg"},{id:"caption",l:"📸 Caption Gen"},{id:"titl",l:"📝 Title Optimizer"},{id:"listing",l:"‹ Listing Checker"},{id:"reviewrep",l:"⭐ Review Reply"},{id:"adcopy",l:"📢 Ad Copy"},{id:"cashflow",l:"💵 Cash Flow"},{id:"suppmail",l:"📧 Supplier Email"},{id:"retpol",l:"📜 Return Policy"},{id:"comply",l:"✅ Compliance"}].map(t=>(
+                <button key={t.id} className={"ftab"+(tab===t.id?" on":"")} onClick={()=>{if(isLocked){setShowPrem(true);return;}setTab(t.id);}}>{t.l}{isLocked&&" 🔒"}</button>
               ))}
             </div>
           </div>
 
           {tab==="profit" && <div className="fbox fa">
-            <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>ðŸ’° Profit Calculator</h3>
+            <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>💰 Profit Calculator</h3>
             <p style={{color:"#64748b",fontSize:10,marginBottom:11}}>Calculate profit, margin & ROI</p>
-            <div className="prow">{[{l:"Buy Price (â‚¹)",k:"buy"},{l:"Sell Price (â‚¹)",k:"sell"},{l:"Units",k:"units"},{l:"Platform Fee%",k:"fee"},{l:"Shipping (â‚¹)",k:"ship"},{l:"Ad Budget (â‚¹)",k:"ads"}].map(f=><div key={f.k} className="pfield"><label>{f.l}</label><input type="number" placeholder="0" value={profF[f.k]} onChange={e=>setProfF({...profF,[f.k]:e.target.value})}/></div>)}</div>
-            <button className="cbtn" onClick={calcP}>ðŸ“Š Calculate</button>
-            {profR && <div className="presult">{[{l:"Net Profit",v:"â‚¹"+profR.profit,c:parseFloat(profR.profit)>0?"#10b981":"#ef4444"},{l:"Per Unit",v:"â‚¹"+profR.np,c:"#a5b4fc"},{l:"ROI",v:profR.roi+"%",c:"#f59e0b"},{l:"Margin",v:profR.margin+"%",c:"#6366f1"},{l:"Revenue",v:"â‚¹"+profR.rev,c:"#10b981"},{l:"Break Even",v:profR.be+" units",c:"#94a3b8"}].map(r=><div key={r.l} className="prc"><div className="prl">{r.l}</div><div className="prv" style={{color:r.c}}>{r.v}</div></div>)}</div>}
+            <div className="prow">{[{l:"Buy Price (‚)",k:"buy"},{l:"Sell Price (‚)",k:"sell"},{l:"Units",k:"units"},{l:"Platform Fee%",k:"fee"},{l:"Shipping (‚)",k:"ship"},{l:"Ad Budget (‚)",k:"ads"}].map(f=><div key={f.k} className="pfield"><label>{f.l}</label><input type="number" placeholder="0" value={profF[f.k]} onChange={e=>setProfF({...profF,[f.k]:e.target.value})}/></div>)}</div>
+            <button className="cbtn" onClick={calcP}>Š Calculate</button>
+            {profR && <div className="presult">{[{l:"Net Profit",v:"‚"+profR.profit,c:parseFloat(profR.profit)>0?"#10b981":"#ef4444"},{l:"Per Unit",v:"‚"+profR.np,c:"#a5b4fc"},{l:"ROI",v:profR.roi+"%",c:"#f59e0b"},{l:"Margin",v:profR.margin+"%",c:"#6366f1"},{l:"Revenue",v:"‚"+profR.rev,c:"#10b981"},{l:"Break Even",v:profR.be+" units",c:"#94a3b8"}].map(r=><div key={r.l} className="prc"><div className="prl">{r.l}</div><div className="prv" style={{color:r.c}}>{r.v}</div></div>)}</div>}
           </div>}
 
           {tab==="starter" && <div className="fbox fa" style={{position:"relative"}}>{isLocked&&<LockBox/>}
-            <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>ðŸŽ“ Starter Guide</h3>
+            <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>Ž Starter Guide</h3>
             <p style={{color:"#64748b",fontSize:10,marginBottom:11}}>Personalized plan for your budget</p>
-            <div className="prow"><div className="pfield"><label>Budget (â‚¹)</label><input type="number" placeholder="5000" value={starF.budget} onChange={e=>setStarF({...starF,budget:e.target.value})}/></div><div className="pfield"><label>Experience</label><select value={starF.exp} onChange={e=>setStarF({...starF,exp:e.target.value})}><option value="beginner">Beginner</option><option value="some">Some Exp</option><option value="intermediate">Intermediate</option></select></div></div>
-            <button className="gbtn2" style={{background:"linear-gradient(135deg,#6366f1,#8b5cf6)"}} onClick={async()=>{setStarL(true);try{const d=await apiCall("starter_guide",{budget:starF.budget,experience:starF.exp});setStarD(d);}catch{}setStarL(false);}} disabled={starL}>{starL?"â³ Generating...":"ðŸŽ“ Generate Guide"}</button>
+            <div className="prow"><div className="pfield"><label>Budget (‚)</label><input type="number" placeholder="5000" value={starF.budget} onChange={e=>setStarF({...starF,budget:e.target.value})}/></div><div className="pfield"><label>Experience</label><select value={starF.exp} onChange={e=>setStarF({...starF,exp:e.target.value})}><option value="beginner">Beginner</option><option value="some">Some Exp</option><option value="intermediate">Intermediate</option></select></div></div>
+            <button className="gbtn2" style={{background:"linear-gradient(135deg,#6366f1,#8b5cf6)"}} onClick={async()=>{setStarL(true);try{const d=await apiCall("starter_guide",{budget:starF.budget,experience:starF.exp});setStarD(d);}catch{}setStarL(false);}} disabled={starL}>{starL?"⏳ Generating...":"Ž Generate Guide"}</button>
             {starL&&<div className="ssp"/>}
             {starD&&!starL&&<div style={{marginTop:13}} className="fa">
-              {starD.platform_recommendation&&<div style={{background:"rgba(16,185,129,.08)",border:"1px solid rgba(16,185,129,.2)",borderRadius:9,padding:10,marginBottom:9}}><div style={{fontWeight:800,fontSize:12,color:"#10b981",marginBottom:2}}>âœ… Best: {starD.platform_recommendation.name}</div><div style={{color:"#94a3b8",fontSize:11}}>{starD.platform_recommendation.why}</div></div>}
-              {starD.steps?.map((s,i)=><div key={i} className="cc" style={{marginBottom:6}}><div style={{display:"flex",alignItems:"center",gap:7,marginBottom:4}}><div style={{width:22,height:22,background:"linear-gradient(135deg,#6366f1,#8b5cf6)",borderRadius:"50%",display:"flex",alignItems:"center",justifyContent:"center",fontWeight:800,fontSize:11,color:"#fff",flexShrink:0}}>{s.step}</div><div style={{fontWeight:700,fontSize:12,color:"#e2e8f0"}}>{s.title}</div></div><div style={{color:"#94a3b8",fontSize:11,lineHeight:1.6,marginBottom:4}}>{s.description}</div><div style={{display:"flex",gap:4}}><span style={{background:"rgba(99,102,241,.1)",color:"#a5b4fc",borderRadius:5,padding:"1px 6px",fontSize:10}}>â± {s.time}</span><span style={{background:"rgba(16,185,129,.1)",color:"#10b981",borderRadius:5,padding:"1px 6px",fontSize:10}}>ðŸ’° {s.cost}</span></div></div>)}
-              {starD.mistakes?.length>0&&<div style={{background:"rgba(239,68,68,.05)",border:"1px solid rgba(239,68,68,.2)",borderRadius:9,padding:9}}><div style={{fontWeight:700,color:"#ef4444",marginBottom:4,fontSize:11}}>âš ï¸ Avoid:</div>{starD.mistakes.map((m,i)=><div key={i} style={{color:"#94a3b8",fontSize:11,padding:"2px 0",display:"flex",gap:4}}><span>âŒ</span><span>{m}</span></div>)}</div>}
+              {starD.platform_recommendation&&<div style={{background:"rgba(16,185,129,.08)",border:"1px solid rgba(16,185,129,.2)",borderRadius:9,padding:10,marginBottom:9}}><div style={{fontWeight:800,fontSize:12,color:"#10b981",marginBottom:2}}>✅ Best: {starD.platform_recommendation.name}</div><div style={{color:"#94a3b8",fontSize:11}}>{starD.platform_recommendation.why}</div></div>}
+              {starD.steps?.map((s,i)=><div key={i} className="cc" style={{marginBottom:6}}><div style={{display:"flex",alignItems:"center",gap:7,marginBottom:4}}><div style={{width:22,height:22,background:"linear-gradient(135deg,#6366f1,#8b5cf6)",borderRadius:"50%",display:"flex",alignItems:"center",justifyContent:"center",fontWeight:800,fontSize:11,color:"#fff",flexShrink:0}}>{s.step}</div><div style={{fontWeight:700,fontSize:12,color:"#e2e8f0"}}>{s.title}</div></div><div style={{color:"#94a3b8",fontSize:11,lineHeight:1.6,marginBottom:4}}>{s.description}</div><div style={{display:"flex",gap:4}}><span style={{background:"rgba(99,102,241,.1)",color:"#a5b4fc",borderRadius:5,padding:"1px 6px",fontSize:10}}>⏱ {s.time}</span><span style={{background:"rgba(16,185,129,.1)",color:"#10b981",borderRadius:5,padding:"1px 6px",fontSize:10}}>💰 {s.cost}</span></div></div>)}
+              {starD.mistakes?.length>0&&<div style={{background:"rgba(239,68,68,.05)",border:"1px solid rgba(239,68,68,.2)",borderRadius:9,padding:9}}><div style={{fontWeight:700,color:"#ef4444",marginBottom:4,fontSize:11}}> ️ Avoid:</div>{starD.mistakes.map((m,i)=><div key={i} style={{color:"#94a3b8",fontSize:11,padding:"2px 0",display:"flex",gap:4}}><span>Œ</span><span>{m}</span></div>)}</div>}
             </div>}
           </div>}
 
           {tab==="beginner" && <div className="fbox fa" style={{position:"relative"}}>{isLocked&&<LockBox/>}
-            <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>ðŸ”° Beginner Product Finder</h3>
+            <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>🔰 Beginner Product Finder</h3>
             <p style={{color:"#64748b",fontSize:10,marginBottom:11}}>Low risk, high profit products</p>
-            <div className="prow"><div className="pfield"><label>Budget (â‚¹)</label><input type="number" placeholder="5000" value={begF.budget} onChange={e=>setBegF({...begF,budget:e.target.value})}/></div><div className="pfield"><label>Category</label><select value={begF.category} onChange={e=>setBegF({...begF,category:e.target.value})}>{["Fashion","Electronics","Beauty & Skincare","Home & Kitchen","Fitness","Digital Products","Online Courses","Any Other"].map(c=><option key={c}>{c}</option>)}</select></div></div>
-            <button className="gbtn2" style={{background:"linear-gradient(135deg,#10b981,#059669)"}} onClick={async()=>{setBegL(true);try{const d=await apiCall("beginner_product",begF);setBegD(d);}catch{}setBegL(false);}} disabled={begL}>{begL?"â³ Finding...":"ðŸ”° Find Products"}</button>
+            <div className="prow"><div className="pfield"><label>Budget (‚)</label><input type="number" placeholder="5000" value={begF.budget} onChange={e=>setBegF({...begF,budget:e.target.value})}/></div><div className="pfield"><label>Category</label><select value={begF.category} onChange={e=>setBegF({...begF,category:e.target.value})}>{["Fashion","Electronics","Beauty & Skincare","Home & Kitchen","Fitness","Digital Products","Online Courses","Any Other"].map(c=><option key={c}>{c}</option>)}</select></div></div>
+            <button className="gbtn2" style={{background:"linear-gradient(135deg,#10b981,#059669)"}} onClick={async()=>{setBegL(true);try{const d=await apiCall("beginner_product",begF);setBegD(d);}catch{}setBegL(false);}} disabled={begL}>{begL?"⏳ Finding...":"🔰 Find Products"}</button>
             {begL&&<div className="ssp"/>}
-            {begD&&!begL&&<div style={{marginTop:13}} className="fa">{begD.products?.map((p,i)=><div key={i} className="cc" style={{marginBottom:6}}><div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:4,flexWrap:"wrap",gap:3}}><div style={{fontWeight:700,fontSize:12,color:"#e2e8f0"}}>#{i+1} {p.name}</div><span style={{background:p.risk==="Low"?"rgba(16,185,129,.1)":"rgba(245,158,11,.1)",color:p.risk==="Low"?"#10b981":"#f59e0b",borderRadius:5,padding:"1px 6px",fontSize:10,fontWeight:600}}>Risk: {p.risk}</span></div><div style={{display:"flex",gap:5,flexWrap:"wrap",marginBottom:4}}><span style={{color:"#ef4444",fontSize:11,fontWeight:600}}>Buy: {p.buy_price}</span><span style={{color:"#94a3b8"}}>â†’</span><span style={{color:"#10b981",fontSize:11,fontWeight:600}}>Sell: {p.sell_price}</span><span style={{color:"#f59e0b",fontSize:11,fontWeight:700}}>ðŸ’° {p.profit_per_unit}</span></div><div style={{color:"#94a3b8",fontSize:10,marginBottom:4}}>{p.why_good}</div><div style={{display:"flex",gap:3,flexWrap:"wrap"}}><span style={{background:"rgba(99,102,241,.1)",color:"#a5b4fc",borderRadius:5,padding:"1px 6px",fontSize:10}}>ðŸ“¦ {p.platform}</span><span style={{background:"rgba(16,185,129,.1)",color:"#10b981",borderRadius:5,padding:"1px 6px",fontSize:10}}>ðŸ­ {p.suppliers}</span></div></div>)}</div>}
+            {begD&&!begL&&<div style={{marginTop:13}} className="fa">{begD.products?.map((p,i)=><div key={i} className="cc" style={{marginBottom:6}}><div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:4,flexWrap:"wrap",gap:3}}><div style={{fontWeight:700,fontSize:12,color:"#e2e8f0"}}>#{i+1} {p.name}</div><span style={{background:p.risk==="Low"?"rgba(16,185,129,.1)":"rgba(245,158,11,.1)",color:p.risk==="Low"?"#10b981":"#f59e0b",borderRadius:5,padding:"1px 6px",fontSize:10,fontWeight:600}}>Risk: {p.risk}</span></div><div style={{display:"flex",gap:5,flexWrap:"wrap",marginBottom:4}}><span style={{color:"#ef4444",fontSize:11,fontWeight:600}}>Buy: {p.buy_price}</span><span style={{color:"#94a3b8"}}>†</span><span style={{color:"#10b981",fontSize:11,fontWeight:600}}>Sell: {p.sell_price}</span><span style={{color:"#f59e0b",fontSize:11,fontWeight:700}}>💰 {p.profit_per_unit}</span></div><div style={{color:"#94a3b8",fontSize:10,marginBottom:4}}>{p.why_good}</div><div style={{display:"flex",gap:3,flexWrap:"wrap"}}><span style={{background:"rgba(99,102,241,.1)",color:"#a5b4fc",borderRadius:5,padding:"1px 6px",fontSize:10}}>📦 {p.platform}</span><span style={{background:"rgba(16,185,129,.1)",color:"#10b981",borderRadius:5,padding:"1px 6px",fontSize:10}}>🏭 {p.suppliers}</span></div></div>)}</div>}
           </div>}
 
           {tab==="investment" && <div className="fbox fa" style={{position:"relative"}}>{isLocked&&<LockBox/>}
-            <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>ðŸ§® Investment Calculator</h3>
+            <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>🧮 Investment Calculator</h3>
             <p style={{color:"#64748b",fontSize:10,marginBottom:11}}>Full ROI with platform fees</p>
-            <div className="prow">{[{l:"Buy Price (â‚¹)",k:"buy"},{l:"Sell Price (â‚¹)",k:"sell"},{l:"Units",k:"units"},{l:"Platform Fee%",k:"fee"},{l:"Shipping (â‚¹)",k:"ship"},{l:"Ad Budget (â‚¹)",k:"ads"}].map(f=><div key={f.k} className="pfield"><label>{f.l}</label><input type="number" placeholder="0" value={invF[f.k]} onChange={e=>setInvF({...invF,[f.k]:e.target.value})}/></div>)}</div>
-            <button className="cbtn" style={{width:"100%"}} onClick={calcI}>ðŸ§® Calculate</button>
-            {invR&&<div className="presult">{[{l:"Total Profit",v:"â‚¹"+invR.profit,c:parseFloat(invR.profit)>0?"#10b981":"#ef4444"},{l:"Per Unit",v:"â‚¹"+invR.np,c:"#a5b4fc"},{l:"ROI",v:invR.roi+"%",c:"#f59e0b"},{l:"Margin",v:invR.margin+"%",c:"#6366f1"},{l:"Investment",v:"â‚¹"+invR.cost,c:"#94a3b8"},{l:"Break Even",v:invR.be+" units",c:"#94a3b8"}].map(r=><div key={r.l} className="prc"><div className="prl">{r.l}</div><div className="prv" style={{color:r.c}}>{r.v}</div></div>)}</div>}
+            <div className="prow">{[{l:"Buy Price (‚)",k:"buy"},{l:"Sell Price (‚)",k:"sell"},{l:"Units",k:"units"},{l:"Platform Fee%",k:"fee"},{l:"Shipping (‚)",k:"ship"},{l:"Ad Budget (‚)",k:"ads"}].map(f=><div key={f.k} className="pfield"><label>{f.l}</label><input type="number" placeholder="0" value={invF[f.k]} onChange={e=>setInvF({...invF,[f.k]:e.target.value})}/></div>)}</div>
+            <button className="cbtn" style={{width:"100%"}} onClick={calcI}>🧮 Calculate</button>
+            {invR&&<div className="presult">{[{l:"Total Profit",v:"‚"+invR.profit,c:parseFloat(invR.profit)>0?"#10b981":"#ef4444"},{l:"Per Unit",v:"‚"+invR.np,c:"#a5b4fc"},{l:"ROI",v:invR.roi+"%",c:"#f59e0b"},{l:"Margin",v:invR.margin+"%",c:"#6366f1"},{l:"Investment",v:"‚"+invR.cost,c:"#94a3b8"},{l:"Break Even",v:invR.be+" units",c:"#94a3b8"}].map(r=><div key={r.l} className="prc"><div className="prl">{r.l}</div><div className="prv" style={{color:r.c}}>{r.v}</div></div>)}</div>}
           </div>}
 
           {tab==="description" && <div className="fbox fa" style={{position:"relative"}}>{isLocked&&<LockBox/>}
-            <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>ðŸ“ Description Generator</h3>
+            <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>📝 Description Generator</h3>
             <p style={{color:"#64748b",fontSize:10,marginBottom:11}}>SEO listings for Amazon, Meesho, Flipkart & more</p>
-            {!pf.name&&<div className="errbanner">âš ï¸ Run product analysis first</div>}
-            <button className="gbtn2" style={{background:"linear-gradient(135deg,#6366f1,#a855f7)"}} onClick={async()=>{setDescL(true);try{const d=await apiCall("description");setDescD(d);}catch{}setDescL(false);}} disabled={descL||!pf.name}>{descL?"â³ Generating...":"âœ¨ Generate Descriptions"}</button>
+            {!pf.name&&<div className="errbanner"> ️ Run product analysis first</div>}
+            <button className="gbtn2" style={{background:"linear-gradient(135deg,#6366f1,#a855f7)"}} onClick={async()=>{setDescL(true);try{const d=await apiCall("description");setDescD(d);}catch{}setDescL(false);}} disabled={descL||!pf.name}>{descL?"⏳ Generating...":"✨ Generate Descriptions"}</button>
             {descL&&<div className="ssp"/>}
-            {descD&&!descL&&<div style={{marginTop:13}} className="fa">{descD.listings?.map((l,i)=><div key={i} style={{background:"rgba(2,8,23,.5)",border:"1px solid #1e293b",borderRadius:10,padding:11,marginBottom:7}}><div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:6}}><div style={{display:"inline-block",background:"linear-gradient(135deg,#6366f1,#8b5cf6)",color:"#fff",fontSize:9,fontWeight:700,padding:"2px 8px",borderRadius:100}}>{l.platform}</div>{curPlan==="premium"&&<button className="cpybtn" onClick={()=>copyTxt([l.title,l.description,...(l.bullets||[])].join("\n"),l.platform)}>ðŸ“‹</button>}</div><div style={{fontSize:12,fontWeight:700,color:"#e2e8f0",marginBottom:4}}>ðŸ“Œ {l.title}</div><div style={{color:"#94a3b8",fontSize:11,lineHeight:1.65,marginBottom:4}}>{l.description}</div>{l.bullets&&<div>{l.bullets.map((b,j)=><div key={j} style={{color:"#a5b4fc",fontSize:10,display:"flex",gap:4,marginBottom:2}}><span>âœ…</span><span>{b}</span></div>)}</div>}</div>)}</div>}
+            {descD&&!descL&&<div style={{marginTop:13}} className="fa">{descD.listings?.map((l,i)=><div key={i} style={{background:"rgba(2,8,23,.5)",border:"1px solid #1e293b",borderRadius:10,padding:11,marginBottom:7}}><div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:6}}><div style={{display:"inline-block",background:"linear-gradient(135deg,#6366f1,#8b5cf6)",color:"#fff",fontSize:9,fontWeight:700,padding:"2px 8px",borderRadius:100}}>{l.platform}</div>{curPlan==="premium"&&<button className="cpybtn" onClick={()=>copyTxt([l.title,l.description,...(l.bullets||[])].join("\n"),l.platform)}>‹</button>}</div><div style={{fontSize:12,fontWeight:700,color:"#e2e8f0",marginBottom:4}}>Œ {l.title}</div><div style={{color:"#94a3b8",fontSize:11,lineHeight:1.65,marginBottom:4}}>{l.description}</div>{l.bullets&&<div>{l.bullets.map((b,j)=><div key={j} style={{color:"#a5b4fc",fontSize:10,display:"flex",gap:4,marginBottom:2}}><span>✅</span><span>{b}</span></div>)}</div>}</div>)}</div>}
           </div>}
 
           {tab==="trending" && <div className="fbox fa" style={{position:"relative"}}>{isLocked&&<LockBox/>}
-            <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>ðŸ”¥ Trending Products</h3>
+            <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>🔥 Trending Products</h3>
             <p style={{color:"#64748b",fontSize:10,marginBottom:11}}>Top trending in India right now</p>
-            <div style={{display:"flex",gap:7,flexWrap:"wrap",marginBottom:10}}><select className="di" style={{flex:1,minWidth:120}} value={trendCat} onChange={e=>setTrendCat(e.target.value)}>{CATS.map(c=><option key={c.id} value={c.id}>{c.icon} {c.id}</option>)}</select><button className="cbtn" onClick={async()=>{setTrendL(true);try{const d=await apiCall("trending",{category:trendCat});setTrendD(d);}catch{}setTrendL(false);}} disabled={trendL}>{trendL?"â³":"ðŸ”¥ Get"}</button></div>
+            <div style={{display:"flex",gap:7,flexWrap:"wrap",marginBottom:10}}><select className="di" style={{flex:1,minWidth:120}} value={trendCat} onChange={e=>setTrendCat(e.target.value)}>{CATS.map(c=><option key={c.id} value={c.id}>{c.icon} {c.id}</option>)}</select><button className="cbtn" onClick={async()=>{setTrendL(true);try{const d=await apiCall("trending",{category:trendCat});setTrendD(d);}catch{}setTrendL(false);}} disabled={trendL}>{trendL?"⏳":"🔥 Get"}</button></div>
             {trendL&&<div className="ssp"/>}
-            {trendD&&!trendL&&<div className="tgrid fa">{trendD.products?.map((p,i)=><div key={i} className="tcard"><div className="trnk">{i+1}</div><div style={{fontWeight:700,fontSize:11,color:"#e2e8f0",marginBottom:3}}>{p.name}</div><div style={{color:"#64748b",fontSize:10,marginBottom:5,lineHeight:1.5}}>{p.why_trending}</div><div style={{color:"#f59e0b",fontSize:10,fontWeight:600,marginBottom:4}}>ðŸ’° {p.price_range}</div><div style={{display:"flex",flexWrap:"wrap",gap:3}}>{p.tags?.map((t,j)=><span key={j} className="tc">{t}</span>)}</div></div>)}</div>}
+            {trendD&&!trendL&&<div className="tgrid fa">{trendD.products?.map((p,i)=><div key={i} className="tcard"><div className="trnk">{i+1}</div><div style={{fontWeight:700,fontSize:11,color:"#e2e8f0",marginBottom:3}}>{p.name}</div><div style={{color:"#64748b",fontSize:10,marginBottom:5,lineHeight:1.5}}>{p.why_trending}</div><div style={{color:"#f59e0b",fontSize:10,fontWeight:600,marginBottom:4}}>💰 {p.price_range}</div><div style={{display:"flex",flexWrap:"wrap",gap:3}}>{p.tags?.map((t,j)=><span key={j} className="tc">{t}</span>)}</div></div>)}</div>}
           </div>}
 
           {tab==="competitor" && <div className="fbox fa" style={{position:"relative"}}>{isLocked&&<LockBox/>}
-            <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>âš”ï¸ Competitor Analysis</h3>
-            <p style={{color:"#64748b",fontSize:10,marginBottom:11}}>Top 4 competitors â€” prices, strengths & weaknesses</p>
-            {!pf.name&&<div className="errbanner">âš ï¸ Run product analysis first</div>}
-            <button className="cbtn" onClick={async()=>{setCompL(true);try{const d=await apiCall("competitor");setCompD(d);}catch{}setCompL(false);}} disabled={compL||!pf.name}>{compL?"â³ Analyzing...":"ðŸ” Analyze Competitors"}</button>
+            <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>⚔️ Competitor Analysis</h3>
+            <p style={{color:"#64748b",fontSize:10,marginBottom:11}}>Top 4 competitors — prices, strengths & weaknesses</p>
+            {!pf.name&&<div className="errbanner"> ️ Run product analysis first</div>}
+            <button className="cbtn" onClick={async()=>{setCompL(true);try{const d=await apiCall("competitor");setCompD(d);}catch{}setCompL(false);}} disabled={compL||!pf.name}>{compL?"⏳ Analyzing...":"🔍 Analyze Competitors"}</button>
             {compL&&<div className="ssp"/>}
-            {compD&&!compL&&<div style={{marginTop:13}} className="fa">{compD.competitors?.map((c,i)=><div key={i} className="cc"><div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:4,flexWrap:"wrap",gap:4}}><div style={{fontWeight:700,fontSize:12,color:"#e2e8f0"}}>ðŸª {c.name}</div><div style={{display:"flex",gap:4}}><span style={{background:"rgba(245,158,11,.1)",color:"#f59e0b",borderRadius:5,padding:"1px 6px",fontSize:10,fontWeight:700}}>{c.price}</span><span style={{color:"#64748b",fontSize:10}}>â­ {c.rating}</span></div></div><div className="ccrow"><div className="ccbox"><div className="ccbt" style={{color:"#10b981"}}>âœ… Strengths</div>{c.strengths?.map((s,j)=><div key={j} className="cpt"><span style={{color:"#10b981"}}>+</span><span>{s}</span></div>)}</div><div className="ccbox"><div className="ccbt" style={{color:"#ef4444"}}>âŒ Weaknesses</div>{c.weaknesses?.map((w,j)=><div key={j} className="cpt"><span style={{color:"#ef4444"}}>-</span><span>{w}</span></div>)}</div></div>{c.opportunity&&<div style={{marginTop:7,background:"rgba(99,102,241,.07)",border:"1px solid rgba(99,102,241,.18)",borderRadius:6,padding:"6px 9px",color:"#a5b4fc",fontSize:10}}>ðŸ’¡ {c.opportunity}</div>}</div>)}</div>}
+            {compD&&!compL&&<div style={{marginTop:13}} className="fa">{compD.competitors?.map((c,i)=><div key={i} className="cc"><div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:4,flexWrap:"wrap",gap:4}}><div style={{fontWeight:700,fontSize:12,color:"#e2e8f0"}}>🏪 {c.name}</div><div style={{display:"flex",gap:4}}><span style={{background:"rgba(245,158,11,.1)",color:"#f59e0b",borderRadius:5,padding:"1px 6px",fontSize:10,fontWeight:700}}>{c.price}</span><span style={{color:"#64748b",fontSize:10}}>⭐ {c.rating}</span></div></div><div className="ccrow"><div className="ccbox"><div className="ccbt" style={{color:"#10b981"}}>✅ Strengths</div>{c.strengths?.map((s,j)=><div key={j} className="cpt"><span style={{color:"#10b981"}}>+</span><span>{s}</span></div>)}</div><div className="ccbox"><div className="ccbt" style={{color:"#ef4444"}}>Œ Weaknesses</div>{c.weaknesses?.map((w,j)=><div key={j} className="cpt"><span style={{color:"#ef4444"}}>-</span><span>{w}</span></div>)}</div></div>{c.opportunity&&<div style={{marginTop:7,background:"rgba(99,102,241,.07)",border:"1px solid rgba(99,102,241,.18)",borderRadius:6,padding:"6px 9px",color:"#a5b4fc",fontSize:10}}>💡 {c.opportunity}</div>}</div>)}</div>}
           </div>}
 
           {tab==="supplier" && <div className="fbox fa" style={{position:"relative"}}>{isLocked&&<LockBox/>}
-            <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>ðŸ“¦ Supplier Finder</h3>
+            <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>📦 Supplier Finder</h3>
             <p style={{color:"#64748b",fontSize:10,marginBottom:11}}>Best suppliers with price, MOQ & tips</p>
-            {!pf.name&&<div className="errbanner">âš ï¸ Run product analysis first</div>}
-            <button className="cbtn" style={{background:"linear-gradient(135deg,#10b981,#059669)"}} onClick={async()=>{setSuppL(true);try{const d=await apiCall("supplier");setSuppD(d);}catch{}setSuppL(false);}} disabled={suppL||!pf.name}>{suppL?"â³ Finding...":"ðŸ” Find Suppliers"}</button>
+            {!pf.name&&<div className="errbanner"> ️ Run product analysis first</div>}
+            <button className="cbtn" style={{background:"linear-gradient(135deg,#10b981,#059669)"}} onClick={async()=>{setSuppL(true);try{const d=await apiCall("supplier");setSuppD(d);}catch{}setSuppL(false);}} disabled={suppL||!pf.name}>{suppL?"⏳ Finding...":"🔍 Find Suppliers"}</button>
             {suppL&&<div className="ssp"/>}
-            {suppD&&!suppL&&<div style={{marginTop:13}} className="fa">{suppD.suppliers?.map((s,i)=><div key={i} className="sc"><div style={{fontWeight:700,fontSize:12,color:"#e2e8f0",marginBottom:5}}>ðŸ­ {s.name}</div><div style={{display:"flex",gap:4,flexWrap:"wrap",marginBottom:5}}><span className="schip">ðŸ’° {s.price_range}</span><span className="schip">ðŸ“¦ MOQ: {s.moq}</span><span className="schip">â­ {s.rating}</span><span className="schip">ðŸšš {s.delivery}</span></div><div style={{color:"#94a3b8",fontSize:10,marginBottom:4}}>{s.description}</div>{s.tip&&<div style={{background:"rgba(245,158,11,.07)",border:"1px solid rgba(245,158,11,.2)",borderRadius:7,padding:"5px 8px",color:"#f59e0b",fontSize:10,marginBottom:4}}>ðŸ’¡ {s.tip}</div>}<a className="slink" href={s.search_url||"#"} target="_blank" rel="noreferrer">ðŸ”— Search on {s.platform}</a></div>)}</div>}
+            {suppD&&!suppL&&<div style={{marginTop:13}} className="fa">{suppD.suppliers?.map((s,i)=><div key={i} className="sc"><div style={{fontWeight:700,fontSize:12,color:"#e2e8f0",marginBottom:5}}>🏭 {s.name}</div><div style={{display:"flex",gap:4,flexWrap:"wrap",marginBottom:5}}><span className="schip">💰 {s.price_range}</span><span className="schip">📦 MOQ: {s.moq}</span><span className="schip">⭐ {s.rating}</span><span className="schip">🚚 {s.delivery}</span></div><div style={{color:"#94a3b8",fontSize:10,marginBottom:4}}>{s.description}</div>{s.tip&&<div style={{background:"rgba(245,158,11,.07)",border:"1px solid rgba(245,158,11,.2)",borderRadius:7,padding:"5px 8px",color:"#f59e0b",fontSize:10,marginBottom:4}}>💡 {s.tip}</div>}<a className="slink" href={s.search_url||"#"} target="_blank" rel="noreferrer">🔗 Search on {s.platform}</a></div>)}</div>}
           </div>}
 
           {tab==="sales" && <div className="fbox fa" style={{position:"relative"}}>{isLocked&&<LockBox/>}
-            <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>ðŸ“Š Sales Estimator</h3>
+            <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>Š Sales Estimator</h3>
             <p style={{color:"#64748b",fontSize:10,marginBottom:11}}>Monthly sales & revenue forecast</p>
-            {!pf.name&&<div className="errbanner">âš ï¸ Run product analysis first</div>}
-            <button className="cbtn" onClick={async()=>{setSalesL(true);try{const d=await apiCall("sales_estimator");setSalesD(d);}catch{}setSalesL(false);}} disabled={salesL||!pf.name}>{salesL?"â³ Estimating...":"ðŸ“Š Estimate Sales"}</button>
+            {!pf.name&&<div className="errbanner"> ️ Run product analysis first</div>}
+            <button className="cbtn" onClick={async()=>{setSalesL(true);try{const d=await apiCall("sales_estimator");setSalesD(d);}catch{}setSalesL(false);}} disabled={salesL||!pf.name}>{salesL?"⏳ Estimating...":"Š Estimate Sales"}</button>
             {salesL&&<div className="ssp"/>}
-            {salesD&&!salesL&&<div style={{marginTop:13}} className="fa"><div className="presult" style={{marginBottom:9}}>{[{l:"Low Units",v:(salesD.monthly_units?.low||0)+" units",c:"#ef4444"},{l:"Avg Units",v:(salesD.monthly_units?.medium||0)+" units",c:"#f59e0b"},{l:"High Units",v:(salesD.monthly_units?.high||0)+" units",c:"#10b981"}].map(r=><div key={r.l} className="prc"><div className="prl">{r.l}</div><div className="prv" style={{color:r.c,fontSize:13}}>{r.v}</div></div>)}</div><div className="presult" style={{marginBottom:9}}>{[{l:"Low Revenue",v:salesD.monthly_revenue?.low,c:"#ef4444"},{l:"Avg Revenue",v:salesD.monthly_revenue?.medium,c:"#f59e0b"},{l:"High Revenue",v:salesD.monthly_revenue?.high,c:"#10b981"}].map(r=><div key={r.l} className="prc"><div className="prl">{r.l}</div><div className="prv" style={{color:r.c,fontSize:12}}>{r.v}</div></div>)}</div>{salesD.tips?.length>0&&<div className="gcard"><div className="gct" style={{marginBottom:5}}>ðŸ’¡ Tips</div>{salesD.tips.map((t,i)=><div key={i} style={{color:"#94a3b8",fontSize:10,padding:"2px 0",display:"flex",gap:4}}><span style={{color:"#10b981"}}>âœ“</span><span>{t}</span></div>)}</div>}</div>}
+            {salesD&&!salesL&&<div style={{marginTop:13}} className="fa"><div className="presult" style={{marginBottom:9}}>{[{l:"Low Units",v:(salesD.monthly_units?.low||0)+" units",c:"#ef4444"},{l:"Avg Units",v:(salesD.monthly_units?.medium||0)+" units",c:"#f59e0b"},{l:"High Units",v:(salesD.monthly_units?.high||0)+" units",c:"#10b981"}].map(r=><div key={r.l} className="prc"><div className="prl">{r.l}</div><div className="prv" style={{color:r.c,fontSize:13}}>{r.v}</div></div>)}</div><div className="presult" style={{marginBottom:9}}>{[{l:"Low Revenue",v:salesD.monthly_revenue?.low,c:"#ef4444"},{l:"Avg Revenue",v:salesD.monthly_revenue?.medium,c:"#f59e0b"},{l:"High Revenue",v:salesD.monthly_revenue?.high,c:"#10b981"}].map(r=><div key={r.l} className="prc"><div className="prl">{r.l}</div><div className="prv" style={{color:r.c,fontSize:12}}>{r.v}</div></div>)}</div>{salesD.tips?.length>0&&<div className="gcard"><div className="gct" style={{marginBottom:5}}>💡 Tips</div>{salesD.tips.map((t,i)=><div key={i} style={{color:"#94a3b8",fontSize:10,padding:"2px 0",display:"flex",gap:4}}><span style={{color:"#10b981"}}>✓</span><span>{t}</span></div>)}</div>}</div>}
           </div>}
 
           {tab==="price" && <div className="fbox fa" style={{position:"relative"}}>{isLocked&&<LockBox/>}
-            <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>ðŸ·ï¸ Price Optimizer</h3>
+            <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>🏷️ Price Optimizer</h3>
             <p style={{color:"#64748b",fontSize:10,marginBottom:11}}>Best price to maximize profit</p>
-            {!pf.name&&<div className="errbanner">âš ï¸ Run product analysis first</div>}
-            <button className="cbtn" style={{background:"linear-gradient(135deg,#f59e0b,#ef4444)"}} onClick={async()=>{setPriceL(true);try{const d=await apiCall("price_optimizer");setPriceD(d);}catch{}setPriceL(false);}} disabled={priceL||!pf.name}>{priceL?"â³ Optimizing...":"ðŸ·ï¸ Optimize Price"}</button>
+            {!pf.name&&<div className="errbanner"> ️ Run product analysis first</div>}
+            <button className="cbtn" style={{background:"linear-gradient(135deg,#f59e0b,#ef4444)"}} onClick={async()=>{setPriceL(true);try{const d=await apiCall("price_optimizer");setPriceD(d);}catch{}setPriceL(false);}} disabled={priceL||!pf.name}>{priceL?"⏳ Optimizing...":"🏷️ Optimize Price"}</button>
             {priceL&&<div className="ssp"/>}
-            {priceD&&!priceL&&<div style={{marginTop:13}} className="fa"><div style={{background:"linear-gradient(135deg,rgba(16,185,129,.1),rgba(6,95,70,.1))",border:"1px solid rgba(16,185,129,.3)",borderRadius:11,padding:13,textAlign:"center",marginBottom:9}}><div style={{fontSize:10,color:"#64748b",marginBottom:2}}>Recommended Price</div><div style={{fontSize:26,fontWeight:900,color:"#10b981"}}>{priceD.recommended_price}</div></div>{priceD.competitor_prices?.length>0&&<div className="gcard" style={{marginBottom:7}}><div className="gct" style={{marginBottom:5}}>âš”ï¸ Competitor Prices</div>{priceD.competitor_prices.map((c,i)=><div key={i} style={{display:"flex",justifyContent:"space-between",padding:"4px 0",borderBottom:"1px solid rgba(255,255,255,.04)",color:"#94a3b8",fontSize:11}}><span>{c.seller}</span><span style={{color:"#f59e0b",fontWeight:600}}>{c.price}</span></div>)}</div>}{priceD.psychological_tricks?.length>0&&<div className="gcard"><div className="gct" style={{marginBottom:5}}>ðŸ§  Pricing Tips</div>{priceD.psychological_tricks.map((t,i)=><div key={i} style={{color:"#94a3b8",fontSize:10,padding:"2px 0",display:"flex",gap:4}}><span style={{color:"#a5b4fc"}}>â†’</span><span>{t}</span></div>)}</div>}</div>}
+            {priceD&&!priceL&&<div style={{marginTop:13}} className="fa"><div style={{background:"linear-gradient(135deg,rgba(16,185,129,.1),rgba(6,95,70,.1))",border:"1px solid rgba(16,185,129,.3)",borderRadius:11,padding:13,textAlign:"center",marginBottom:9}}><div style={{fontSize:10,color:"#64748b",marginBottom:2}}>Recommended Price</div><div style={{fontSize:26,fontWeight:900,color:"#10b981"}}>{priceD.recommended_price}</div></div>{priceD.competitor_prices?.length>0&&<div className="gcard" style={{marginBottom:7}}><div className="gct" style={{marginBottom:5}}>⚔️ Competitor Prices</div>{priceD.competitor_prices.map((c,i)=><div key={i} style={{display:"flex",justifyContent:"space-between",padding:"4px 0",borderBottom:"1px solid rgba(255,255,255,.04)",color:"#94a3b8",fontSize:11}}><span>{c.seller}</span><span style={{color:"#f59e0b",fontWeight:600}}>{c.price}</span></div>)}</div>}{priceD.psychological_tricks?.length>0&&<div className="gcard"><div className="gct" style={{marginBottom:5}}>  Pricing Tips</div>{priceD.psychological_tricks.map((t,i)=><div key={i} style={{color:"#94a3b8",fontSize:10,padding:"2px 0",display:"flex",gap:4}}><span style={{color:"#a5b4fc"}}>†</span><span>{t}</span></div>)}</div>}</div>}
           </div>}
 
           {tab==="inventory" && <div className="fbox fa" style={{position:"relative"}}>{isLocked&&<LockBox/>}
-            <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>ðŸ“¦ Inventory Calculator</h3>
+            <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>📦 Inventory Calculator</h3>
             <p style={{color:"#64748b",fontSize:10,marginBottom:11}}>Plan stock to never overstock</p>
-            {!pf.name&&<div className="errbanner">âš ï¸ Run product analysis first</div>}
+            {!pf.name&&<div className="errbanner"> ️ Run product analysis first</div>}
             <div className="prow"><div className="pfield"><label>Starting Units</label><input type="number" placeholder="50" value={invtF.units} onChange={e=>setInvtF({units:e.target.value})}/></div></div>
-            <button className="gbtn2" style={{background:"linear-gradient(135deg,#6366f1,#8b5cf6)"}} onClick={async()=>{setInvtL(true);try{const d=await apiCall("inventory",{units:invtF.units});setInvtD(d);}catch{}setInvtL(false);}} disabled={invtL||!pf.name}>{invtL?"â³ Calculating...":"ðŸ“¦ Calculate"}</button>
+            <button className="gbtn2" style={{background:"linear-gradient(135deg,#6366f1,#8b5cf6)"}} onClick={async()=>{setInvtL(true);try{const d=await apiCall("inventory",{units:invtF.units});setInvtD(d);}catch{}setInvtL(false);}} disabled={invtL||!pf.name}>{invtL?"⏳ Calculating...":"📦 Calculate"}</button>
             {invtL&&<div className="ssp"/>}
-            {invtD&&!invtL&&<div style={{marginTop:13}} className="fa"><div className="presult" style={{marginBottom:9}}>{[{l:"Starter Stock",v:invtD.recommended_stock?.starter,c:"#10b981"},{l:"Safe Stock",v:invtD.recommended_stock?.safe,c:"#f59e0b"},{l:"Reorder At",v:invtD.reorder_point,c:"#ef4444"}].map(r=><div key={r.l} className="prc"><div className="prl">{r.l}</div><div className="prv" style={{color:r.c,fontSize:11}}>{r.v}</div></div>)}</div><div className="gcard"><div className="gct" style={{marginBottom:5}}>ðŸ“‹ Info</div><div style={{color:"#94a3b8",fontSize:11}}><span style={{color:"#f59e0b"}}>Storage: </span>{invtD.storage_cost}</div><div style={{color:"#94a3b8",fontSize:11,marginTop:2}}><span style={{color:"#a5b4fc"}}>Duration: </span>{invtD.turnover_days}</div><div style={{color:"#94a3b8",fontSize:11,marginTop:2}}><span style={{color:"#ef4444"}}>Risk: </span>{invtD.risk}</div></div></div>}
+            {invtD&&!invtL&&<div style={{marginTop:13}} className="fa"><div className="presult" style={{marginBottom:9}}>{[{l:"Starter Stock",v:invtD.recommended_stock?.starter,c:"#10b981"},{l:"Safe Stock",v:invtD.recommended_stock?.safe,c:"#f59e0b"},{l:"Reorder At",v:invtD.reorder_point,c:"#ef4444"}].map(r=><div key={r.l} className="prc"><div className="prl">{r.l}</div><div className="prv" style={{color:r.c,fontSize:11}}>{r.v}</div></div>)}</div><div className="gcard"><div className="gct" style={{marginBottom:5}}>‹ Info</div><div style={{color:"#94a3b8",fontSize:11}}><span style={{color:"#f59e0b"}}>Storage: </span>{invtD.storage_cost}</div><div style={{color:"#94a3b8",fontSize:11,marginTop:2}}><span style={{color:"#a5b4fc"}}>Duration: </span>{invtD.turnover_days}</div><div style={{color:"#94a3b8",fontSize:11,marginTop:2}}><span style={{color:"#ef4444"}}>Risk: </span>{invtD.risk}</div></div></div>}
           </div>}
 
           {tab==="review" && <div className="fbox fa" style={{position:"relative"}}>{isLocked&&<LockBox/>}
-            <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>â­ Review Analyzer</h3>
+            <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>⭐ Review Analyzer</h3>
             <p style={{color:"#64748b",fontSize:10,marginBottom:11}}>What customers love & hate</p>
-            {!pf.name&&<div className="errbanner">âš ï¸ Run product analysis first</div>}
-            <button className="cbtn" style={{background:"linear-gradient(135deg,#f59e0b,#f97316)"}} onClick={async()=>{setRevL(true);try{const d=await apiCall("review_analyzer");setRevD(d);}catch{}setRevL(false);}} disabled={revL||!pf.name}>{revL?"â³ Analyzing...":"â­ Analyze Reviews"}</button>
+            {!pf.name&&<div className="errbanner"> ️ Run product analysis first</div>}
+            <button className="cbtn" style={{background:"linear-gradient(135deg,#f59e0b,#f97316)"}} onClick={async()=>{setRevL(true);try{const d=await apiCall("review_analyzer");setRevD(d);}catch{}setRevL(false);}} disabled={revL||!pf.name}>{revL?"⏳ Analyzing...":"⭐ Analyze Reviews"}</button>
             {revL&&<div className="ssp"/>}
-            {revD&&!revL&&<div style={{marginTop:13}} className="fa"><div style={{background:"rgba(99,102,241,.07)",border:"1px solid rgba(99,102,241,.2)",borderRadius:10,padding:11,textAlign:"center",marginBottom:9}}><div style={{fontSize:10,color:"#64748b"}}>Sentiment Score</div><div style={{fontSize:22,fontWeight:900,color:"#6366f1"}}>{revD.sentiment_score}</div></div><div className="ccrow" style={{marginBottom:7}}><div className="ccbox"><div className="ccbt" style={{color:"#10b981"}}>â¤ï¸ Love</div>{revD.what_customers_love?.map((l,i)=><div key={i} className="cpt"><span style={{color:"#10b981"}}>+</span><span>{l}</span></div>)}</div><div className="ccbox"><div className="ccbt" style={{color:"#ef4444"}}>ðŸ˜  Hate</div>{revD.common_complaints?.map((c,i)=><div key={i} className="cpt"><span style={{color:"#ef4444"}}>-</span><span>{c}</span></div>)}</div></div>{revD.opportunities?.length>0&&<div className="gcard"><div className="gct" style={{marginBottom:5}}>ðŸ’¡ Opportunities</div>{revD.opportunities.map((o,i)=><div key={i} style={{color:"#94a3b8",fontSize:10,padding:"2px 0",display:"flex",gap:4}}><span style={{color:"#a5b4fc"}}>â†’</span><span>{o}</span></div>)}</div>}</div>}
+            {revD&&!revL&&<div style={{marginTop:13}} className="fa"><div style={{background:"rgba(99,102,241,.07)",border:"1px solid rgba(99,102,241,.2)",borderRadius:10,padding:11,textAlign:"center",marginBottom:9}}><div style={{fontSize:10,color:"#64748b"}}>Sentiment Score</div><div style={{fontSize:22,fontWeight:900,color:"#6366f1"}}>{revD.sentiment_score}</div></div><div className="ccrow" style={{marginBottom:7}}><div className="ccbox"><div className="ccbt" style={{color:"#10b981"}}>❤️ Love</div>{revD.what_customers_love?.map((l,i)=><div key={i} className="cpt"><span style={{color:"#10b981"}}>+</span><span>{l}</span></div>)}</div><div className="ccbox"><div className="ccbt" style={{color:"#ef4444"}}>˜  Hate</div>{revD.common_complaints?.map((c,i)=><div key={i} className="cpt"><span style={{color:"#ef4444"}}>-</span><span>{c}</span></div>)}</div></div>{revD.opportunities?.length>0&&<div className="gcard"><div className="gct" style={{marginBottom:5}}>💡 Opportunities</div>{revD.opportunities.map((o,i)=><div key={i} style={{color:"#94a3b8",fontSize:10,padding:"2px 0",display:"flex",gap:4}}><span style={{color:"#a5b4fc"}}>†</span><span>{o}</span></div>)}</div>}</div>}
           </div>}
 
           {tab==="niche" && <div className="fbox fa" style={{position:"relative"}}>{isLocked&&<LockBox/>}
-            <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>ðŸŽ¯ Niche Finder</h3>
+            <h3 style={{fontWeight:800,fontSize:14,marginBottom:2,color:"#f8fafc"}}>Ž Niche Finder</h3>
             <p style={{color:"#64748b",fontSize:10,marginBottom:11}}>6 untapped profitable niches in India</p>
-            <button className="cbtn" style={{background:"linear-gradient(135deg,#a855f7,#7c3aed)"}} onClick={async()=>{setNicheL(true);try{const d=await apiCall("niche_finder");setNicheD(d);}catch{}setNicheL(false);}} disabled={nicheL}>{nicheL?"â³ Finding...":"ðŸŽ¯ Find Niches"}</button>
+            <button className="cbtn" style={{background:"linear-gradient(135deg,#a855f7,#7c3aed)"}} onClick={async()=>{setNicheL(true);try{const d=await apiCall("niche_finder");setNicheD(d);}catch{}setNicheL(false);}} disabled={nicheL}>{nicheL?"⏳ Finding...":"Ž Find Niches"}</button>
             {nicheL&&<div className="ssp"/>}
-            {nicheD&&!nicheL&&<div className="tgrid fa" style={{marginTop:13}}>{nicheD.niches?.map((n,i)=><div key={i} className="tcard"><div style={{display:"flex",alignItems:"center",gap:5,marginBottom:5}}><div className="trnk">{i+1}</div><div style={{fontWeight:700,fontSize:11,color:"#e2e8f0"}}>{n.name}</div></div><div style={{display:"flex",gap:3,flexWrap:"wrap",marginBottom:4}}><span style={{background:"rgba(16,185,129,.1)",color:"#10b981",borderRadius:5,padding:"1px 5px",fontSize:9,fontWeight:600}}>Comp: {n.competition}</span><span style={{background:"rgba(245,158,11,.1)",color:"#f59e0b",borderRadius:5,padding:"1px 5px",fontSize:9,fontWeight:600}}>Margin: {n.profit_margin}</span></div><div style={{color:"#64748b",fontSize:10,marginBottom:4,lineHeight:1.5}}>{n.why_untapped}</div><div style={{color:"#a5b4fc",fontSize:9,marginBottom:3}}>ðŸ’° {n.investment}</div><div style={{display:"flex",gap:3,flexWrap:"wrap"}}>{n.example_products?.map((p,j)=><span key={j} className="tc">{p}</span>)}</div><div style={{marginTop:4,fontSize:9,color:n.trend==="Growing"?"#10b981":"#f59e0b",fontWeight:600}}>ðŸ“ˆ {n.trend}</div></div>)}</div>}
+            {nicheD&&!nicheL&&<div className="tgrid fa" style={{marginTop:13}}>{nicheD.niches?.map((n,i)=><div key={i} className="tcard"><div style={{display:"flex",alignItems:"center",gap:5,marginBottom:5}}><div className="trnk">{i+1}</div><div style={{fontWeight:700,fontSize:11,color:"#e2e8f0"}}>{n.name}</div></div><div style={{display:"flex",gap:3,flexWrap:"wrap",marginBottom:4}}><span style={{background:"rgba(16,185,129,.1)",color:"#10b981",borderRadius:5,padding:"1px 5px",fontSize:9,fontWeight:600}}>Comp: {n.competition}</span><span style={{background:"rgba(245,158,11,.1)",color:"#f59e0b",borderRadius:5,padding:"1px 5px",fontSize:9,fontWeight:600}}>Margin: {n.profit_margin}</span></div><div style={{color:"#64748b",fontSize:10,marginBottom:4,lineHeight:1.5}}>{n.why_untapped}</div><div style={{color:"#a5b4fc",fontSize:9,marginBottom:3}}>💰 {n.investment}</div><div style={{display:"flex",gap:3,flexWrap:"wrap"}}>{n.example_products?.map((p,j)=><span key={j} className="tc">{p}</span>)}</div><div style={{marginTop:4,fontSize:9,color:n.trend==="Growing"?"#10b981":"#f59e0b",fontWeight:600}}>ˆ {n.trend}</div></div>)}</div>}
           </div>}
 
           {/* GST CALCULATOR */}
@@ -1428,7 +1428,7 @@ export default function App() {
           {tab==="shipping"&&(
             <div className="fbox fa">
               <h3 className="ict">Shipping Cost Comparator</h3>
-              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Major couriers compare karo â€” best rate dhundho</p>
+              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Major couriers compare karo — best rate dhundho</p>
               <div className="prow">
                 <div className="pfield"><label>Weight (kg)</label><input type="number" placeholder="0.5" step="0.1" value={shipF.weight} onChange={e=>setShipF({...shipF,weight:e.target.value})}/></div>
                 <div className="pfield"><label>Zone</label>
@@ -1481,7 +1481,7 @@ export default function App() {
             <div className="fbox fa" style={{position:"relative"}}>
               {isLocked&&<LockBox/>}
               <h3 className="ict">Compare Products</h3>
-              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>2 products side by side â€” konsa better hai?</p>
+              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>2 products side by side — konsa better hai?</p>
               <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginBottom:12}}>
                 <div style={{background:"rgba(2,8,23,.5)",border:"1px solid rgba(99,102,241,.2)",borderRadius:10,padding:10}}>
                   <div style={{fontSize:10,fontWeight:800,color:"#a5b4fc",marginBottom:7}}>PRODUCT A</div>
@@ -1658,7 +1658,7 @@ export default function App() {
                   </div>
                   <div style={{background:"rgba(15,23,42,.6)",border:"1px solid #1e293b",borderRadius:10,padding:11,marginTop:10}}>
                     <div style={{fontWeight:700,color:"#e2e8f0",fontSize:11,marginBottom:7}}>ROAS Benchmark</div>
-                    {[{l:"4x+",d:"Excellent â€” Budget badhao",c:"#10b981"},{l:"2x-4x",d:"Good â€” Optimize karo",c:"#f59e0b"},{l:"1x-2x",d:"Break Even â€” Fix karo",c:"#f97316"},{l:"Below 1x",d:"Loss â€” Band karo",c:"#ef4444"}].map((b,i)=>(
+                    {[{l:"4x+",d:"Excellent — Budget badhao",c:"#10b981"},{l:"2x-4x",d:"Good — Optimize karo",c:"#f59e0b"},{l:"1x-2x",d:"Break Even — Fix karo",c:"#f97316"},{l:"Below 1x",d:"Loss — Band karo",c:"#ef4444"}].map((b,i)=>(
                       <div key={i} style={{display:"flex",alignItems:"center",gap:8,padding:"4px 0",borderBottom:i<3?"1px solid rgba(255,255,255,.04)":"none"}}>
                         <div style={{width:50,fontSize:10,fontWeight:800,color:b.c}}>{b.l}</div>
                         <div style={{fontSize:10,color:"#64748b"}}>{b.d}</div>
@@ -1675,7 +1675,7 @@ export default function App() {
             <div className="fbox fa" style={{position:"relative"}}>
               {isLocked&&<LockBox/>}
               <h3 className="ict">Bundle Product Creator</h3>
-              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Single product se zyada margin â€” smart bundles banao</p>
+              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Single product se zyada margin — smart bundles banao</p>
               {!pf.name&&<div className="errbanner">Pehle product analyze karo</div>}
               <button className="gbtn2" style={{background:"linear-gradient(135deg,#ec4899,#be185d)"}} disabled={bundleL||!pf.name} onClick={async()=>{setBundleL(true);try{const d=await apiCall("bundle_creator");setBundleD(d);}catch{showT("Failed");}setBundleL(false);}}>{bundleL?"Creating...":"Create Bundle Ideas"}</button>
               {bundleL&&<div className="ssp"/>}
@@ -1707,7 +1707,7 @@ export default function App() {
             <div className="fbox fa" style={{position:"relative"}}>
               {isLocked&&<LockBox/>}
               <h3 className="ict">Return and Refund Manager</h3>
-              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Return rate kam karo â€” AI se smart strategy lo</p>
+              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Return rate kam karo — AI se smart strategy lo</p>
               {!pf.name&&<div className="errbanner">Pehle product analyze karo</div>}
               <button className="gbtn2" style={{background:"linear-gradient(135deg,#ef4444,#dc2626)"}} disabled={returnL||!pf.name} onClick={async()=>{setReturnL(true);try{const d=await apiCall("return_manager");setReturnD(d);}catch{showT("Failed");}setReturnL(false);}}>{returnL?"Analyzing...":"Analyze Returns"}</button>
               {returnL&&<div className="ssp"/>}
@@ -1757,7 +1757,7 @@ export default function App() {
             <div className="fbox fa" style={{position:"relative"}}>
               {isLocked&&<LockBox/>}
               <h3 className="ict">Instagram Caption Generator</h3>
-              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>5 captions + hashtags â€” Instagram ke liye ready</p>
+              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>5 captions + hashtags — Instagram ke liye ready</p>
               {!pf.name&&<div className="errbanner">Pehle product analyze karo</div>}
               <button className="gbtn2" style={{background:"linear-gradient(135deg,#e1306c,#c13584)"}} disabled={captionL||!pf.name} onClick={async()=>{setCaptionL(true);try{const d=await apiCall("instagram_captions");setCaptionD(d);}catch{showT("Failed");}setCaptionL(false);}}>{captionL?"Generating...":"Generate Captions"}</button>
               {captionL&&<div className="ssp"/>}
@@ -1783,7 +1783,7 @@ export default function App() {
             <div className="fbox fa" style={{position:"relative"}}>
               {isLocked&&<LockBox/>}
               <h3 className="ict">Product Title Optimizer</h3>
-              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>SEO-optimized title â€” platform ke hisab se</p>
+              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>SEO-optimized title — platform ke hisab se</p>
               {!pf.name&&<div className="errbanner">Pehle product analyze karo</div>}
               <button className="gbtn2" style={{background:"linear-gradient(135deg,#8b5cf6,#7c3aed)"}} disabled={titleL||!pf.name} onClick={async()=>{setTitleL(true);try{const d=await apiCall("title_optimizer");setTitleD(d);}catch{showT("Failed");}setTitleL(false);}}>{titleL?"Optimizing...":"Optimize Title"}</button>
               {titleL&&<div className="ssp"/>}
@@ -1811,7 +1811,7 @@ export default function App() {
             <div className="fbox fa" style={{position:"relative"}}>
               {isLocked&&<LockBox/>}
               <h3 className="ict">Listing Quality Checker</h3>
-              <p style={{color:dark?"#64748b":"#6b7280",fontSize:10,marginBottom:12}}>Apni listing ka AI score lo â€” kya improve karo</p>
+              <p style={{color:dark?"#64748b":"#6b7280",fontSize:10,marginBottom:12}}>Apni listing ka AI score lo — kya improve karo</p>
               {!pf.name&&<div className="errbanner">Pehle product analyze karo</div>}
               <button className="gbtn2" style={{background:"linear-gradient(135deg,#0ea5e9,#0284c7)"}} disabled={listingL||!pf.name} onClick={async()=>{setListingL(true);try{const d=await apiCall("listing_checker");setListingD(d);}catch{showT("Failed");}setListingL(false);}}>{listingL?"Checking...":"Check Listing Quality"}</button>
               {listingL&&<div className="ssp"/>}
