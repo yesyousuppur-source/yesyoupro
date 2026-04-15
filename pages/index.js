@@ -569,7 +569,7 @@ export default function App() {
     .niw{position:relative;margin-bottom:9px}
     .nii{position:absolute;left:13px;top:50%;transform:translateY(-50%);font-size:14px;pointer-events:none}
     .ni{width:100%;background:#e8ecf1;border:none;border-radius:12px;padding:11px 13px 11px 38px;color:#1a1a2e;font-size:13px;font-family:Inter,sans-serif;outline:none;box-shadow:inset 4px 4px 10px #c8cdd5,inset -4px -4px 10px #fff}
-    .ni::placeholder{color:#adb5bd}
+    .ni::placeholder{color:"#adb5bd"}
     .eye{position:absolute;right:11px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:16px}
     .nerr{color:#e53e3e;font-size:11px;margin:-4px 0 8px 3px}
     .nbtn{width:100%;background:linear-gradient(135deg,#6366f1,#8b5cf6);border:none;border-radius:12px;padding:12px 0;color:#fff;font-weight:800;font-size:13px;cursor:pointer;font-family:Inter,sans-serif;box-shadow:3px 3px 10px rgba(99,102,241,.4);margin-bottom:9px}
@@ -586,12 +586,12 @@ export default function App() {
     .sn{font-size:11px;font-weight:700;color:#1a1a2e;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .se{font-size:10px;color:#8b8fa8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .rem{display:flex;align-items:center;gap:6px;margin-bottom:9px}
-    .rem input{width:15px;height:15px;accent-color:#6366f1}
+    .rem input{width:15px;height:15px;accent-color:"#6366f1"}
     .rem label{color:#8b8fa8;font-size:11px;flex:1}
     .fgot{color:#6366f1;font-size:11px;font-weight:600;cursor:pointer}
     .swtxt{color:#8b8fa8;font-size:11px;text-align:center;margin-top:9px}
     .swlnk{color:#6366f1;cursor:pointer;font-weight:700}
-    .dash{min-height:100vh;background:#020817;color:#f8fafc}
+    .dash{min-height:100vh;background:#020817;color:"#f8fafc"}
     .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.04);background:rgba(2,8,23,.95);backdrop-filter:blur(20px);position:sticky;top:0;z-index:100}
     .logo{font-weight:900;font-size:16px;background:linear-gradient(135deg,#6366f1,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
     .upill{background:rgba(15,23,42,.9);border:1px solid #1e293b;border-radius:100px;padding:4px 11px;font-size:11px;display:flex;align-items:center;gap:6px}
@@ -618,10 +618,10 @@ export default function App() {
     .bnr-g{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.2);border-radius:11px;padding:9px 13px;margin-bottom:13px;display:flex;align-items:center;justify-content:space-between;gap:7px}
     .bnr-r{background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.2);border-radius:11px;padding:9px 13px;margin-bottom:13px;display:flex;align-items:center;justify-content:space-between;gap:7px}
     .icard{background:rgba(15,23,42,.8);border:1px solid rgba(99,102,241,.15);border-radius:18px;padding:18px 14px;margin-bottom:26px}
-    .ict{font-weight:800;font-size:15px;margin-bottom:15px;color:#f8fafc}
+    .ict{font-weight:800;font-size:15px;margin-bottom:15px;color:"#f8fafc"}
     .ilbl{font-size:10px;color:#64748b;font-weight:700;text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:5px}
     .di{width:100%;background:#0f172a;border:1px solid #1e293b;border-radius:10px;padding:9px 11px;color:#f8fafc;font-size:13px;font-family:Inter,sans-serif;outline:none;transition:border-color .2s}
-    .di:focus{border-color:#6366f1}
+    .di:focus{border-color:"#6366f1"}
     .pick-btn{width:100%;background:rgba(15,23,42,.7);border:1px solid #1e293b;border-radius:10px;padding:10px 13px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;color:#64748b;font-size:12px;font-weight:600;font-family:Inter,sans-serif;transition:all .2s;text-align:left;margin-bottom:4px}
     .pick-btn.sel{border-color:rgba(99,102,241,.4);color:#f8fafc;background:rgba(99,102,241,.08)}
     .pick-drop{background:#0a1228;border:1px solid rgba(99,102,241,.2);border-radius:11px;padding:11px 9px;animation:fadeIn .2s ease;max-height:280px;overflow-y:auto;margin-bottom:9px}
@@ -631,7 +631,7 @@ export default function App() {
     .pg-lbl:first-child{margin-top:0}
     .chips{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:3px}
     .chip{display:flex;align-items:center;gap:4px;padding:4px 9px;border-radius:7px;border:1px solid #1e293b;background:rgba(15,23,42,.6);cursor:pointer;font-size:11px;font-weight:500;color:#94a3b8;font-family:Inter,sans-serif;transition:all .15s}
-    .chip:hover{border-color:rgba(99,102,241,.4);color:#a5b4fc}
+    .chip:hover{border-color:rgba(99,102,241,.4);color:"#a5b4fc"}
     .chip.on{color:#fff;border-color:transparent;font-weight:700}
     .errbanner{background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.25);border-radius:9px;padding:8px 11px;color:#ef4444;font-size:11px;margin-bottom:11px}
     .abtn{width:100%;background:linear-gradient(135deg,#6366f1,#8b5cf6,#a855f7);border:none;border-radius:12px;padding:13px 0;color:#fff;font-weight:800;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;box-shadow:0 6px 22px rgba(99,102,241,.3);font-family:Inter,sans-serif;margin-top:13px}
@@ -639,14 +639,14 @@ export default function App() {
     .loverlay{position:fixed;inset:0;background:rgba(2,8,23,.97);display:flex;align-items:center;justify-content:center;z-index:7000}
     .lcard{background:rgba(15,23,42,.95);border:1px solid rgba(99,102,241,.25);border-radius:18px;padding:34px 26px;text-align:center;max-width:310px;width:90%}
     .lbrain{font-size:46px;margin-bottom:13px;animation:pulse 1.2s ease infinite}
-    .lt1{font-weight:900;font-size:17px;margin-bottom:3px;color:#f8fafc}
+    .lt1{font-weight:900;font-size:17px;margin-bottom:3px;color:"#f8fafc"}
     .lt2{color:#64748b;font-size:11px;margin-bottom:17px}
     .lstps{display:flex;flex-direction:column;gap:5px}
     .lstp{display:flex;align-items:center;gap:7px;padding:5px 9px;border-radius:7px;border:1px solid transparent;font-size:11px;color:#475569;transition:all .3s}
     .lstp.done{color:#10b981;border-color:rgba(16,185,129,.2);background:rgba(16,185,129,.05)}
     .lstp.act{color:#a5b4fc;border-color:rgba(99,102,241,.25);background:rgba(99,102,241,.07)}
     .gcard{background:rgba(15,23,42,.75);border:1px solid #1e293b;border-radius:13px;padding:15px;margin-bottom:8px}
-    .gct{font-weight:800;font-size:12px;color:#e2e8f0}
+    .gct{font-weight:800;font-size:12px;color:"#e2e8f0"}
     .gctx{color:#94a3b8;line-height:1.7;font-size:12px}
     .mrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:11px}
     .mc{background:rgba(15,23,42,.85);border:1px solid #1e293b;border-radius:12px;padding:13px 10px;position:relative;overflow:hidden}
@@ -661,7 +661,7 @@ export default function App() {
     .cpybtn{background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.2);border-radius:5px;padding:2px 7px;cursor:pointer;color:#a5b4fc;font-size:10px;font-weight:600;font-family:Inter,sans-serif;margin-left:5px}
     .psec{background:rgba(15,23,42,.8);border:1px solid rgba(245,158,11,.2);border-radius:16px;padding:17px 13px;margin-bottom:8px;position:relative}
     .psh{display:flex;align-items:center;justify-content:space-between;margin-bottom:3px}
-    .pst{font-weight:800;font-size:13px;color:#e2e8f0}
+    .pst{font-weight:800;font-size:13px;color:"#e2e8f0"}
     .pss{color:#64748b;font-size:10px;margin-bottom:13px}
     .pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:9px}
     .ppb{background:rgba(2,8,23,.7);border:1.5px solid #1e293b;border-radius:10px;padding:9px 3px 7px;text-align:center;cursor:pointer;transition:all .2s;position:relative}
@@ -684,13 +684,13 @@ export default function App() {
     .ftabs::-webkit-scrollbar-thumb{background:#1e293b;border-radius:10px}
     .ftab{flex-shrink:0;padding:6px 11px;background:rgba(15,23,42,.7);border:1px solid #1e293b;border-radius:100px;color:#64748b;font-size:11px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif;transition:all .2s;white-space:nowrap}
     .ftab.on{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;border-color:transparent;box-shadow:0 3px 11px rgba(99,102,241,.3)}
-    .ftab:hover:not(.on){border-color:rgba(99,102,241,.3);color:#a5b4fc}
+    .ftab:hover:not(.on){border-color:rgba(99,102,241,.3);color:"#a5b4fc"}
     .fbox{background:rgba(15,23,42,.8);border:1px solid rgba(99,102,241,.12);border-radius:16px;padding:17px 13px;margin-bottom:9px;position:relative}
     .prow{display:grid;grid-template-columns:repeat(auto-fit,minmax(105px,1fr));gap:7px;margin-bottom:10px}
     .pfield{display:flex;flex-direction:column;gap:3px}
     .pfield label{font-size:9px;color:#64748b;font-weight:700;text-transform:uppercase}
     .pfield input,.pfield select{background:#0f172a;border:1px solid #1e293b;border-radius:8px;padding:8px 9px;color:#f8fafc;font-size:12px;font-family:Inter,sans-serif;outline:none}
-    .pfield input:focus,.pfield select:focus{border-color:#6366f1}
+    .pfield input:focus,.pfield select:focus{border-color:"#6366f1"}
     .presult{display:grid;grid-template-columns:repeat(auto-fit,minmax(95px,1fr));gap:7px;margin-top:9px;animation:fadeIn .4s ease}
     .prc{background:rgba(2,8,23,.6);border:1px solid #1e293b;border-radius:9px;padding:10px;text-align:center}
     .prl{font-size:9px;color:#64748b;margin-bottom:3px;font-weight:600;text-transform:uppercase}
@@ -712,9 +712,9 @@ export default function App() {
     .mov{position:fixed;inset:0;background:rgba(0,0,0,.9);display:flex;align-items:center;justify-content:center;z-index:8000;backdrop-filter:blur(8px)}
     .pm{background:linear-gradient(180deg,#0f172a,#020817);border:1px solid rgba(245,158,11,.25);border-radius:22px;padding:26px 19px;max-width:420px;width:92%;text-align:center;animation:scaleIn .3s ease;max-height:90vh;overflow-y:auto}
     .pb2{display:inline-block;background:linear-gradient(135deg,#f59e0b,#ef4444);border-radius:100px;padding:4px 13px;font-size:10px;font-weight:800;color:#fff;margin-bottom:8px}
-    .ptitle{font-weight:900;font-size:19px;margin-bottom:3px;color:#f8fafc}
+    .ptitle{font-weight:900;font-size:19px;margin-bottom:3px;color:"#f8fafc"}
     .ppr{font-weight:900;font-size:32px;background:linear-gradient(135deg,#f59e0b,#ef4444);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:3px}
-    .ppr span{font-size:11px;-webkit-text-fill-color:#94a3b8}
+    .ppr span{font-size:11px;-webkit-text-fill-color:"#94a3b8"}
     .phigh{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.25);border-radius:10px;padding:9px;margin-bottom:12px;color:#10b981;font-size:11px;font-weight:600;line-height:1.6;text-align:left}
     .pflist{display:flex;flex-direction:column;gap:4px;margin-bottom:15px;text-align:left}
     .pfi{color:#cbd5e1;font-size:11px;padding:5px 9px;background:rgba(255,255,255,.02);border-radius:7px;border:1px solid rgba(255,255,255,.03)}
@@ -736,7 +736,7 @@ export default function App() {
     .pru{display:flex;align-items:center;gap:9px}
     .pra{width:42px;height:42px;background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:17px;color:#fff;overflow:hidden;flex-shrink:0}
     .pra img{width:100%;height:100%;object-fit:cover}
-    .prn{font-weight:800;font-size:14px;color:#f8fafc}
+    .prn{font-weight:800;font-size:14px;color:"#f8fafc"}
     .pre{font-size:11px;color:#64748b;margin-top:1px}
     .prpl{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:100px;font-size:10px;font-weight:700;margin-top:3px}
     .prcl{background:rgba(255,255,255,.05);border:none;border-radius:50%;width:29px;height:29px;cursor:pointer;color:#94a3b8;font-size:15px;display:flex;align-items:center;justify-content:center;font-family:Inter,sans-serif}
@@ -754,7 +754,7 @@ export default function App() {
     .tp{font-size:11px;color:#94a3b8;line-height:1.65}
     .qbox{background:rgba(2,8,23,.5);border:1px solid #1e293b;border-radius:9px;padding:3px}
     .qinp{width:100%;background:none;border:none;color:#f8fafc;font-size:12px;font-family:Inter,sans-serif;padding:9px;outline:none;resize:none;min-height:85px;line-height:1.6}
-    .qinp::placeholder{color:#475569}
+    .qinp::placeholder{color:"#475569"}
     footer{text-align:center;padding:15px;color:#334155;font-size:10px;border-top:1px solid rgba(255,255,255,.03)}
     @media(max-width:600px){.nav{padding:10px 11px}.dc{padding:18px 9px 60px}.pgrid{gap:4px}.ppb{padding:8px 2px 6px}.nc{padding:24px 14px}.icard{padding:15px 11px}}
     /* ── LIGHT THEME ── */
@@ -776,7 +776,7 @@ export default function App() {
     .light .pfield input,.light .pfield select{background:#f8fafc!important;border-color:#d1d5db!important;color:#1a1a2e!important}
     .light .prc{background:#f8fafc!important;border-color:#e2e8f0!important}
     .light .prl{color:#6b7280!important}
-    .light .prv{color:#1a1a2e}
+    .light .prv{color:"#1a1a2e"}
     .light .ftab{background:#f8fafc!important;border-color:#e2e8f0!important;color:#6b7280!important}
     .light .ftab.on{background:linear-gradient(135deg,#6366f1,#8b5cf6)!important;color:#fff!important;border-color:transparent!important}
     .light .cc{background:#f8fafc!important;border-color:#e2e8f0!important}
@@ -920,16 +920,16 @@ export default function App() {
               }
             </div>
             {/* Theme Toggle */}
-            <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",background:dark?"rgba(15,23,42,.6)":"#f8fafc",border:dark?"1px solid #1e293b":"1px solid #e2e8f0",borderRadius:11,padding:"10px 14px",marginBottom:10}}>
+            <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",background:rgba(15,23,42,.6),border:1px solid #1e293b,borderRadius:11,padding:"10px 14px",marginBottom:10}}>
               <div style={{display:"flex",alignItems:"center",gap:8}}>
-                <span style={{fontSize:16}}>{dark?"🌙":"☀️"}</span>
+                <span style={{fontSize:16}}>{🌙}</span>
                 <div>
-                  <div style={{fontSize:12,fontWeight:700,color:dark?"#e2e8f0":"#1a1a2e"}}>{dark?"Dark Mode":"Light Mode"}</div>
-                  <div style={{fontSize:10,color:dark?"#64748b":"#6b7280"}}>Click to switch</div>
+                  <div style={{fontSize:12,fontWeight:700,color:"#e2e8f0"}}>{Dark Mode}</div>
+                  <div style={{fontSize:10,color:"#64748b"}}>Click to switch</div>
                 </div>
               </div>
-              <div onClick={toggleTheme} style={{width:48,height:26,borderRadius:100,background:dark?"rgba(99,102,241,.2)":"#d1d5db",padding:3,cursor:"pointer",position:"relative",transition:"all .3s"}}>
-                <div style={{width:20,height:20,borderRadius:"50%",background:dark?"linear-gradient(135deg,#6366f1,#8b5cf6)":"linear-gradient(135deg,#f59e0b,#f97316)",position:"absolute",top:3,left:dark?3:25,transition:"left .25s ease",display:"flex",alignItems:"center",justifyContent:"center",fontSize:10}}>{dark?"🌙":"☀️"}</div>
+              <div onClick={toggleTheme} style={{width:48,height:26,borderRadius:100,background:rgba(99,102,241,.2),padding:3,cursor:"pointer",position:"relative",transition:"all .3s"}}>
+                <div style={{width:20,height:20,borderRadius:"50%",background:"linear-gradient(135deg,#6366f1,#8b5cf6)",position:"absolute",top:3,left:dark?3:25,transition:"left .25s ease",display:"flex",alignItems:"center",justifyContent:"center",fontSize:10}}>{🌙}</div>
               </div>
             </div>
             <div style={{textAlign:"center",fontSize:10,color:"#334155"}}>YesYouPro · yesyoupro.com</div>
@@ -1926,7 +1926,7 @@ export default function App() {
             <div className="fbox fa" style={{position:"relative"}}>
               {isLocked&&<LockBox/>}
               <h3 className="ict">Listing Quality Checker</h3>
-              <p style={{color:dark?"#64748b":"#6b7280",fontSize:10,marginBottom:12}}>Apni listing ka AI score lo — kya improve karo</p>
+              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Apni listing ka AI score lo — kya improve karo</p>
               {!pf.name&&<div className="errbanner">Pehle product analyze karo</div>}
               <button className="gbtn2" style={{background:"linear-gradient(135deg,#0ea5e9,#0284c7)"}} disabled={listingL||!pf.name} onClick={async()=>{setListingL(true);try{const d=await apiCall("listing_checker");setListingD(d);}catch{showT("Failed");}setListingL(false);}}>{listingL?"Checking...":"Check Listing Quality"}</button>
               {listingL&&<div className="ssp"/>}
@@ -1950,7 +1950,7 @@ export default function App() {
             <div className="fbox fa" style={{position:"relative"}}>
               {isLocked&&<LockBox/>}
               <h3 className="ict">Review Reply Generator</h3>
-              <p style={{color:dark?"#64748b":"#6b7280",fontSize:10,marginBottom:12}}>Negative/Positive review ka professional reply</p>
+              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Negative/Positive review ka professional reply</p>
               <div style={{marginBottom:10}}>
                 <label className="ilbl">Review Type</label>
                 <div style={{display:"flex",gap:7,marginTop:5}}>
@@ -1971,7 +1971,7 @@ export default function App() {
                         <div style={{fontWeight:700,fontSize:10,color:"#f59e0b"}}>{r.tone}</div>
                         <button onClick={()=>navigator.clipboard?.writeText(r.text).then(()=>showT("Copied!"))} style={{background:"rgba(245,158,11,.12)",border:"1px solid rgba(245,158,11,.25)",borderRadius:6,padding:"3px 9px",color:"#f59e0b",fontSize:10,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>Copy</button>
                       </div>
-                      <p style={{color:dark?"#94a3b8":"#374151",fontSize:11,lineHeight:1.75}}>{r.text}</p>
+                      <p style={{color:"#94a3b8",fontSize:11,lineHeight:1.75}}>{r.text}</p>
                     </div>
                   ))}
                 </div>
@@ -1984,7 +1984,7 @@ export default function App() {
             <div className="fbox fa" style={{position:"relative"}}>
               {isLocked&&<LockBox/>}
               <h3 className="ict">Ad Copy Generator</h3>
-              <p style={{color:dark?"#64748b":"#6b7280",fontSize:10,marginBottom:12}}>7 platforms ke liye ready-made ad texts</p>
+              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>7 platforms ke liye ready-made ad texts</p>
               {!pf.name&&<div className="errbanner">Pehle product analyze karo</div>}
               <label className="ilbl">Platform Select Karo</label>
               <div style={{display:"flex",flexWrap:"wrap",gap:6,marginBottom:12,marginTop:5}}>
@@ -2009,12 +2009,12 @@ export default function App() {
                 <div style={{marginTop:12}} className="fa">
                   <div style={{background:"rgba(99,102,241,.08)",border:"1px solid rgba(99,102,241,.2)",borderRadius:10,padding:"7px 12px",marginBottom:10,fontSize:11,color:"#a5b4fc",fontWeight:600}}>{adCopyPlat} Ad Copy Ready</div>
                   {adCopyD.copies?.map((c,i)=>(
-                    <div key={i} style={{background:dark?"rgba(2,8,23,.5)":"#f8fafc",border:dark?"1px solid #1e293b":"1px solid #e2e8f0",borderRadius:11,padding:12,marginBottom:8}}>
+                    <div key={i} style={{background:rgba(2,8,23,.5),border:1px solid #1e293b,borderRadius:11,padding:12,marginBottom:8}}>
                       <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:6}}>
                         <div style={{fontWeight:700,fontSize:10,color:"#a5b4fc"}}>{c.format}</div>
                         <button onClick={()=>navigator.clipboard?.writeText(c.text).then(()=>showT("Copied!"))} style={{background:"rgba(99,102,241,.1)",border:"1px solid rgba(99,102,241,.2)",borderRadius:6,padding:"3px 9px",color:"#a5b4fc",fontSize:10,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>Copy</button>
                       </div>
-                      <p style={{color:dark?"#e2e8f0":"#374151",fontSize:11,lineHeight:1.7}}>{c.text}</p>
+                      <p style={{color:"#e2e8f0",fontSize:11,lineHeight:1.7}}>{c.text}</p>
                       {c.cta&&<p style={{color:"#10b981",fontSize:10,marginTop:5,fontWeight:600}}>CTA: {c.cta}</p>}
                     </div>
                   ))}
@@ -2027,7 +2027,7 @@ export default function App() {
           {tab==="cashflow"&&(
             <div className="fbox fa">
               <h3 className="ict">Cash Flow Calculator</h3>
-              <p style={{color:dark?"#64748b":"#6b7280",fontSize:10,marginBottom:12}}>Net cash in hand aur reorder capacity</p>
+              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Net cash in hand aur reorder capacity</p>
               <div className="prow">
                 <div className="pfield"><label>Total Investment (Rs.)</label><input type="number" placeholder="10000" value={cashF.invest} onChange={e=>setCashF({...cashF,invest:e.target.value})}/></div>
                 <div className="pfield"><label>Total Revenue (Rs.)</label><input type="number" placeholder="15000" value={cashF.revenue} onChange={e=>setCashF({...cashF,revenue:e.target.value})}/></div>
@@ -2057,19 +2057,19 @@ export default function App() {
             <div className="fbox fa" style={{position:"relative"}}>
               {isLocked&&<LockBox/>}
               <h3 className="ict">Supplier Email Generator</h3>
-              <p style={{color:dark?"#64748b":"#6b7280",fontSize:10,marginBottom:12}}>Professional supplier email + negotiation script</p>
+              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Professional supplier email + negotiation script</p>
               {!pf.name&&<div className="errbanner">Pehle product analyze karo</div>}
               <button className="gbtn2" style={{background:"linear-gradient(135deg,#10b981,#059669)"}} disabled={supplierEmailL||!pf.name} onClick={async()=>{setSupplierEmailL(true);try{const d=await apiCall("supplier_email");setSupplierEmailD(d);}catch{showT("Failed");}setSupplierEmailL(false);}}>{supplierEmailL?"Generating...":"Generate Supplier Email"}</button>
               {supplierEmailL&&<div className="ssp"/>}
               {supplierEmailD&&!supplierEmailL&&(
                 <div style={{marginTop:12}} className="fa">
                   {supplierEmailD.emails?.map((em,i)=>(
-                    <div key={i} style={{background:dark?"rgba(16,185,129,.06)":"#f0fdf4",border:"1px solid rgba(16,185,129,.2)",borderRadius:11,padding:12,marginBottom:9}}>
+                    <div key={i} style={{background:rgba(16,185,129,.06),border:"1px solid rgba(16,185,129,.2)",borderRadius:11,padding:12,marginBottom:9}}>
                       <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:7}}>
                         <div style={{fontWeight:700,fontSize:10,color:"#10b981"}}>{em.subject}</div>
                         <button onClick={()=>navigator.clipboard?.writeText("Subject: "+em.subject+"\n\n"+em.body).then(()=>showT("Copied!"))} style={{background:"rgba(16,185,129,.12)",border:"1px solid rgba(16,185,129,.25)",borderRadius:6,padding:"3px 9px",color:"#10b981",fontSize:10,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>Copy</button>
                       </div>
-                      <p style={{color:dark?"#94a3b8":"#374151",fontSize:11,lineHeight:1.8,whiteSpace:"pre-wrap"}}>{em.body}</p>
+                      <p style={{color:"#94a3b8",fontSize:11,lineHeight:1.8,whiteSpace:"pre-wrap"}}>{em.body}</p>
                     </div>
                   ))}
                 </div>
@@ -2082,19 +2082,19 @@ export default function App() {
             <div className="fbox fa" style={{position:"relative"}}>
               {isLocked&&<LockBox/>}
               <h3 className="ict">Return Policy Generator</h3>
-              <p style={{color:dark?"#64748b":"#6b7280",fontSize:10,marginBottom:12}}>Platform-specific customer-friendly return policy</p>
+              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Platform-specific customer-friendly return policy</p>
               {!pf.name&&<div className="errbanner">Pehle product analyze karo</div>}
               <button className="gbtn2" style={{background:"linear-gradient(135deg,#8b5cf6,#7c3aed)"}} disabled={returnPolL||!pf.name} onClick={async()=>{setReturnPolL(true);try{const d=await apiCall("return_policy");setReturnPolD(d);}catch{showT("Failed");}setReturnPolL(false);}}>{returnPolL?"Generating...":"Generate Return Policy"}</button>
               {returnPolL&&<div className="ssp"/>}
               {returnPolD&&!returnPolL&&(
                 <div style={{marginTop:12}} className="fa">
                   {returnPolD.policies?.map((pol,i)=>(
-                    <div key={i} style={{background:dark?"rgba(2,8,23,.5)":"#f8fafc",border:dark?"1px solid rgba(139,92,246,.2)":"1px solid #e2e8f0",borderRadius:11,padding:12,marginBottom:8}}>
+                    <div key={i} style={{background:rgba(2,8,23,.5),border:1px solid rgba(139,92,246,.2),borderRadius:11,padding:12,marginBottom:8}}>
                       <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:6}}>
                         <div style={{fontWeight:700,fontSize:10,color:"#a5b4fc"}}>{pol.platform}</div>
                         <button onClick={()=>navigator.clipboard?.writeText(pol.text).then(()=>showT("Copied!"))} style={{background:"rgba(139,92,246,.1)",border:"1px solid rgba(139,92,246,.2)",borderRadius:6,padding:"3px 9px",color:"#a5b4fc",fontSize:10,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>Copy</button>
                       </div>
-                      <p style={{color:dark?"#94a3b8":"#374151",fontSize:11,lineHeight:1.75}}>{pol.text}</p>
+                      <p style={{color:"#94a3b8",fontSize:11,lineHeight:1.75}}>{pol.text}</p>
                     </div>
                   ))}
                 </div>
@@ -2107,7 +2107,7 @@ export default function App() {
             <div className="fbox fa" style={{position:"relative"}}>
               {isLocked&&<LockBox/>}
               <h3 className="ict">Product Compliance Checker</h3>
-              <p style={{color:dark?"#64748b":"#6b7280",fontSize:10,marginBottom:12}}>GST slab, certifications aur legal requirements</p>
+              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>GST slab, certifications aur legal requirements</p>
               {!pf.name&&<div className="errbanner">Pehle product analyze karo</div>}
               <button className="gbtn2" style={{background:"linear-gradient(135deg,#0ea5e9,#0369a1)"}} disabled={compliL||!pf.name} onClick={async()=>{setCompliL(true);try{const d=await apiCall("compliance_check");setCompliD(d);}catch{showT("Failed");}setCompliL(false);}}>{compliL?"Checking...":"Check Compliance"}</button>
               {compliL&&<div className="ssp"/>}
