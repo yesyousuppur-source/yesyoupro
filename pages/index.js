@@ -855,7 +855,7 @@ export default function App() {
           <label className="ilbl">Name</label>
           <input className="di" placeholder="e.g. Portable Blender, BGMI, YouTube Channel..." value={pf.name} onChange={e=>setPf({...pf,name:e.target.value})} style={{marginBottom:10}}/>
           <label className="ilbl">Category</label>
-          <button className="pick-btn"+(pf.cat?" sel":"")} onClick={()=>{setShowCats(!showCats);setShowPlats(false);}}>
+          <button className={"pick-btn"+(pf.cat?" sel":"")} onClick={()=>{setShowCats(!showCats);setShowPlats(false);}}>
             <span style={{display:"flex",alignItems:"center",gap:6}}>
               {pf.cat&&(()=>{const ct=CATS.find(c=>c.id===pf.cat);return ct?.logo?<img src={ct.logo} alt={pf.cat} style={{width:15,height:15,objectFit:"contain",borderRadius:2}} onError={(e)=>{e.target.style.display="none";}}/>:<span style={{fontSize:13}}>{ct?.e||"Cat"}</span>;})()}
               <span>{pf.cat||"Select Category"}</span>
