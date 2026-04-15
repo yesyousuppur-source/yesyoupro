@@ -453,6 +453,14 @@ export default function App() {
       const ni = calcUsage(user);setUsage(ni);
       if(ni.remaining<=0&&curPlan==="free"&&!S.get("yyp_hit_"+user.email)){S.set("yyp_hit_"+user.email,Date.now());setTimeout(()=>startTimer(user),300);}
       setResult(data);showT("✅ Analysis complete!");
+      // Save to history
+      const hEntry={id:Date.now(),name:pf.name,cat:pf.cat,plat:pf.plat,result:data,time:new Date().toLocaleDateString("en-IN")};
+      const prevHist=S.get("yyp_history")||[];
+      // Remove duplicate if same product exists
+      const filtered=prevHist.filter(h=>h.name!==pf.name);
+      const newHist=[hEntry,...filtered].slice(0,10);
+      S.set("yyp_history",newHist);
+      setHistory(newHist);
     }catch(e){setErr("Analysis failed: "+e.message);}
     setLoading(false);
   };
@@ -1134,23 +1142,30 @@ export default function App() {
               </button>
             </div>
           )}
-          {showHist&&history.length>0&&(
+          {showHist&&(
             <div style={{background:"rgba(15,23,42,.85)",border:"1px solid rgba(99,102,241,.2)",borderRadius:14,padding:14,marginBottom:14}}>
               <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:10}}>
-                <div style={{fontWeight:800,fontSize:13,color:"#f8fafc"}}>Recent Analyses</div>
-                <button onClick={()=>{S.set("yyp_history",[]);setHistory([]);setShowHist(false);showT("Cleared!");}} style={{background:"rgba(239,68,68,.1)",border:"1px solid rgba(239,68,68,.2)",borderRadius:7,padding:"3px 9px",color:"#ef4444",fontSize:10,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>Clear</button>
+                <div style={{fontWeight:800,fontSize:13,color:"#f8fafc"}}>Recent Analyses ({history.length}/10)</div>
+                <button onClick={()=>{S.set("yyp_history",[]);setHistory([]);setShowHist(false);showT("Cleared!");}} style={{background:"rgba(239,68,68,.1)",border:"1px solid rgba(239,68,68,.2)",borderRadius:7,padding:"3px 9px",color:"#ef4444",fontSize:10,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>Clear All</button>
               </div>
-              <div style={{display:"flex",flexDirection:"column",gap:6,maxHeight:200,overflowY:"auto"}}>
-                {history.map((h,i)=>(
-                  <div key={i} onClick={()=>{setPf({name:h.name,cat:h.cat,plat:h.plat});setResult(h.result);setShowHist(false);showT("Loaded: "+h.name);}} style={{background:"rgba(2,8,23,.6)",border:"1px solid #1e293b",borderRadius:9,padding:"9px 12px",cursor:"pointer",display:"flex",alignItems:"center",gap:8}}>
-                    <div style={{flex:1,minWidth:0}}>
-                      <div style={{fontWeight:700,fontSize:12,color:"#e2e8f0",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}>{h.name}</div>
-                      <div style={{fontSize:10,color:"#64748b"}}>{h.cat} &middot; {h.plat} &middot; {h.time}</div>
+              {history.length===0?(
+                <div style={{textAlign:"center",padding:"20px 0",color:"#475569",fontSize:11}}>
+                  Koi history nahi — pehle koi product analyze karo!
+                </div>
+              ):(
+                <div style={{display:"flex",flexDirection:"column",gap:6,maxHeight:280,overflowY:"auto"}}>
+                  {history.map((h,i)=>(
+                    <div key={h.id||i} onClick={()=>{setPf({name:h.name,cat:h.cat||"",plat:h.plat||""});setResult(h.result);setShowHist(false);showT("Loaded: "+h.name);}} style={{background:"rgba(2,8,23,.6)",border:"1px solid #1e293b",borderRadius:9,padding:"10px 12px",cursor:"pointer",display:"flex",alignItems:"center",gap:8,transition:"border-color .15s"}} onMouseOver={e=>e.currentTarget.style.borderColor="rgba(99,102,241,.35)"} onMouseOut={e=>e.currentTarget.style.borderColor="#1e293b"}>
+                      <div style={{width:28,height:28,background:"linear-gradient(135deg,#6366f1,#8b5cf6)",borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center",fontSize:11,fontWeight:800,color:"#fff",flexShrink:0}}>{i+1}</div>
+                      <div style={{flex:1,minWidth:0}}>
+                        <div style={{fontWeight:700,fontSize:12,color:"#e2e8f0",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}>{h.name}</div>
+                        <div style={{fontSize:10,color:"#64748b"}}>{h.cat||"—"} &middot; {h.plat||"—"} &middot; {h.time}</div>
+                      </div>
+                      <div style={{fontSize:9,color:"#6366f1",fontWeight:700,flexShrink:0,background:"rgba(99,102,241,.1)",padding:"2px 7px",borderRadius:100}}>Load</div>
                     </div>
-                    <div style={{fontSize:10,color:"#6366f1",fontWeight:600}}>Load</div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              )}
             </div>
           )}
           <div className="icard">
