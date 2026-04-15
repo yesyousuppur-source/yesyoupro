@@ -326,6 +326,70 @@ Return ONLY valid JSON: {"policies":[{"platform":"Amazon","text":"complete retur
     prompt = `You are an Indian ecommerce compliance expert. Check requirements for "${name}" (${category||"Any"}).
 Return ONLY valid JSON: {"gst_slab":"X%","hsn_code":"XXXXXXXX","certifications":["cert1","cert2"],"legal_requirements":["req1","req2","req3"],"warnings":["warning if any"]}`;
 
+  } else if (mode === "ad_copy_generator") {
+    prompt = `You are an expert ad copywriter for Indian ecommerce. Create 5 ad copies for "${name}" (${category||"Any"}) targeting Indian buyers.
+Return ONLY valid JSON: {"ads":[{"platform":"Facebook Ad","copy":"ad text here","cta":"Shop Now"},{"platform":"Instagram Ad","copy":"text","cta":"cta"},{"platform":"Google Search Ad","copy":"text","cta":"cta"},{"platform":"WhatsApp Broadcast","copy":"Hindi mix text","cta":"cta"},{"platform":"YouTube Pre-roll","copy":"Hook + text","cta":"cta"}]}`;
+
+  } else if (mode === "review_reply") {
+    const review = req.body.review || "";
+    prompt = `You are an expert ecommerce seller on ${platform||"Amazon"}. A customer left this review: "${review}". Product: "${name}". Write 3 professional reply options.
+Return ONLY valid JSON: {"replies":[{"type":"Empathetic","reply":"full reply text"},{"type":"Solution Focused","reply":"offer solution reply"},{"type":"Apologetic + Offer","reply":"apology with replacement offer"}],"tip":"one practical tip to prevent this review in future"}`;
+
+  } else if (mode === "listing_checker") {
+    const listing = req.body.listing || "";
+    prompt = `You are an Amazon/ecommerce listing optimization expert. Analyze this listing for "${name}" on ${platform||"Amazon"}: "${listing}". Score it and give improvements.
+Return ONLY valid JSON: {"score":"XX","issues":["issue1","issue2","issue3","issue4","issue5"],"improvements":["fix1","fix2","fix3","fix4","fix5"],"missing_keywords":["kw1","kw2","kw3","kw4","kw5"],"optimized_title":"Better SEO title here"}`;
+
+  } else if (mode === "fail_predictor") {
+    const price = req.body.price || "0";
+    prompt = `You are an expert Indian ecommerce analyst. Predict success/failure for this product launch:
+Product: "${name}"
+Category: ${category||"General"}
+Platform: ${platform||"Amazon"}
+Seller Price: Rs.${price}
+
+Analyze: competition, demand, pricing, timing, market saturation.
+Return ONLY valid JSON:
+{
+  "success_chance": "72%",
+  "risk_level": "Medium",
+  "verdict": "2-3 lines about overall chances and why",
+  "suggested_price": "Rs.499",
+  "competition_level": "High",
+  "demand_level": "Medium",
+  "market_size": "Large",
+  "profit_margin": "25-35%",
+  "fail_reasons": ["reason1","reason2","reason3"],
+  "success_tips": ["tip1","tip2","tip3","tip4"]
+}`;
+
+  } else if (mode === "failure_predictor") {
+    const sellingPrice = req.body.price || "unknown";
+    prompt = `You are an expert Indian ecommerce market analyst with deep knowledge of Amazon India, Meesho, and Flipkart. Analyze this product launch:
+
+Product: "${name}"
+Category: ${category||"Any"}
+Platform: ${platform||"Amazon India"}
+Seller's Price: INR ${sellingPrice}
+
+Give an HONEST, data-driven prediction. Consider: market saturation, competition, price wars, category growth, seasonal demand, return rates.
+
+Return ONLY valid JSON:
+{
+  "success_chance": "72%",
+  "risk_level": "Medium",
+  "verdict": "2-3 sentence honest verdict about success probability",
+  "suggested_price": "INR 449-549",
+  "win_factors": ["factor1","factor2","factor3"],
+  "fail_risks": ["risk1","risk2","risk3"],
+  "action_plan": ["action1","action2","action3","action4"],
+  "competitor_count": "50-100 sellers",
+  "market_size": "Large",
+  "market_price_range": "INR 299-799",
+  "demand_level": "High",
+  "break_even": "Detailed break-even analysis with units needed and timeline"
+}`;
+
   } else {
     // DEFAULT - Universal analysis for ANYTHING
     prompt = `You are a universal market expert for India. Deeply analyze this:
@@ -404,5 +468,4 @@ Return ONLY valid JSON with real, specific data:
   } catch (err) {
     return res.status(500).json({ error: "Analysis failed: " + err.message });
   }
-  
 }
