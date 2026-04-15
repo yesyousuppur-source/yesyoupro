@@ -1368,11 +1368,11 @@ export default function App() {
               {fpR&&!fpL&&(
                 <div style={{marginTop:14}} className="fa">
                   {/* Main Score */}
-                  <div style={{background:parseInt(fpR.success_chance)>=60?"rgba(16,185,129,.08)":parseInt(fpR.success_chance)>=40?"rgba(245,158,11,.08)":"rgba(239,68,68,.08)",border:"1px solid "+(parseInt(fpR.success_chance)>=60?"rgba(16,185,129,.25)":parseInt(fpR.success_chance)>=40?"rgba(245,158,11,.25)":"rgba(239,68,68,.25)"),borderRadius:16,padding:20,textAlign:"center",marginBottom:12}}>
+                  <div style={{background:parseInt(fpR.success_chance||"0")>=60?"rgba(16,185,129,.08)":parseInt(fpR.success_chance||"0")>=40?"rgba(245,158,11,.08)":"rgba(239,68,68,.08)",border:"1px solid "+(parseInt(fpR.success_chance||"0")>=60?"rgba(16,185,129,.25)":parseInt(fpR.success_chance||"0")>=40?"rgba(245,158,11,.25)":"rgba(239,68,68,.25)"),borderRadius:16,padding:20,textAlign:"center",marginBottom:12}}>
                     <div style={{fontSize:11,color:"#64748b",marginBottom:4,textTransform:"uppercase",letterSpacing:1}}>Success Chance</div>
-                    <div style={{fontSize:52,fontWeight:900,color:parseInt(fpR.success_chance)>=60?"#10b981":parseInt(fpR.success_chance)>=40?"#f59e0b":"#ef4444",lineHeight:1}}>{fpR.success_chance}</div>
+                    <div style={{fontSize:52,fontWeight:900,color:parseInt(fpR.success_chance||"0")>=60?"#10b981":parseInt(fpR.success_chance||"0")>=40?"#f59e0b":"#ef4444",lineHeight:1}}>{fpR.success_chance||"N/A"}</div>
                     <div style={{height:8,background:"rgba(255,255,255,.08)",borderRadius:100,margin:"10px 0",overflow:"hidden"}}>
-                      <div style={{height:"100%",width:fpR.success_chance,background:parseInt(fpR.success_chance)>=60?"linear-gradient(90deg,#10b981,#059669)":parseInt(fpR.success_chance)>=40?"linear-gradient(90deg,#f59e0b,#ef4444)":"linear-gradient(90deg,#ef4444,#dc2626)",borderRadius:100,transition:"width .8s ease"}}/>
+                      <div style={{height:"100%",width:(fpR.success_chance||"0%"),background:parseInt(fpR.success_chance||"0")>=60?"linear-gradient(90deg,#10b981,#059669)":parseInt(fpR.success_chance||"0")>=40?"linear-gradient(90deg,#f59e0b,#ef4444)":"linear-gradient(90deg,#ef4444,#dc2626)",borderRadius:100,transition:"width .8s ease"}}/>
                     </div>
                     <div style={{display:"flex",justifyContent:"center",gap:12,flexWrap:"wrap"}}>
                       <span style={{background:"rgba(99,102,241,.1)",border:"1px solid rgba(99,102,241,.2)",borderRadius:100,padding:"3px 12px",fontSize:11,color:"#a5b4fc",fontWeight:700}}>Risk: {fpR.risk_level}</span>
@@ -1381,7 +1381,7 @@ export default function App() {
                   </div>
 
                   {/* Verdict */}
-                  <div className="gcard" style={{marginBottom:8,borderLeft:"3px solid "+(parseInt(fpR.success_chance)>=60?"#10b981":parseInt(fpR.success_chance)>=40?"#f59e0b":"#ef4444")}}>
+                  <div className="gcard" style={{marginBottom:8,borderLeft:"3px solid "+(parseInt(fpR.success_chance||"0")>=60?"#10b981":parseInt(fpR.success_chance||"0")>=40?"#f59e0b":"#ef4444")}}>
                     <div className="gct" style={{marginBottom:5}}>Verdict</div>
                     <p className="gctx">{fpR.verdict}</p>
                   </div>
