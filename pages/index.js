@@ -1367,83 +1367,31 @@ export default function App() {
               {fpL&&<div className="ssp"/>}
               {fpR&&!fpL&&(
                 <div style={{marginTop:14}} className="fa">
-                  {/* Main Score */}
-                  <div style={{background:parseInt(fpR.success_chance||"0")>=60?"rgba(16,185,129,.08)":parseInt(fpR.success_chance||"0")>=40?"rgba(245,158,11,.08)":"rgba(239,68,68,.08)",border:"1px solid "+(parseInt(fpR.success_chance||"0")>=60?"rgba(16,185,129,.25)":parseInt(fpR.success_chance||"0")>=40?"rgba(245,158,11,.25)":"rgba(239,68,68,.25)"),borderRadius:16,padding:20,textAlign:"center",marginBottom:12}}>
+                  <div style={{
+                    background:parseInt(String(fpR.success_chance||"0").replace("%",""))>=60?"rgba(16,185,129,.08)":parseInt(String(fpR.success_chance||"0").replace("%",""))>=40?"rgba(245,158,11,.08)":"rgba(239,68,68,.08)",
+                    border:"1px solid rgba(99,102,241,.2)",
+                    borderRadius:16,padding:20,textAlign:"center",marginBottom:12
+                  }}>
                     <div style={{fontSize:11,color:"#64748b",marginBottom:4,textTransform:"uppercase",letterSpacing:1}}>Success Chance</div>
-                    <div style={{fontSize:52,fontWeight:900,color:parseInt(fpR.success_chance||"0")>=60?"#10b981":parseInt(fpR.success_chance||"0")>=40?"#f59e0b":"#ef4444",lineHeight:1}}>{fpR.success_chance||"N/A"}</div>
-                    <div style={{height:8,background:"rgba(255,255,255,.08)",borderRadius:100,margin:"10px 0",overflow:"hidden"}}>
-                      <div style={{height:"100%",width:(fpR.success_chance||"0%"),background:parseInt(fpR.success_chance||"0")>=60?"linear-gradient(90deg,#10b981,#059669)":parseInt(fpR.success_chance||"0")>=40?"linear-gradient(90deg,#f59e0b,#ef4444)":"linear-gradient(90deg,#ef4444,#dc2626)",borderRadius:100,transition:"width .8s ease"}}/>
+                    <div style={{fontSize:52,fontWeight:900,lineHeight:1,color:
+                      parseInt(String(fpR.success_chance||"0").replace("%",""))>=60?"#10b981":
+                      parseInt(String(fpR.success_chance||"0").replace("%",""))>=40?"#f59e0b":"#ef4444"
+                    }}>{fpR.success_chance||"N/A"}</div>
+                    <div style={{height:8,background:"rgba(255,255,255,.08)",borderRadius:100,margin:"12px 0",overflow:"hidden"}}>
+                      <div style={{height:"100%",width:(String(fpR.success_chance||"0").includes("%")?fpR.success_chance:(fpR.success_chance||"0")+"%"),background:"linear-gradient(90deg,#6366f1,#10b981)",borderRadius:100}}/>
                     </div>
-                    <div style={{display:"flex",justifyContent:"center",gap:12,flexWrap:"wrap"}}>
-                      <span style={{background:"rgba(99,102,241,.1)",border:"1px solid rgba(99,102,241,.2)",borderRadius:100,padding:"3px 12px",fontSize:11,color:"#a5b4fc",fontWeight:700}}>Risk: {fpR.risk_level}</span>
-                      <span style={{background:"rgba(16,185,129,.1)",border:"1px solid rgba(16,185,129,.2)",borderRadius:100,padding:"3px 12px",fontSize:11,color:"#10b981",fontWeight:700}}>Suggested: {fpR.suggested_price}</span>
+                    <div style={{display:"flex",justifyContent:"center",gap:10,flexWrap:"wrap"}}>
+                      {fpR.risk_level&&<span style={{background:"rgba(99,102,241,.1)",border:"1px solid rgba(99,102,241,.2)",borderRadius:100,padding:"3px 12px",fontSize:11,color:"#a5b4fc",fontWeight:700}}>Risk: {fpR.risk_level}</span>}
+                      {fpR.suggested_price&&<span style={{background:"rgba(16,185,129,.1)",border:"1px solid rgba(16,185,129,.2)",borderRadius:100,padding:"3px 12px",fontSize:11,color:"#10b981",fontWeight:700}}>{fpR.suggested_price}</span>}
                     </div>
                   </div>
-
-                  {/* Verdict */}
-                  <div className="gcard" style={{marginBottom:8,borderLeft:"3px solid "+(parseInt(fpR.success_chance||"0")>=60?"#10b981":parseInt(fpR.success_chance||"0")>=40?"#f59e0b":"#ef4444")}}>
-                    <div className="gct" style={{marginBottom:5}}>Verdict</div>
-                    <p className="gctx">{fpR.verdict}</p>
-                  </div>
-
-                  {/* Win Factors */}
-                  {fpR.win_factors?.length>0&&(
-                    <div className="gcard" style={{marginBottom:8}}>
-                      <div className="gct" style={{marginBottom:6,color:"#10b981"}}>✅ Win Factors</div>
-                      {fpR.win_factors.map((w,i)=>(
-                        <div key={i} style={{display:"flex",gap:7,padding:"3px 0",fontSize:11,color:"#94a3b8"}}>
-                          <span style={{color:"#10b981",flexShrink:0}}>+</span><span>{w}</span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                  {/* Fail Risks */}
-                  {fpR.fail_risks?.length>0&&(
-                    <div className="gcard" style={{marginBottom:8}}>
-                      <div className="gct" style={{marginBottom:6,color:"#ef4444"}}>⚠️ Failure Risks</div>
-                      {fpR.fail_risks.map((r,i)=>(
-                        <div key={i} style={{display:"flex",gap:7,padding:"3px 0",fontSize:11,color:"#94a3b8"}}>
-                          <span style={{color:"#ef4444",flexShrink:0}}>-</span><span>{r}</span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                  {/* Action Plan */}
-                  {fpR.action_plan?.length>0&&(
-                    <div className="gcard" style={{marginBottom:8}}>
-                      <div className="gct" style={{marginBottom:6}}>🎯 Action Plan</div>
-                      {fpR.action_plan.map((a,i)=>(
-                        <div key={i} style={{display:"flex",gap:7,padding:"3px 0",fontSize:11,color:"#94a3b8"}}>
-                          <span style={{color:"#6366f1",flexShrink:0}}>{i+1}.</span><span>{a}</span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                  {/* Competitors */}
-                  {fpR.competitor_count&&(
-                    <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginBottom:8}}>
-                      {[{l:"Competitors",v:fpR.competitor_count,c:"#ef4444"},{l:"Market Size",v:fpR.market_size,c:"#10b981"},{l:"Price Range",v:fpR.market_price_range,c:"#f59e0b"},{l:"Demand Level",v:fpR.demand_level,c:"#6366f1"}].map((m,i)=>m.v&&(
-                        <div key={i} className="mc" style={{textAlign:"center"}}>
-                          <div style={{fontSize:9,color:"#64748b",textTransform:"uppercase",marginBottom:4}}>{m.l}</div>
-                          <div style={{fontSize:14,fontWeight:800,color:m.c}}>{m.v}</div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                  {/* Break Even */}
-                  {fpR.break_even&&(
-                    <div style={{background:"rgba(99,102,241,.06)",border:"1px solid rgba(99,102,241,.15)",borderRadius:10,padding:11}}>
-                      <div style={{fontWeight:700,color:"#a5b4fc",fontSize:11,marginBottom:4}}>Break-Even Analysis</div>
-                      <p style={{color:"#94a3b8",fontSize:11,lineHeight:1.65}}>{fpR.break_even}</p>
-                    </div>
-                  )}
+                  {fpR.verdict&&<div className="gcard" style={{marginBottom:8}}><div className="gct" style={{marginBottom:5}}>Verdict</div><p className="gctx">{fpR.verdict}</p></div>}
+                  {fpR.win_factors?.length>0&&<div className="gcard" style={{marginBottom:8}}><div className="gct" style={{marginBottom:6,color:"#10b981"}}>Win Factors</div>{fpR.win_factors.map((w,i)=><div key={i} style={{display:"flex",gap:7,padding:"3px 0",fontSize:11,color:"#94a3b8"}}><span style={{color:"#10b981",flexShrink:0}}>+</span><span>{w}</span></div>)}</div>}
+                  {fpR.fail_risks?.length>0&&<div className="gcard" style={{marginBottom:8}}><div className="gct" style={{marginBottom:6,color:"#ef4444"}}>Failure Risks</div>{fpR.fail_risks.map((r,i)=><div key={i} style={{display:"flex",gap:7,padding:"3px 0",fontSize:11,color:"#94a3b8"}}><span style={{color:"#ef4444",flexShrink:0}}>-</span><span>{r}</span></div>)}</div>}
+                  {fpR.action_plan?.length>0&&<div className="gcard" style={{marginBottom:8}}><div className="gct" style={{marginBottom:6}}>Action Plan</div>{fpR.action_plan.map((a,i)=><div key={i} style={{display:"flex",gap:7,padding:"3px 0",fontSize:11,color:"#94a3b8"}}><span style={{color:"#6366f1",flexShrink:0,fontWeight:700}}>{i+1}.</span><span>{a}</span></div>)}</div>}
+                  {fpR.break_even&&<div style={{background:"rgba(99,102,241,.06)",border:"1px solid rgba(99,102,241,.15)",borderRadius:10,padding:11}}><div style={{fontWeight:700,color:"#a5b4fc",fontSize:11,marginBottom:4}}>Break-Even</div><p style={{color:"#94a3b8",fontSize:11,lineHeight:1.65}}>{fpR.break_even}</p></div>}
                 </div>
               )}
-            </div>
           )}
 
         <footer>YesYouPro &middot; AI Product Analyzer &middot; Made in India &middot; &copy; 2025</footer>
