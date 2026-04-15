@@ -398,15 +398,15 @@ export default function App() {
     .di{width:100%;background:#0f172a;border:1px solid #1e293b;border-radius:10px;padding:9px 11px;color:#f8fafc;font-size:13px;font-family:Inter,sans-serif;outline:none;transition:border-color .2s;}
     .di:focus{border-color:#6366f1;}
     .light .di{background:#f8fafc;border-color:#d1d5db;color:#1a1a2e;}
-    .pick-btn{width:100%;background:rgba(15,23,42,.7);border:1px solid #1e293b;border-radius:10px;padding:10px 13px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;color:#64748b;font-size:12px;font-weight:600;font-family:Inter,sans-serif;transition:all .2s;text-align:left;margin-bottom:4px;}
+    .pick-btn{width:100%;background:rgba(15,23,42,.8);border:1px solid rgba(99,102,241,.15);border-radius:11px;padding:11px 14px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;color:#94a3b8;font-size:12px;font-weight:600;font-family:Inter,sans-serif;transition:all .2s;text-align:left;margin-bottom:4px;}
     .pick-btn.sel{border-color:rgba(99,102,241,.4);color:#f8fafc;background:rgba(99,102,241,.08);}
     .light .pick-btn{background:#f8fafc;border-color:#d1d5db;color:#6b7280;}
-    .pick-drop{background:rgba(10,18,35,.97);border:1px solid rgba(99,102,241,.2);border-radius:14px;padding:10px;margin-bottom:8px;max-height:260px;overflow-y:auto;}
+    .pick-drop{background:rgba(8,15,30,.98);border:1px solid rgba(99,102,241,.25);border-radius:14px;padding:14px;margin-top:4px;margin-bottom:8px;max-height:280px;overflow-y:auto;box-shadow:0 8px 30px rgba(0,0,0,.4);}
     .light .pick-drop{background:#fff;border-color:#e2e8f0;}
-    .pglbl{font-size:9px;color:#64748b;font-weight:800;text-transform:uppercase;letter-spacing:.8px;padding:6px 4px 4px;display:block;}
+    .pglbl{display:block;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#475569;margin:10px 0 6px;padding-left:2px;}
     .chips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:4px;}
-    .chip{display:flex;align-items:center;gap:5px;padding:5px 10px;border-radius:8px;border:1px solid #1e293b;background:rgba(15,23,42,.6);color:#94a3b8;font-size:11px;font-weight:600;cursor:pointer;transition:all .15s;font-family:Inter,sans-serif;}
-    .chip.on{background:rgba(99,102,241,.15);border-color:rgba(99,102,241,.4);color:#f8fafc;}
+    .chip{display:flex;align-items:center;gap:6px;padding:6px 11px;border-radius:9px;border:1px solid #1e293b;background:rgba(15,23,42,.6);color:#94a3b8;font-size:11px;font-weight:600;cursor:pointer;transition:all .15s;font-family:Inter,sans-serif;}
+    .chip.on{background:linear-gradient(135deg,#6366f1,#8b5cf6);border-color:transparent;color:#fff;}
     .chip img{width:14px;height:14px;object-fit:contain;border-radius:2px;}
     .light .chip{background:#f8fafc;border-color:#e2e8f0;color:#4b5563;}
     .cbtn{background:linear-gradient(135deg,#6366f1,#8b5cf6);border:none;border-radius:11px;padding:12px 0;color:#fff;font-weight:800;font-size:13px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;letter-spacing:.2px;}
@@ -953,7 +953,7 @@ export default function App() {
                 {[
                   {id:"failpred",l:"🔮 Failure Predictor"},{id:"profit",l:"💰 Profit Calc"},{id:"gst",l:"🧾 GST Calc"},{id:"shipping",l:"🚚 Shipping"},{id:"roas",l:"📊 ROAS Calc"},
                   {id:"investment",l:"🧮 Investment"},{id:"sales",l:"📈 Sales Est"},{id:"inventory",l:"📊 Inventory"},{id:"price",l:"Pricing"},
-                  {id:"compare",l:"⚡ Compare"},{id:"competitor",l:"⚔️ Competitor"},{id:"niche",l:"Niche"},{id:"failpred",l:"🧠 Fail Predictor"},{id:"trending",l:"🔥 Trending"},
+                  {id:"compare",l:"⚡ Compare"},{id:"competitor",l:"⚔️ Competitor"},{id:"niche",l:"Niche"},{id:"trending",l:"🔥 Trending"},
                   {id:"supplier",l:"📦 Supplier"},{id:"bundle",l:"🎁 Bundle"},{id:"returns",l:"📦 Returns"},{id:"festival",l:"🎊 Festival"},
                   {id:"wamsg",l:"WhatsApp Msg"},{id:"titl",l:"📝 Title Opt"},
                   {id:"adcopy",l:"Ad Copy"},{id:"revreply",l:"Review Reply"},{id:"listcheck",l:"Listing Check"},
@@ -1279,107 +1279,7 @@ export default function App() {
         )}
 
 
-          {tab==="failpred"&&(
-            <div className="fbox fa">
-              <h3 className="ict">🧠 AI Failure Predictor</h3>
-              <p style={{color:"#64748b",fontSize:10,marginBottom:14}}>Launch se pehle jaano — product fail hoga ya nahi?</p>
-              <div className="prow">
-                <div className="pfield"><label>Product Name</label><input type="text" placeholder="e.g. Portable Blender" value={failF.name} onChange={e=>setFailF({...failF,name:e.target.value})}/></div>
-                <div className="pfield"><label>Your Price (Rs.)</label><input type="number" placeholder="499" value={failF.price} onChange={e=>setFailF({...failF,price:e.target.value})}/></div>
-              </div>
-              <div className="prow">
-                <div className="pfield"><label>Category</label>
-                  <select className="di" value={failF.cat} onChange={e=>setFailF({...failF,cat:e.target.value})}>
-                    {CATS.map(c=><option key={c.id} value={c.id}>{c.id}</option>)}
-                  </select>
-                </div>
-                <div className="pfield"><label>Platform</label>
-                  <select className="di" value={failF.plat} onChange={e=>setFailF({...failF,plat:e.target.value})}>
-                    {PLATS.map(p=><option key={p.id} value={p.id}>{p.id}</option>)}
-                  </select>
-                </div>
-              </div>
-              <button className="cbtn" style={{width:"100%",background:"linear-gradient(135deg,#6366f1,#ef4444)"}} disabled={failL||!failF.name||!failF.price} onClick={async()=>{
-                setFailL(true);setFailR(null);
-                try{
-                  const res=await fetch("/api/analyze",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:failF.name,category:failF.cat,platform:failF.plat,mode:"fail_predictor",price:failF.price})});
-                  const d=await res.json();
-                  setFailR(d);
-                }catch{showT("Failed. Try again.");}
-                setFailL(false);
-              }}>{failL?"Analyzing...":"🧠 Predict Success"}</button>
-              {failL&&(
-                <div style={{textAlign:"center",padding:"20px 0"}}>
-                  <div className="ssp"/>
-                  <p style={{color:"#64748b",fontSize:11,marginTop:8}}>AI market data analyze kar raha hai...</p>
-                </div>
-              )}
-              {failR&&!failL&&(
-                <div style={{marginTop:14}} className="fa">
-                  {/* Score meter */}
-                  <div style={{background:"linear-gradient(135deg,rgba(99,102,241,.1),rgba(239,68,68,.06))",border:"1px solid rgba(99,102,241,.2)",borderRadius:16,padding:18,textAlign:"center",marginBottom:12}}>
-                    <div style={{fontSize:11,color:"#64748b",fontWeight:700,marginBottom:6,textTransform:"uppercase",letterSpacing:1}}>Success Probability</div>
-                    <div style={{fontSize:52,fontWeight:900,color:parseInt(failR.success_chance)>=70?"#10b981":parseInt(failR.success_chance)>=50?"#f59e0b":"#ef4444",lineHeight:1}}>{failR.success_chance}</div>
-                    <div style={{height:8,background:"#1e293b",borderRadius:100,overflow:"hidden",margin:"10px 0"}}>
-                      <div style={{height:"100%",width:failR.success_chance,background:parseInt(failR.success_chance)>=70?"linear-gradient(90deg,#10b981,#059669)":parseInt(failR.success_chance)>=50?"linear-gradient(90deg,#f59e0b,#ef4444)":"linear-gradient(90deg,#ef4444,#dc2626)",borderRadius:100,transition:"width 1s ease"}}/>
-                    </div>
-                    <div style={{display:"inline-block",background:failR.risk_level==="Low"?"rgba(16,185,129,.12)":failR.risk_level==="Medium"?"rgba(245,158,11,.12)":"rgba(239,68,68,.12)",border:"1.5px solid",borderColor:failR.risk_level==="Low"?"rgba(16,185,129,.3)":failR.risk_level==="Medium"?"rgba(245,158,11,.3)":"rgba(239,68,68,.3)",borderRadius:100,padding:"4px 16px",fontSize:12,fontWeight:800,color:failR.risk_level==="Low"?"#10b981":failR.risk_level==="Medium"?"#f59e0b":"#ef4444"}}>
-                      {failR.risk_level==="Low"?"Low Risk":"Mid Risk"} Risk
-                    </div>
-                  </div>
-                  {/* Metrics */}
-                  <div className="presult" style={{marginBottom:10}}>
-                    {[
-                      {l:"Your Price",v:"Rs."+failF.price,c:"#f8fafc"},
-                      {l:"Suggested Price",v:failR.suggested_price,c:"#10b981"},
-                      {l:"Competition",v:failR.competition_level,c:failR.competition_level==="Low"?"#10b981":failR.competition_level==="Medium"?"#f59e0b":"#ef4444"},
-                      {l:"Demand",v:failR.demand_level,c:"#a5b4fc"},
-                      {l:"Market Size",v:failR.market_size,c:"#f59e0b"},
-                      {l:"Profit Margin",v:failR.profit_margin,c:"#10b981"},
-                    ].map(r=>(
-                      <div key={r.l} className="prc">
-                        <div className="prl">{r.l}</div>
-                        <div className="prv" style={{color:r.c,fontSize:13}}>{r.v}</div>
-                      </div>
-                    ))}
-                  </div>
-                  {/* Verdict */}
-                  <div style={{background:parseInt(failR.success_chance)>=70?"rgba(16,185,129,.07)":"rgba(239,68,68,.07)",border:"1px solid",borderColor:parseInt(failR.success_chance)>=70?"rgba(16,185,129,.25)":"rgba(239,68,68,.25)",borderRadius:12,padding:13,marginBottom:10}}>
-                    <div style={{fontWeight:800,color:parseInt(failR.success_chance)>=70?"#10b981":"#ef4444",fontSize:12,marginBottom:5}}>
-                      {parseInt(failR.success_chance)>=70?"Launch Karo!":parseInt(failR.success_chance)>=50?"Soch ke karo":"Mat karo abhi"}
-                    </div>
-                    <p style={{color:"#94a3b8",fontSize:11,lineHeight:1.65}}>{failR.verdict}</p>
-                  </div>
-                  {/* Why fail reasons */}
-                  {failR.fail_reasons?.length>0&&(
-                    <div className="gcard" style={{marginBottom:8}}>
-                      <div className="gct" style={{marginBottom:6,color:"#ef4444"}}>Fail Hone Ke Reasons</div>
-                      {failR.fail_reasons.map((r,i)=>(
-                        <div key={i} style={{display:"flex",gap:6,padding:"3px 0",fontSize:11,color:"#94a3b8"}}>
-                          <span style={{color:"#ef4444",flexShrink:0}}>✗</span><span>{r}</span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                  {/* Fix suggestions */}
-                  {failR.success_tips?.length>0&&(
-                    <div className="gcard">
-                      <div className="gct" style={{marginBottom:6,color:"#10b981"}}>Success Ke Liye Karo</div>
-                      {failR.success_tips.map((t,i)=>(
-                        <div key={i} style={{display:"flex",gap:6,padding:"3px 0",fontSize:11,color:"#94a3b8"}}>
-                          <span style={{color:"#10b981",flexShrink:0}}>✓</span><span>{t}</span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-          )}
-
-
-
-          {/* FAILURE PREDICTOR */}
+          
           {tab==="failpred"&&(
             <div className="fbox fa">
               <h3 className="ict">🔮 AI Failure Predictor</h3>
