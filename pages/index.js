@@ -112,6 +112,8 @@ export default function App() {
   const [history,setHistory]=useState([]);
   const [showHist,setShowHist]=useState(false);
   const [fpF,setFpF]=useState({name:"",price:"",cat:"Fashion",plat:"Amazon"});
+  const [fpShowCats,setFpShowCats]=useState(false);
+  const [fpShowPlats,setFpShowPlats]=useState(false);
   const [fpR,setFpR]=useState(null);
   const [fpL,setFpL]=useState(false);
   const [failF,setFailF]=useState({name:"",price:"",cat:"Fashion",plat:"Amazon"});
@@ -1294,19 +1296,64 @@ export default function App() {
                   <input className="di" type="number" placeholder="e.g. 499" value={fpF.price} onChange={e=>setFpF({...fpF,price:e.target.value})}/>
                 </div>
               </div>
-              <div className="prow">
-                <div className="pfield">
-                  <label className="ilbl">Category</label>
-                  <select className="di" value={fpF.cat} onChange={e=>setFpF({...fpF,cat:e.target.value})}>
-                    {CATS.map(c=><option key={c.id} value={c.id}>{c.id}</option>)}
-                  </select>
-                </div>
-                <div className="pfield">
-                  <label className="ilbl">Platform</label>
-                  <select className="di" value={fpF.plat} onChange={e=>setFpF({...fpF,plat:e.target.value})}>
-                    {PLATS.map(p=><option key={p.id} value={p.id}>{p.id}</option>)}
-                  </select>
-                </div>
+              {/* Category Picker */}
+              <div style={{marginBottom:8}}>
+                <label className="ilbl">Category</label>
+                <button className={"pick-btn"+(fpF.cat?" sel":"")} onClick={()=>{setFpShowCats(!fpShowCats);setFpShowPlats(false);}}>
+                  <span style={{display:"flex",alignItems:"center",gap:6}}>
+                    {fpF.cat&&(()=>{const ct=CATS.find(c=>c.id===fpF.cat);return ct?.logo?<img src={ct.logo} alt={fpF.cat} style={{width:15,height:15,objectFit:"contain",borderRadius:2}} onError={(e)=>{e.target.style.display="none";}}/>:<span style={{fontSize:13}}>{ct?.e||"📂"}</span>;})()}
+                    <span>{fpF.cat||"Select Category"}</span>
+                  </span>
+                  <span style={{fontSize:10,color:"#6366f1"}}>{fpShowCats?"▲":"▼"}</span>
+                </button>
+                {fpShowCats&&(
+                  <div className="pick-drop">
+                    {["Physical","Digital"].map(g=>(
+                      <div key={g}>
+                        <span className="pglbl">{g}</span>
+                        <div className="chips">
+                          {CATS.filter(c=>c.g===g).map(c=>(
+                            <button key={c.id} className={"chip"+(fpF.cat===c.id?" on":"")} onClick={()=>{setFpF({...fpF,cat:c.id});setFpShowCats(false);}}>
+                              {c.logo?<img src={c.logo} alt={c.id} style={{width:14,height:14,objectFit:"contain",borderRadius:2}} onError={(e)=>{e.target.style.display="none";}}/>:<span style={{fontSize:11}}>{c.e}</span>}
+                              {c.id}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Platform Picker */}
+              <div style={{marginBottom:10}}>
+                <label className="ilbl">Platform</label>
+                <button className={"pick-btn"+(fpF.plat?" sel":"")} onClick={()=>{setFpShowPlats(!fpShowPlats);setFpShowCats(false);}}>
+                  <span style={{display:"flex",alignItems:"center",gap:6}}>
+                    {fpF.plat&&(()=>{const pl=PLATS.find(p=>p.id===fpF.plat);return pl?.logo?<img src={pl.logo} alt={fpF.plat} style={{width:15,height:15,objectFit:"contain",borderRadius:2}} onError={(e)=>{e.target.style.display="none";}}/>:<span style={{fontSize:13}}>{pl?.e||"🌐"}</span>;})()}
+                    <span>{fpF.plat||"Select Platform"}</span>
+                  </span>
+                  <span style={{fontSize:10,color:"#6366f1"}}>{fpShowPlats?"▲":"▼"}</span>
+                </button>
+                {fpShowPlats&&(
+                  <div className="pick-drop">
+                    {["Ecommerce","Social Media","App Stores","Courses","Freelance","Food","Other"].map(g=>(
+                      PLATS.filter(p=>p.g===g).length>0&&(
+                        <div key={g}>
+                          <span className="pglbl">{g}</span>
+                          <div className="chips">
+                            {PLATS.filter(p=>p.g===g).map(p=>(
+                              <button key={p.id} className={"chip"+(fpF.plat===p.id?" on":"")} onClick={()=>{setFpF({...fpF,plat:p.id});setFpShowPlats(false);}}>
+                                {p.logo?<img src={p.logo} alt={p.id} style={{width:13,height:13,objectFit:"contain",borderRadius:2}} onError={(e)=>{e.target.style.display="none";}}/>:<span style={{fontSize:11}}>{p.e}</span>}
+                                {p.id}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )
+                    ))}
+                  </div>
+                )}
               </div>
               <button className="gbtn2" style={{background:"linear-gradient(135deg,#8b5cf6,#6366f1)"}} disabled={fpL||!fpF.name||!fpF.price} onClick={async()=>{
                 setFpL(true);setFpR(null);
