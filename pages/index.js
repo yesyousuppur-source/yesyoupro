@@ -193,11 +193,6 @@ export default function App() {
   const [bundleD,setBundleD] = useState(null);const [bundleL,setBundleL] = useState(false);
   const [returnD,setReturnD] = useState(null);const [returnL,setReturnL] = useState(false);
   const [waMsgD,setWaMsgD] = useState(null);const [waMsgL,setWaMsgL] = useState(false);
-  const [adCopyD,setAdCopyD] = useState(null);const [adCopyL,setAdCopyL] = useState(false);
-  const [revRepD,setRevRepD] = useState(null);const [revRepL,setRevRepL] = useState(false);
-  const [listChkD,setListChkD] = useState(null);const [listChkL,setListChkL] = useState(false);
-  const [listingTxt,setListingTxt] = useState("");
-  const [reviewTxt,setReviewTxt] = useState("");
   const [captionD,setCaptionD] = useState(null);const [captionL,setCaptionL] = useState(false);
   const [titleD,setTitleD] = useState(null);const [titleL,setTitleL] = useState(false);
   const [history,setHistory] = useState([]);
@@ -208,7 +203,6 @@ export default function App() {
   const [reviewF,setReviewF] = useState({review:"",type:"negative"});
   const [reviewD,setReviewD] = useState(null);const [reviewL,setReviewL] = useState(false);
   const [adCopyPlat,setAdCopyPlat] = useState("Facebook");
-  const [adCopyD,setAdCopyD] = useState(null);const [adCopyL,setAdCopyL] = useState(false);
   const [cashF,setCashF] = useState({invest:"",revenue:"",fees:"",returns:""});
   const [cashR,setCashR] = useState(null);
   const [supplierEmailD,setSupplierEmailD] = useState(null);const [supplierEmailL,setSupplierEmailL] = useState(false);
@@ -1263,7 +1257,7 @@ export default function App() {
             <div className="ftabs"><button className={"ftab"+(tab==="profit"?" on":"")} onClick={()=>setTab("profit")}>💰 Profit Calculator</button></div>
             <div className="fglbl" style={{color:isLocked?"#ef4444":"#10b981"}}>{isLocked?"🔒 Locked (Buy Premium to Unlock)":"✅ Premium Tools (Unlocked)"}</div>
             <div className="ftabs">
-              {[{id:"starter",l:"🎓 Starter Guide"},{id:"beginner",l:"🔰 Beginner Products"},{id:"investment",l:"🧮 Investment Calc"},{id:"description",l:"📝 Description"},{id:"trending",l:"🔥 Trending"},{id:"competitor",l:"⚔️ Competitor"},{id:"supplier",l:"📦 Supplier"},{id:"sales",l:"📊 Sales Estimator"},{id:"price",l:"🏷️ Price Optimizer"},{id:"inventory",l:"📦 Inventory"},{id:"review",l:"⭐ Reviews"},{id:"niche",l:"🎯 Niche Finder"},{id:"gst",l:"🧾 GST Calc"},{id:"shipping",l:"🚚 Shipping Cost"},{id:"compare",l:"⚡ Compare"},{id:"launch",l:"🚀 Launch Strategy"},{id:"festival",l:"🎊 Festival Planner"},{id:"roas",l:"💰 ROAS Calc"},{id:"bundle",l:"🎁 Bundle Creator"},{id:"returns",l:"📦 Return Manager"},{id:"adcopy",l:"📢 Ad Copy"},{id:"revreply",l:"⭐ Review Reply"},{id:"listcheck",l:"📋 Listing Checker"},{id:"wamsg",l:"💬 WhatsApp Msg"},{id:"caption",l:"📸 Caption Gen"},{id:"titl",l:"📝 Title Optimizer"},{id:"listing",l:"📋 Listing Checker"},{id:"reviewrep",l:"⭐ Review Reply"},{id:"adcopy",l:"📢 Ad Copy"},{id:"cashflow",l:"💵 Cash Flow"},{id:"suppmail",l:"📧 Supplier Email"},{id:"retpol",l:"📜 Return Policy"},{id:"comply",l:"✅ Compliance"}].map(t=>(
+              {[{id:"starter",l:"🎓 Starter Guide"},{id:"beginner",l:"🔰 Beginner Products"},{id:"investment",l:"🧮 Investment Calc"},{id:"description",l:"📝 Description"},{id:"trending",l:"🔥 Trending"},{id:"competitor",l:"⚔️ Competitor"},{id:"supplier",l:"📦 Supplier"},{id:"sales",l:"📊 Sales Estimator"},{id:"price",l:"🏷️ Price Optimizer"},{id:"inventory",l:"📦 Inventory"},{id:"review",l:"⭐ Reviews"},{id:"niche",l:"🎯 Niche Finder"},{id:"gst",l:"🧾 GST Calc"},{id:"shipping",l:"🚚 Shipping Cost"},{id:"compare",l:"⚡ Compare"},{id:"launch",l:"🚀 Launch Strategy"},{id:"festival",l:"🎊 Festival Planner"},{id:"roas",l:"💰 ROAS Calc"},{id:"bundle",l:"🎁 Bundle Creator"},{id:"returns",l:"📦 Return Manager"},{id:"wamsg",l:"💬 WhatsApp Msg"},{id:"caption",l:"📸 Caption Gen"},{id:"titl",l:"📝 Title Optimizer"},{id:"listing",l:"📋 Listing Checker"},{id:"reviewrep",l:"⭐ Review Reply"},{id:"cashflow",l:"💵 Cash Flow"},{id:"suppmail",l:"📧 Supplier Email"},{id:"retpol",l:"📜 Return Policy"},{id:"comply",l:"✅ Compliance"}].map(t=>(
                 <button key={t.id} className={"ftab"+(tab===t.id?" on":"")} onClick={()=>{if(isLocked){setShowPrem(true);return;}setTab(t.id);}}>{t.l}{isLocked&&" 🔒"}</button>
               ))}
             </div>
@@ -1728,33 +1722,7 @@ export default function App() {
             </div>
           )}
 
-          {/* AD COPY GENERATOR */}
-          {tab==="adcopy"&&(
-            <div className="fbox fa" style={{position:"relative"}}>
-              {isLocked&&<LockBox/>}
-              <h3 className="ict">Ad Copy Generator</h3>
-              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Facebook, Instagram, Google ads ke liye ready-made copy</p>
-              {!pf.name&&<div className="errbanner">Pehle product analyze karo</div>}
-              <button className="gbtn2" style={{background:"linear-gradient(135deg,#f59e0b,#f97316)"}} disabled={adCopyL||!pf.name} onClick={async()=>{setAdCopyL(true);try{const d=await apiCall("ad_copy_generator");setAdCopyD(d);}catch{showT("Failed");}setAdCopyL(false);}}>{adCopyL?"Generating...":"Generate Ad Copy"}</button>
-              {adCopyL&&<div className="ssp"/>}
-              {adCopyD&&!adCopyL&&(
-                <div style={{marginTop:12}} className="fa">
-                  {adCopyD.ads?.map((ad,i)=>(
-                    <div key={i} style={{background:"rgba(2,8,23,.5)",border:"1px solid rgba(245,158,11,.2)",borderRadius:12,padding:13,marginBottom:9}}>
-                      <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:7}}>
-                        <div style={{fontWeight:700,fontSize:11,color:"#f59e0b"}}>{ad.platform}</div>
-                        <button onClick={()=>navigator.clipboard?.writeText(ad.copy).then(()=>showT("Copied!"))} style={{background:"rgba(245,158,11,.1)",border:"1px solid rgba(245,158,11,.25)",borderRadius:6,padding:"3px 9px",color:"#f59e0b",fontSize:10,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>Copy</button>
-                      </div>
-                      <p style={{color:"#e2e8f0",fontSize:12,lineHeight:1.7,marginBottom:6,whiteSpace:"pre-wrap"}}>{ad.copy}</p>
-                      {ad.cta&&<div style={{fontSize:10,color:"#64748b"}}>CTA: <span style={{color:"#a5b4fc"}}>{ad.cta}</span></div>}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* REVIEW REPLY GENERATOR */}
+          {/* WHATSAPP MSG */
           {tab==="revreply"&&(
             <div className="fbox fa" style={{position:"relative"}}>
               {isLocked&&<LockBox/>}
@@ -1783,68 +1751,7 @@ export default function App() {
             </div>
           )}
 
-          {/* LISTING QUALITY CHECKER */}
-          {tab==="listcheck"&&(
-            <div className="fbox fa" style={{position:"relative"}}>
-              {isLocked&&<LockBox/>}
-              <h3 className="ict">Listing Quality Checker</h3>
-              <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Apni listing score karo — AI se exact improvements lo</p>
-              <div className="pfield" style={{marginBottom:8}}>
-                <label className="ilbl">Apni Listing Paste Karo (Title + Description)</label>
-                <textarea value={listingTxt} onChange={e=>setListingTxt(e.target.value)} placeholder="Product Title: ...&#10;Description: ...&#10;Bullet Points: ..." style={{width:"100%",background:"#0f172a",border:"1px solid #1e293b",borderRadius:10,padding:"10px 12px",color:"#f8fafc",fontSize:12,fontFamily:"Inter,sans-serif",outline:"none",resize:"vertical",minHeight:100}}/>
-              </div>
-              <button className="gbtn2" style={{background:"linear-gradient(135deg,#6366f1,#8b5cf6)"}} disabled={listChkL||!listingTxt.trim()} onClick={async()=>{setListChkL(true);try{const d=await fetch("/api/analyze",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:pf.name||"Product",category:pf.cat||"General",platform:pf.plat||"Amazon",mode:"listing_checker",listing:listingTxt})}).then(r=>r.json());setListChkD(d);}catch{showT("Failed");}setListChkL(false);}}>{listChkL?"Analyzing...":"Check Listing Quality"}</button>
-              {listChkL&&<div className="ssp"/>}
-              {listChkD&&!listChkL&&(
-                <div style={{marginTop:12}} className="fa">
-                  <div style={{background:"rgba(99,102,241,.08)",border:"1px solid rgba(99,102,241,.2)",borderRadius:12,padding:14,textAlign:"center",marginBottom:12}}>
-                    <div style={{fontSize:10,color:"#64748b",marginBottom:2}}>Listing Score</div>
-                    <div style={{fontSize:36,fontWeight:900,color:parseInt(listChkD.score)>=70?"#10b981":parseInt(listChkD.score)>=50?"#f59e0b":"#ef4444"}}>{listChkD.score}<span style={{fontSize:16,color:"#64748b"}}>/100</span></div>
-                    <div style={{fontSize:11,color:"#94a3b8"}}>{parseInt(listChkD.score)>=70?"Good Listing":"Needs Improvement"}</div>
-                  </div>
-                  {listChkD.issues?.length>0&&(
-                    <div className="gcard" style={{marginBottom:8}}>
-                      <div className="gct" style={{marginBottom:6,color:"#ef4444"}}>Issues Found</div>
-                      {listChkD.issues.map((issue,i)=>(
-                        <div key={i} style={{display:"flex",gap:6,padding:"3px 0",fontSize:11,color:"#94a3b8"}}>
-                          <span style={{color:"#ef4444",flexShrink:0}}>&#10007;</span><span>{issue}</span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                  {listChkD.improvements?.length>0&&(
-                    <div className="gcard" style={{marginBottom:8}}>
-                      <div className="gct" style={{marginBottom:6,color:"#10b981"}}>Improvements</div>
-                      {listChkD.improvements.map((imp,i)=>(
-                        <div key={i} style={{display:"flex",gap:6,padding:"3px 0",fontSize:11,color:"#94a3b8"}}>
-                          <span style={{color:"#10b981",flexShrink:0}}>&#10003;</span><span>{imp}</span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                  {listChkD.missing_keywords?.length>0&&(
-                    <div className="gcard" style={{marginBottom:8}}>
-                      <div className="gct" style={{marginBottom:6}}>Missing Keywords</div>
-                      <div style={{display:"flex",flexWrap:"wrap",gap:5}}>
-                        {listChkD.missing_keywords.map((kw,i)=>(
-                          <span key={i} style={{background:"rgba(99,102,241,.08)",border:"1px solid rgba(99,102,241,.2)",color:"#a5b4fc",borderRadius:100,padding:"2px 9px",fontSize:10}}>{kw}</span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                  {listChkD.optimized_title&&(
-                    <div className="gcard">
-                      <div className="gct" style={{marginBottom:5}}>Suggested Title</div>
-                      <p style={{color:"#e2e8f0",fontSize:12,lineHeight:1.6}}>{listChkD.optimized_title}</p>
-                      <button onClick={()=>navigator.clipboard?.writeText(listChkD.optimized_title).then(()=>showT("Copied!"))} style={{marginTop:7,background:"rgba(99,102,241,.1)",border:"1px solid rgba(99,102,241,.2)",borderRadius:6,padding:"4px 11px",color:"#a5b4fc",fontSize:10,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>Copy Title</button>
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* WHATSAPP MSG */}
+          {/* WHATSAPP MSG */
           {tab==="wamsg"&&(
             <div className="fbox fa">
               <h3 className="ict">WhatsApp Message Generator</h3>
