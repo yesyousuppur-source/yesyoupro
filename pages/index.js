@@ -860,7 +860,7 @@ export default function App() {
               {pf.cat&&(()=>{const ct=CATS.find(c=>c.id===pf.cat);return ct?.logo?<img src={ct.logo} alt={pf.cat} style={{width:15,height:15,objectFit:"contain",borderRadius:2}} onError={(e)=>{e.target.style.display="none";}}/>:<span style={{fontSize:13}}>{ct?.e||"Cat"}</span>;})()}
               <span>{pf.cat||"Select Category"}</span>
             </span>
-            <span style={{fontSize:10,color:"#6366f1"}}>{showCats?"&#9650;":"&#9660;"}</span>
+            <span style={{fontSize:10,color:"#6366f1"}}>{showCats?"▲":"▼"}</span>
           </button>
           {showCats&&(
             <div className="pick-drop">
@@ -885,7 +885,7 @@ export default function App() {
               {pf.plat&&(()=>{const pl=PLATS.find(p=>p.id===pf.plat);return pl?.logo?<img src={pl.logo} alt={pf.plat} style={{width:15,height:15,objectFit:"contain",borderRadius:2}} onError={(e)=>{e.target.style.display="none";}}/>:<span style={{fontSize:13}}>{pl?.e||"Plat"}</span>;})()}
               <span>{pf.plat||"Select Platform"}</span>
             </span>
-            <span style={{fontSize:10,color:"#6366f1"}}>{showPlats?"&#9650;":"&#9660;"}</span>
+            <span style={{fontSize:10,color:"#6366f1"}}>{showPlats?"▲":"▼"}</span>
           </button>
           {showPlats&&(
             <div className="pick-drop">
@@ -1219,7 +1219,26 @@ export default function App() {
                         {/* Generic text blocks */}
                         {data.overview&&<div className="gcard" style={{marginBottom:8}}><div className="gct" style={{marginBottom:5}}>Overview</div><p className="gctx">{data.overview}</p></div>}
                         {data.analysis&&<div className="gcard" style={{marginBottom:8}}><div className="gct" style={{marginBottom:5}}>Analysis</div><p className="gctx">{data.analysis}</p></div>}
-                        {data.description&&toolId==="description"&&<div className="gcard" style={{marginBottom:8}}><div className="gct" style={{marginBottom:5,display:"flex",justifyContent:"space-between"}}><span>Description</span><button onClick={()=>navigator.clipboard?.writeText(data.description).then(()=>showT("Copied!"))} style={{background:"rgba(99,102,241,.1)",border:"none",borderRadius:6,padding:"2px 9px",color:"#a5b4fc",fontSize:9,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>Copy</button></div><p className="gctx" style={{whiteSpace:"pre-wrap"}}>{data.description}</p></div>}
+                        {data.description&&toolId==="description"&&(
+                          <div className="gcard" style={{marginBottom:8}}>
+                            <div className="gct" style={{marginBottom:5,display:"flex",justifyContent:"space-between"}}>
+                              <span>Description</span>
+                              <button onClick={()=>navigator.clipboard?.writeText(data.description).then(()=>showT("Copied!"))} style={{background:"rgba(99,102,241,.1)",border:"none",borderRadius:6,padding:"2px 9px",color:"#a5b4fc",fontSize:9,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>Copy</button>
+                            </div>
+                            <p className="gctx" style={{whiteSpace:"pre-wrap"}}>{data.description}</p>
+                          </div>
+                        )}
+                        {(data.listings||data.descriptions)?.length>0&&toolId==="description"&&(data.listings||data.descriptions).map((d,i)=>(
+                          <div key={i} className="gcard" style={{marginBottom:8}}>
+                            <div className="gct" style={{marginBottom:5,display:"flex",justifyContent:"space-between"}}>
+                              <span>{d.platform||"Description "+(i+1)}</span>
+                              <button onClick={()=>navigator.clipboard?.writeText((d.title||"")+"\n"+(d.description||"")+"\n"+(d.bullets||[]).join("\n")).then(()=>showT("Copied!"))} style={{background:"rgba(99,102,241,.1)",border:"none",borderRadius:6,padding:"2px 9px",color:"#a5b4fc",fontSize:9,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>Copy</button>
+                            </div>
+                            {d.title&&<div style={{fontWeight:700,fontSize:12,color:"#e2e8f0",marginBottom:4}}>{d.title}</div>}
+                            <p className="gctx" style={{marginBottom:6}}>{d.description}</p>
+                            {d.bullets?.length>0&&<div>{d.bullets.map((b,j)=><div key={j} style={{color:"#94a3b8",fontSize:11,padding:"2px 0",display:"flex",gap:6}}><span style={{color:"#6366f1"}}>•</span><span>{b}</span></div>)}</div>}
+                          </div>
+                        ))}
                         {data.score&&<div style={{textAlign:"center",marginBottom:10}}><div style={{fontSize:36,fontWeight:900,color:parseInt(data.score)>=70?"#10b981":parseInt(data.score)>=50?"#f59e0b":"#ef4444"}}>{data.score}<span style={{fontSize:14,color:"#64748b"}}>/100</span></div></div>}
                         {data.issues?.length>0&&<div className="gcard" style={{marginBottom:8}}><div className="gct" style={{marginBottom:5,color:"#ef4444"}}>Issues</div>{data.issues.map((item,i)=><div key={i} style={{color:"#94a3b8",fontSize:11,padding:"2px 0",display:"flex",gap:6}}><span style={{color:"#ef4444",flexShrink:0}}>✗</span><span>{item}</span></div>)}</div>}
                         {data.improvements?.length>0&&<div className="gcard" style={{marginBottom:8}}><div className="gct" style={{marginBottom:5,color:"#10b981"}}>Improvements</div>{data.improvements.map((item,i)=><div key={i} style={{color:"#94a3b8",fontSize:11,padding:"2px 0",display:"flex",gap:6}}><span style={{color:"#10b981",flexShrink:0}}>✓</span><span>{item}</span></div>)}</div>}
