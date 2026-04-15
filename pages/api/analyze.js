@@ -468,4 +468,5 @@ Return ONLY valid JSON with real, specific data:
   } catch (err) {
     return res.status(500).json({ error: "Analysis failed: " + err.message });
   }
+  
 }
