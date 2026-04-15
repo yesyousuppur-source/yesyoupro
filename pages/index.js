@@ -924,14 +924,14 @@ export default function App() {
             {/* Theme Toggle */}
             <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",background:"rgba(15,23,42,.6)",border:"1px solid #1e293b",borderRadius:11,padding:"10px 14px",marginBottom:10}}>
               <div style={{display:"flex",alignItems:"center",gap:8}}>
-                <span style={{fontSize:16}}>{🌙}</span>
+                <span style={{fontSize:16}}>{dark?"🌙":"☀️"}</span>
                 <div>
-                  <div style={{fontSize:12,fontWeight:700,color:"#e2e8f0"}}>{Dark Mode}</div>
+                  <div style={{fontSize:12,fontWeight:700,color:"#e2e8f0"}}>{dark?"Dark Mode":"Light Mode"}</div>
                   <div style={{fontSize:10,color:"#64748b"}}>Click to switch</div>
                 </div>
               </div>
               <div onClick={toggleTheme} style={{width:48,height:26,borderRadius:100,background:"rgba(99,102,241,.2)",padding:3,cursor:"pointer",position:"relative",transition:"all .3s"}}>
-                <div style={{width:20,height:20,borderRadius:"50%",background:"linear-gradient(135deg,#6366f1,#8b5cf6)",position:"absolute",top:3,left:dark?3:25,transition:"left .25s ease",display:"flex",alignItems:"center",justifyContent:"center",fontSize:10}}>{🌙}</div>
+                <div style={{width:20,height:20,borderRadius:"50%",background:"linear-gradient(135deg,#6366f1,#8b5cf6)",position:"absolute",top:3,left:dark?3:25,transition:"left .25s ease",display:"flex",alignItems:"center",justifyContent:"center",fontSize:10}}>{dark?"🌙":"☀️"}</div>
               </div>
             </div>
             <div style={{textAlign:"center",fontSize:10,color:"#334155"}}>YesYouPro · yesyoupro.com</div>
