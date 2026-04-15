@@ -326,20 +326,6 @@ Return ONLY valid JSON: {"policies":[{"platform":"Amazon","text":"complete retur
     prompt = `You are an Indian ecommerce compliance expert. Check requirements for "${name}" (${category||"Any"}).
 Return ONLY valid JSON: {"gst_slab":"X%","hsn_code":"XXXXXXXX","certifications":["cert1","cert2"],"legal_requirements":["req1","req2","req3"],"warnings":["warning if any"]}`;
 
-  } else if (mode === "ad_copy_generator") {
-    prompt = `You are an expert ad copywriter for Indian ecommerce. Create 5 ad copies for "${name}" (${category||"Any"}) targeting Indian buyers.
-Return ONLY valid JSON: {"ads":[{"platform":"Facebook Ad","copy":"ad text here","cta":"Shop Now"},{"platform":"Instagram Ad","copy":"text","cta":"cta"},{"platform":"Google Search Ad","copy":"text","cta":"cta"},{"platform":"WhatsApp Broadcast","copy":"Hindi mix text","cta":"cta"},{"platform":"YouTube Pre-roll","copy":"Hook + text","cta":"cta"}]}`;
-
-  } else if (mode === "review_reply") {
-    const review = req.body.review || "";
-    prompt = `You are an expert ecommerce seller on ${platform||"Amazon"}. A customer left this review: "${review}". Product: "${name}". Write 3 professional reply options.
-Return ONLY valid JSON: {"replies":[{"type":"Empathetic","reply":"full reply text"},{"type":"Solution Focused","reply":"offer solution reply"},{"type":"Apologetic + Offer","reply":"apology with replacement offer"}],"tip":"one practical tip to prevent this review in future"}`;
-
-  } else if (mode === "listing_checker") {
-    const listing = req.body.listing || "";
-    prompt = `You are an Amazon/ecommerce listing optimization expert. Analyze this listing for "${name}" on ${platform||"Amazon"}: "${listing}". Score it and give improvements.
-Return ONLY valid JSON: {"score":"XX","issues":["issue1","issue2","issue3","issue4","issue5"],"improvements":["fix1","fix2","fix3","fix4","fix5"],"missing_keywords":["kw1","kw2","kw3","kw4","kw5"],"optimized_title":"Better SEO title here"}`;
-
   } else {
     // DEFAULT - Universal analysis for ANYTHING
     prompt = `You are a universal market expert for India. Deeply analyze this:
