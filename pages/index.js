@@ -816,7 +816,7 @@ export default function App() {
         </div>
       </div>}
 
-      {screen==="dashboard" && <div className="dash"
+      {screen==="dashboard" && <div className="dash">
         <nav className="nav">
           <div className="logo">🧠 YesYouPro</div>
           {usage && <div className="upill">
