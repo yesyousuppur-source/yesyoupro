@@ -1241,7 +1241,7 @@ export default function App() {
               <p style={{color:"#64748b",fontSize:10,marginBottom:12}}>Selling price ke baad actual earning GST ke saath</p>
               <div className="prow">
                 <div className="pfield">
-                  <label>Selling Price (&#8377;)</label>
+                  <label>Selling Price (₹)</label>
                   <input type="number" className="di" placeholder="500" value={gstSell} onChange={e=>setGstSell(e.target.value)}/>
                 </div>
                 <div className="pfield">
@@ -1266,10 +1266,10 @@ export default function App() {
                 <div style={{marginTop:12}} className="fa">
                   <div style={{background:"rgba(99,102,241,.08)",border:"1px solid rgba(99,102,241,.2)",borderRadius:12,padding:14,textAlign:"center",marginBottom:10}}>
                     <div style={{fontSize:10,color:"#64748b",marginBottom:2}}>GST Amount</div>
-                    <div style={{fontSize:28,fontWeight:900,color:"#ef4444"}}>&#8377;{gstRes.gst}</div>
+                    <div style={{fontSize:28,fontWeight:900,color:"#ef4444"}}>₹{gstRes.gst}</div>
                   </div>
                   <div className="presult">
-                    {[{l:"Sell Price",v:"&#8377;"+gstRes.sell,c:"#f8fafc"},{l:"Base Price",v:"&#8377;"+gstRes.base,c:"#10b981"},{l:"CGST",v:"&#8377;"+gstRes.cgst,c:"#f59e0b"},{l:"SGST",v:"&#8377;"+gstRes.sgst,c:"#f59e0b"}].map(r=>(
+                    {[{l:"Sell Price",v:"₹"+gstRes.sell,c:"#f8fafc"},{l:"Base Price",v:"₹"+gstRes.base,c:"#10b981"},{l:"CGST",v:"₹"+gstRes.cgst,c:"#f59e0b"},{l:"SGST",v:"₹"+gstRes.sgst,c:"#f59e0b"}].map(r=>(
                       <div key={r.l} className="prc"><div className="prl">{r.l}</div><div className="prv" style={{color:r.c}}>{r.v}</div></div>
                     ))}
                   </div>
